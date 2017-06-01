@@ -5,4 +5,5 @@
 *.swp
 *.out
 *.py[cod]
+*.pid
 output
