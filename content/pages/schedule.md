@@ -110,7 +110,7 @@ Summary: Overview of course schedule and topics
   <tr>
     <td>Tuesday</td>
     <td>31-Oct</td>
-    <td>KK / Andrew Goodwilly</td>
+    <td>KK</td>
     <td>Map making with GeoMappApp</td>
   </tr>
   <tr>
@@ -119,11 +119,11 @@ Summary: Overview of course schedule and topics
     <td>KK</td>
     <td>Map making in-class activity</td>
   </tr>
-  <tr>
+  <tr class="warning">
     <td>Tuesday</td>
     <td>7-Nov</td>
-    <td>no class / Election day</td>
     <td></td>
+    <td><em>no class / Election day</em></td>
   </tr>
   <tr>
     <td>Thursday</td>
@@ -149,11 +149,11 @@ Summary: Overview of course schedule and topics
     <td>KK</td>
     <td>Parallel programming in Fortran in-class activity</td>
   </tr>
-  <tr>
+  <tr class="warning">
     <td>Thursday</td>
     <td>23-Nov</td>
-    <td>no class / Thanksgiving</td>
     <td></td>
+    <td><em>no class / Thanksgiving</em></td>
   </tr>
   <tr>
     <td>Tuesday</td>
