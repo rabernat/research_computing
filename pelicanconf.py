@@ -4,13 +4,15 @@ from __future__ import unicode_literals
 
 AUTHOR = u'Ryan Abernathey and Kerry Key'
 SITENAME = u'Research Computing in Earth Science'
-SITEURL = ''
+SITEURL = 'https://rabernat.github.io/research_computing'
+RELATIVE_URLS = True
 
 PATH = 'content'
 
 TIMEZONE = 'EST'
 
 DEFAULT_LANG = u'en'
+
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None

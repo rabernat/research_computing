@@ -12,6 +12,8 @@ Below are some guidelines for setting up your computing environment.
 Our course is intended for use with the [Anaconda](http://continuum.io/anaconda)
 python distribution.
 
+Sample code:
+
     :::python
     for x in range(10):
         print(x)
