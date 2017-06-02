@@ -20,11 +20,18 @@ AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
 # Blogroll
-LINKS = (('Pelican', 'http://getpelican.com/'),
-         ('Python.org', 'http://python.org/'),
-         ('You can modify those links in your config file', '#'),)
+LINKS = None
+# LINKS = (('Pelican', 'http://getpelican.com/'),
+#          ('Python.org', 'http://python.org/'),
+#          ('You can modify those links in your config file', '#'),)
+
+# https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3
+DISPLAY_TAGS_ON_SIDEBAR=True
+DISPLAY_RECENT_POSTS_ON_SIDEBAR=True
+RECENT_POST_COUNT=10
 
 # Social widget
+SOCIAL = None
 #SOCIAL = (('You can add links in your config file', '#'),
 #          ('Another social link', '#'),)
 
@@ -35,17 +42,18 @@ DEFAULT_PAGINATION = False
 
 # instructions for installting
 THEME = './themes/pelican-bootstrap3'
-BOOTSTRAP_THEME = 'yeti'
+BOOTSTRAP_THEME = 'lumen'
 JINJA_ENVIRONMENT = {'extensions': ['jinja2.ext.i18n']}
 PLUGIN_PATHS = ['./pelican-plugins', './plugins']
 PLUGINS = ['i18n_subsites',
            'liquid_tags.img', 'liquid_tags.video',
            'liquid_tags.youtube', 'liquid_tags.vimeo',
-           'liquid_tags.include_code', 'ipynb.markup']
+           'liquid_tags.include_code', 'tag_cloud',
+           'ipynb.markup', 'bootswatch_markdown_css']
 #  UserWarning: Pelican plugin is not designed to work with IPython versions
 #  greater than 1.x. CSS styles have changed in later releases.
            #'liquid_tags.notebook']
-CUSTOM_CSS = 'static/custom.css'
+#CUSTOM_CSS = 'static/custom.css'
 STATIC_PATHS = ['static']
 
 # banner image
