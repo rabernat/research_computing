@@ -25,7 +25,7 @@ an email to askit@ldeo.columbia.edu. MATLAB uses a license server on campus
 and thus will only run when your computer is on the university network, or if you
 remotely connect using the LDEO VPN server (see below).
 
-#### VPN: Connecting to the University network will off-campus
+#### VPN: Connecting to the University network while off-campus
 
 https://vpn.ldeo.columbia.edu
 
