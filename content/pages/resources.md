@@ -20,6 +20,23 @@ Sample code:
 
 #### Installing MATLAB
 
+You can acquire a MATLAB license and instructions for installing the softare by sending
+an email to askit@ldeo.columbia.edu. MATLAB uses a license server on campus
+and thus will only run when your computer is on the university network, or if you
+remotely connect using the LDEO VPN server (see below).
+
+#### VPN: Connecting to the University network while off-campus
+
+https://vpn.ldeo.columbia.edu
+
+At the OpenVPN log in screen.
+Click on the drop down list and choose "Login".
+Log in with your LDEO ID and Password.
+After you have successfully logged in you will be able to download and
+install the new "OpenVPN Connect" Client or download the new
+configuration file.
+
+
 ### Getting Help
 
 Your first stop for help should be the official documentation of the packages
