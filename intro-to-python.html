@@ -111,868 +111,7 @@ Research Computing in Earth Science            </a>
 *
 * IPython notebook
 *
-*/
-/* CSS font colors for translated ANSI colors. */
-.ansibold {
-  font-weight: bold;
-}
-/* use dark versions for foreground, to improve visibility */
-.ansiblack {
-  color: black;
-}
-.ansired {
-  color: darkred;
-}
-.ansigreen {
-  color: darkgreen;
-}
-.ansiyellow {
-  color: #c4a000;
-}
-.ansiblue {
-  color: darkblue;
-}
-.ansipurple {
-  color: darkviolet;
-}
-.ansicyan {
-  color: steelblue;
-}
-.ansigray {
-  color: gray;
-}
-/* and light for background, for the same reason */
-.ansibgblack {
-  background-color: black;
-}
-.ansibgred {
-  background-color: red;
-}
-.ansibggreen {
-  background-color: green;
-}
-.ansibgyellow {
-  background-color: yellow;
-}
-.ansibgblue {
-  background-color: blue;
-}
-.ansibgpurple {
-  background-color: magenta;
-}
-.ansibgcyan {
-  background-color: cyan;
-}
-.ansibggray {
-  background-color: gray;
-}
-div.cell {
-  /* Old browsers */
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-box-align: stretch;
-  display: -moz-box;
-  -moz-box-orient: vertical;
-  -moz-box-align: stretch;
-  display: box;
-  box-orient: vertical;
-  box-align: stretch;
-  /* Modern browsers */
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  border-radius: 2px;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  border-width: 1px;
-  border-style: solid;
-  border-color: transparent;
-  width: 100%;
-  padding: 5px;
-  /* This acts as a spacer between cells, that is outside the border */
-  margin: 0px;
-  outline: none;
-  border-left-width: 1px;
-  padding-left: 5px;
-  background: linear-gradient(to right, transparent -40px, transparent 1px, transparent 1px, transparent 100%);
-}
-div.cell.jupyter-soft-selected {
-  border-left-color: #90CAF9;
-  border-left-color: #E3F2FD;
-  border-left-width: 1px;
-  padding-left: 5px;
-  border-right-color: #E3F2FD;
-  border-right-width: 1px;
-  background: #E3F2FD;
-}
-@media print {
-  div.cell.jupyter-soft-selected {
-    border-color: transparent;
-  }
-}
-div.cell.selected {
-  border-color: #ababab;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 5px, transparent 5px, transparent 100%);
-}
-@media print {
-  div.cell.selected {
-    border-color: transparent;
-  }
-}
-div.cell.selected.jupyter-soft-selected {
-  border-left-width: 0;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 7px, #E3F2FD 7px, #E3F2FD 100%);
-}
-.edit_mode div.cell.selected {
-  border-color: #66BB6A;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #66BB6A -40px, #66BB6A 5px, transparent 5px, transparent 100%);
-}
-@media print {
-  .edit_mode div.cell.selected {
-    border-color: transparent;
-  }
-}
-.prompt {
-  /* This needs to be wide enough for 3 digit prompt numbers: In[100]: */
-  min-width: 14ex;
-  /* This padding is tuned to match the padding on the CodeMirror editor. */
-  padding: 0.4em;
-  margin: 0px;
-  font-family: monospace;
-  text-align: right;
-  /* This has to match that of the the CodeMirror class line-height below */
-  line-height: 1.21429em;
-  /* Don't highlight prompt number selection */
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  /* Use default cursor */
-  cursor: default;
-}
-@media (max-width: 540px) {
-  .prompt {
-    text-align: left;
-  }
-}
-div.inner_cell {
-  min-width: 0;
-  /* Old browsers */
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-box-align: stretch;
-  display: -moz-box;
-  -moz-box-orient: vertical;
-  -moz-box-align: stretch;
-  display: box;
-  box-orient: vertical;
-  box-align: stretch;
-  /* Modern browsers */
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  /* Old browsers */
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  box-flex: 1;
-  /* Modern browsers */
-  flex: 1;
-}
-/* input_area and input_prompt must match in top border and margin for alignment */
-div.input_area {
-  border: 1px solid #cfcfcf;
-  border-radius: 2px;
-  background: #f7f7f7;
-  line-height: 1.21429em;
-}
-/* This is needed so that empty prompt areas can collapse to zero height when there
-   is no content in the output_subarea and the prompt. The main purpose of this is
-   to make sure that empty JavaScript output_subareas have no height. */
-div.prompt:empty {
-  padding-top: 0;
-  padding-bottom: 0;
-}
-div.unrecognized_cell {
-  padding: 5px 5px 5px 0px;
-  /* Old browsers */
-  display: -webkit-box;
-  -webkit-box-orient: horizontal;
-  -webkit-box-align: stretch;
-  display: -moz-box;
-  -moz-box-orient: horizontal;
-  -moz-box-align: stretch;
-  display: box;
-  box-orient: horizontal;
-  box-align: stretch;
-  /* Modern browsers */
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-}
-div.unrecognized_cell .inner_cell {
-  border-radius: 2px;
-  padding: 5px;
-  font-weight: bold;
-  color: red;
-  border: 1px solid #cfcfcf;
-  background: #eaeaea;
-}
-div.unrecognized_cell .inner_cell a {
-  color: inherit;
-  text-decoration: none;
-}
-div.unrecognized_cell .inner_cell a:hover {
-  color: inherit;
-  text-decoration: none;
-}
-@media (max-width: 540px) {
-  div.unrecognized_cell > div.prompt {
-    display: none;
-  }
-}
-div.code_cell {
-  /* avoid page breaking on code cells when printing */
-}
-@media print {
-  div.code_cell {
-    page-break-inside: avoid;
-  }
-}
-/* any special styling for code cells that are currently running goes here */
-div.input {
-  page-break-inside: avoid;
-  /* Old browsers */
-  display: -webkit-box;
-  -webkit-box-orient: horizontal;
-  -webkit-box-align: stretch;
-  display: -moz-box;
-  -moz-box-orient: horizontal;
-  -moz-box-align: stretch;
-  display: box;
-  box-orient: horizontal;
-  box-align: stretch;
-  /* Modern browsers */
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-}
-@media (max-width: 540px) {
-  div.input {
-    /* Old browsers */
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-box-align: stretch;
-    display: -moz-box;
-    -moz-box-orient: vertical;
-    -moz-box-align: stretch;
-    display: box;
-    box-orient: vertical;
-    box-align: stretch;
-    /* Modern browsers */
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-  }
-}
-/* input_area and input_prompt must match in top border and margin for alignment */
-div.input_prompt {
-  color: #303F9F;
-  border-top: 1px solid transparent;
-}
-div.input_area > div.highlight {
-  margin: 0.4em;
-  border: none;
-  padding: 0px;
-  background-color: transparent;
-}
-div.input_area > div.highlight > pre {
-  margin: 0px;
-  border: none;
-  padding: 0px;
-  background-color: transparent;
-}
-/* The following gets added to the <head> if it is detected that the user has a
- * monospace font with inconsistent normal/bold/italic height.  See
- * notebookmain.js.  Such fonts will have keywords vertically offset with
- * respect to the rest of the text.  The user should select a better font.
- * See: https://github.com/ipython/ipython/issues/1503
- *
- * .CodeMirror span {
- *      vertical-align: bottom;
- * }
- */
-.CodeMirror {
-  line-height: 1.21429em;
-  /* Changed from 1em to our global default */
-  font-size: 14px;
-  height: auto;
-  /* Changed to auto to autogrow */
-  background: none;
-  /* Changed from white to allow our bg to show through */
-}
-.CodeMirror-scroll {
-  /*  The CodeMirror docs are a bit fuzzy on if overflow-y should be hidden or visible.*/
-  /*  We have found that if it is visible, vertical scrollbars appear with font size changes.*/
-  overflow-y: hidden;
-  overflow-x: auto;
-}
-.CodeMirror-lines {
-  /* In CM2, this used to be 0.4em, but in CM3 it went to 4px. We need the em value because */
-  /* we have set a different line-height and want this to scale with that. */
-  padding: 0.4em;
-}
-.CodeMirror-linenumber {
-  padding: 0 8px 0 4px;
-}
-.CodeMirror-gutters {
-  border-bottom-left-radius: 2px;
-  border-top-left-radius: 2px;
-}
-.CodeMirror pre {
-  /* In CM3 this went to 4px from 0 in CM2. We need the 0 value because of how we size */
-  /* .CodeMirror-lines */
-  padding: 0;
-  border: 0;
-  border-radius: 0;
-}
-/*
-
-Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Org>
-Adapted from GitHub theme
-
-*/
-.highlight-base {
-  color: #000;
-}
-.highlight-variable {
-  color: #000;
-}
-.highlight-variable-2 {
-  color: #1a1a1a;
-}
-.highlight-variable-3 {
-  color: #333333;
-}
-.highlight-string {
-  color: #BA2121;
-}
-.highlight-comment {
-  color: #408080;
-  font-style: italic;
-}
-.highlight-number {
-  color: #080;
-}
-.highlight-atom {
-  color: #88F;
-}
-.highlight-keyword {
-  color: #008000;
-  font-weight: bold;
-}
-.highlight-builtin {
-  color: #008000;
-}
-.highlight-error {
-  color: #f00;
-}
-.highlight-operator {
-  color: #AA22FF;
-  font-weight: bold;
-}
-.highlight-meta {
-  color: #AA22FF;
-}
-/* previously not defined, copying from default codemirror */
-.highlight-def {
-  color: #00f;
-}
-.highlight-string-2 {
-  color: #f50;
-}
-.highlight-qualifier {
-  color: #555;
-}
-.highlight-bracket {
-  color: #997;
-}
-.highlight-tag {
-  color: #170;
-}
-.highlight-attribute {
-  color: #00c;
-}
-.highlight-header {
-  color: blue;
-}
-.highlight-quote {
-  color: #090;
-}
-.highlight-link {
-  color: #00c;
-}
-/* apply the same style to codemirror */
-.cm-s-ipython span.cm-keyword {
-  color: #008000;
-  font-weight: bold;
-}
-.cm-s-ipython span.cm-atom {
-  color: #88F;
-}
-.cm-s-ipython span.cm-number {
-  color: #080;
-}
-.cm-s-ipython span.cm-def {
-  color: #00f;
-}
-.cm-s-ipython span.cm-variable {
-  color: #000;
-}
-.cm-s-ipython span.cm-operator {
-  color: #AA22FF;
-  font-weight: bold;
-}
-.cm-s-ipython span.cm-variable-2 {
-  color: #1a1a1a;
-}
-.cm-s-ipython span.cm-variable-3 {
-  color: #333333;
-}
-.cm-s-ipython span.cm-comment {
-  color: #408080;
-  font-style: italic;
-}
-.cm-s-ipython span.cm-string {
-  color: #BA2121;
-}
-.cm-s-ipython span.cm-string-2 {
-  color: #f50;
-}
-.cm-s-ipython span.cm-meta {
-  color: #AA22FF;
-}
-.cm-s-ipython span.cm-qualifier {
-  color: #555;
-}
-.cm-s-ipython span.cm-builtin {
-  color: #008000;
-}
-.cm-s-ipython span.cm-bracket {
-  color: #997;
-}
-.cm-s-ipython span.cm-tag {
-  color: #170;
-}
-.cm-s-ipython span.cm-attribute {
-  color: #00c;
-}
-.cm-s-ipython span.cm-header {
-  color: blue;
-}
-.cm-s-ipython span.cm-quote {
-  color: #090;
-}
-.cm-s-ipython span.cm-link {
-  color: #00c;
-}
-.cm-s-ipython span.cm-error {
-  color: #f00;
-}
-.cm-s-ipython span.cm-tab {
-  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAMCAYAAAAkuj5RAAAAAXNSR0IArs4c6QAAAGFJREFUSMft1LsRQFAQheHPowAKoACx3IgEKtaEHujDjORSgWTH/ZOdnZOcM/sgk/kFFWY0qV8foQwS4MKBCS3qR6ixBJvElOobYAtivseIE120FaowJPN75GMu8j/LfMwNjh4HUpwg4LUAAAAASUVORK5CYII=);
-  background-position: right;
-  background-repeat: no-repeat;
-}
-div.output_wrapper {
-  /* this position must be relative to enable descendents to be absolute within it */
-  position: relative;
-  /* Old browsers */
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-box-align: stretch;
-  display: -moz-box;
-  -moz-box-orient: vertical;
-  -moz-box-align: stretch;
-  display: box;
-  box-orient: vertical;
-  box-align: stretch;
-  /* Modern browsers */
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  z-index: 1;
-}
-/* class for the output area when it should be height-limited */
-div.output_scroll {
-  /* ideally, this would be max-height, but FF barfs all over that */
-  height: 24em;
-  /* FF needs this *and the wrapper* to specify full width, or it will shrinkwrap */
-  width: 100%;
-  overflow: auto;
-  border-radius: 2px;
-  -webkit-box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
-  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
-  display: block;
-}
-/* output div while it is collapsed */
-div.output_collapsed {
-  margin: 0px;
-  padding: 0px;
-  /* Old browsers */
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-box-align: stretch;
-  display: -moz-box;
-  -moz-box-orient: vertical;
-  -moz-box-align: stretch;
-  display: box;
-  box-orient: vertical;
-  box-align: stretch;
-  /* Modern browsers */
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-}
-div.out_prompt_overlay {
-  height: 100%;
-  padding: 0px 0.4em;
-  position: absolute;
-  border-radius: 2px;
-}
-div.out_prompt_overlay:hover {
-  /* use inner shadow to get border that is computed the same on WebKit/FF */
-  -webkit-box-shadow: inset 0 0 1px #000;
-  box-shadow: inset 0 0 1px #000;
-  background: rgba(240, 240, 240, 0.5);
-}
-div.output_prompt {
-  color: #D84315;
-}
-/* This class is the outer container of all output sections. */
-div.output_area {
-  padding: 0px;
-  page-break-inside: avoid;
-  /* Old browsers */
-  display: -webkit-box;
-  -webkit-box-orient: horizontal;
-  -webkit-box-align: stretch;
-  display: -moz-box;
-  -moz-box-orient: horizontal;
-  -moz-box-align: stretch;
-  display: box;
-  box-orient: horizontal;
-  box-align: stretch;
-  /* Modern browsers */
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-}
-div.output_area .MathJax_Display {
-  text-align: left !important;
-}
-div.output_area 
-div.output_area 
-div.output_area img,
-div.output_area svg {
-  max-width: 100%;
-  height: auto;
-}
-div.output_area img.unconfined,
-div.output_area svg.unconfined {
-  max-width: none;
-}
-/* This is needed to protect the pre formating from global settings such
-   as that of bootstrap */
-.output {
-  /* Old browsers */
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-box-align: stretch;
-  display: -moz-box;
-  -moz-box-orient: vertical;
-  -moz-box-align: stretch;
-  display: box;
-  box-orient: vertical;
-  box-align: stretch;
-  /* Modern browsers */
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-}
-@media (max-width: 540px) {
-  div.output_area {
-    /* Old browsers */
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-box-align: stretch;
-    display: -moz-box;
-    -moz-box-orient: vertical;
-    -moz-box-align: stretch;
-    display: box;
-    box-orient: vertical;
-    box-align: stretch;
-    /* Modern browsers */
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-  }
-}
-div.output_area pre {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  vertical-align: baseline;
-  color: black;
-  background-color: transparent;
-  border-radius: 0;
-}
-/* This class is for the output subarea inside the output_area and after
-   the prompt div. */
-div.output_subarea {
-  overflow-x: auto;
-  padding: 0.4em;
-  /* Old browsers */
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  box-flex: 1;
-  /* Modern browsers */
-  flex: 1;
-  max-width: calc(100% - 14ex);
-}
-div.output_scroll div.output_subarea {
-  overflow-x: visible;
-}
-/* The rest of the output_* classes are for special styling of the different
-   output types */
-/* all text output has this class: */
-div.output_text {
-  text-align: left;
-  color: #000;
-  /* This has to match that of the the CodeMirror class line-height below */
-  line-height: 1.21429em;
-}
-/* stdout/stderr are 'text' as well as 'stream', but execute_result/error are *not* streams */
-div.output_stderr {
-  background: #fdd;
-  /* very light red background for stderr */
-}
-div.output_latex {
-  text-align: left;
-}
-/* Empty output_javascript divs should have no height */
-div.output_javascript:empty {
-  padding: 0;
-}
-.js-error {
-  color: darkred;
-}
-/* raw_input styles */
-div.raw_input_container {
-  line-height: 1.21429em;
-  padding-top: 5px;
-}
-pre.raw_input_prompt {
-  /* nothing needed here. */
-}
-input.raw_input {
-  font-family: monospace;
-  font-size: inherit;
-  color: inherit;
-  width: auto;
-  /* make sure input baseline aligns with prompt */
-  vertical-align: baseline;
-  /* padding + margin = 0.5em between prompt and cursor */
-  padding: 0em 0.25em;
-  margin: 0em 0.25em;
-}
-input.raw_input:focus {
-  box-shadow: none;
-}
-p.p-space {
-  margin-bottom: 10px;
-}
-div.output_unrecognized {
-  padding: 5px;
-  font-weight: bold;
-  color: red;
-}
-div.output_unrecognized a {
-  color: inherit;
-  text-decoration: none;
-}
-div.output_unrecognized a:hover {
-  color: inherit;
-  text-decoration: none;
-}
-.rendered_html {
-  color: #000;
-  /* any extras will just be numbers: */
-}
-
-
-
-.rendered_html :link {
-  text-decoration: underline;
-}
-.rendered_html :visited {
-  text-decoration: underline;
-}
-
-
-
-
-
-
-.rendered_html h1:first-child {
-  margin-top: 0.538em;
-}
-.rendered_html h2:first-child {
-  margin-top: 0.636em;
-}
-.rendered_html h3:first-child {
-  margin-top: 0.777em;
-}
-.rendered_html h4:first-child {
-  margin-top: 1em;
-}
-.rendered_html h5:first-child {
-  margin-top: 1em;
-}
-.rendered_html h6:first-child {
-  margin-top: 1em;
-}
-
-
-
-
-
-
-
-
-.rendered_html * + ul {
-  margin-top: 1em;
-}
-.rendered_html * + ol {
-  margin-top: 1em;
-}
-
-
-.rendered_html pre,
-
-
-
-.rendered_html tr,
-.rendered_html th,
-
-.rendered_html td,
-
-
-.rendered_html * + table {
-  margin-top: 1em;
-}
-
-.rendered_html * + p {
-  margin-top: 1em;
-}
-
-.rendered_html * + img {
-  margin-top: 1em;
-}
-.rendered_html img,
-
-.rendered_html img.unconfined,
-
-div.text_cell {
-  /* Old browsers */
-  display: -webkit-box;
-  -webkit-box-orient: horizontal;
-  -webkit-box-align: stretch;
-  display: -moz-box;
-  -moz-box-orient: horizontal;
-  -moz-box-align: stretch;
-  display: box;
-  box-orient: horizontal;
-  box-align: stretch;
-  /* Modern browsers */
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-}
-@media (max-width: 540px) {
-  div.text_cell > div.prompt {
-    display: none;
-  }
-}
-div.text_cell_render {
-  /*font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;*/
-  outline: none;
-  resize: none;
-  width: inherit;
-  border-style: none;
-  padding: 0.5em 0.5em 0.5em 0.4em;
-  color: #000;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-}
-a.anchor-link:link {
-  text-decoration: none;
-  padding: 0px 20px;
-  visibility: hidden;
-}
-h1:hover .anchor-link,
-h2:hover .anchor-link,
-h3:hover .anchor-link,
-h4:hover .anchor-link,
-h5:hover .anchor-link,
-h6:hover .anchor-link {
-  visibility: visible;
-}
-.text_cell.rendered .input_area {
-  display: none;
-}
-.text_cell.rendered 
-.text_cell.unrendered .text_cell_render {
-  display: none;
-}
-.cm-header-1,
-.cm-header-2,
-.cm-header-3,
-.cm-header-4,
-.cm-header-5,
-.cm-header-6 {
-  font-weight: bold;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-.cm-header-1 {
-  font-size: 185.7%;
-}
-.cm-header-2 {
-  font-size: 157.1%;
-}
-.cm-header-3 {
-  font-size: 128.6%;
-}
-.cm-header-4 {
-  font-size: 110%;
-}
-.cm-header-5 {
-  font-size: 100%;
-  font-style: italic;
-}
-.cm-header-6 {
-  font-size: 100%;
-  font-style: italic;
-}
-</style>
+*/.ansibold{font-weight:700}.ansiblack{}.ansired{color:#8b0000}.ansigreen{6400}.ansiyellow{color:#c4a000}.ansiblue{8b}.ansipurple{color:#9400d3}.ansicyan{color:#4682b4}.ansigray{color:gray}.ansibgblack{background-}.ansibgred{background-color:red}.ansibggreen{background-color:green}.ansibgyellow{background-color:#ff0}.ansibgblue{background-f}.ansibgpurple{background-color:#ff00ff}.ansibgcyan{background-ff}.ansibggray{background-color:gray}div.cell{border:1px solid transparent;display:-webkit-box;-webkit-box-orient:vertical;display:-moz-box;-moz-box-orient:vertical;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch;border-radius:2px;box-sizing:border-box;-moz-box-sizing:border-box;border-width:thin;border-style:solid;width:100%;padding:5px;margin:0;outline:0}div.cell.selected{border-color:#ababab}@media print{div.cell.selected{border-color:transparent}}.edit_mode div.cell.selected{border-color:green}.prompt{min-width:14ex;padding:.4em;margin:0;font-family:monospace;text-align:right;line-height:1.21429em}div.inner_cell{display:-webkit-box;-webkit-box-orient:vertical;display:-moz-box;-moz-box-orient:vertical;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch;-webkit-box-flex:1;-moz-box-flex:1;box-flex:1;flex:1}@-moz-document url-prefix(){div.inner_cell{overflow-x:hidden}}div.input_area{border:1px solid #cfcfcf;border-radius:2px;background:#f7f7f7;line-height:1.21429em}div.prompt:empty{padding-top:0;padding-bottom:0}div.unrecognized_cell{padding:5px 5px 5px 0;display:-webkit-box;-webkit-box-orient:horizontal;display:-moz-box;-moz-box-orient:horizontal;display:box;box-orient:horizontal;box-align:stretch;display:flex;flex-direction:row;align-items:stretch}div.unrecognized_cell .inner_cell{border-radius:2px;padding:5px;font-weight:700;color:red;border:1px solid #cfcfcf;background:#eaeaea}div.unrecognized_cell .inner_cell a,div.unrecognized_cell .inner_cell a:hover{color:inherit;text-decoration:none}@media (max-width:540px){.prompt{text-align:left}div.unrecognized_cell>div.prompt{display:none}}div.code_cell{}div.input{page-break-inside:avoid;display:-webkit-box;-webkit-box-orient:horizontal;display:-moz-box;-moz-box-orient:horizontal;display:box;box-orient:horizontal;box-align:stretch;display:flex;flex-direction:row;align-items:stretch}@media (max-width:540px){div.input{-webkit-box-orient:vertical;-moz-box-orient:vertical;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch}}div.input_prompt{color:navy;border-top:1px solid transparent}div.input_area>div.highlight{margin:.4em;border:none;padding:0;background-color:transparent}div.input_area>div.highlight>pre{margin:0;border:none;padding:0;background-color:transparent}.CodeMirror{line-height:1.21429em;font-size:14px;height:auto;background:0 0}.CodeMirror-scroll{overflow-y:hidden;overflow-x:auto}.CodeMirror-lines{padding:.4em}.CodeMirror-linenumber{padding:0 8px 0 4px}.CodeMirror-gutters{border-bottom-left-radius:2px;border-top-left-radius:2px}.CodeMirror pre{padding:0;border:0;border-radius:0}.highlight-base,.highlight-variable{}.highlight-variable-2{color:#1a1a1a}.highlight-variable-3{color:#333}.highlight-string{color:#BA2121}.highlight-comment{color:#408080;font-style:italic}.highlight-number{80}.highlight-atom{color:#88F}.highlight-keyword{color:green;font-weight:700}.highlight-builtin{color:green}.highlight-error{color:red}.highlight-operator{color:#A2F;font-weight:700}.highlight-meta{color:#A2F}.highlight-def{f}.highlight-string-2{color:#f50}.highlight-qualifier{color:#555}.highlight-bracket{color:#997}.highlight-tag{color:#170}.highlight-attribute{c}.highlight-header{f}.highlight-quote{90}.highlight-link{c}.cm-s-ipython span.cm-keyword{color:green;font-weight:700}.cm-s-ipython span.cm-atom{color:#88F}.cm-s-ipython span.cm-number{80}.cm-s-ipython span.cm-def{f}.cm-s-ipython span.cm-variable{}.cm-s-ipython span.cm-operator{color:#A2F;font-weight:700}.cm-s-ipython span.cm-variable-2{color:#1a1a1a}.cm-s-ipython span.cm-variable-3{color:#333}.cm-s-ipython span.cm-comment{color:#408080;font-style:italic}.cm-s-ipython span.cm-string{color:#BA2121}.cm-s-ipython span.cm-string-2{color:#f50}.cm-s-ipython span.cm-meta{color:#A2F}.cm-s-ipython span.cm-qualifier{color:#555}.cm-s-ipython span.cm-builtin{color:green}.cm-s-ipython span.cm-bracket{color:#997}.cm-s-ipython span.cm-tag{color:#170}.cm-s-ipython span.cm-attribute{c}.cm-s-ipython span.cm-header{f}.cm-s-ipython span.cm-quote{90}.cm-s-ipython span.cm-link{c}.cm-s-ipython span.cm-error{color:red}.cm-s-ipython span.cm-tab{background:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAMCAYAAAAkuj5RAAAAAXNSR0IArs4c6QAAAGFJREFUSMft1LsRQFAQheHPowAKoACx3IgEKtaEHujDjORSgWTH/ZOdnZOcM/sgk/kFFWY0qV8foQwS4MKBCS3qR6ixBJvElOobYAtivseIE120FaowJPN75GMu8j/LfMwNjh4HUpwg4LUAAAAASUVORK5CYII=')right no-repeat}div.output_wrapper{display:-webkit-box;-webkit-box-align:stretch;display:-moz-box;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch;z-index:1}div.output_scroll{height:24em;width:100%;overflow:auto;border-radius:2px;-webkit-box-shadow:inset 0 2px 8px rgba(0,0,0,.8);box-shadow:inset 0 2px 8px rgba(0,0,0,.8);display:block}div.output_collapsed{margin:0;padding:0;display:-webkit-box;-webkit-box-orient:vertical;display:-moz-box;-moz-box-orient:vertical;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch}div.out_prompt_overlay{height:100%;padding:0 .4em;position:absolute;border-radius:2px}div.out_prompt_overlay:hover{-webkit-box-shadow:inset 0 0 1px #000;box-shadow:inset 0 0 1px #000;background:rgba(240,240,240,.5)}div.output_prompt{color:#8b0000}div.output_area{padding:0;page-break-inside:avoid;display:-webkit-box;-webkit-box-orient:horizontal;display:-moz-box;-moz-box-orient:horizontal;display:box;box-orient:horizontal;box-align:stretch;display:flex;flex-direction:row;align-items:stretch}div.output_area .MathJax_Display{text-align:left!important}div.output_area div.output_area img,div.output_area svg{max-width:100%;height:auto}div.output_area img.unconfined,div.output_area svg.unconfined{max-width:none}.output{display:-webkit-box;-webkit-box-orient:vertical;display:-moz-box;-moz-box-orient:vertical;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch}@media (max-width:540px){div.output_area{-webkit-box-orient:vertical;-moz-box-orient:vertical;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch}}div.output_area pre{margin:0;padding:0;border:0;vertical-align:baseline;background-color:transparent;border-radius:0}div.output_subarea{overflow-x:auto;padding:.4em;-webkit-box-flex:1;-moz-box-flex:1;box-flex:1;flex:1;max-width:calc(100% - 14ex)}div.output_text{text-align:left;line-height:1.21429em}div.output_stderr{background:#fdd}div.output_latex{text-align:left}div.output_javascript:empty{padding:0}.js-error{color:#8b0000}div.raw_input_container{font-family:monospace;padding-top:5px}span.raw_input_prompt{}input.raw_input{font-family:inherit;font-size:inherit;color:inherit;width:auto;vertical-align:baseline;padding:0 .25em;margin:0 .25em}input.raw_input:focus{box-shadow:none}p.p-space{margin-bottom:10px}div.output_unrecognized{padding:5px;font-weight:700;color:red}div.output_unrecognized a,div.output_unrecognized a:hover{color:inherit;text-decoration:none}.rendered_html{}.rendered_html :link,.rendered_html :visited,.rendered_html h1:first-child{margin-top:.538em}.rendered_html h2:first-child{margin-top:.636em}.rendered_html h3:first-child{margin-top:.777em}.rendered_html h4:first-child,.rendered_html h5:first-child,.rendered_html h6:first-child{margin-top:1em}.rendered_html *+ol,.rendered_html *+ul{margin-top:1em}.rendered_html *+table{margin-top:1em}.rendered_html *+p{margin-top:1em}.rendered_html *+img{margin-top:1em}div.text_cell{display:-webkit-box;-webkit-box-orient:horizontal;display:-moz-box;-moz-box-orient:horizontal;display:box;box-orient:horizontal;box-align:stretch;display:flex;flex-direction:row;align-items:stretch}@media (max-width:540px){div.text_cell>div.prompt{display:none}}div.text_cell_render{outline:0;resize:none;width:inherit;border-style:none;padding:.5em .5em .5em .4em;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box}a.anchor-link:link{text-decoration:none;padding:0 20px;visibility:hidden}h1:hover .anchor-link,h2:hover .anchor-link,h3:hover .anchor-link,h4:hover .anchor-link,h5:hover .anchor-link,h6:hover .anchor-link{visibility:visible}.text_cell.rendered .input_area{display:none}.text_cell.rendered .text_cell.unrendered .text_cell_render{display:none}.cm-header-1,.cm-header-2,.cm-header-3,.cm-header-4,.cm-header-5,.cm-header-6{font-weight:700;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}.cm-header-1{font-size:185.7%}.cm-header-2{font-size:157.1%}.cm-header-3{font-size:128.6%}.cm-header-4{font-size:110%}.cm-header-5,.cm-header-6{font-size:100%;font-style:italic}</style>
 <style type="text/css">.highlight .hll { background-color: #ffffcc }
 .highlight  { background: #f8f8f8; }
 .highlight .c { color: #408080; font-style: italic } /* Comment */
@@ -1022,10 +161,8 @@ h6:hover .anchor-link {
 .highlight .mh { color: #666666 } /* Literal.Number.Hex */
 .highlight .mi { color: #666666 } /* Literal.Number.Integer */
 .highlight .mo { color: #666666 } /* Literal.Number.Oct */
-.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
 .highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
 .highlight .sc { color: #BA2121 } /* Literal.String.Char */
-.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
 .highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
 .highlight .s2 { color: #BA2121 } /* Literal.String.Double */
 .highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
@@ -1036,49 +173,10 @@ h6:hover .anchor-link {
 .highlight .s1 { color: #BA2121 } /* Literal.String.Single */
 .highlight .ss { color: #19177C } /* Literal.String.Symbol */
 .highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
-.highlight .fm { color: #0000FF } /* Name.Function.Magic */
 .highlight .vc { color: #19177C } /* Name.Variable.Class */
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
-.highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style>
-<style type="text/css">
-/* Temporary definitions which will become obsolete with Notebook release 5.0 */
-.ansi-black-fg { color: #3E424D; }
-.ansi-black-bg { background-color: #3E424D; }
-.ansi-black-intense-fg { color: #282C36; }
-.ansi-black-intense-bg { background-color: #282C36; }
-.ansi-red-fg { color: #E75C58; }
-.ansi-red-bg { background-color: #E75C58; }
-.ansi-red-intense-fg { color: #B22B31; }
-.ansi-red-intense-bg { background-color: #B22B31; }
-.ansi-green-fg { color: #00A250; }
-.ansi-green-bg { background-color: #00A250; }
-.ansi-green-intense-fg { color: #007427; }
-.ansi-green-intense-bg { background-color: #007427; }
-.ansi-yellow-fg { color: #DDB62B; }
-.ansi-yellow-bg { background-color: #DDB62B; }
-.ansi-yellow-intense-fg { color: #B27D12; }
-.ansi-yellow-intense-bg { background-color: #B27D12; }
-.ansi-blue-fg { color: #208FFB; }
-.ansi-blue-bg { background-color: #208FFB; }
-.ansi-blue-intense-fg { color: #0065CA; }
-.ansi-blue-intense-bg { background-color: #0065CA; }
-.ansi-magenta-fg { color: #D160C4; }
-.ansi-magenta-bg { background-color: #D160C4; }
-.ansi-magenta-intense-fg { color: #A03196; }
-.ansi-magenta-intense-bg { background-color: #A03196; }
-.ansi-cyan-fg { color: #60C6C8; }
-.ansi-cyan-bg { background-color: #60C6C8; }
-.ansi-cyan-intense-fg { color: #258F8F; }
-.ansi-cyan-intense-bg { background-color: #258F8F; }
-.ansi-white-fg { color: #C5C1B4; }
-.ansi-white-bg { background-color: #C5C1B4; }
-.ansi-white-intense-fg { color: #A1A6B2; }
-.ansi-white-intense-bg { background-color: #A1A6B2; }
-
-.ansi-bold { font-weight: bold; }
-</style>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -1183,8 +281,7 @@ memoryview() set()</code></pre>
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt"></div>
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>1
 hello
@@ -1217,11 +314,10 @@ hello
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt"></div>
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><class &#x27;int&#x27;>
-<class &#x27;str&#x27;>
+<pre><class &amp;apos;int&amp;apos;>
+<class &amp;apos;str&amp;apos;>
 </pre>
 </div>
 </div>
@@ -1241,8 +337,7 @@ hello
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[5]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[5]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>str</pre>
 </div>
@@ -1264,8 +359,7 @@ hello
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt"></div>
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>True
 False
@@ -1298,8 +392,7 @@ False
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[7]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[7]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre><function str.capitalize></pre>
 </div>
@@ -1321,10 +414,9 @@ False
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[8]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[8]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>'Hello'</pre>
+<pre>&apos;Hello&apos;</pre>
 </div>
 </div>
 </div>
@@ -1346,26 +438,24 @@ False
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt"></div>
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>helloWorld
 3
 </pre>
 </div>
 </div>
-<div class="output_area">
-<div class="prompt"></div>
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_text output_error">
 <pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg"><ipython-input-9-d0ea84c04eb4></span> in <span class="ansi-cyan-fg"><module></span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-intense-fg ansi-bold">      3</span> print<span class="ansi-blue-fg">(</span>b <span class="ansi-blue-fg">+</span> c<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      4</span> print<span class="ansi-blue-fg">(</span>a <span class="ansi-blue-fg">+</span> <span class="ansi-cyan-fg">2</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">----> 5</span><span class="ansi-red-fg"> </span>print<span class="ansi-blue-fg">(</span>a <span class="ansi-blue-fg">+</span> b<span class="ansi-blue-fg">)</span>
+<span class="ansired">---------------------------------------------------------------------------</span>
+<span class="ansired">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansigreen"><ipython-input-9-d0ea84c04eb4></span> in <span class="ansicyan"><module></span><span class="ansiblue">()</span>
+<span class="ansigreen">      3</span> print<span class="ansiblue">(</span>b <span class="ansiblue">+</span> c<span class="ansiblue">)</span><span class="ansiblue"></span>
+<span class="ansigreen">      4</span> print<span class="ansiblue">(</span>a <span class="ansiblue">+</span> <span class="ansicyan">2</span><span class="ansiblue">)</span><span class="ansiblue"></span>
+<span class="ansigreen">----> 5</span><span class="ansired"> </span>print<span class="ansiblue">(</span>a <span class="ansiblue">+</span> b<span class="ansiblue">)</span><span class="ansiblue"></span>
 
-<span class="ansi-red-fg">TypeError</span>: unsupported operand type(s) for +: 'int' and 'str'</pre>
+<span class="ansired">TypeError</span>: unsupported operand type(s) for +: &apos;int&apos; and &apos;str&apos;</pre>
 </div>
 </div>
 </div>
@@ -1393,8 +483,7 @@ False
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[10]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[10]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>-3</pre>
 </div>
@@ -1415,8 +504,7 @@ False
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[11]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[11]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>50</pre>
 </div>
@@ -1437,8 +525,7 @@ False
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[12]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[12]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>0.5</pre>
 </div>
@@ -1459,8 +546,7 @@ False
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[13]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[13]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>float</pre>
 </div>
@@ -1481,8 +567,7 @@ False
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[14]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[14]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>16</pre>
 </div>
@@ -1503,8 +588,7 @@ False
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[15]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[15]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>1</pre>
 </div>
@@ -1525,8 +609,7 @@ False
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[16]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[16]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>(-0.2+0.4j)</pre>
 </div>
@@ -1547,8 +630,7 @@ False
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[17]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[17]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>True</pre>
 </div>
@@ -1568,8 +650,7 @@ False
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[18]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[18]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>False</pre>
 </div>
@@ -1589,8 +670,7 @@ False
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[19]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[19]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>True</pre>
 </div>
@@ -1610,8 +690,7 @@ False
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[20]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[20]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>True</pre>
 </div>
@@ -1646,8 +725,7 @@ False
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt"></div>
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Positive Number
 </pre>
@@ -1673,8 +751,7 @@ False
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt"></div>
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Positive Number
 Huge number!
@@ -1712,8 +789,7 @@ Huge number!
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt"></div>
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>10
 </pre>
@@ -1736,8 +812,7 @@ Huge number!
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt"></div>
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>0
 1
@@ -1772,8 +847,7 @@ Huge number!
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[30]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[30]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>type</pre>
 </div>
@@ -1806,8 +880,7 @@ Huge number!
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt"></div>
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>dog 3
 cat 3
@@ -1841,8 +914,7 @@ fish 4
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[64]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[64]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>list</pre>
 </div>
@@ -1864,10 +936,9 @@ fish 4
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[39]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[39]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>['cat', 'dog', 'fish']</pre>
+<pre>[&apos;cat&apos;, &apos;dog&apos;, &apos;fish&apos;]</pre>
 </div>
 </div>
 </div>
@@ -1887,8 +958,7 @@ fish 4
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[46]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[46]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>[0, 1, 2, 3, 4]</pre>
 </div>
@@ -1911,8 +981,7 @@ fish 4
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt"></div>
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>p: 4
 r: [0, 1, 2, 3]
@@ -1968,8 +1037,7 @@ Extend the list by appending all the items in the given list. Equivalent to a[le
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[52]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[52]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>[0, 1, 2, 3, 4, 10, 11, 12, 13, 14]</pre>
 </div>
@@ -1994,8 +1062,7 @@ Extend the list by appending all the items in the given list. Equivalent to a[le
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt"></div>
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>first 0
 last 14
@@ -2032,18 +1099,17 @@ middle, skipping every other item [10, 12, 14]
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt"></div>
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_text output_error">
 <pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">IndexError</span>                                Traceback (most recent call last)
-<span class="ansi-green-fg"><ipython-input-60-a6804f3b0ad3></span> in <span class="ansi-cyan-fg"><module></span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-red-fg"># that means we get an error from the following</span>
-<span class="ansi-green-intense-fg ansi-bold">      2</span> N <span class="ansi-blue-fg">=</span> len<span class="ansi-blue-fg">(</span>z<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">----> 3</span><span class="ansi-red-fg"> </span>z<span class="ansi-blue-fg">[</span>N<span class="ansi-blue-fg">]</span>
+<span class="ansired">---------------------------------------------------------------------------</span>
+<span class="ansired">IndexError</span>                                Traceback (most recent call last)
+<span class="ansigreen"><ipython-input-60-a6804f3b0ad3></span> in <span class="ansicyan"><module></span><span class="ansiblue">()</span>
+<span class="ansigreen">      1</span> <span class="ansired"># that means we get an error from the following</span><span class="ansiblue"></span><span class="ansiblue"></span>
+<span class="ansigreen">      2</span> N <span class="ansiblue">=</span> len<span class="ansiblue">(</span>z<span class="ansiblue">)</span><span class="ansiblue"></span>
+<span class="ansigreen">----> 3</span><span class="ansired"> </span>z<span class="ansiblue">[</span>N<span class="ansiblue">]</span><span class="ansiblue"></span>
 
-<span class="ansi-red-fg">IndexError</span>: list index out of range</pre>
+<span class="ansired">IndexError</span>: list index out of range</pre>
 </div>
 </div>
 </div>
@@ -2063,8 +1129,7 @@ middle, skipping every other item [10, 12, 14]
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt"></div>
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Ryan
 </pre>
@@ -2086,8 +1151,7 @@ middle, skipping every other item [10, 12, 14]
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[57]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[57]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>False</pre>
 </div>
@@ -2117,10 +1181,9 @@ middle, skipping every other item [10, 12, 14]
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[58]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[58]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>[0, 1, 2, 3, 'fish', 10, 11, 12, 13, 14]</pre>
+<pre>[0, 1, 2, 3, &apos;fish&apos;, 10, 11, 12, 13, 14]</pre>
 </div>
 </div>
 </div>
@@ -2149,8 +1212,7 @@ middle, skipping every other item [10, 12, 14]
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[59]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[59]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>[0, 1, 4, 9, 16]</pre>
 </div>
@@ -2172,8 +1234,7 @@ middle, skipping every other item [10, 12, 14]
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt"></div>
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>first: 0 second: 10
 first: 1 second: 11
@@ -2212,8 +1273,7 @@ first: 4 second: 14
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[69]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[69]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>tuple</pre>
 </div>
@@ -2234,8 +1294,7 @@ first: 4 second: 14
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt"></div>
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>33
 </pre>
@@ -2281,10 +1340,9 @@ first: 4 second: 14
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[76]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[76]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>{'age': 25, 'name': 'Takaya'}</pre>
+<pre>{&apos;age&apos;: 25, &apos;name&apos;: &apos;Takaya&apos;}</pre>
 </div>
 </div>
 </div>
@@ -2303,10 +1361,9 @@ first: 4 second: 14
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[82]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[82]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>'Ryan'</pre>
+<pre>&apos;Ryan&apos;</pre>
 </div>
 </div>
 </div>
@@ -2335,8 +1392,7 @@ first: 4 second: 14
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt"></div>
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>True
 False
@@ -2359,17 +1415,16 @@ False
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt"></div>
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_text output_error">
 <pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">KeyError</span>                                  Traceback (most recent call last)
-<span class="ansi-green-fg"><ipython-input-83-261ef018477b></span> in <span class="ansi-cyan-fg"><module></span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-red-fg"># try to access a non-existant key</span>
-<span class="ansi-green-fg">----> 2</span><span class="ansi-red-fg"> </span>d<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">'height'</span><span class="ansi-blue-fg">]</span>
+<span class="ansired">---------------------------------------------------------------------------</span>
+<span class="ansired">KeyError</span>                                  Traceback (most recent call last)
+<span class="ansigreen"><ipython-input-83-261ef018477b></span> in <span class="ansicyan"><module></span><span class="ansiblue">()</span>
+<span class="ansigreen">      1</span> <span class="ansired"># try to access a non-existant key</span><span class="ansiblue"></span><span class="ansiblue"></span>
+<span class="ansigreen">----> 2</span><span class="ansired"> </span>d<span class="ansiblue">[</span><span class="ansiblue">&apos;height&apos;</span><span class="ansiblue">]</span><span class="ansiblue"></span>
 
-<span class="ansi-red-fg">KeyError</span>: 'height'</pre>
+<span class="ansired">KeyError</span>: &apos;height&apos;</pre>
 </div>
 </div>
 </div>
@@ -2389,10 +1444,9 @@ False
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[84]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[84]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>{'age': 33, 'height': (5, 11), 'name': 'Ryan'}</pre>
+<pre>{&apos;age&apos;: 33, &apos;height&apos;: (5, 11), &apos;name&apos;: &apos;Ryan&apos;}</pre>
 </div>
 </div>
 </div>
@@ -2412,10 +1466,9 @@ False
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[86]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[86]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>{99: 'ninety nine', 'age': 33, 'name': 'Ryan', 'height': (5, 11)}</pre>
+<pre>{99: &apos;ninety nine&apos;, &apos;age&apos;: 33, &apos;name&apos;: &apos;Ryan&apos;, &apos;height&apos;: (5, 11)}</pre>
 </div>
 </div>
 </div>
@@ -2435,8 +1488,7 @@ False
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt"></div>
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>99 ninety nine
 age 33
@@ -2464,8 +1516,7 @@ height (5, 11)
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt"></div>
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>99 ninety nine
 age 33
@@ -2513,8 +1564,7 @@ height (5, 11)
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[122]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[122]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>function</pre>
 </div>
@@ -2547,10 +1597,9 @@ say_hello<span class="o">?</span>
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[119]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[119]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>'Hello'</pre>
+<pre>&apos;Hello&apos;</pre>
 </div>
 </div>
 </div>
@@ -2570,10 +1619,9 @@ say_hello<span class="o">?</span>
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[113]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[113]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>'Hello'</pre>
+<pre>&apos;Hello&apos;</pre>
 </div>
 </div>
 </div>
@@ -2606,10 +1654,9 @@ say_hello<span class="o">?</span>
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[126]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[126]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>'Hello World'</pre>
+<pre>&apos;Hello World&apos;</pre>
 </div>
 </div>
 </div>
@@ -2627,21 +1674,20 @@ say_hello<span class="o">?</span>
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt"></div>
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_text output_error">
 <pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg"><ipython-input-127-56dd0f5596c8></span> in <span class="ansi-cyan-fg"><module></span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-fg">----> 1</span><span class="ansi-red-fg"> </span>say_hello_to<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">10</span><span class="ansi-blue-fg">)</span>
+<span class="ansired">---------------------------------------------------------------------------</span>
+<span class="ansired">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansigreen"><ipython-input-127-56dd0f5596c8></span> in <span class="ansicyan"><module></span><span class="ansiblue">()</span>
+<span class="ansigreen">----> 1</span><span class="ansired"> </span>say_hello_to<span class="ansiblue">(</span><span class="ansicyan">10</span><span class="ansiblue">)</span><span class="ansiblue"></span>
 
-<span class="ansi-green-fg"><ipython-input-125-a444b0f12be2></span> in <span class="ansi-cyan-fg">say_hello_to</span><span class="ansi-blue-fg">(name)</span>
-<span class="ansi-green-intense-fg ansi-bold">      2</span> <span class="ansi-green-fg">def</span> say_hello_to<span class="ansi-blue-fg">(</span>name<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">      3</span>     <span class="ansi-blue-fg">"""Return a greeting to `name`"""</span>
-<span class="ansi-green-fg">----> 4</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">return</span> <span class="ansi-blue-fg">'Hello '</span> <span class="ansi-blue-fg">+</span> name
+<span class="ansigreen"><ipython-input-125-a444b0f12be2></span> in <span class="ansicyan">say_hello_to</span><span class="ansiblue">(name)</span>
+<span class="ansigreen">      2</span> <span class="ansigreen">def</span> say_hello_to<span class="ansiblue">(</span>name<span class="ansiblue">)</span><span class="ansiblue">:</span><span class="ansiblue"></span>
+<span class="ansigreen">      3</span>     <span class="ansiblue">"""Return a greeting to `name`"""</span><span class="ansiblue"></span>
+<span class="ansigreen">----> 4</span><span class="ansired">     </span><span class="ansigreen">return</span> <span class="ansiblue">&apos;Hello &apos;</span> <span class="ansiblue">+</span> name<span class="ansiblue"></span>
 
-<span class="ansi-red-fg">TypeError</span>: Can't convert 'int' object to str implicitly</pre>
+<span class="ansired">TypeError</span>: Can&apos;t convert &apos;int&apos; object to str implicitly</pre>
 </div>
 </div>
 </div>
@@ -2673,10 +1719,9 @@ say_hello<span class="o">?</span>
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[132]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[132]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>'Hello 10'</pre>
+<pre>&apos;Hello 10&apos;</pre>
 </div>
 </div>
 </div>
@@ -2713,8 +1758,7 @@ say_hello<span class="o">?</span>
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt"></div>
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Hello Ryan
 Hola Juan
@@ -2749,10 +1793,9 @@ Hola Juan
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[137]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[137]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>['hello Ryan', 'hello Juan', 'hello Takaya']</pre>
+<pre>[&apos;hello Ryan&apos;, &apos;hello Juan&apos;, &apos;hello Takaya&apos;]</pre>
 </div>
 </div>
 </div>
@@ -2812,8 +1855,7 @@ Hola Juan
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[145]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[145]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>[1, 1, 2, 3, 5, 8, 13, 21, 34, 55]</pre>
 </div>
@@ -2857,8 +1899,7 @@ Hola Juan
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[147]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[147]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>[0, 2, 4, 6, 8, 10, 12, 14, 16, 18]</pre>
 </div>
@@ -2878,8 +1919,7 @@ Hola Juan
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[148]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[148]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>[0, 3, 4, 15, 12]</pre>
 </div>
@@ -2900,8 +1940,7 @@ Hola Juan
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt"></div>
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>100 loops, best of 3: 12.7 ms per loop
 </pre>
@@ -2923,8 +1962,7 @@ Hola Juan
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt"></div>
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>The slowest run took 7.60 times longer than the fastest. This could mean that an intermediate result is being cached 
 10000 loops, best of 3: 173 µs per loop
@@ -2954,7 +1992,6 @@ Hola Juan
 </div>
 </div>
 </div>
-
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
@@ -3010,10 +2047,10 @@ Hola Juan
   <a href="./"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
   <ul class="list-group " id="tags">
     <li class="list-group-item tag-4">
-      <a href="./tag/programming.html">programming</a>
+      <a href="./tag/python.html">python</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/python.html">python</a>
+      <a href="./tag/programming.html">programming</a>
     </li>
   </ul>
 </li>
