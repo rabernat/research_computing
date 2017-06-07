@@ -2,7 +2,9 @@ Title: Schedule
 Summary: Overview of course schedule and topics
 
 **Class Time:** Tuesday / Thursday 10:10-11:25 
-**Location:** 56 SCH 
+
+**Location:** 506 SCH 
+
 
 
 | Day      | Date   | Instructor | Topic                                                     |
