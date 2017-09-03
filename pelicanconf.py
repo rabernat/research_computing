@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 AUTHOR = u'Ryan Abernathey and Kerry Key'
-SITENAME = u'Research Computing in Earth Science'
+SITENAME = u'Research Computing in Earth Sciences'
 SITEURL = 'https://rabernat.github.io/research_computing'
 RELATIVE_URLS = True
 
@@ -55,9 +55,9 @@ PLUGINS = ['i18n_subsites',
 #  UserWarning: Pelican plugin is not designed to work with IPython versions
 #  greater than 1.x. CSS styles have changed in later releases.
            #'liquid_tags.notebook']
-#CUSTOM_CSS = 'static/custom.css'
-STATIC_PATHS = ['static']
-
+CUSTOM_CSS = 'static/custom.css'
+STATIC_PATHS = ['static/custom.css']
+ 
 # banner image
 BANNER = 'static/delaunay.png'
 BANNER_SUBTITLE = 'Fall 2017 | Columbia University Department of Earth and Environmental Science'
