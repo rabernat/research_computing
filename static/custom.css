@@ -1,3 +1,17 @@
-body {
-    font-size : regular ;
+
+/* Small tweaks to make the fonts easier to read */
+h1 {
+    font-size: 200%;
+}
+h2 {
+    font-size: 180%;
+}
+h3 {
+    font-size: 160%;
+}
+h4 {
+    font-size: 140%;
+}
+p {
+    font-size: 115%;
 }
