@@ -57,10 +57,10 @@ PLUGINS = ['i18n_subsites',
            #'liquid_tags.notebook']
 CUSTOM_CSS = 'static/custom.css'
 STATIC_PATHS = ['static/custom.css']
- 
+
 # banner image
 BANNER = 'static/delaunay.png'
-BANNER_SUBTITLE = 'Fall 2017 | Columbia University Department of Earth and Environmental Science'
+BANNER_SUBTITLE = 'Fall 2017 | Columbia University Department of Earth and Environmental Sciences'
 
 
 IGNORE_FILES = ['.ipynb_checkpoints']
