@@ -4,7 +4,7 @@ Date: 2 September 2017
 tags: python
 
 _Note: many elements in this guide are adapted from
-[Daniel Rothenberg](http://danielrothenberg.com/gcpy/getting_started.html)'s
+[Daniel Rothenberg](http://danielrothenberg.com/)'s
 excellent
 [getting started guide](http://danielrothenberg.com/gcpy/getting_started.html)._
 
