@@ -1,7 +1,8 @@
 Title: Python
 Summary:  
 Date: 2 September 2017
-tags: python
+Tags: python
+Category: software
 
 _Note: many elements in this guide are adapted from
 [Daniel Rothenberg](http://danielrothenberg.com/)'s

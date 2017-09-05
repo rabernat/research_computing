@@ -1,7 +1,8 @@
 Title: Git
 Summary:
 Date: 9/2/2017
-tags: git
+Tags: git
+Category: software
 
 ## Installing Git
 

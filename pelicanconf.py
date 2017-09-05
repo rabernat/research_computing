@@ -9,6 +9,8 @@ RELATIVE_URLS = True
 
 PATH = 'content'
 
+USE_FOLDER_AS_CATEGORY = False # false is better for organzing lectures into subfolders
+
 TIMEZONE = 'EST'
 
 DEFAULT_LANG = u'en'

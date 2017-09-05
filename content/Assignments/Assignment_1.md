@@ -2,6 +2,7 @@ Title: Assignment #1 - Installing software on your laptop
 Summary: *Due: Thursday, 7 September*
 Date: 9/4/2017
 tags: assignment
+Category: assignment
 
 **Due: Thursday, 7 September**
 

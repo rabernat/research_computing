@@ -1,7 +1,8 @@
 Title: VPN
 Summary:  
 Date: 9/2/2017
-tags: vpn
+Tags: vpn
+Category: software
 
 A VPN is a virtual private network. If you are off-campus,
 you can log on to the LDEO VPN and your computer's IP address

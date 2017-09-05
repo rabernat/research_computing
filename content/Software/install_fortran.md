@@ -1,7 +1,8 @@
 Title: Fortran
 Summary:
 Date: 9/2/2017
-tags: fortran
+Tags: fortran
+Category: software
 
 Despite being one of the oldest programming languages, Fortran is still one of the primary languages used for scientific and high-performance computing.
 The language has gone through seven major revisions since the original FORTRAN 66, with the latest standard being Fortran 2015.  

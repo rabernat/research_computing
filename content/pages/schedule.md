@@ -3,16 +3,16 @@ Summary: Overview of course schedule and topics
 
 **Class Time:** Tuesday / Thursday 10:10-11:25
 
-**Location:** 417 SCH 
+**Location:** 417 SCH
 
 
 
 | Day      | Date   | Instructor | Topic                                                     |
 |----------|--------|------------|-----------------------------------------------------------|
 | Tuesday  | 5-Sep  | KK / RPA   | Introduction                                              |
-| Thursday | 7-Sep  | KK         | Version control and Unix                                  |
+| Thursday | 7-Sep  | KK         | [Version control]({filename}/lectures/unix_git/intro_to_git.md) and [Unix control]({filename}/lectures/unix_git/intro_to_unix.md) |
 | Tuesday  | 12-Sep | KK         | Version control and Unix in-class activity                |
-| Thursday | 14-Sep | RPA        | [Intro to Python]({filename}/lectures/intro_to_python.ipynb)|
+| Thursday | 14-Sep | RPA        | [Intro to Python]({filename}/lectures/python/intro_to_python.ipynb)|
 | Tuesday  | 19-Sep | RPA        | Intro to Python in-class activity                         |
 | Thursday | 21-Sep | KK         | Intro to MATLAB                                           |
 | Tuesday  | 26-Sep | KK         | Intro to MATLAB in-class activity                         |

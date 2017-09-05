@@ -1,7 +1,8 @@
 Title: MATLAB
 Summary:
 Date: 9/2/2017
-tags: matlab
+Tags: matlab
+Category: software
 
 ## Installing MATLAB
 
