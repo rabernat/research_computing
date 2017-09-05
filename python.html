@@ -110,15 +110,277 @@ Research Computing in Earth Sciences            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <h2>Installing python</h2>
-<p>For our course we will be using the <a href="http://continuum.io/anaconda">Anaconda</a>
-python distribution.  Download the appropriate package for your computer system.</p>
-<h2>Sample code</h2>
-<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+                <p><em>Note: many elements in this guide are adapted from
+<a href="http://danielrothenberg.com/">Daniel Rothenberg</a>'s
+excellent
+<a href="http://danielrothenberg.com/gcpy/getting_started.html">getting started guide</a>.</em></p>
+<h2>What is Python?</h2>
+<p><a href="https://www.python.org/">Python</a> itself is a
+<a href="https://en.wikipedia.org/wiki/Interpreted_language">interpreted programming language</a>
+that is popular for its flexibility and simple, elegant syntax.
+However, the "core" python language does not in itself contain enough features
+for serious scientific work.
+"Scientific python" refers to an "ecosystem" of interrelated packages that
+extend the core python language and provide different elements of the
+scientific computing environment.
+(This ensemble of packages is sometimes also called the scientific python
+  "stack".)
+For example,
+<a href="http://www.numpy.org/">numpy</a>
+provides the data structures and functions for dealing with multidimensional
+arrays of numerical values, while
+<a href="https://matplotlib.org/">matplotlib</a>
+provides the plotting routines necessary for making figures.
+Python and nearly all of the software packages in the scientific python
+ecosystem are <a href="https://opensource.org/">open-source</a>.
+They are maintained and developed by a community of scientists and programmers,
+some of whose work is supported by universities, non-profits, and for-profit
+corporations.
+This work mostly happens in the open, via <a href="http://github.com/">github</a> and other
+online collaboration platforms.</p>
+<p>Because there is no singe authority which controls all of these packages, it
+can be intimidating for new users to figure out how to set up a functional
+scientific python environment.
+Coordinating the compatibility between these different packages and their
+multiple versions used to be a nightmare!
+Fortunately, the problem is solved completely by using a Python <em>distribution</em>
+and / or a Python <em>package manager</em> (described in detail below).</p>
+<p>The only hard-and-fast rule about scientific computing in Python is this:</p>
+<p><strong>Do not use your system Python installation!</strong></p>
+<p>The version of Python that ships with operating systems such as Red Hat Linux and
+macOS is usually outdated and configured to support system functions. Although it
+is entirely possible to install and use the necessary packages using the system
+Python, it's much more practical on both
+your local machine and any other computers you work with to use a specialized Python
+installation.</p>
+<p><strong>Should I use Python 2 or Python 3?</strong></p>
+<p>You should use Python 3. The majority of the scientific Python packages are
+<a href="http://www.python3statement.org/">moving to only support Python 3</a> in the
+near future without any backwards compatibility. The differences between
+Python 2 and Python 3 are mostly superficial, but large enough that it is
+cumbersome to maintain large codebases that are compatible with both. With the
+exception of a handful of packages you may encounter which do not support
+Python 3, there is no compelling reason to use Python 2 today.</p>
+<h2>Recommended Installation Method: Use Anaconda Python</h2>
+<p>The easiest way to set up a full-stack scientific Python deployment is to use a
+Python distribution. This is an installation of Python with a set of curated
+packages which are guaranteed to work together.
+For this class, we recommend the
+<strong><a href="https://www.anaconda.com/download/">Anaconda Python Distribution</a></strong>.
+Follow the link above to obtain a one-click installer for Linux, Mac, or
+Windows.
+(Make sure you select the Python 3 installer, not Python 2.7.)
+In addition to the packages themselves, Anaconda includes a graphical
+utility to help manage any packages you may want to install which are not
+already included in the default inclusion list.</p>
+<h2>Lightweight Alternative: Miniconda</h2>
+<p>If you are installing python on a remote machine via ssh, or you simply don't
+want to download a huge file like the Anaconda Python Distribution, there is a
+lightweight alternative installation method.</p>
+<ol>
+<li>
+<p><strong>Obtain a minimal Python installer</strong>
+  We recommend the <a href="https://conda.io/miniconda.html">Miniconda</a> installer;
+  this provides a Python install for your operating system, plus the <strong>conda</strong>
+  package manager. This way, you can only install the packages you <em>want</em>.</p>
+</li>
+<li>
+<p><strong>Run the installer</strong>
+  You'll probably need to do this from the command line, e.g.</p>
+<div class="highlight"><pre><span></span>$ sh Miniconda3-latest-MacOSX-x86_64.sh
 </pre></div>
 
 
+<p>Follow the instructions; you can choose where to place the installation (
+  preferably somewhere you have write access without super-user/root access,
+  like your home directory). At the end of this process, add this path to your
+  *rc configuration</p>
+<div class="highlight"><pre><span></span>$ <span class="nb">echo</span> <span class="s2">&quot;PATH=</span><span class="nv">$PATH</span><span class="s2">:/path/to/miniconda/bin&quot;</span> &gt; ~/.bashrc
+</pre></div>
+
+
+<p>If you do this, your <code>$PYTHONPATH</code> will be implicitly configured correctly
+  and you will never have to touch it.</p>
+</li>
+<li>
+<p><strong>Install any packages you want</strong>
+  As shown :ref:<code>before &lt;packages&gt;</code>, install whatever packages you want.
+  Optionally, you can create a customized environment, as described below.</p>
+</li>
+</ol>
+<h2>Custom Environments</h2>
+<p>Python coupled with a package manager provides a way to make isolated,
+reproducible <em>environments</em> where you have fine-tuned control over all packages
+and configuration.
+For scientific Python, we recommend using <strong>conda</strong>\'s built in
+environment management system. To create a conda environment, you simply
+execute the following command::</p>
+<div class="highlight"><pre><span></span>$ conda create --name my_environment <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.6 numpy
+</pre></div>
+
+
+<p>This will create a special environment in <code>$MINICONDA_HOME/envs/my_environment</code>
+with only Python and numpy to begin with. Here, we've also told conda to install
+Python version 3.6; you can specify exact versions or minima, and conda will
+take care of figuring out all the compatibilties between versions for you. To use
+this environment, simply "activate" it by executing::</p>
+<div class="highlight"><pre><span></span>$ <span class="nb">source</span> activate my_environment
+</pre></div>
+
+
+<p>Regardless of your shell, you should now see the string <code>(my_environment)</code>
+prepended to your prompt. Now, if you execute any Python-related tool from the
+command line, it will first search in <code>$MINICONDA_HOME/envs/my_environment/bin</code>
+to find them. You can deactivate your environment by typing::</p>
+<div class="highlight"><pre><span></span>$ <span class="nb">source</span> deactivate
+</pre></div>
+
+
+<p>For extensive documentation on using environments, please see
+<a href="https://conda.io/docs/using/envs.html">the conda documentation</a>. The most
+important feature to review here is the ability to <em>share and export</em> your
+environment; this is the basis for reproducibility in the scientific Python stack.
+At any time from the shell, you can execute</p>
+<div class="highlight"><pre><span></span>$ conda list
+</pre></div>
+
+
+<p>to get a complete summary of all the packages installed in your environment, the
+channel they were installed from, and their full version info. Using this info,
+you can create an <strong>environment file</strong> in
+<a href="http://docs.ansible.com/ansible/latest/YAMLSyntax.html">YAML syntax</a>
+which documents the exact
+contents of your environment. With that file, a new environment with the exact
+configuration can be installed by executing</p>
+<div class="highlight"><pre><span></span>$ conda env create -f my_environment.yml
+</pre></div>
+
+
+<h2>Geosciences Python Environment</h2>
+<p>Combining all of the previous sections, we can very easily spin-up a
+full-featured scientific Python environment with a set of packages curated for the
+geosciences. Copy and paste the following <code>environment.yml</code> file somewhere
+on your local hard drive:</p>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">geo_scipy</span>
+<span class="l l-Scalar l-Scalar-Plain">channels</span><span class="p p-Indicator">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">defaults</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">conda-forge</span>
+<span class="l l-Scalar l-Scalar-Plain">dependencies</span><span class="p p-Indicator">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">python=3.6</span>    <span class="c1"># Python version 3.6</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">bottleneck</span>    <span class="c1"># C-optimized array functions for NumPy</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">cartopy</span>       <span class="c1"># Geographic plotting toolkit</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">cython</span>        <span class="c1"># Transpile Python-&gt;C</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">dask</span>          <span class="c1"># Parallel processing library</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">future</span>        <span class="c1"># Python 2/3 compatibility</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">h5py</span>          <span class="c1"># Wrapper for HDF5</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ipython</span>       <span class="c1"># IPython interpreter and tools</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">jupyter</span>       <span class="c1"># Jupyter federation architecture</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">matplotlib</span>    <span class="c1"># 2D plotting library</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">netcdf4</span>       <span class="c1"># Wrapper for netcdf4</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">notebook</span>      <span class="c1"># Notebook interface</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">numpy</span>         <span class="c1"># N-d array and numerics</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">pandas</span>        <span class="c1"># Labeled array library</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">pyresample</span>    <span class="c1"># Geographic resampling tools</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">scipy</span>         <span class="c1"># Common math/stats/science functions</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">scikit-learn</span>  <span class="c1"># Macine learning library</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">scikit-image</span>  <span class="c1"># Image processing routines</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">statsmodels</span>   <span class="c1"># Regression/modeling toolkit</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">seaborn</span>       <span class="c1"># Statistical visualizations</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">six</span>           <span class="c1"># Python 2/3 compatibility</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">tqdm</span>          <span class="c1"># Nice progressbar for longer computations</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">xarray</span>        <span class="c1"># N-d labeled array library</span>
+</pre></div>
+
+
+<p>(<strong>Note:</strong>
+Installing this environment will also install many dependencies, including
+compiled libraries. This is totally fine; even if you have these libraries
+already installed through your system package manager, <strong>conda</strong> will install
+and link for use in the environment a configuration which should be to play
+nicely and work with all of its components.)</p>
+<p>Create this environment through <strong>conda</strong></p>
+<div class="highlight"><pre><span></span>$ conda env create -f /path/to/environment.yml
+</pre></div>
+
+
+<p>Activate this environment</p>
+<div class="highlight"><pre><span></span>$ <span class="nb">source</span> activate geo_scipy
+</pre></div>
+
+
+<p>This environment should be sufficient for all of your work in this class.</p>
+<h2>Installing More Packages</h2>
+<p>Once you have a basic Python environment, you can easily add or remove packages
+using the <a href="https://conda.io/">conda</a> command line utility.
+Conda was created to help manage the complex dependencies and
+pre-compiled binary libraries that are necessary in scientific python.</p>
+<p>If you set up your python environment using the Anaconda Python Distribution or
+with miniconda, you should already have the <strong>conda</strong> command available on
+the command line.
+With it, you can easily install packages from an official, curated set of packages which are
+built and tested for a number of different system configurations on Linux,
+Windows, and macOS</p>
+<div class="highlight"><pre><span></span>$ conda install &lt;package-name&gt;
+</pre></div>
+
+
+<p>Additionally, there is a
+community-maintained collection of packages/recipes called
+<a href="https://conda-forge.github.io/&gt;">conda forge</a>
+which is accessible through conda as a special "channel"</p>
+<div class="highlight"><pre><span></span>$ conda install -c conda-forge &lt;package-name&gt;
+</pre></div>
+
+
+<p>While conda allows you to install almost any science-related package, there may
+be other general-use python packages you wish to you that are not available in
+via conda. For these, you can use an alternative installation method.</p>
+<p>Outside of the scientific python community,
+the most common way to install packages is to search for them on the official
+<a href="https://pypi.python.org/pypi">PyPI</a> index. Once you've found the package you
+want to install (you may have also just found it on github or elsewhere), you
+use the <strong>pip</strong> command from a the command line:</p>
+<div class="highlight"><pre><span></span>$ pip install &lt;package-name&gt;
+</pre></div>
+
+
+<p>This will fetch the source code, build it, and install it to wherever your
+<code>$PYTHONPATH</code> is set. This works in the vast majority of cases, particularly
+when the code you're installing doesn't have any compiled dependencies.</p>
+<p>If you
+can't find a package on either PyPI or conda-forge, you can always install it
+directly from the source code. If the package is on github, <code>pip</code> already has
+an alias to do this for you::</p>
+<div class="highlight"><pre><span></span>$ pip install git+https://github.com/&lt;user&gt;/&lt;package-name&gt;.git
+</pre></div>
+
+
+<p>If all else fails, you can always download the source code and install it manually
+like</p>
+<div class="highlight"><pre><span></span>$ wget https:/path/to/my/pkg/source.tar.gz
+$ tar -xvzf source.tar.gz
+$ <span class="nb">cd</span> source/
+$ python setup.py install
+</pre></div>
+
+
+<p>You can also use <code>pip</code> to install code you've downloaded::</p>
+<div class="highlight"><pre><span></span>$ <span class="nb">cd</span> source/
+$ pip install -e .
+</pre></div>
+
+
+<p>This will automatically call <strong>setup.py</strong> for you. The "<strong>-e</strong>" flag will
+install the package in "editable" mode, which means that any chane you make
+to the source code will automatically be recognized when you load the package
+in Python; this is <em>especially</em> useful when you're developing code.</p>
+<p>Finally, you don't <em>have</em> to go through this process of installing packages. If you
+have code sitting on your disk somewhere, you can always modify the environmental
+variable <code>$PYTHONPATH</code> to include a path to that code, and Python will find it
+for you. However, you <em>should not do this</em> if it can be avoided, because it is
+extremely difficult (if not impossible) to be sure that any compiled code will
+link against the correct libraries it needs, and it is very hard to debug errors
+associated with mis-matched libraries/headers if you go this route.</p>
 <h2>Getting Help</h2>
 <p>Your first stop for help should be the official documentation of the packages
 you are using.
@@ -175,37 +437,37 @@ we use in this course.</p>
       <a href="./tag/python.html">python</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/programming.html">programming</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/github.html">github</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/geomapapp.html">GeoMapApp</a>
-    </li>
-    <li class="list-group-item tag-4">
       <a href="./tag/source-code-editor.html">source code editor</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/gmt.html">gmt</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/matlab.html">matlab</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/unix.html">unix</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/fortran.html">fortran</a>
+      <a href="./tag/programming.html">programming</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/git.html">git</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/assignment.html">assignment</a>
+      <a href="./tag/fortran.html">fortran</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/unix.html">unix</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/github.html">github</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/gmt.html">gmt</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/vpn.html">vpn</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/matlab.html">matlab</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/geomapapp.html">GeoMapApp</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/assignment.html">assignment</a>
     </li>
   </ul>
 </li>
@@ -223,7 +485,11 @@ we use in this course.</p>
          <div class="col-xs-10">&copy; 2017 Ryan Abernathey and Kerry Key
             &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
-            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>                <p><small>  <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/deed.en"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a>
+    Content
+  licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/deed.en">Creative Commons Attribution-NonCommercial 4.0 International License</a>, except where indicated otherwise.
+</small></p>
+         </div>
          <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
       </div>
    </div>
