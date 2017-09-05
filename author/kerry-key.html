@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>Resources - Research Computing in Earth Sciences</title>
+    <title>Articles by Kerry Key - Research Computing in Earth Sciences</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,16 +9,15 @@
 
 
 
-<link rel="canonical" href="../pages/resources.html">
 
         <meta name="author" content="Ryan Abernathey and Kerry Key" />
-        <meta name="description" content="Helpful instructions and links" />
 
-    <meta property="og:site_name" content="Research Computing in Earth Sciences" />
-    <meta property="og:type" content="article"/>
-    <meta property="og:title" content="Resources"/>
-    <meta property="og:url" content="../pages/resources.html"/>
-    <meta property="og:description" content="Helpful instructions and links" />
+    <!-- Open Graph tags -->
+        <meta property="og:site_name" content="Research Computing in Earth Sciences" />
+        <meta property="og:type" content="website"/>
+        <meta property="og:title" content="Research Computing in Earth Sciences"/>
+        <meta property="og:url" content=".."/>
+        <meta property="og:description" content="Research Computing in Earth Sciences"/>
 
 
     <!-- Bootstrap -->
@@ -50,12 +49,15 @@ Research Computing in Earth Sciences            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                         <li class="active"><a href="../pages/resources.html">
-                             Resources
-                          </a></li>
                          <li><a href="../pages/schedule.html">
                              Schedule
                           </a></li>
+                         <li><a href="../pages/syllabus.html">
+                             Syllabus
+                          </a></li>
+                        <li >
+                            <a href="../category/assignment.html">Assignment</a>
+                        </li>
                         <li >
                             <a href="../category/lectures.html">Lectures</a>
                         </li>
@@ -74,55 +76,21 @@ Research Computing in Earth Sciences            </a>
 <div class="container">
     <div class="row">
         <div class="col-sm-9">
-    <section id="content" class="body">
-        <h1 class="entry-title">Resources</h1>
-        
-        <div class="entry-content">
-            <p>Here we collect general instructions and helpful links.</p>
-<h3>Getting Set Up</h3>
-<p>Below are some guidelines for setting up your computing environment.</p>
-<h4>Installing python</h4>
-<p>Our course is intended for use with the <a href="http://continuum.io/anaconda">Anaconda</a>
-python distribution.</p>
-<p>Sample code:</p>
-<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-</pre></div>
+            <article>
+                <h2><a href="../intro-to-git.html">Intro to Git</a></h2>
+                <div class="summary"><p>Introduction to version control with Git</p>
+                    <a class="btn btn-default btn-xs" href="../intro-to-git.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="../intro-to-unix.html">Intro to Unix</a></h2>
+                <div class="summary"><p>Introduction to basic Unix commands and the file system</p>
+                    <a class="btn btn-default btn-xs" href="../intro-to-unix.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
 
-
-<h4>Installing MATLAB</h4>
-<p>You can acquire a MATLAB license and instructions for installing the softare by sending
-an email to askit@ldeo.columbia.edu. MATLAB uses a license server on campus
-and thus will only run when your computer is on the university network, or if you
-remotely connect using the LDEO VPN server (see below).</p>
-<h4>VPN: Connecting to the University network while off-campus</h4>
-<p>https://vpn.ldeo.columbia.edu</p>
-<p>At the OpenVPN log in screen.
-Click on the drop down list and choose "Login".
-Log in with your LDEO ID and Password.
-After you have successfully logged in you will be able to download and
-install the new "OpenVPN Connect" Client or download the new
-configuration file.</p>
-<h3>Getting Help</h3>
-<p>Your first stop for help should be the official documentation of the packages
-you are using.
-Reading documentation can be sometimes feel tedious if you just want a quick
-answer.
-But it is usually worthwhile, since it helps you reach a deeper understanding of
-how a package is structured.
-Here are some of the links to the official documentation of the python packages
-we use in this course.</p>
-<ul>
-<li><a href="http://docs.python.org">Python</a></li>
-<li><a href="http://ipython.org/documentation.html">IPython</a></li>
-<li><a href="http://docs.scipy.org/doc/numpy/reference/">NumPy</a></li>
-<li><a href="http://matplotlib.org/contents.html">MatPlotLib</a></li>
-<li><a href="http://docs.scipy.org/doc/scipy/reference/">SciPy</a></li>
-<li><a href="http://pandas.pydata.org/pandas-docs/stable/">pandas</a></li>
-<li><a href="xarray.pydata.org/en/stable/">XArray</a></li>
-</ul>
-        </div>
-    </section>
         </div>
         <div class="col-sm-3" id="sidebar">
             <aside>
@@ -134,15 +102,8 @@ we use in this course.</p>
 <li class="list-group-item">
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
   <ul class="list-group" id="recentposts">
-    <li class="list-group-item"><a href="../intro-to-python.html">Introduction to Python</a></li>
-    <li class="list-group-item"><a href="../fortran.html">Fortran</a></li>
-    <li class="list-group-item"><a href="../geomapapp.html">GeoMapApp</a></li>
-    <li class="list-group-item"><a href="../git.html">Git</a></li>
-    <li class="list-group-item"><a href="../gmt.html">GMT</a></li>
-    <li class="list-group-item"><a href="../matlab.html">MATLAB</a></li>
-    <li class="list-group-item"><a href="../python.html">Python</a></li>
-    <li class="list-group-item"><a href="../unix.html">UNIX</a></li>
-    <li class="list-group-item"><a href="../vpn.html">VPN</a></li>
+    <li class="list-group-item"><a href="../intro-to-git.html">Intro to Git</a></li>
+    <li class="list-group-item"><a href="../intro-to-unix.html">Intro to Unix</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Recent Posts -->
@@ -151,11 +112,56 @@ we use in this course.</p>
 <li class="list-group-item">
   <a href="../"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
   <ul class="list-group " id="tags">
-    <li class="list-group-item tag-4">
+    <li class="list-group-item tag-1">
+      <a href="../tag/git.html">git</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="../tag/unix.html">unix</a>
+    </li>
+    <li class="list-group-item tag-1">
       <a href="../tag/python.html">python</a>
     </li>
     <li class="list-group-item tag-4">
+      <a href="../tag/assignment.html">assignment</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="../tag/fortran.html">fortran</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="../tag/permissions.html">permissions</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="../tag/version-control.html">version control</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="../tag/source-code-editor.html">source code editor</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="../tag/vpn.html">vpn</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="../tag/shell.html">shell</a>
+    </li>
+    <li class="list-group-item tag-4">
       <a href="../tag/programming.html">programming</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="../tag/geomapapp.html">GeoMapApp</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="../tag/matlab.html">matlab</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="../tag/bash.html">bash</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="../tag/github.html">github</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="../tag/gmt.html">gmt</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="../tag/file-system.html">file system</a>
     </li>
   </ul>
 </li>
@@ -173,7 +179,11 @@ we use in this course.</p>
          <div class="col-xs-10">&copy; 2017 Ryan Abernathey and Kerry Key
             &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
-            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>                <p><small>  <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/deed.en"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a>
+    Content
+  licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/deed.en">Creative Commons Attribution-NonCommercial 4.0 International License</a>, except where indicated otherwise.
+</small></p>
+         </div>
          <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
       </div>
    </div>
