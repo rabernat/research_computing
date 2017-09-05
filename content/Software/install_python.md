@@ -34,7 +34,7 @@ corporations.
 This work mostly happens in the open, via [github](http://github.com/) and other
 online collaboration platforms.
 
-Because there is no singe authority which controls all of these packages, it
+Because there is no single authority which controls all of these packages, it
 can be intimidating for new users to figure out how to set up a functional
 scientific python environment.
 Coordinating the compatibility between these different packages and their
@@ -110,9 +110,9 @@ lightweight alternative installation method.
 Python coupled with a package manager provides a way to make isolated,
 reproducible *environments* where you have fine-tuned control over all packages
 and configuration.
-For scientific Python, we recommend using **conda**\'s built in
+For scientific Python, we recommend using **conda**'s built in
 environment management system. To create a conda environment, you simply
-execute the following command::
+execute the following command:
 
     $ conda create --name my_environment python=3.6 numpy
 
@@ -120,14 +120,14 @@ This will create a special environment in ``$MINICONDA_HOME/envs/my_environment`
 with only Python and numpy to begin with. Here, we've also told conda to install
 Python version 3.6; you can specify exact versions or minima, and conda will
 take care of figuring out all the compatibilties between versions for you. To use
-this environment, simply "activate" it by executing::
+this environment, simply "activate" it by executing:
 
     $ source activate my_environment
 
 Regardless of your shell, you should now see the string ``(my_environment)``
 prepended to your prompt. Now, if you execute any Python-related tool from the
 command line, it will first search in ``$MINICONDA_HOME/envs/my_environment/bin``
-to find them. You can deactivate your environment by typing::
+to find them. You can deactivate your environment by typing:
 
     $ source deactivate
 
@@ -246,7 +246,7 @@ when the code you're installing doesn't have any compiled dependencies.
 If you
 can't find a package on either PyPI or conda-forge, you can always install it
 directly from the source code. If the package is on github, ``pip`` already has
-an alias to do this for you::
+an alias to do this for you:
 
     $ pip install git+https://github.com/<user>/<package-name>.git
 
@@ -258,7 +258,7 @@ like
     $ cd source/
     $ python setup.py install
 
-You can also use ``pip`` to install code you've downloaded::
+You can also use ``pip`` to install code you've downloaded:
 
     $ cd source/
     $ pip install -e .

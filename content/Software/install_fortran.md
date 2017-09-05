@@ -6,7 +6,7 @@ tags: fortran
 Despite being one of the oldest programming languages, Fortran is still one of the primary languages used for scientific and high-performance computing.
 The language has gone through seven major revisions since the original FORTRAN 66, with the latest standard being Fortran 2015.  
 
-There are several Fortran  implementations of available from commercial vendors, with the Intel Fortran compiler being one of the best in terms of producing highly optimized code. However,
+There are several Fortran  implementations  available from commercial vendors, with the Intel Fortran compiler being one of the best in terms of producing highly optimized code. However,
 the Intel compiler costs about $300 per academic license, so for this class we will be using the freely available gFortran (aka
  GNU Fortran) compiler, which is part of the open source GNU Compiler Collection (GCC).
 
