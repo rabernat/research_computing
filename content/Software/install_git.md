@@ -3,8 +3,6 @@ Summary:
 Date: 9/2/2017
 tags: git
 
-
-
 ## Installing Git
 
 

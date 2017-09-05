@@ -60,7 +60,7 @@ STATIC_PATHS = ['static/custom.css']
 
 # banner image
 BANNER = 'static/delaunay.png'
-BANNER_SUBTITLE = 'Fall 2017 | Columbia University Department of Earth and Environmental Science'
+BANNER_SUBTITLE = 'Fall 2017 | Columbia University Department of Earth and Environmental Sciences'
 
 
 IGNORE_FILES = ['.ipynb_checkpoints']
