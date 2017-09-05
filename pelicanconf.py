@@ -65,3 +65,7 @@ BANNER_SUBTITLE = 'Fall 2017 | Columbia University Department of Earth and Envir
 
 IGNORE_FILES = ['.ipynb_checkpoints']
 #IPYNB_IGNORE_CSS = True
+
+# license
+# https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3#content-license
+CC_LICENSE = 'CC-BY-NC'
