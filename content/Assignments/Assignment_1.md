@@ -10,7 +10,7 @@ some software on your laptop so that you will be ready to try out the commands d
 Thursday's lecture.
 
 
-1. Fill out the online survey
+1. Take the  <a href="https://docs.google.com/forms/d/e/1FAIpQLScyyKOtPId3nm-6Q8mnfGYFp5oBwJjIYnmIlRok33VmpDyccw/viewform?usp=sf_link"  target="_blank"> Baseline Survey  </a>  
 
 2. [Install Unix]({filename}/software/install_unix.md)
 
