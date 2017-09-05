@@ -25,7 +25,7 @@ Office Hours: By appointment
 
 **Class Time:** Tuesday / Thursday 10:10-11:25
 
-**Location:** 506 SCH
+**Location:** 417 SCH
 
 **Overview:** Computing has become an indispensable tool for Earth Scientists. This course will introduce incoming LDEO graduate students to modern computing software, programming tools and best practices that are broadly applicable to carrying out research in the Earth sciences. This includes an introduction to Unix, programming in three commonly used languages (Python, MATLAB and Fortran), version control and data backup, and tools for visualizing geoscience data and making maps. Students will learn the basics of high performance computing and big data analysis tools available on cluster computers. Student learning will be facilitated through a combination of lectures, in-class exercises, homework assignments and class projects. All topics will be taught through example datasets or problems from Earth Sciences. The course is designed to be accessible for Earth Science graduate students in any discipline.
 
