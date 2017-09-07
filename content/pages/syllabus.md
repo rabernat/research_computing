@@ -28,7 +28,7 @@ Office Hours: By appointment
 *
 Dept. of Earth & Environmental Sciences  
 Email: takaya@ldeo.columbia.edu
-Office Hours: Tuesday after class
+Office Hours: Tuesday, 6-7 PM
 *
 
 **Class Time:** Tuesday / Thursday 10:10-11:25
