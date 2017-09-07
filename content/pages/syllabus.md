@@ -23,6 +23,14 @@ Phone:   845 365-8185
 Office Hours: By appointment  
 *
 
+**TA:**  
+**Takaya Uchida**  
+*
+Dept. of Earth & Environmental Sciences  
+Email: takaya@ldeo.columbia.edu
+Office Hours: Tuesday after class
+*
+
 **Class Time:** Tuesday / Thursday 10:10-11:25
 
 **Location:** 417 SCH
