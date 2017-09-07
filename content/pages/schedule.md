@@ -10,7 +10,7 @@ Summary: Overview of course schedule and topics
 | Day      | Date   | Instructor | Topic                                                     |
 |----------|--------|------------|-----------------------------------------------------------|
 | Tuesday  | 5-Sep  | KK / RPA   | Introduction                                              |
-| Thursday | 7-Sep  | KK         | [Version control]({filename}/lectures/unix_git/intro_to_git.md) and [Unix control]({filename}/lectures/unix_git/intro_to_unix.md) |
+| Thursday | 7-Sep  | KK         | [Version control]({filename}/lectures/unix_git/intro_to_git.md) and [Unix]({filename}/lectures/unix_git/intro_to_unix_1.md) |
 | Tuesday  | 12-Sep | KK         | Version control and Unix in-class activity                |
 | Thursday | 14-Sep | RPA        | [Intro to Python]({filename}/lectures/python/intro_to_python.ipynb)|
 | Tuesday  | 19-Sep | RPA        | Intro to Python in-class activity                         |
