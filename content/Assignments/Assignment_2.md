@@ -7,7 +7,7 @@ Category: assignments
 **Due: Thursday, 14 September**
 
 For this assignment you will use Unix commands to efficiently parse
-the contents the Significant Earthquake Database from the National Geophysical Data Center, NOAA.
+the contents of the Significant Earthquake Database from the National Geophysical Data Center, NOAA.
 
 Download the database file:
 
@@ -35,7 +35,7 @@ Clearly this file contains some interesting data, but its very difficult to visu
 5.  How many unique countries are listed in the database? Use `cut`,`sort`,`uniq`, `wc` and a few pipes `|` to form a single expression that answers this question.
 
 
-6. Use the `grep` command to count how many earthquakes in the data base are located in the USA or USA TERRITORY
+6. Use the `grep` command to count how many earthquakes in the database are located in the USA or USA TERRITORY
 
 
 7. Expanding on the previous exercise, refine your command sequence so that it only counts earthquakes in the USA and not ones in USA TERRITORY. Hint: use the -v argument with grep and you
@@ -47,17 +47,18 @@ may need to call grep more than once.
 
 
 9. Create a shell script named `countEq.sh` that returns the total number of earthquakes for a given country, where the country is specified as the option when calling the script. Hint: see the Shell Script notes and use the special variable `$1`.  Paste your script  below and give an example calling sequence for country USA.
-
+ 
 
 10.  Create a shell script named `countEq_getLargestEq.sh` that returns both the total number of earthquakes AND the largest earthquake for a given country, where the country is specified as the option when calling the script. Use the echo command before each command to create labels for each returned value. Paste your script  below and give an example calling sequence for country CHILE.   
 
 
 
-11.  Compute the total number of large earthquakes in all countries and then output a sorted list of the top ten years with the most earthquakes. Paste your command and the top ten list below.
+11.  Compute the total number of earthquakes *each year* and then output a sorted list of the top ten years with the most earthquakes. Paste your command and the top ten list below.
 
 
 
-12. Create a shell script that loops over the top ten years with the most earthquakes (from exercise 11), finds all the earthquakes for a given year and writes them to file named $YEAR-earthquakes.txt, where $YEAR is the for loop variable assigned from the top ten list. You code should output ten different files (one for each year in the top ten list). Hints: Take your answer from exercise 11 and extract the year column, then use this for the range in a `for` loop by inserting them like this `for YEAR in $(insert code that lists top ten years here)`. The rest is just a `grep` and  a redirect `>` to a file with the correct name.  
+
+12. Create a shell script that loops over the top ten years with the most earthquakes (from exercise 11), finds all the earthquakes for a given year and writes them to file named $YEAR-earthquakes.txt, where $YEAR is the for loop variable assigned from the top ten list. Your code should output ten different files (one for each year in the top ten list). Hints: Take your answer from exercise 11 and extract the year column, then use this for the range in a `for` loop by inserting them like this `for YEAR in $(insert code that lists top ten years here)`. The rest is just a `grep` and  a redirect `>` to a file with the correct name.  
 
 
 
