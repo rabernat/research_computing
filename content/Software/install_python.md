@@ -161,8 +161,8 @@ on your local hard drive:
     :::yaml
     name: geo_scipy
     channels:
-        - defaults
         - conda-forge
+        - defaults
     dependencies:
         - python=3.6    # Python version 3.6
         - bottleneck    # C-optimized array functions for NumPy
