@@ -10,6 +10,7 @@ RELATIVE_URLS = True
 PATH = 'content'
 
 USE_FOLDER_AS_CATEGORY = False # false is better for organzing lectures into subfolders
+PYGMENTS_STYLE = 'default'  # without this it was using black background and light font
 
 TIMEZONE = 'EST'
 
@@ -58,7 +59,7 @@ PLUGINS = ['i18n_subsites',
 #  greater than 1.x. CSS styles have changed in later releases.
            #'liquid_tags.notebook']
 CUSTOM_CSS = 'static/custom.css'
-STATIC_PATHS = ['static/custom.css']
+STATIC_PATHS = ['static/custom.css','lectures/unix_git','Assignments']
 
 # banner image
 BANNER = 'static/delaunay.png'
