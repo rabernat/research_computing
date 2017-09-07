@@ -113,7 +113,7 @@ Research Computing in Earth Sciences            </a>
                 </div>
                 <p><strong>Due: Thursday, 14 September</strong></p>
 <p>For this assignment you will use Unix commands to efficiently parse
-the contents the Significant Earthquake Database from the National Geophysical Data Center, NOAA.</p>
+the contents of the Significant Earthquake Database from the National Geophysical Data Center, NOAA.</p>
 <p>Download the database file:</p>
 <p><a href="./signif.txt.tsv.zip">signif.txt.tsv.zip</a></p>
 <p>Unzip the file. In a terminal, run <code>less</code> or <code>head</code> on this unzipped file to have a peek at its contents. You can also try opening it in your text editor. Unless you are opening it with a really wide screen and terminal window, each line has likely wrapped around a few times. This is a tab separated data file and the first line contains the headers of each column. When viewing the file with <code>less</code> on my laptop, the header line wraps around 4 times.  </p>
@@ -137,7 +137,7 @@ the contents the Significant Earthquake Database from the National Geophysical D
 <p>How many unique countries are listed in the database? Use <code>cut</code>,<code>sort</code>,<code>uniq</code>, <code>wc</code> and a few pipes <code>|</code> to form a single expression that answers this question.</p>
 </li>
 <li>
-<p>Use the <code>grep</code> command to count how many earthquakes in the data base are located in the USA or USA TERRITORY</p>
+<p>Use the <code>grep</code> command to count how many earthquakes in the database are located in the USA or USA TERRITORY</p>
 </li>
 <li>
 <p>Expanding on the previous exercise, refine your command sequence so that it only counts earthquakes in the USA and not ones in USA TERRITORY. Hint: use the -v argument with grep and you
@@ -153,10 +153,10 @@ may need to call grep more than once.</p>
 <p>Create a shell script named <code>countEq_getLargestEq.sh</code> that returns both the total number of earthquakes AND the largest earthquake for a given country, where the country is specified as the option when calling the script. Use the echo command before each command to create labels for each returned value. Paste your script  below and give an example calling sequence for country CHILE.   </p>
 </li>
 <li>
-<p>Compute the total number of large earthquakes in all countries and then output a sorted list of the top ten years with the most earthquakes. Paste your command and the top ten list below.</p>
+<p>Compute the total number of earthquakes <em>each year</em> and then output a sorted list of the top ten years with the most earthquakes. Paste your command and the top ten list below.</p>
 </li>
 <li>
-<p>Create a shell script that loops over the top ten years with the most earthquakes (from exercise 11), finds all the earthquakes for a given year and writes them to file named $YEAR-earthquakes.txt, where $YEAR is the for loop variable assigned from the top ten list. You code should output ten different files (one for each year in the top ten list). Hints: Take your answer from exercise 11 and extract the year column, then use this for the range in a <code>for</code> loop by inserting them like this <code>for YEAR in $(insert code that lists top ten years here)</code>. The rest is just a <code>grep</code> and  a redirect <code>&gt;</code> to a file with the correct name.  </p>
+<p>Create a shell script that loops over the top ten years with the most earthquakes (from exercise 11), finds all the earthquakes for a given year and writes them to file named $YEAR-earthquakes.txt, where $YEAR is the for loop variable assigned from the top ten list. Your code should output ten different files (one for each year in the top ten list). Hints: Take your answer from exercise 11 and extract the year column, then use this for the range in a <code>for</code> loop by inserting them like this <code>for YEAR in $(insert code that lists top ten years here)</code>. The rest is just a <code>grep</code> and  a redirect <code>&gt;</code> to a file with the correct name.  </p>
 </li>
 <li>
 <p>Turn in your homework by sharing it with us on a GitHub repository.  Instructions: on GitHub, create a <em>private</em> git repository called Assignment_2. Share this repository with users <code>kerrykey</code> and <code>rabernat</code>. Clone the repository to your laptop.  Save your answers to the exercises above in a text file called <code>answers.txt</code>. Use git to <code>commit</code> <code>answers.txt</code> to your repository on your laptop, and then <code>push</code> the changes to the remote repository on GitHub.   </p>
@@ -197,19 +197,16 @@ may need to call grep more than once.</p>
   <a href="./"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
   <ul class="list-group " id="tags">
     <li class="list-group-item tag-1">
-      <a href="./tag/unix.html">unix</a>
-    </li>
-    <li class="list-group-item tag-1">
       <a href="./tag/bash.html">bash</a>
     </li>
     <li class="list-group-item tag-1">
-      <a href="./tag/file-system.html">file system</a>
+      <a href="./tag/unix.html">unix</a>
     </li>
     <li class="list-group-item tag-1">
       <a href="./tag/shell.html">shell</a>
     </li>
-    <li class="list-group-item tag-3">
-      <a href="./tag/git.html">git</a>
+    <li class="list-group-item tag-1">
+      <a href="./tag/file-system.html">file system</a>
     </li>
     <li class="list-group-item tag-3">
       <a href="./tag/python.html">python</a>
@@ -217,8 +214,17 @@ may need to call grep more than once.</p>
     <li class="list-group-item tag-3">
       <a href="./tag/assignment.html">assignment</a>
     </li>
+    <li class="list-group-item tag-3">
+      <a href="./tag/git.html">git</a>
+    </li>
     <li class="list-group-item tag-4">
       <a href="./tag/source-code-editor.html">source code editor</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/version-control.html">version control</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/geomapapp.html">GeoMapApp</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/fortran.html">fortran</a>
@@ -227,22 +233,16 @@ may need to call grep more than once.</p>
       <a href="./tag/gmt.html">gmt</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/matlab.html">matlab</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/geomapapp.html">GeoMapApp</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/version-control.html">version control</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/github.html">github</a>
-    </li>
-    <li class="list-group-item tag-4">
       <a href="./tag/vpn.html">vpn</a>
     </li>
     <li class="list-group-item tag-4">
+      <a href="./tag/matlab.html">matlab</a>
+    </li>
+    <li class="list-group-item tag-4">
       <a href="./tag/programming.html">programming</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/github.html">github</a>
     </li>
   </ul>
 </li>
