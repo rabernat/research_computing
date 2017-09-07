@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Intro to Unix, Part 5: Loops - Research Computing in Earth Sciences</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="./intro-to-unix-part-5-loops.html">
+
+        <meta name="author" content="Ryan Abernathey and Kerry Key" />
+        <meta name="keywords" content="unix,shell,bash,file system" />
+
+        <meta property="og:site_name" content="Research Computing in Earth Sciences" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Intro to Unix, Part 5: Loops"/>
+        <meta property="og:url" content="./intro-to-unix-part-5-loops.html"/>
+        <meta property="og:description" content=""/>
+        <meta property="article:published_time" content="2017-09-07" />
+            <meta property="article:section" content="lectures" />
+            <meta property="article:tag" content="unix" />
+            <meta property="article:tag" content="shell" />
+            <meta property="article:tag" content="bash" />
+            <meta property="article:tag" content="file system" />
+            <meta property="article:author" content="Ryan Abernathey and Kerry Key" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="./theme/css/bootstrap.lumen.min.css" type="text/css"/>
+    <link href="./theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="./theme/css/pygments/default.css" rel="stylesheet">
+    <link rel="stylesheet" href="./theme/css/style.css" type="text/css"/>
+        <link href="./static/custom.css" rel="stylesheet">
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="./" class="navbar-brand">
+Research Computing in Earth Sciences            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                         <li><a href="./pages/schedule.html">
+                             Schedule
+                          </a></li>
+                         <li><a href="./pages/syllabus.html">
+                             Syllabus
+                          </a></li>
+                        <li >
+                            <a href="./category/assignments.html">Assignments</a>
+                        </li>
+                        <li class="active">
+                            <a href="./category/lectures.html">Lectures</a>
+                        </li>
+                        <li >
+                            <a href="./category/software.html">Software</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="./intro-to-unix-part-5-loops.html"
+                       rel="bookmark"
+                       title="Permalink to Intro to Unix, Part 5: Loops">
+                        Intro to Unix, Part 5: Loops
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2017-09-07T00:00:00-05:00"> Thu 07 September 2017</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="./tag/unix.html">unix</a>
+        /
+	<a href="./tag/shell.html">shell</a>
+        /
+	<a href="./tag/bash.html">bash</a>
+        /
+	<a href="./tag/file-system.html">file system</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p><em>The notes below are modified from the excellent <a href="http://swcarpentry.github.io/shell-novice/">Unix Shell tutorial </a> that is freely available on the Software Carpentry website. I highly recommend checking out the full version for further reading. The material is being used here under the terms of the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution license</a>.</em></p>
+<hr>
+<p><strong>Loops</strong> are key to productivity improvements through automation as they allow us to execute
+commands repetitively. Similar to wildcards and tab completion, using loops also reduces the
+amount of typing (and typing mistakes).
+Suppose we have several hundred genome data files named <code>basilisk.dat</code>, <code>unicorn.dat</code>, and so on.
+In this example,
+we'll use the <code>creatures</code> directory which only has two example files,
+but the principles can be applied to many many more files at once.
+We would like to modify these files, but also save a version of the original files, naming the copies
+<code>original-basilisk.dat</code> and <code>original-unicorn.dat</code>.
+We can't use:</p>
+<div class="highlight"><pre><span></span>$ cp *.dat original-*.dat
+</pre></div>
+
+
+<p>because that would expand to:</p>
+<div class="highlight"><pre><span></span>$ cp basilisk.dat unicorn.dat original-*.dat
+</pre></div>
+
+
+<p>This wouldn't back up our files, instead we get an error:</p>
+<div class="highlight"><pre><span></span>cp: target &#39;original-*.dat&#39; is not a directory
+</pre></div>
+
+
+<p>This problem arises when <code>cp</code> receives more than two inputs. When this happens, it
+expects the last input to be a directory where it can copy all the files it was passed.
+Since there is no directory named <code>original-*.dat</code> in the <code>creatures</code> directory we get an
+error.</p>
+<p>Instead, we can use a <strong>loop</strong>
+to do some operation once for each thing in a list.
+Here's a simple example that displays the first three lines of each file in turn:</p>
+<div class="highlight"><pre><span></span>$ <span class="k">for</span> filename in basilisk.dat unicorn.dat
+&gt; <span class="k">do</span>
+&gt;    head -n <span class="m">3</span> <span class="nv">$filename</span>
+&gt; <span class="k">done</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>COMMON NAME: basilisk
+CLASSIFICATION: basiliscus vulgaris
+UPDATED: 1745-05-02
+COMMON NAME: unicorn
+CLASSIFICATION: equus monoceros
+UPDATED: 1738-11-24
+</pre></div>
+
+
+<p>When the shell sees the keyword <code>for</code>,
+it knows to repeat a command (or group of commands) once for each thing <code>in</code> a list.
+For each iteration,
+the name of the each thing is sequentially assigned to
+the <strong>variable</strong> and the commands inside the loop are executed before moving on to
+the next thing in the list.
+Inside the loop,
+we call for the variable's value by putting <code>$</code> in front of it.
+The <code>$</code> tells the shell interpreter to treat
+the <strong>variable</strong> as a variable name and substitute its value in its place,
+rather than treat it as text or an external command.</p>
+<p>In this example, the list is two filenames: <code>basilisk.dat</code> and <code>unicorn.dat</code>.
+Each time the loop iterates, it will assign a file name to the variable <code>filename</code>
+and run the <code>head</code> command.
+The first time through the loop,
+<code>$filename</code> is <code>basilisk.dat</code>.
+The interpreter runs the command <code>head</code> on <code>basilisk.dat</code>,
+and the prints the
+first three lines of <code>basilisk.dat</code>.
+For the second iteration, <code>$filename</code> becomes
+<code>unicorn.dat</code>. This time, the shell runs <code>head</code> on <code>unicorn.dat</code>
+and prints the first three lines of <code>unicorn.dat</code>.
+Since the list was only two items, the shell exits the <code>for</code> loop.</p>
+<p>When using variables it is also
+possible to put the names into curly braces to clearly delimit the variable
+name: <code>$filename</code> is equivalent to <code>${filename}</code>, but is different from
+<code>${file}name</code>. You may find this notation in other people's programs.</p>
+<blockquote>
+<h2>Follow the Prompt</h2>
+<p>The shell prompt changes from <code>$</code> to <code>&gt;</code> and back again as we were
+typing in our loop. The second prompt, <code>&gt;</code>, is different to remind
+us that we haven't finished typing a complete command yet. A semicolon, <code>;</code>,
+can be used to separate two commands written on a single line.</p>
+<h2>Same Symbols, Different Meanings</h2>
+<p>Here we see <code>&gt;</code> being used a shell prompt, whereas <code>&gt;</code> is also
+used to redirect output.
+Similarly, <code>$</code> is used as a shell prompt, but, as we saw earlier,
+it is also used to ask the shell to get the value of a variable.</p>
+<p>If the <em>shell</em> prints <code>&gt;</code> or <code>$</code> then it expects you to type something,
+and the symbol is a prompt.</p>
+<p>If <em>you</em> type <code>&gt;</code> or <code>$</code> yourself, it is an instruction from you that
+the shell to redirect output or get the value of a variable.</p>
+</blockquote>
+<p>We have called the variable in this loop <code>filename</code>
+in order to make its purpose clearer to human readers.
+The shell itself doesn't care what the variable is called;
+if we wrote this loop as:</p>
+<div class="highlight"><pre><span></span>for x in basilisk.dat unicorn.dat
+do
+    head -n 3 $x
+done
+</pre></div>
+
+
+<p>or:</p>
+<div class="highlight"><pre><span></span>for temperature in basilisk.dat unicorn.dat
+do
+    head -n 3 $temperature
+done
+</pre></div>
+
+
+<p>it would work exactly the same way.
+<em>Don't do this.</em>
+Programs are only useful if people can understand them,
+so meaningless names (like <code>x</code>) or misleading names (like <code>temperature</code>)
+increase the odds that the program won't do what its readers think it does.</p>
+<p>Here's a slightly more complicated loop:</p>
+<div class="highlight"><pre><span></span>for filename in *.dat
+do
+    echo $filename
+    head -n 100 $filename | tail -n 20
+done
+</pre></div>
+
+
+<p>The shell starts by expanding <code>*.dat</code> to create the list of files it will process.
+The <strong>loop body</strong>
+then executes two commands for each of those files.
+The first, <code>echo</code>, just prints its command-line parameters to standard output.
+For example:</p>
+<div class="highlight"><pre><span></span>$ <span class="nb">echo</span> hello there
+</pre></div>
+
+
+<p>prints:</p>
+<div class="highlight"><pre><span></span>hello there
+</pre></div>
+
+
+<p>In this case,
+since the shell expands <code>$filename</code> to be the name of a file,
+<code>echo $filename</code> just prints the name of the file.
+Note that we can't write this as:</p>
+<div class="highlight"><pre><span></span>for filename in *.dat
+do
+    $filename
+    head -n 100 $filename | tail -n 20
+done
+</pre></div>
+
+
+<p>because then the first time through the loop,
+when <code>$filename</code> expanded to <code>basilisk.dat</code>, the shell would try to run <code>basilisk.dat</code> as a program.
+Finally,
+the <code>head</code> and <code>tail</code> combination selects lines 81-100
+from whatever file is being processed
+(assuming the file has at least 100 lines).</p>
+<blockquote>
+<h2>Spaces in Names</h2>
+<p>Whitespace is used to separate the elements on the list
+that we are going to loop over. If on the list we have elements
+with whitespace we need to quote those elements
+and our variable when using it.
+Suppose our data files are named:</p>
+<p><code>red dragon.dat
+purple unicorn.dat</code></p>
+<p>We need to use</p>
+<p><code>for filename in "red dragon.dat" "purple unicorn.dat"
+do
+    head -n 100 "$filename" | tail -n 20
+done</code></p>
+<p>It is simpler just to avoid using whitespaces (or other special characters) in filenames.</p>
+<p>The files above don't exist, so if we run the above code, the <code>head</code> command will be unable
+to find them, however the error message returned will show the name of the files it is
+expecting:
+<code>head: cannot open ‘red dragon.dat’ for reading: No such file or directory
+head: cannot open ‘purple unicorn.dat’ for reading: No such file or directory</code></p>
+<p>Try removing the quotes around <code>$filename</code> in the loop above to see the effect of the quote
+marks on whitespace:
+<code>head: cannot open ‘red’ for reading: No such file or directory
+head: cannot open ‘dragon.dat’ for reading: No such file or directory
+head: cannot open ‘purple’ for reading: No such file or directory
+head: cannot open ‘unicorn.dat’ for reading: No such file or directory</code>
+</p>
+</blockquote>
+<p>Going back to our original file copying problem,
+we can solve it using this loop:</p>
+<div class="highlight"><pre><span></span>for filename in *.dat
+do
+    cp $filename original-$filename
+done
+</pre></div>
+
+
+<p>This loop runs the <code>cp</code> command once for each filename.
+The first time,
+when <code>$filename</code> expands to <code>basilisk.dat</code>,
+the shell executes:</p>
+<div class="highlight"><pre><span></span>cp basilisk.dat original-basilisk.dat
+</pre></div>
+
+
+<p>The second time, the command is:</p>
+<div class="highlight"><pre><span></span>cp unicorn.dat original-unicorn.dat
+</pre></div>
+
+
+<p>Since the <code>cp</code> command does not normally produce any output, it's hard to check
+that the loop is doing the correct thing. By prefixing the command with <code>echo</code>
+it is possible to see each command as it <em>would</em> be executed. </p>
+<h2>Nelle's Pipeline: Processing Files</h2>
+<p>Nelle is now ready to process her data files.
+Since she's still learning how to use the shell,
+she decides to build up the required commands in stages.
+Her first step is to make sure that she can select the right files --- remember,
+these are ones whose names end in 'A' or 'B', rather than 'Z'. Starting from her home directory, Nelle types:</p>
+<div class="highlight"><pre><span></span>$ <span class="nb">cd</span> north-pacific-gyre/2012-07-03
+$ <span class="k">for</span> datafile in *<span class="o">[</span>AB<span class="o">]</span>.txt
+&gt; <span class="k">do</span>
+&gt;     <span class="nb">echo</span> <span class="nv">$datafile</span>
+&gt; <span class="k">done</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>NENE01729A.txt
+NENE01729B.txt
+NENE01736A.txt
+...
+NENE02043A.txt
+NENE02043B.txt
+</pre></div>
+
+
+<p>Her next step is to decide
+what to call the files that the <code>goostats</code> analysis program will create.
+Prefixing each input file's name with "stats" seems simple,
+so she modifies her loop to do that:</p>
+<div class="highlight"><pre><span></span>$ <span class="k">for</span> datafile in *<span class="o">[</span>AB<span class="o">]</span>.txt
+&gt; <span class="k">do</span>
+&gt;     <span class="nb">echo</span> <span class="nv">$datafile</span> stats-<span class="nv">$datafile</span>
+&gt; <span class="k">done</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>NENE01729A.txt stats-NENE01729A.txt
+NENE01729B.txt stats-NENE01729B.txt
+NENE01736A.txt stats-NENE01736A.txt
+...
+NENE02043A.txt stats-NENE02043A.txt
+NENE02043B.txt stats-NENE02043B.txt
+</pre></div>
+
+
+<p>She hasn't actually run <code>goostats</code> yet,
+but now she's sure she can select the right files and generate the right output filenames.</p>
+<p>Typing in commands over and over again is becoming tedious,
+though,
+and Nelle is worried about making mistakes,
+so instead of re-entering her loop,
+she presses the up arrow.
+In response,
+the shell redisplays the whole loop on one line
+(using semi-colons to separate the pieces):</p>
+<div class="highlight"><pre><span></span>$ <span class="k">for</span> datafile in *<span class="o">[</span>AB<span class="o">]</span>.txt<span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> <span class="nv">$datafile</span> stats-<span class="nv">$datafile</span><span class="p">;</span> <span class="k">done</span>
+</pre></div>
+
+
+<p>Using the left arrow key,
+Nelle backs up and changes the command <code>echo</code> to <code>bash goostats</code>:</p>
+<div class="highlight"><pre><span></span>$ <span class="k">for</span> datafile in *<span class="o">[</span>AB<span class="o">]</span>.txt<span class="p">;</span> <span class="k">do</span> bash goostats <span class="nv">$datafile</span> stats-<span class="nv">$datafile</span><span class="p">;</span> <span class="k">done</span>
+</pre></div>
+
+
+<p>When she presses Enter,
+the shell runs the modified command.
+However, nothing appears to happen --- there is no output.
+After a moment, Nelle realizes that since her script doesn't print anything to the screen any longer,
+she has no idea whether it is running, much less how quickly.
+She kills the running command by typing <code>Ctrl-C</code>,
+uses up-arrow to repeat the command,
+and edits it to read:</p>
+<div class="highlight"><pre><span></span>$ <span class="k">for</span> datafile in *<span class="o">[</span>AB<span class="o">]</span>.txt<span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> <span class="nv">$datafile</span><span class="p">;</span> bash goostats <span class="nv">$datafile</span> stats-<span class="nv">$datafile</span><span class="p">;</span> <span class="k">done</span>
+</pre></div>
+
+
+<blockquote>
+<h2>Beginning and End</h2>
+<p>We can move to the beginning of a line in the shell by typing <code>Ctrl-A</code>
+and to the end using <code>Ctrl-E</code>.</p>
+</blockquote>
+<p>When she runs her program now,
+it produces one line of output every five seconds or so:</p>
+<div class="highlight"><pre><span></span>NENE01729A.txt
+NENE01729B.txt
+NENE01736A.txt
+...
+</pre></div>
+
+
+<p>1518 times 5 seconds,
+divided by 60,
+tells her that her script will take about two hours to run.
+As a final check,
+she opens another terminal window,
+goes into <code>north-pacific-gyre/2012-07-03</code>,
+and uses <code>cat stats-NENE01729B.txt</code>
+to examine one of the output files.
+It looks good,
+so she decides to get some coffee and catch up on her reading.</p>
+<h2>Those Who Know History Can Choose to Repeat It</h2>
+<p>Another way to repeat previous work is to use the <code>history</code> command to
+ get a list of the last few hundred commands that have been executed, and
+ then to use <code>!123</code> (where "123" is replaced by the command number) to
+ repeat one of those commands. For example, if Nelle types this:</p>
+<div class="highlight"><pre><span></span> $ history | tail -n 5
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>   456  ls -l NENE0*.txt
+   457  rm stats-NENE01729B.txt.txt
+   458  bash goostats NENE01729B.txt stats-NENE01729B.txt
+   459  ls -l NENE0*.txt
+   460  history
+</pre></div>
+
+
+<p>then she can re-run <code>goostats</code> on <code>NENE01729B.txt</code> simply by typing
+ <code>!458</code>.</p>
+<p>## Other History Commands</p>
+<p>There are a number of other shortcut commands for getting at the history.</p>
+<ul>
+<li><code>Ctrl-R</code> enters a history search mode "reverse-i-search" and finds the
+ most recent command in your history that matches the text you enter next.
+ Press <code>Ctrl-R</code> one or more additional times to search for earlier matches.</li>
+<li><code>!!</code> retrieves the immediately preceding command
+ (you may or may not find this more convenient than using the up-arrow)</li>
+<li><code>!$</code> retrieves the last word of the last command.
+ That's useful more often than you might expect: after
+ <code>bash goostats NENE01729B.txt stats-NENE01729B.txt</code>, you can type
+ <code>less !$</code> to look at the file <code>stats-NENE01729B.txt</code>, which is
+ quicker than doing up-arrow and editing the command-line.</li>
+</ul>
+<h2>Key Points:</h2>
+<ul>
+<li>A <code>for</code> loop repeats commands once for every thing in a list.</li>
+<li>Every <code>for</code> loop needs a variable to refer to the thing it is currently operating on.</li>
+<li>Use <code>$name</code> to expand a variable (i.e., get its value). <code>${name}</code> can also be used.</li>
+<li>Do not use spaces, quotes, or wildcard characters such as '*' or '?' in filenames, as it complicates variable expansion.</li>
+<li>Give files consistent names that are easy to match with wildcard patterns to make it easy to select them for looping.</li>
+<li>Use the up-arrow key to scroll up through previous commands to edit and repeat them.</li>
+<li>Use <code>Ctrl-R</code> to search through the previously entered commands.</li>
+<li>Use <code>history</code> to display recent commands, and <code>!number</code> to repeat a command by number.</li>
+</ul>
+<h2>Next:</h2>
+<p><a href="./intro-to-unix-part-6-shell-scripts.html">Part 6: Shell Scripts</a></p>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<!-- Sidebar -->
+<section class="well well-sm">
+  <ul class="list-group list-group-flush">
+
+<!-- Sidebar/Recent Posts -->
+<li class="list-group-item">
+  <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
+  <ul class="list-group" id="recentposts">
+    <li class="list-group-item"><a href="./intro-to-python.html">Introduction to Python</a></li>
+    <li class="list-group-item"><a href="./assignment-2-unix-and-version-control.html">Assignment #2 -  Unix and Version Control</a></li>
+    <li class="list-group-item"><a href="./intro-to-git.html">Intro to Git</a></li>
+    <li class="list-group-item"><a href="./intro-to-unix-part-1.html">Intro to Unix, Part 1</a></li>
+    <li class="list-group-item"><a href="./intro-to-unix-part-2-navigating-files-and-directories.html">Intro to Unix, Part 2: Navigating Files and Directories</a></li>
+    <li class="list-group-item"><a href="./intro-to-unix-part-3-working-with-files-and-directories.html">Intro to Unix, Part 3: Working With Files and Directories</a></li>
+    <li class="list-group-item"><a href="./intro-to-unix-part-4-pipes-and-filters.html">Intro to Unix, Part 4: Pipes and Filters</a></li>
+    <li class="list-group-item"><a href="./intro-to-unix-part-5-loops.html">Intro to Unix, Part 5: Loops</a></li>
+    <li class="list-group-item"><a href="./intro-to-unix-part-6-shell-scripts.html">Intro to Unix, Part 6: Shell Scripts</a></li>
+    <li class="list-group-item"><a href="./intro-to-unix-part-7-finding-things.html">Intro to Unix, Part 7: Finding Things</a></li>
+  </ul>
+</li>
+<!-- End Sidebar/Recent Posts -->
+
+<!-- Sidebar/Tag Cloud -->
+<li class="list-group-item">
+  <a href="./"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+  <ul class="list-group " id="tags">
+    <li class="list-group-item tag-1">
+      <a href="./tag/shell.html">shell</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/file-system.html">file system</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/bash.html">bash</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/unix.html">unix</a>
+    </li>
+    <li class="list-group-item tag-3">
+      <a href="./tag/assignment.html">assignment</a>
+    </li>
+    <li class="list-group-item tag-3">
+      <a href="./tag/git.html">git</a>
+    </li>
+    <li class="list-group-item tag-3">
+      <a href="./tag/python.html">python</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/version-control.html">version control</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/gmt.html">gmt</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/matlab.html">matlab</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/source-code-editor.html">source code editor</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/github.html">github</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/geomapapp.html">GeoMapApp</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/programming.html">programming</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/vpn.html">vpn</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/fortran.html">fortran</a>
+    </li>
+  </ul>
+</li>
+<!-- End Sidebar/Tag Cloud -->
+  </ul>
+</section>
+<!-- End Sidebar -->            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2017 Ryan Abernathey and Kerry Key
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>                <p><small>  <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/deed.en"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a>
+    Content
+  licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/deed.en">Creative Commons Attribution-NonCommercial 4.0 International License</a>, except where indicated otherwise.
+</small></p>
+         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="./theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="./theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="./theme/js/respond.min.js"></script>
+
+    <script src="./theme/js/bodypadding.js"></script>
+
+
+</body>
+</html>

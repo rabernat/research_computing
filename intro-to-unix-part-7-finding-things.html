@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Intro to Unix, Part 7: Finding Things - Research Computing in Earth Sciences</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="./intro-to-unix-part-7-finding-things.html">
+
+        <meta name="author" content="Ryan Abernathey and Kerry Key" />
+        <meta name="keywords" content="unix,shell,bash,file system" />
+
+        <meta property="og:site_name" content="Research Computing in Earth Sciences" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Intro to Unix, Part 7: Finding Things"/>
+        <meta property="og:url" content="./intro-to-unix-part-7-finding-things.html"/>
+        <meta property="og:description" content=""/>
+        <meta property="article:published_time" content="2017-09-07" />
+            <meta property="article:section" content="lectures" />
+            <meta property="article:tag" content="unix" />
+            <meta property="article:tag" content="shell" />
+            <meta property="article:tag" content="bash" />
+            <meta property="article:tag" content="file system" />
+            <meta property="article:author" content="Ryan Abernathey and Kerry Key" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="./theme/css/bootstrap.lumen.min.css" type="text/css"/>
+    <link href="./theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="./theme/css/pygments/default.css" rel="stylesheet">
+    <link rel="stylesheet" href="./theme/css/style.css" type="text/css"/>
+        <link href="./static/custom.css" rel="stylesheet">
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="./" class="navbar-brand">
+Research Computing in Earth Sciences            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                         <li><a href="./pages/schedule.html">
+                             Schedule
+                          </a></li>
+                         <li><a href="./pages/syllabus.html">
+                             Syllabus
+                          </a></li>
+                        <li >
+                            <a href="./category/assignments.html">Assignments</a>
+                        </li>
+                        <li class="active">
+                            <a href="./category/lectures.html">Lectures</a>
+                        </li>
+                        <li >
+                            <a href="./category/software.html">Software</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="./intro-to-unix-part-7-finding-things.html"
+                       rel="bookmark"
+                       title="Permalink to Intro to Unix, Part 7: Finding Things">
+                        Intro to Unix, Part 7: Finding Things
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2017-09-07T00:00:00-05:00"> Thu 07 September 2017</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="./tag/unix.html">unix</a>
+        /
+	<a href="./tag/shell.html">shell</a>
+        /
+	<a href="./tag/bash.html">bash</a>
+        /
+	<a href="./tag/file-system.html">file system</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p><em>The notes below are modified from the excellent <a href="http://swcarpentry.github.io/shell-novice/">Unix Shell tutorial </a> that is freely available on the Software Carpentry website. I highly recommend checking out the full version for further reading. The material is being used here under the terms of the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution license</a>.</em></p>
+<hr>
+<p>In the same way that many of us now use "Google" as a
+verb meaning "to find", Unix programmers often use the
+word "grep".
+"grep" is a contraction of "global/regular expression/print",
+a common sequence of operations in early Unix text editors.
+It is also the name of a very useful command-line program.</p>
+<p><code>grep</code> finds and prints lines in files that match a pattern.
+For our examples,
+we will use a file that contains three haikus taken from a
+1998 competition in <em>Salon</em> magazine. For this set of examples,
+we're going to be working in the writing subdirectory:</p>
+<div class="highlight"><pre><span></span>$ <span class="nb">cd</span>
+$ <span class="nb">cd</span> writing
+$ cat haiku.txt
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>The Tao that is seen
+Is not the true Tao, until
+You bring fresh toner.
+
+With searching comes loss
+and the presence of absence:
+&quot;My Thesis&quot; not found.
+
+Yesterday it worked
+Today it is not working
+Software is like that.
+</pre></div>
+
+
+<p>Let's find lines that contain the word "not":</p>
+<div class="highlight"><pre><span></span>$ grep not haiku.txt
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>Is not the true Tao, until
+&quot;My Thesis&quot; not found
+Today it is not working
+</pre></div>
+
+
+<p>Here, <code>not</code> is the pattern we're searching for. The grep command searches through the file, looking for matches to the pattern specified. To use it type <code>grep</code>, then the pattern we're searching for and finally the name of the file (or files) we're searching in.</p>
+<p>The output is the three lines in the file that contain the letters "not".</p>
+<p>Let's try a different pattern: "The".</p>
+<div class="highlight"><pre><span></span>$ grep The haiku.txt
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>The Tao that is seen
+&quot;My Thesis&quot; not found.
+</pre></div>
+
+
+<p>This time,
+two lines that include the letters "The" are outputted.
+However, one instance of those letters is contained within a larger word,
+"Thesis".</p>
+<p>To restrict matches to lines containing the word "The" on its own,
+we can give <code>grep</code> with the <code>-w</code> flag.
+This will limit matches to word boundaries.</p>
+<div class="highlight"><pre><span></span>$ grep -w The haiku.txt
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>The Tao that is seen
+</pre></div>
+
+
+<p>Note that a "word boundary" includes the start and end of a line, so not
+just letters surrounded by spaces.
+Sometimes we don't
+want to search for a single word, but a phrase. This is also easy to do with
+<code>grep</code> by putting the phrase in quotes.</p>
+<div class="highlight"><pre><span></span>$ grep -w <span class="s2">&quot;is not&quot;</span> haiku.txt
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>Today it is not working
+</pre></div>
+
+
+<p>We've now seen that you don't have to have quotes around single words,
+but it is useful to use quotes when searching for multiple words.
+It also helps to make it easier to distinguish between the search term or phrase
+and the file being searched.
+We will use quotes in the remaining examples.</p>
+<p>Another useful option is <code>-n</code>, which numbers the lines that match:</p>
+<div class="highlight"><pre><span></span>$ grep -n <span class="s2">&quot;it&quot;</span> haiku.txt
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="mi">5</span><span class="o">:</span><span class="n">With</span> <span class="n">searching</span> <span class="n">comes</span> <span class="n">loss</span>
+<span class="mi">9</span><span class="o">:</span><span class="n">Yesterday</span> <span class="n">it</span> <span class="n">worked</span>
+<span class="mi">10</span><span class="o">:</span><span class="n">Today</span> <span class="n">it</span> <span class="k">is</span> <span class="n">not</span> <span class="n">working</span>
+</pre></div>
+
+
+<p>Here, we can see that lines 5, 9, and 10 contain the letters "it".</p>
+<p>We can combine options (i.e. flags) as we do with other Unix commands.
+For example, let's find the lines that contain the word "the". We can combine
+the option <code>-w</code> to find the lines that contain the word "the" and <code>-n</code> to number the lines that match:</p>
+<div class="highlight"><pre><span></span>$ grep -n -w <span class="s2">&quot;the&quot;</span> haiku.txt
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="mi">2</span><span class="o">:</span><span class="n">Is</span> <span class="n">not</span> <span class="n">the</span> <span class="kc">true</span> <span class="n">Tao</span><span class="o">,</span> <span class="n">until</span>
+<span class="mi">6</span><span class="o">:</span><span class="n">and</span> <span class="n">the</span> <span class="n">presence</span> <span class="n">of</span> <span class="n">absence</span><span class="o">:</span>
+</pre></div>
+
+
+<p>Now we want to use the option <code>-i</code> to make our search case-insensitive:</p>
+<div class="highlight"><pre><span></span>$ grep -n -w -i <span class="s2">&quot;the&quot;</span> haiku.txt
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="mi">1</span><span class="o">:</span><span class="n">The</span> <span class="n">Tao</span> <span class="n">that</span> <span class="k">is</span> <span class="n">seen</span>
+<span class="mi">2</span><span class="o">:</span><span class="n">Is</span> <span class="n">not</span> <span class="n">the</span> <span class="kc">true</span> <span class="n">Tao</span><span class="o">,</span> <span class="n">until</span>
+<span class="mi">6</span><span class="o">:</span><span class="n">and</span> <span class="n">the</span> <span class="n">presence</span> <span class="n">of</span> <span class="n">absence</span><span class="o">:</span>
+</pre></div>
+
+
+<p>Now, we want to use the option <code>-v</code> to invert our search, i.e., we want to output
+the lines that do not contain the word "the".</p>
+<div class="highlight"><pre><span></span>$ grep -n -w -v <span class="s2">&quot;the&quot;</span> haiku.txt
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="mi">1</span><span class="o">:</span><span class="n">The</span> <span class="n">Tao</span> <span class="n">that</span> <span class="k">is</span> <span class="n">seen</span>
+<span class="mi">3</span><span class="o">:</span><span class="n">You</span> <span class="n">bring</span> <span class="n">fresh</span> <span class="n">toner</span><span class="o">.</span>
+<span class="mi">4</span><span class="o">:</span>
+<span class="mi">5</span><span class="o">:</span><span class="n">With</span> <span class="n">searching</span> <span class="n">comes</span> <span class="n">loss</span>
+<span class="mi">7</span><span class="o">:</span><span class="s2">&quot;My Thesis&quot;</span> <span class="n">not</span> <span class="n">found</span><span class="o">.</span>
+<span class="mi">8</span><span class="o">:</span>
+<span class="mi">9</span><span class="o">:</span><span class="n">Yesterday</span> <span class="n">it</span> <span class="n">worked</span>
+<span class="mi">10</span><span class="o">:</span><span class="n">Today</span> <span class="n">it</span> <span class="k">is</span> <span class="n">not</span> <span class="n">working</span>
+<span class="mi">11</span><span class="o">:</span><span class="n">Software</span> <span class="k">is</span> <span class="n">like</span> <span class="n">that</span><span class="o">.</span>
+</pre></div>
+
+
+<p><code>grep</code> has lots of other options. To find out what they are, we can type:</p>
+<div class="highlight"><pre><span></span>$ grep --help
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">Usage</span><span class="o">:</span> <span class="n">grep</span> <span class="o">[</span><span class="n">OPTION</span><span class="o">]...</span> <span class="n">PATTERN</span> <span class="o">[</span><span class="n">FILE</span><span class="o">]...</span>
+<span class="n">Search</span> <span class="k">for</span> <span class="n">PATTERN</span> <span class="k">in</span> <span class="k">each</span> <span class="n">FILE</span> <span class="n">or</span> <span class="n">standard</span> <span class="n">input</span><span class="o">.</span>
+<span class="n">PATTERN</span> <span class="k">is</span><span class="o">,</span> <span class="n">by</span> <span class="k">default</span><span class="o">,</span> <span class="n">a</span> <span class="n">basic</span> <span class="n">regular</span> <span class="n">expression</span> <span class="o">(</span><span class="n">BRE</span><span class="o">).</span>
+<span class="n">Example</span><span class="o">:</span> <span class="n">grep</span> <span class="o">-</span><span class="n">i</span> <span class="s1">&#39;hello world&#39;</span> <span class="n">menu</span><span class="o">.</span><span class="na">h</span> <span class="n">main</span><span class="o">.</span><span class="na">c</span>
+
+<span class="n">Regexp</span> <span class="n">selection</span> <span class="n">and</span> <span class="n">interpretation</span><span class="o">:</span>
+  <span class="o">-</span><span class="n">E</span><span class="o">,</span> <span class="o">--</span><span class="n">extended</span><span class="o">-</span><span class="n">regexp</span>     <span class="n">PATTERN</span> <span class="k">is</span> <span class="n">an</span> <span class="n">extended</span> <span class="n">regular</span> <span class="n">expression</span> <span class="o">(</span><span class="n">ERE</span><span class="o">)</span>
+  <span class="o">-</span><span class="n">F</span><span class="o">,</span> <span class="o">--</span><span class="n">fixed</span><span class="o">-</span><span class="n">strings</span>       <span class="n">PATTERN</span> <span class="k">is</span> <span class="n">a</span> <span class="kd">set</span> <span class="n">of</span> <span class="n">newline</span><span class="o">-</span><span class="n">separated</span> <span class="n">fixed</span> <span class="n">strings</span>
+  <span class="o">-</span><span class="n">G</span><span class="o">,</span> <span class="o">--</span><span class="n">basic</span><span class="o">-</span><span class="n">regexp</span>        <span class="n">PATTERN</span> <span class="k">is</span> <span class="n">a</span> <span class="n">basic</span> <span class="n">regular</span> <span class="n">expression</span> <span class="o">(</span><span class="n">BRE</span><span class="o">)</span>
+  <span class="o">-</span><span class="n">P</span><span class="o">,</span> <span class="o">--</span><span class="n">perl</span><span class="o">-</span><span class="n">regexp</span>         <span class="n">PATTERN</span> <span class="k">is</span> <span class="n">a</span> <span class="n">Perl</span> <span class="n">regular</span> <span class="n">expression</span>
+  <span class="o">-</span><span class="n">e</span><span class="o">,</span> <span class="o">--</span><span class="n">regexp</span><span class="o">=</span><span class="n">PATTERN</span>      <span class="n">use</span> <span class="n">PATTERN</span> <span class="k">for</span> <span class="n">matching</span>
+  <span class="o">-</span><span class="n">f</span><span class="o">,</span> <span class="o">--</span><span class="n">file</span><span class="o">=</span><span class="n">FILE</span>           <span class="n">obtain</span> <span class="n">PATTERN</span> <span class="n">from</span> <span class="n">FILE</span>
+  <span class="o">-</span><span class="n">i</span><span class="o">,</span> <span class="o">--</span><span class="n">ignore</span><span class="o">-</span><span class="k">case</span>         <span class="n">ignore</span> <span class="k">case</span> <span class="n">distinctions</span>
+  <span class="o">-</span><span class="n">w</span><span class="o">,</span> <span class="o">--</span><span class="n">word</span><span class="o">-</span><span class="n">regexp</span>         <span class="n">force</span> <span class="n">PATTERN</span> <span class="n">to</span> <span class="n">match</span> <span class="n">only</span> <span class="n">whole</span> <span class="n">words</span>
+  <span class="o">-</span><span class="n">x</span><span class="o">,</span> <span class="o">--</span><span class="n">line</span><span class="o">-</span><span class="n">regexp</span>         <span class="n">force</span> <span class="n">PATTERN</span> <span class="n">to</span> <span class="n">match</span> <span class="n">only</span> <span class="n">whole</span> <span class="n">lines</span>
+  <span class="o">-</span><span class="n">z</span><span class="o">,</span> <span class="o">--</span><span class="kc">null</span><span class="o">-</span><span class="n">data</span>           <span class="n">a</span> <span class="n">data</span> <span class="n">line</span> <span class="n">ends</span> <span class="k">in</span> <span class="mi">0</span> <span class="n">byte</span><span class="o">,</span> <span class="n">not</span> <span class="n">newline</span>
+
+<span class="n">Miscellaneous</span><span class="o">:</span>
+<span class="o">...</span>        <span class="o">...</span>        <span class="o">...</span>
+</pre></div>
+
+
+<h2>Wildcards</h2>
+<p><code>grep</code>'s real power doesn't come from its options, though; it comes from
+ the fact that patterns can include wildcards. (The technical name for
+ these is <strong>regular expressions</strong>, which
+ is what the "re" in "grep" stands for.) Regular expressions are both complex
+ and powerful; if you want to do complex searches, please look at the lesson
+ on <a href="http://v4.software-carpentry.org/regexp/index.html">our website</a>. As a taster, we can
+ find lines that have an 'o' in the second position like this:</p>
+<div class="highlight"><pre><span></span> $ grep -E &#39;^.o&#39; haiku.txt
+</pre></div>
+
+
+<div class="highlight"><pre><span></span> You bring fresh toner.
+ Today it is not working
+ Software is like that.
+</pre></div>
+
+
+<p>We use the <code>-E</code> flag and put the pattern in quotes to prevent the shell
+ from trying to interpret it. (If the pattern contained a <code>*</code>, for
+ example, the shell would try to expand it before running <code>grep</code>.) The
+ <code>^</code> in the pattern anchors the match to the start of the line. The <code>.</code>
+ matches a single character (just like <code>?</code> in the shell), while the <code>o</code>
+ matches an actual 'o'.</p>
+<p>While <code>grep</code> finds lines in files,
+the <code>find</code> command finds files themselves.</p>
+<p>Nelle's <code>writing</code> directory contains one file called <code>haiku.txt</code> and four subdirectories:
+<code>thesis</code> (which contains a sadly empty file, <code>empty-draft.md</code>),
+<code>data</code> (which contains two files <code>one.txt</code> and <code>two.txt</code>),
+a <code>tools</code> directory that contains the programs <code>format</code> and <code>stats</code>,
+and a subdirectory called <code>old</code>, with a file <code>oldtool</code>.</p>
+<p>For our first command,
+let's run <code>find .</code>.</p>
+<div class="highlight"><pre><span></span>$ find .
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>.
+./old
+./old/.gitkeep
+./data
+./data/one.txt
+./data/two.txt
+./tools
+./tools/format
+./tools/old
+./tools/old/oldtool
+./tools/stats
+./haiku.txt
+./thesis
+./thesis/empty-draft.md
+</pre></div>
+
+
+<p>As always,
+the <code>.</code> on its own means the current working directory,
+which is where we want our search to start.
+<code>find</code>'s output is the names of every file <strong>and</strong> directory
+under the current working directory.
+This can seem useless at first but <code>find</code> has many options
+to filter the output and in this lesson we will discover some
+of them.</p>
+<p>The first option in our list is
+<code>-type d</code> that means "things that are directories".
+Sure enough,
+<code>find</code>'s output is the names of the six directories in our little tree
+(including <code>.</code>):</p>
+<div class="highlight"><pre><span></span>$ find . -type d
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>./
+./old
+./data
+./thesis
+./tools
+./tools/old
+</pre></div>
+
+
+<p>Notice that the objects <code>find</code> finds are not listed in any particular order.
+If we change <code>-type d</code> to <code>-type f</code>,
+we get a listing of all the files instead:</p>
+<div class="highlight"><pre><span></span>$ find . -type f
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>./haiku.txt
+./tools/stats
+./tools/old/oldtool
+./tools/format
+./thesis/empty-draft.md
+./data/one.txt
+./data/two.txt
+</pre></div>
+
+
+<p>Now let's try matching by name:</p>
+<div class="highlight"><pre><span></span>$ find . -name *.txt
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>./haiku.txt
+</pre></div>
+
+
+<p>We expected it to find all the text files,
+but it only prints out <code>./haiku.txt</code>.
+The problem is that the shell expands wildcard characters like <code>*</code> <em>before</em> commands run.
+Since <code>*.txt</code> in the current directory expands to <code>haiku.txt</code>,
+the command we actually ran was:</p>
+<div class="highlight"><pre><span></span>$ find . -name haiku.txt
+</pre></div>
+
+
+<p><code>find</code> did what we asked; we just asked for the wrong thing.</p>
+<p>To get what we want,
+let's do what we did with <code>grep</code>:
+put <code>*.txt</code> in single quotes to prevent the shell from expanding the <code>*</code> wildcard.
+This way,
+<code>find</code> actually gets the pattern <code>*.txt</code>, not the expanded filename <code>haiku.txt</code>:</p>
+<div class="highlight"><pre><span></span>$ find . -name <span class="s1">&#39;*.txt&#39;</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>./data/one.txt
+./data/two.txt
+./haiku.txt
+</pre></div>
+
+
+<blockquote>
+<h2>Listing vs. Finding</h2>
+<p><code>ls</code> and <code>find</code> can be made to do similar things given the right options,
+but under normal circumstances,
+<code>ls</code> lists everything it can,
+while <code>find</code> searches for things with certain properties and shows them.</p>
+</blockquote>
+<p>As we said earlier,
+the command line's power lies in combining tools.
+We've seen how to do that with pipes;
+let's look at another technique.
+As we just saw,
+<code>find . -name '*.txt'</code> gives us a list of all text files in or below the current directory.
+How can we combine that with <code>wc -l</code> to count the lines in all those files?</p>
+<p>The simplest way is to put the <code>find</code> command inside <code>$()</code>:</p>
+<div class="highlight"><pre><span></span>$ wc -l <span class="k">$(</span>find . -name <span class="s1">&#39;*.txt&#39;</span><span class="k">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>11 ./haiku.txt
+300 ./data/two.txt
+70 ./data/one.txt
+381 total
+</pre></div>
+
+
+<p>When the shell executes this command,
+the first thing it does is run whatever is inside the <code>$()</code>.
+It then replaces the <code>$()</code> expression with that command's output.
+Since the output of <code>find</code> is the three filenames <code>./data/one.txt</code>, <code>./data/two.txt</code>, and <code>./haiku.txt</code>,
+the shell constructs the command:</p>
+<div class="highlight"><pre><span></span>$ wc -l ./data/one.txt ./data/two.txt ./haiku.txt
+</pre></div>
+
+
+<p>which is what we wanted.
+This expansion is exactly what the shell does when it expands wildcards like <code>*</code> and <code>?</code>,
+but lets us use any command we want as our own "wildcard".</p>
+<p>It's very common to use <code>find</code> and <code>grep</code> together.
+The first finds files that match a pattern;
+the second looks for lines inside those files that match another pattern.
+Here, for example, we can find PDB files that contain iron atoms
+by looking for the string "FE" in all the <code>.pdb</code> files above the current directory:</p>
+<div class="highlight"><pre><span></span>$ grep <span class="s2">&quot;FE&quot;</span> <span class="k">$(</span>find .. -name <span class="s1">&#39;*.pdb&#39;</span><span class="k">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="cp">../data/pdb/heme.pdb:ATOM     25 FE           1      -0.924   0.535  -0.518</span>
+</pre></div>
+
+
+<h2>Key Points</h2>
+<ul>
+<li><code>find</code> finds files with specific properties that match patterns.</li>
+<li><code>grep</code> selects lines in files that match patterns.</li>
+<li><code>--help</code> is a flag supported by many bash commands, and programs that can be run from within Bash, to display more information on how to use these commands or programs.</li>
+<li><code>man command</code> displays the manual page for a given command.</li>
+<li><code>$(command)</code> inserts a command's output in place.</li>
+</ul>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<!-- Sidebar -->
+<section class="well well-sm">
+  <ul class="list-group list-group-flush">
+
+<!-- Sidebar/Recent Posts -->
+<li class="list-group-item">
+  <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
+  <ul class="list-group" id="recentposts">
+    <li class="list-group-item"><a href="./intro-to-python.html">Introduction to Python</a></li>
+    <li class="list-group-item"><a href="./assignment-2-unix-and-version-control.html">Assignment #2 -  Unix and Version Control</a></li>
+    <li class="list-group-item"><a href="./intro-to-git.html">Intro to Git</a></li>
+    <li class="list-group-item"><a href="./intro-to-unix-part-1.html">Intro to Unix, Part 1</a></li>
+    <li class="list-group-item"><a href="./intro-to-unix-part-2-navigating-files-and-directories.html">Intro to Unix, Part 2: Navigating Files and Directories</a></li>
+    <li class="list-group-item"><a href="./intro-to-unix-part-3-working-with-files-and-directories.html">Intro to Unix, Part 3: Working With Files and Directories</a></li>
+    <li class="list-group-item"><a href="./intro-to-unix-part-4-pipes-and-filters.html">Intro to Unix, Part 4: Pipes and Filters</a></li>
+    <li class="list-group-item"><a href="./intro-to-unix-part-5-loops.html">Intro to Unix, Part 5: Loops</a></li>
+    <li class="list-group-item"><a href="./intro-to-unix-part-6-shell-scripts.html">Intro to Unix, Part 6: Shell Scripts</a></li>
+    <li class="list-group-item"><a href="./intro-to-unix-part-7-finding-things.html">Intro to Unix, Part 7: Finding Things</a></li>
+  </ul>
+</li>
+<!-- End Sidebar/Recent Posts -->
+
+<!-- Sidebar/Tag Cloud -->
+<li class="list-group-item">
+  <a href="./"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+  <ul class="list-group " id="tags">
+    <li class="list-group-item tag-1">
+      <a href="./tag/shell.html">shell</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/file-system.html">file system</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/bash.html">bash</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/unix.html">unix</a>
+    </li>
+    <li class="list-group-item tag-3">
+      <a href="./tag/assignment.html">assignment</a>
+    </li>
+    <li class="list-group-item tag-3">
+      <a href="./tag/git.html">git</a>
+    </li>
+    <li class="list-group-item tag-3">
+      <a href="./tag/python.html">python</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/version-control.html">version control</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/gmt.html">gmt</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/matlab.html">matlab</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/source-code-editor.html">source code editor</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/github.html">github</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/geomapapp.html">GeoMapApp</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/programming.html">programming</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/vpn.html">vpn</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/fortran.html">fortran</a>
+    </li>
+  </ul>
+</li>
+<!-- End Sidebar/Tag Cloud -->
+  </ul>
+</section>
+<!-- End Sidebar -->            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2017 Ryan Abernathey and Kerry Key
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>                <p><small>  <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/deed.en"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a>
+    Content
+  licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/deed.en">Creative Commons Attribution-NonCommercial 4.0 International License</a>, except where indicated otherwise.
+</small></p>
+         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="./theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="./theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="./theme/js/respond.min.js"></script>
+
+    <script src="./theme/js/bodypadding.js"></script>
+
+
+</body>
+</html>

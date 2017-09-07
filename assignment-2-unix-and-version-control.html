@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>VPN - Research Computing in Earth Sciences</title>
+    <title>Assignment #2 - Unix and Version Control - Research Computing in Earth Sciences</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,19 +9,20 @@
 
 
 
-<link rel="canonical" href="./vpn.html">
+<link rel="canonical" href="./assignment-2-unix-and-version-control.html">
 
         <meta name="author" content="Ryan Abernathey and Kerry Key" />
-        <meta name="keywords" content="vpn" />
+        <meta name="keywords" content="assignment" />
+        <meta name="description" content="Due: Thursday, 14 September" />
 
         <meta property="og:site_name" content="Research Computing in Earth Sciences" />
         <meta property="og:type" content="article"/>
-        <meta property="og:title" content="VPN"/>
-        <meta property="og:url" content="./vpn.html"/>
-        <meta property="og:description" content=""/>
-        <meta property="article:published_time" content="2017-09-02" />
-            <meta property="article:section" content="software" />
-            <meta property="article:tag" content="vpn" />
+        <meta property="og:title" content="Assignment #2 - Unix and Version Control"/>
+        <meta property="og:url" content="./assignment-2-unix-and-version-control.html"/>
+        <meta property="og:description" content="Due: Thursday, 14 September"/>
+        <meta property="article:published_time" content="2017-09-07" />
+            <meta property="article:section" content="assignments" />
+            <meta property="article:tag" content="assignment" />
             <meta property="article:author" content="Ryan Abernathey and Kerry Key" />
 
 
@@ -60,13 +61,13 @@ Research Computing in Earth Sciences            </a>
                          <li><a href="./pages/syllabus.html">
                              Syllabus
                           </a></li>
-                        <li >
+                        <li class="active">
                             <a href="./category/assignments.html">Assignments</a>
                         </li>
                         <li >
                             <a href="./category/lectures.html">Lectures</a>
                         </li>
-                        <li class="active">
+                        <li >
                             <a href="./category/software.html">Software</a>
                         </li>
             </ul>
@@ -85,10 +86,10 @@ Research Computing in Earth Sciences            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="./vpn.html"
+                    <a href="./assignment-2-unix-and-version-control.html"
                        rel="bookmark"
-                       title="Permalink to VPN">
-                        VPN
+                       title="Permalink to Assignment #2 - Unix and Version Control">
+                        Assignment #2 -  Unix and Version Control
                     </a>
                 </h1>
             </header>
@@ -98,7 +99,7 @@ Research Computing in Earth Sciences            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2017-09-02T00:00:00-05:00"> Sat 02 September 2017</time>
+        <i class="fa fa-calendar"></i><time datetime="2017-09-07T00:00:00-05:00"> Thu 07 September 2017</time>
     </span>
 
 
@@ -106,28 +107,61 @@ Research Computing in Earth Sciences            </a>
 
 
 <span class="label label-default">Tags</span>
-	<a href="./tag/vpn.html">vpn</a>
+	<a href="./tag/assignment.html">assignment</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>A VPN is a virtual private network. If you are off-campus,
-you can log on to the LDEO VPN and your computer's IP address
-will make it look like your computer is physically located on campus. This
-is useful for accessing online material that is only available
-using the campus network.</p>
-<p>Point your web browser to the LDEO VPN log in screen:</p>
-<p>https://vpn.ldeo.columbia.edu</p>
-<p>Log in with your LDEO ID and Password.</p>
-<p>After you have successfully logged in, you will be able to download and
-install the new "OpenVPN Connect" Client and download the
-configuration file.  This will put the OpenVPN login tool up on the menu bar (on OS X)
-so that you can easily log in to the VPN.</p>
-<p>Some useful things you can do with the VPN:</p>
-<ul>
-<li>access journal papers while off campus</li>
-<li>access online content from the Columbia library</li>
-<li>use software that is licensed only for on-campus usage</li>
-</ul>
+                <p><strong>Due: Thursday, 14 September</strong></p>
+<p>For this assignment you will use Unix commands to efficiently parse
+the contents the Significant Earthquake Database from the National Geophysical Data Center, NOAA.</p>
+<p>Download the database file:</p>
+<p><a href="./signif.txt.tsv.zip">signif.txt.tsv.zip</a></p>
+<p>Unzip the file. In a terminal, run <code>less</code> or <code>head</code> on this unzipped file to have a peek at its contents. You can also try opening it in your text editor. Unless you are opening it with a really wide screen and terminal window, each line has likely wrapped around a few times. This is a tab separated data file and the first line contains the headers of each column. When viewing the file with <code>less</code> on my laptop, the header line wraps around 4 times.  </p>
+<p>Clearly this file contains some interesting data, but its very difficult to visually inspect the contents in a terminal window. Tables like this are actually better viewed in a spreadsheet application like Excel or Google Sheets, but this file has so much data its hard to make sense of it even when viewed in a spreadsheet.</p>
+<p>The purpose of this assignment is to use a few Unix commands to analyze the data. For each question below, use one or more Unix commands to compute the answer. All questions except #'s 9, 10 and 12 should be answered with a single line of unix commands, using pipes <code>|</code> where necessary.</p>
+<p><strong>Create a text file called <code>answers.txt</code> and copy the questions into it. For each question, list  the unix command sequence you used and the answer it produces.</strong></p>
+<ol>
+<li>
+<p>How many earthquakes are listed in the table?</p>
+</li>
+<li>
+<p>How many columns are in the table?</p>
+</li>
+<li>
+<p>Use the <code>cut</code> command to create a new file that just has the data from the columns for YEAR, EQ_PRIMARY and COUNTRY. Hint: you can get the column numbers by using the <code>head</code> command to view the first row and then visually count the column numbers for the above fields (there is also a unix command to do this, but we didn't cover it in class).  Call the new data file 'Year_Mag_Country.tsv'. You can use 'Year_Mag_Country.tsv' for the rest of the exercises below.</p>
+</li>
+<li>
+<p>EQ_PRIMARY is the assigned earthquake magnitude. With your new file 'Year_Mag_Country.tsv', sort the data based on the <em>numeric</em> value of the EQ_PRIMARY column, then list the lines for the top ten largest earthquakes.</p>
+</li>
+<li>
+<p>How many unique countries are listed in the database? Use <code>cut</code>,<code>sort</code>,<code>uniq</code>, <code>wc</code> and a few pipes <code>|</code> to form a single expression that answers this question.</p>
+</li>
+<li>
+<p>Use the <code>grep</code> command to count how many earthquakes in the data base are located in the USA or USA TERRITORY</p>
+</li>
+<li>
+<p>Expanding on the previous exercise, refine your command sequence so that it only counts earthquakes in the USA and not ones in USA TERRITORY. Hint: use the -v argument with grep and you
+may need to call grep more than once.</p>
+</li>
+<li>
+<p>Compute the total number of earthquakes in each country and then display the top ten countries along with the number of earthquakes. Hint: this can be done with a command sequence similar to exercise 5, but requires a specific argument to be used with <code>uniq</code>.</p>
+</li>
+<li>
+<p>Create a shell script named <code>countEq.sh</code> that returns the total number of earthquakes for a given country, where the country is specified as the option when calling the script. Hint: see the Shell Script notes and use the special variable <code>$1</code>.  Paste your script  below and give an example calling sequence for country USA.</p>
+</li>
+<li>
+<p>Create a shell script named <code>countEq_getLargestEq.sh</code> that returns both the total number of earthquakes AND the largest earthquake for a given country, where the country is specified as the option when calling the script. Use the echo command before each command to create labels for each returned value. Paste your script  below and give an example calling sequence for country CHILE.   </p>
+</li>
+<li>
+<p>Compute the total number of large earthquakes in all countries and then output a sorted list of the top ten years with the most earthquakes. Paste your command and the top ten list below.</p>
+</li>
+<li>
+<p>Create a shell script that loops over the top ten years with the most earthquakes (from exercise 11), finds all the earthquakes for a given year and writes them to file named $YEAR-earthquakes.txt, where $YEAR is the for loop variable assigned from the top ten list. You code should output ten different files (one for each year in the top ten list). Hints: Take your answer from exercise 11 and extract the year column, then use this for the range in a <code>for</code> loop by inserting them like this <code>for YEAR in $(insert code that lists top ten years here)</code>. The rest is just a <code>grep</code> and  a redirect <code>&gt;</code> to a file with the correct name.  </p>
+</li>
+<li>
+<p>Turn in your homework by sharing it with us on a GitHub repository.  Instructions: on GitHub, create a <em>private</em> git repository called Assignment_2. Share this repository with users <code>kerrykey</code> and <code>rabernat</code>. Clone the repository to your laptop.  Save your answers to the exercises above in a text file called <code>answers.txt</code>. Use git to <code>commit</code> <code>answers.txt</code> to your repository on your laptop, and then <code>push</code> the changes to the remote repository on GitHub.   </p>
+</li>
+</ol>
             </div>
             <!-- /.entry-content -->
         </article>

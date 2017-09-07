@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Intro to Unix, Part 3: Working With Files and Directories - Research Computing in Earth Sciences</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="./intro-to-unix-part-3-working-with-files-and-directories.html">
+
+        <meta name="author" content="Ryan Abernathey and Kerry Key" />
+        <meta name="keywords" content="unix,shell,bash,file system" />
+
+        <meta property="og:site_name" content="Research Computing in Earth Sciences" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Intro to Unix, Part 3: Working With Files and Directories"/>
+        <meta property="og:url" content="./intro-to-unix-part-3-working-with-files-and-directories.html"/>
+        <meta property="og:description" content=""/>
+        <meta property="article:published_time" content="2017-09-07" />
+            <meta property="article:section" content="lectures" />
+            <meta property="article:tag" content="unix" />
+            <meta property="article:tag" content="shell" />
+            <meta property="article:tag" content="bash" />
+            <meta property="article:tag" content="file system" />
+            <meta property="article:author" content="Ryan Abernathey and Kerry Key" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="./theme/css/bootstrap.lumen.min.css" type="text/css"/>
+    <link href="./theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="./theme/css/pygments/default.css" rel="stylesheet">
+    <link rel="stylesheet" href="./theme/css/style.css" type="text/css"/>
+        <link href="./static/custom.css" rel="stylesheet">
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="./" class="navbar-brand">
+Research Computing in Earth Sciences            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                         <li><a href="./pages/schedule.html">
+                             Schedule
+                          </a></li>
+                         <li><a href="./pages/syllabus.html">
+                             Syllabus
+                          </a></li>
+                        <li >
+                            <a href="./category/assignments.html">Assignments</a>
+                        </li>
+                        <li class="active">
+                            <a href="./category/lectures.html">Lectures</a>
+                        </li>
+                        <li >
+                            <a href="./category/software.html">Software</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="./intro-to-unix-part-3-working-with-files-and-directories.html"
+                       rel="bookmark"
+                       title="Permalink to Intro to Unix, Part 3: Working With Files and Directories">
+                        Intro to Unix, Part 3: Working With Files and Directories
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2017-09-07T00:00:00-05:00"> Thu 07 September 2017</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="./tag/unix.html">unix</a>
+        /
+	<a href="./tag/shell.html">shell</a>
+        /
+	<a href="./tag/bash.html">bash</a>
+        /
+	<a href="./tag/file-system.html">file system</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p><em>The notes below are modified from the excellent <a href="http://swcarpentry.github.io/shell-novice/">Unix Shell tutorial </a> that is freely available on the Software Carpentry website. I highly recommend checking out the full version for further reading. The material is being used here under the terms of the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution license</a>.</em></p>
+<hr>
+<p>We now know how to explore files and directories,
+but how do we create them in the first place?
+Let's go back to our <code>data-shell</code> directory on the Desktop
+and use <code>ls -F</code> to see what it contains:</p>
+<div class="highlight"><pre><span></span>$ <span class="nb">pwd</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>/Users/nelle/Desktop/data-shell
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>$ ls -F
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>creatures/  molecules/           pizza.cfg
+data/       north-pacific-gyre/  solar.pdf
+Desktop/    notes.txt            writing/
+</pre></div>
+
+
+<p>Let's create a new directory called <code>thesis</code> using the command <code>mkdir thesis</code>
+(which has no output):</p>
+<div class="highlight"><pre><span></span>$ mkdir thesis
+</pre></div>
+
+
+<p>As you might guess from its name,
+<code>mkdir</code> means "make directory".
+Since <code>thesis</code> is a relative path
+(i.e., doesn't have a leading slash),
+the new directory is created in the current working directory:</p>
+<div class="highlight"><pre><span></span>$ ls -F
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>creatures/  north-pacific-gyre/  thesis/
+data/       notes.txt            writing/
+Desktop/    pizza.cfg
+molecules/  solar.pdf
+</pre></div>
+
+
+<h2>Good names for files and directories</h2>
+<p>Complicated names of files and directories can make your life painful
+ when working on the command line. Here we provide a few useful
+ tips for the names of your files.</p>
+<ol>
+<li>
+<p>Don't use whitespaces.</p>
+<p>Whitespaces can make a name more meaningful
+   but since whitespace is used to break arguments on the command line
+   is better to avoid them on name of files and directories.
+You can use <code>-</code> or <code>_</code> instead of whitespace.</p>
+</li>
+<li>
+<p>Don't begin the name with <code>-</code> (dash).</p>
+<p>Commands treat names starting with <code>-</code> as options.</p>
+</li>
+<li>
+<p>Stick with letters, numbers, <code>.</code> (period), <code>-</code> (dash) and <code>_</code> (underscore).</p>
+<p>Many other characters have special meanings on the command line.
+We will learn about some of these during this lesson.
+There are special characters that can cause your command to not work as
+expected and can even result in data loss.</p>
+</li>
+</ol>
+<p>If you need to refer to names of files or directories that have whitespace
+ or another non-alphanumeric character, you should surround the name in quotes (<code>""</code>).</p>
+<p>Since we've just created the <code>thesis</code> directory, there's nothing in it yet:</p>
+<div class="highlight"><pre><span></span>$ ls -F thesis
+</pre></div>
+
+
+<p>Let's change our working directory to <code>thesis</code> using <code>cd</code>,
+then run a text editor called Nano to create a file called <code>draft.txt</code>:</p>
+<div class="highlight"><pre><span></span>$ <span class="nb">cd</span> thesis
+$ nano draft.txt
+</pre></div>
+
+
+<p>Let's type in a few lines of text.
+Once we're happy with our text, we can press <code>Ctrl-O</code> (press the Ctrl or Control key and, while
+holding it down, press the O key) to write our data to disk
+(we'll be asked what file we want to save this to:
+press Return to accept the suggested default of <code>draft.txt</code>).</p>
+<p><img alt="Nano in Action" src="./nano-screenshot.png"></p>
+<p>Once our file is saved, we can use <code>Ctrl-X</code> to quit the editor and
+return to the shell.</p>
+<p><code>nano</code> doesn't leave any output on the screen after it exits,
+but <code>ls</code> now shows that we have created a file called <code>draft.txt</code>:</p>
+<div class="highlight"><pre><span></span>$ ls
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>draft.txt
+</pre></div>
+
+
+<h2>Which Editor?</h2>
+<p>When we say, "<code>nano</code> is a text editor," we really do mean "text": it can
+ only work with plain character data, not tables, images, or any other
+ human-friendly media. We use it in examples because it is one of the
+ least complex text editors. However, because of this trait, it may
+ not be powerful enough or flexible enough for the work you need to do
+ after this workshop. On Unix systems (such as Linux and Mac OS X),
+ many programmers use <a href="http://www.gnu.org/software/emacs/">Emacs</a> or
+ <a href="http://www.vim.org/">Vim</a> (both of which require more time to learn),
+ or a graphical editor such as
+ <a href="http://projects.gnome.org/gedit/">Gedit</a>. On Windows, you may wish to
+ use <a href="http://notepad-plus-plus.org/">Notepad++</a>.  Windows also has a built-in
+ editor called <code>notepad</code> that can be run from the command line in the same
+ way as <code>nano</code> for the purposes of this lesson.  </p>
+<p>No matter what editor you use, you will need to know where it searches
+ for and saves files. If you start it from the shell, it will (probably)
+ use your current working directory as its default location. If you use
+ your computer's start menu, it may want to save files in your desktop or
+ documents directory instead. You can change this by navigating to
+ another directory the first time you "Save As..."</p>
+<p>Let's tidy up by running <code>rm draft.txt</code>:</p>
+<div class="highlight"><pre><span></span>$ rm draft.txt
+</pre></div>
+
+
+<p>This command removes files (<code>rm</code> is short for "remove").
+If we run <code>ls</code> again,
+its output is empty once more,
+which tells us that our file is gone:</p>
+<div class="highlight"><pre><span></span>$ ls
+</pre></div>
+
+
+<h2>Deleting Is Forever</h2>
+<p>The Unix shell doesn't have a trash bin that we can recover deleted
+ files from (though most graphical interfaces to Unix do).  Instead,
+ when we delete files, they are unhooked from the file system so that
+ their storage space on disk can be recycled. Tools for finding and
+ recovering deleted files do exist, but there's no guarantee they'll
+ work in any particular situation, since the computer may recycle the
+ file's disk space right away.</p>
+<p>Let's re-create that file
+and then move up one directory to <code>/Users/nelle/Desktop/data-shell</code> using <code>cd ..</code>:</p>
+<div class="highlight"><pre><span></span>$ <span class="nb">pwd</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>/Users/nelle/Desktop/data-shell/thesis
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>$ nano draft.txt
+$ ls
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>draft.txt
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ..
+</pre></div>
+
+
+<p>If we try to remove the entire <code>thesis</code> directory using <code>rm thesis</code>,
+we get an error message:</p>
+<div class="highlight"><pre><span></span>$ rm thesis
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">rm</span><span class="o">:</span> <span class="n">cannot</span> <span class="n">remove</span> <span class="err">`</span><span class="n">thesis</span><span class="err">&#39;</span><span class="o">:</span> <span class="n">Is</span> <span class="n">a</span> <span class="n">directory</span>
+</pre></div>
+
+
+<p>This happens because <code>rm</code> by default only works on files, not directories.</p>
+<p>To really get rid of <code>thesis</code> we must also delete the file <code>draft.txt</code>.
+We can do this with the <a href="https://en.wikipedia.org/wiki/Recursion">recursive</a> option for <code>rm</code>:</p>
+<div class="highlight"><pre><span></span>$ rm -r thesis
+</pre></div>
+
+
+<h2>With Great Power Comes Great Responsibility</h2>
+<p>Removing the files in a directory recursively can be very dangerous
+ operation. If we're concerned about what we might be deleting we can
+ add the "interactive" flag <code>-i</code> to <code>rm</code> which will ask us for confirmation
+ before each step</p>
+<div class="highlight"><pre><span></span> $ rm -r -i thesis
+ rm: descend into directory ‘thesis’? y
+ rm: remove regular file ‘thesis/draft.txt’? y
+ rm: remove directory ‘thesis’? y
+</pre></div>
+
+
+<p>This removes everything in the directory, then the directory itself, asking
+ at each step for you to confirm the deletion.</p>
+<p>Let's create that directory and file one more time.
+(Note that this time we're running <code>nano</code> with the path <code>thesis/draft.txt</code>,
+rather than going into the <code>thesis</code> directory and running <code>nano</code> on <code>draft.txt</code> there.)</p>
+<div class="highlight"><pre><span></span>$ <span class="nb">pwd</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>/Users/nelle/Desktop/data-shell
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>$ mkdir thesis
+$ nano thesis/draft.txt
+$ ls thesis
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>draft.txt
+</pre></div>
+
+
+<p><code>draft.txt</code> isn't a particularly informative name,
+so let's change the file's name using <code>mv</code>,
+which is short for "move":</p>
+<div class="highlight"><pre><span></span>$ mv thesis/draft.txt thesis/quotes.txt
+</pre></div>
+
+
+<p>The first parameter tells <code>mv</code> what we're "moving",
+while the second is where it's to go.
+In this case,
+we're moving <code>thesis/draft.txt</code> to <code>thesis/quotes.txt</code>,
+which has the same effect as renaming the file.
+Sure enough,
+<code>ls</code> shows us that <code>thesis</code> now contains one file called <code>quotes.txt</code>:</p>
+<div class="highlight"><pre><span></span>$ ls thesis
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>quotes.txt
+</pre></div>
+
+
+<p>One has to be careful when specifying the target file name, since <code>mv</code> will
+silently overwrite any existing file with the same name, which could
+lead to data loss. An additional flag, <code>mv -i</code> (or <code>mv --interactive</code>),
+can be used to make <code>mv</code> ask you for confirmation before overwriting.</p>
+<p>Just for the sake of consistency,
+<code>mv</code> also works on directories</p>
+<p>Let's move <code>quotes.txt</code> into the current working directory.
+We use <code>mv</code> once again,
+but this time we'll just use the name of a directory as the second parameter
+to tell <code>mv</code> that we want to keep the filename,
+but put the file somewhere new.
+(This is why the command is called "move".)
+In this case,
+the directory name we use is the special directory name <code>.</code> that we mentioned earlier.</p>
+<div class="highlight"><pre><span></span>$ mv thesis/quotes.txt .
+</pre></div>
+
+
+<p>The effect is to move the file from the directory it was in to the current working directory.
+<code>ls</code> now shows us that <code>thesis</code> is empty:</p>
+<div class="highlight"><pre><span></span>$ ls thesis
+</pre></div>
+
+
+<p>Further,
+<code>ls</code> with a filename or directory name as a parameter only lists that file or directory.
+We can use this to see that <code>quotes.txt</code> is still in our current directory:</p>
+<div class="highlight"><pre><span></span>$ ls quotes.txt
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>quotes.txt
+</pre></div>
+
+
+<p>The <code>cp</code> command works very much like <code>mv</code>,
+except it copies a file instead of moving it.
+We can check that it did the right thing using <code>ls</code>
+with two paths as parameters --- like most Unix commands,
+<code>ls</code> can be given multiple paths at once:</p>
+<div class="highlight"><pre><span></span>$ cp quotes.txt thesis/quotations.txt
+$ ls quotes.txt thesis/quotations.txt
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>quotes.txt   thesis/quotations.txt
+</pre></div>
+
+
+<p>To prove that we made a copy,
+let's delete the <code>quotes.txt</code> file in the current directory
+and then run that same <code>ls</code> again.</p>
+<div class="highlight"><pre><span></span>$ rm quotes.txt
+$ ls quotes.txt thesis/quotations.txt
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">ls</span><span class="o">:</span> <span class="n">cannot</span> <span class="n">access</span> <span class="n">quotes</span><span class="o">.</span><span class="na">txt</span><span class="o">:</span> <span class="n">No</span> <span class="n">such</span> <span class="n">file</span> <span class="n">or</span> <span class="n">directory</span>
+<span class="n">thesis</span><span class="o">/</span><span class="n">quotations</span><span class="o">.</span><span class="na">txt</span>
+</pre></div>
+
+
+<p>This time it tells us that it can't find <code>quotes.txt</code> in the current directory,
+but it does find the copy in <code>thesis</code> that we didn't delete.</p>
+<h2>Key Points</h2>
+<ul>
+<li><code>cp old new</code> copies a file.</li>
+<li><code>mkdir path</code> creates a new directory.</li>
+<li><code>mv old new</code> moves (renames) a file or directory.</li>
+<li><code>rm path</code> removes (deletes) a file.</li>
+<li>Use of the Control key may be described in many ways, including <code>Ctrl-X</code>, <code>Control-X</code>, and <code>^X</code>.</li>
+<li>The shell does not have a trash bin: once something is deleted, it's really gone.</li>
+<li>Depending on the type of work you do, you may need a more powerful text editor than Nano.</li>
+</ul>
+<h2>Next:</h2>
+<p><a href="./intro-to-unix-part-4-pipes-and-filters.html">Part 4: Pipes and Filters</a></p>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<!-- Sidebar -->
+<section class="well well-sm">
+  <ul class="list-group list-group-flush">
+
+<!-- Sidebar/Recent Posts -->
+<li class="list-group-item">
+  <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
+  <ul class="list-group" id="recentposts">
+    <li class="list-group-item"><a href="./intro-to-python.html">Introduction to Python</a></li>
+    <li class="list-group-item"><a href="./assignment-2-unix-and-version-control.html">Assignment #2 -  Unix and Version Control</a></li>
+    <li class="list-group-item"><a href="./intro-to-git.html">Intro to Git</a></li>
+    <li class="list-group-item"><a href="./intro-to-unix-part-1.html">Intro to Unix, Part 1</a></li>
+    <li class="list-group-item"><a href="./intro-to-unix-part-2-navigating-files-and-directories.html">Intro to Unix, Part 2: Navigating Files and Directories</a></li>
+    <li class="list-group-item"><a href="./intro-to-unix-part-3-working-with-files-and-directories.html">Intro to Unix, Part 3: Working With Files and Directories</a></li>
+    <li class="list-group-item"><a href="./intro-to-unix-part-4-pipes-and-filters.html">Intro to Unix, Part 4: Pipes and Filters</a></li>
+    <li class="list-group-item"><a href="./intro-to-unix-part-5-loops.html">Intro to Unix, Part 5: Loops</a></li>
+    <li class="list-group-item"><a href="./intro-to-unix-part-6-shell-scripts.html">Intro to Unix, Part 6: Shell Scripts</a></li>
+    <li class="list-group-item"><a href="./intro-to-unix-part-7-finding-things.html">Intro to Unix, Part 7: Finding Things</a></li>
+  </ul>
+</li>
+<!-- End Sidebar/Recent Posts -->
+
+<!-- Sidebar/Tag Cloud -->
+<li class="list-group-item">
+  <a href="./"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+  <ul class="list-group " id="tags">
+    <li class="list-group-item tag-1">
+      <a href="./tag/shell.html">shell</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/file-system.html">file system</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/bash.html">bash</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/unix.html">unix</a>
+    </li>
+    <li class="list-group-item tag-3">
+      <a href="./tag/assignment.html">assignment</a>
+    </li>
+    <li class="list-group-item tag-3">
+      <a href="./tag/git.html">git</a>
+    </li>
+    <li class="list-group-item tag-3">
+      <a href="./tag/python.html">python</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/version-control.html">version control</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/gmt.html">gmt</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/matlab.html">matlab</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/source-code-editor.html">source code editor</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/github.html">github</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/geomapapp.html">GeoMapApp</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/programming.html">programming</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/vpn.html">vpn</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/fortran.html">fortran</a>
+    </li>
+  </ul>
+</li>
+<!-- End Sidebar/Tag Cloud -->
+  </ul>
+</section>
+<!-- End Sidebar -->            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2017 Ryan Abernathey and Kerry Key
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>                <p><small>  <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/deed.en"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a>
+    Content
+  licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/deed.en">Creative Commons Attribution-NonCommercial 4.0 International License</a>, except where indicated otherwise.
+</small></p>
+         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="./theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="./theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="./theme/js/respond.min.js"></script>
+
+    <script src="./theme/js/bodypadding.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Intro to Unix, Part 2: Navigating Files and Directories - Research Computing in Earth Sciences</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="./intro-to-unix-part-2-navigating-files-and-directories.html">
+
+        <meta name="author" content="Ryan Abernathey and Kerry Key" />
+        <meta name="keywords" content="unix,shell,bash,file system" />
+
+        <meta property="og:site_name" content="Research Computing in Earth Sciences" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Intro to Unix, Part 2: Navigating Files and Directories"/>
+        <meta property="og:url" content="./intro-to-unix-part-2-navigating-files-and-directories.html"/>
+        <meta property="og:description" content=""/>
+        <meta property="article:published_time" content="2017-09-07" />
+            <meta property="article:section" content="lectures" />
+            <meta property="article:tag" content="unix" />
+            <meta property="article:tag" content="shell" />
+            <meta property="article:tag" content="bash" />
+            <meta property="article:tag" content="file system" />
+            <meta property="article:author" content="Ryan Abernathey and Kerry Key" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="./theme/css/bootstrap.lumen.min.css" type="text/css"/>
+    <link href="./theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="./theme/css/pygments/default.css" rel="stylesheet">
+    <link rel="stylesheet" href="./theme/css/style.css" type="text/css"/>
+        <link href="./static/custom.css" rel="stylesheet">
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="./" class="navbar-brand">
+Research Computing in Earth Sciences            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                         <li><a href="./pages/schedule.html">
+                             Schedule
+                          </a></li>
+                         <li><a href="./pages/syllabus.html">
+                             Syllabus
+                          </a></li>
+                        <li >
+                            <a href="./category/assignments.html">Assignments</a>
+                        </li>
+                        <li class="active">
+                            <a href="./category/lectures.html">Lectures</a>
+                        </li>
+                        <li >
+                            <a href="./category/software.html">Software</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="./intro-to-unix-part-2-navigating-files-and-directories.html"
+                       rel="bookmark"
+                       title="Permalink to Intro to Unix, Part 2: Navigating Files and Directories">
+                        Intro to Unix, Part 2: Navigating Files and Directories
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2017-09-07T00:00:00-05:00"> Thu 07 September 2017</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="./tag/unix.html">unix</a>
+        /
+	<a href="./tag/shell.html">shell</a>
+        /
+	<a href="./tag/bash.html">bash</a>
+        /
+	<a href="./tag/file-system.html">file system</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p><em>The notes below are modified from the excellent <a href="http://swcarpentry.github.io/shell-novice/">Unix Shell tutorial </a> that is freely available on the Software Carpentry website. I highly recommend checking out the full version for further reading. The material is being used here under the terms of the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution license</a>.</em></p>
+<hr>
+<h2>Navigating Files and Directories</h2>
+<p>Several commands are frequently used to create, inspect, rename, and delete files and directories.
+To start exploring them,
+let's open a shell window:</p>
+<div class="highlight"><pre><span></span>$
+</pre></div>
+
+
+<p>The dollar sign is a <strong>prompt</strong>, which shows us that the shell is waiting for input;
+your shell may use a different character as a prompt and may add information before
+the prompt.</p>
+<p>Next,
+let's find out where we are by running a command called <code>pwd</code>
+(which stands for "print working directory").
+At any moment,
+our <strong>current working directory</strong>
+is our current default directory,
+i.e.,
+the directory that the computer assumes we want to run commands in
+unless we explicitly specify something else.
+Here,
+the computer's response is <code>/Users/nelle</code>,
+which is Nelle's <strong>home directory</strong>:</p>
+<div class="highlight"><pre><span></span>$ <span class="nb">pwd</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>/Users/nelle
+</pre></div>
+
+
+<p>To understand what a "home directory" is,
+let's have a look at how the file system as a whole is organized.  For the
+sake of this example, we'll be
+illustrating the filesystem on our scientist Nelle's computer.  After this
+illustration, you'll be learning commands to explore your own filesystem,
+which will be constructed in a similar way, but not be exactly identical.  </p>
+<p>On Nelle's computer, the filesystem looks like this:</p>
+<p><img alt="The File System" src="./filesystem.svg"></p>
+<p>At the top is the <strong>root directory</strong>
+that holds everything else.
+We refer to it using a slash character <code>/</code> on its own;
+this is the leading slash in <code>/Users/nelle</code>.</p>
+<p>Inside that directory are several other directories:
+<code>bin</code> (which is where some built-in programs are stored),
+<code>data</code> (for miscellaneous data files),
+<code>Users</code> (where users' personal directories are located),
+<code>tmp</code> (for temporary files that don't need to be stored long-term),
+and so on.  </p>
+<p>Now let's learn the command that will let us see the contents of our
+own filesystem.  We can see what's in our home directory by running <code>ls</code>,
+which stands for "listing":</p>
+<div class="highlight"><pre><span></span>$ ls
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>Applications Documents    Library      Music        Public
+Desktop      Downloads    Movies       Pictures
+</pre></div>
+
+
+<p><code>ls</code> prints the names of the files and directories in the current directory in
+alphabetical order,
+arranged neatly into columns.
+We can make its output more comprehensible by using the <strong>flag</strong> <code>-F</code>,
+which tells <code>ls</code> to add a trailing <code>/</code> to the names of directories:</p>
+<div class="highlight"><pre><span></span>$ ls -F
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>Applications/ Documents/    Library/      Music/        Public/
+Desktop/      Downloads/    Movies/       Pictures/
+</pre></div>
+
+
+<p><code>ls</code> has lots of other options. To find out what they are, we can type:</p>
+<div class="highlight"><pre><span></span>$ man ls
+</pre></div>
+
+
+<p><code>man</code> is the Unix "manual" command:
+it prints a description of a command and its options,
+and (if you're lucky) provides a few examples of how to use it. To navigate through the <code>man</code> pages,
+you may use the up and down arrow keys to move line-by-line,
+or try the "b" and spacebar keys to skip up and down by full page.
+Quit the <code>man</code> pages by typing "q".</p>
+<p>Here,
+we can see that our home directory contains mostly <strong>sub-directories</strong>.
+Any names in your output that don't have trailing slashes,
+are plain old <strong>files</strong>.</p>
+<p>We can also use <code>ls</code> to see the contents of a different directory.  Let's take a
+look at our <code>Desktop</code> directory by running <code>ls -F Desktop</code>,
+i.e.,
+the command <code>ls</code> with the <strong>arguments</strong> <code>-F</code> and <code>Desktop</code>.
+The second argument --- the one <em>without</em> a leading dash --- tells <code>ls</code> that
+we want a listing of something other than our current working directory:</p>
+<div class="highlight"><pre><span></span>$ ls -F Desktop
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>data-shell/
+</pre></div>
+
+
+<p>Your output should be a list of all the files and sub-directories on your
+Desktop, including the <code>data-shell</code> directory you downloaded at
+the start of the lesson.  Take a look at your Desktop to confirm that
+your output is accurate.  </p>
+<p>The command to change locations is <code>cd</code> followed by a
+directory name to change our working directory.
+<code>cd</code> stands for "change directory",
+which is a bit misleading:
+the command doesn't change the directory,
+it changes the shell's idea of what directory we are in.</p>
+<p>Let's say we want to move to the <code>data</code> directory we saw above.  We can
+use the following series of commands to get there:</p>
+<div class="highlight"><pre><span></span>$ <span class="nb">cd</span> Desktop
+$ <span class="nb">cd</span> data-shell
+$ <span class="nb">cd</span> data
+</pre></div>
+
+
+<p>These commands will move us from our home directory onto our Desktop, then into
+the <code>data-shell</code> directory, then into the <code>data</code> directory.  <code>cd</code> doesn't print anything,
+but if we run <code>pwd</code> after it, we can see that we are now
+in <code>/Users/nelle/Desktop/data-shell/data</code>.
+If we run <code>ls</code> without arguments now,
+it lists the contents of <code>/Users/nelle/Desktop/data-shell/data</code>,
+because that's where we now are:</p>
+<div class="highlight"><pre><span></span>$ <span class="nb">pwd</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>/Users/nelle/Desktop/data-shell/data
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>$ ls -F
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>amino-acids.txt   elements/     pdb/            salmon.txt
+animals.txt       morse.txt     planets.txt     sunspot.txt
+</pre></div>
+
+
+<p>We now know how to go down the directory tree, but
+how do we go up?  </p>
+<p>There is a shortcut in the shell to move up one directory level
+that looks like this:</p>
+<div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ..
+</pre></div>
+
+
+<p><code>..</code> is a special directory name meaning
+"the directory containing this one",
+or more succinctly,
+the <strong>parent</strong> of the current directory.
+Sure enough,
+if we run <code>pwd</code> after running <code>cd ..</code>, we're back in <code>/Users/nelle/Desktop/data-shell</code>:</p>
+<div class="highlight"><pre><span></span>$ <span class="nb">pwd</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>/Users/nelle/Desktop/data-shell
+</pre></div>
+
+
+<p>The special directory <code>..</code> doesn't usually show up when we run <code>ls</code>.  If we want
+to display it, we can give <code>ls</code> the <code>-a</code> flag:</p>
+<div class="highlight"><pre><span></span>$ ls -F -a
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>./                  creatures/          notes.txt
+../                 data/               pizza.cfg
+.bash_profile       molecules/          solar.pdf
+Desktop/            north-pacific-gyre/ writing/
+</pre></div>
+
+
+<p><code>-a</code> stands for "show all";
+it forces <code>ls</code> to show us file and directory names that begin with <code>.</code>,
+such as <code>..</code> (which, if we're in <code>/Users/nelle</code>, refers to the <code>/Users</code> directory)
+As you can see,
+it also displays another special directory that's just called <code>.</code>,
+which means "the current working directory".
+It may seem redundant to have a name for it,
+but we'll see some uses for it soon.</p>
+<p>Note that in most command line tools, multiple parameters can be combined
+with a single <code>-</code> and no spaces between the parameters: <code>ls -F -a</code> is
+equivalent to <code>ls -Fa</code>.</p>
+<p>These then, are the basic commands for navigating the filesystem on your computer:
+<code>pwd</code>, <code>ls</code> and <code>cd</code>.  Let's explore some variations on those commands.  What happens
+if you type <code>cd</code> on its own, without giving
+a directory?  </p>
+<div class="highlight"><pre><span></span>$ <span class="nb">cd</span>
+</pre></div>
+
+
+<p>How can you check what happened?  <code>pwd</code> gives us the answer!  </p>
+<div class="highlight"><pre><span></span>$ <span class="nb">pwd</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>/Users/nelle
+</pre></div>
+
+
+<p>It turns out that <code>cd</code> without an argument will return you to your home directory,
+which is great if you've gotten lost in your own filesystem.  </p>
+<p>Let's try returning to the <code>data</code> directory from before.  Last time, we used
+three commands, but we can actually string together the list of directories
+to move to <code>data</code> in one step:</p>
+<div class="highlight"><pre><span></span>$ <span class="nb">cd</span> Desktop/data-shell/data
+</pre></div>
+
+
+<p>Check that we've moved to the right place by running <code>pwd</code> and <code>ls -F</code>  </p>
+<p>If we want to move up one level from the data directory, we could use <code>cd ..</code>.  But
+there is another way to move to any directory, regardless of your
+current location.  </p>
+<p>So far, when specifying directory names, or even a directory path (as above),
+we have been using <strong>relative paths</strong>.  When you use a relative path with a command
+like <code>ls</code> or <code>cd</code>, it tries to find that location  from where we are,
+rather than from the root of the file system.  </p>
+<p>However, it is possible to specify the <strong>absolute path</strong> to a directory by
+including its entire path from the root directory, which is indicated by a
+leading slash.  The leading <code>/</code> tells the computer to follow the path from
+the root of the file system, so it always refers to exactly one directory,
+no matter where we are when we run the command.</p>
+<p>This allows us to move to our <code>data-shell</code> directory from anywhere on
+the filesystem (including from inside <code>data</code>).  To find the absolute path
+we're looking for, we can use <code>pwd</code> and then extract the piece we need
+to move to <code>data-shell</code>.  </p>
+<div class="highlight"><pre><span></span>$ <span class="nb">pwd</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>/Users/nelle/Desktop/data-shell/data
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>$ <span class="nb">cd</span> /Users/nelle/Desktop/data-shell
+</pre></div>
+
+
+<p>Run <code>pwd</code> and <code>ls -F</code> to ensure that we're in the directory we expect.  </p>
+<h3>Two More Shortcuts</h3>
+<p>The shell interprets the character <code>~</code> (tilde) at the start of a path to
+ mean "the current user's home directory". For example, if Nelle's home
+ directory is <code>/Users/nelle</code>, then <code>~/data</code> is equivalent to
+ <code>/Users/nelle/data</code>. This only works if it is the first character in the
+ path: <code>here/there/~/elsewhere</code> is <em>not</em> <code>here/there/Users/nelle/elsewhere</code>.</p>
+<p>Another shortcut is the <code>-</code> (dash) character.  <code>cd</code> will translate <code>-</code> into
+ <em>the previous directory I was in</em>, which is faster than having to remember,
+ then type, the full path.  This is a <em>very</em> efficient way of moving back
+ and forth between directories. The difference between <code>cd ..</code> and <code>cd -</code> is
+ that the former brings you <em>up</em>, while the latter brings you <em>back</em>. You can
+ think of it as the <em>Last Channel</em> button on a TV remote.</p>
+<h3>Tab Completion</h3>
+<p>Now in her current directory <code>data-shell</code>,
+Nelle can see what files she has using the command:</p>
+<div class="highlight"><pre><span></span>$ ls north-pacific-gyre/2012-07-03/
+</pre></div>
+
+
+<p>This is a lot to type,
+but she can let the shell do most of the work through what is called <strong>tab completion</strong>.
+If she types:</p>
+<div class="highlight"><pre><span></span>$ ls nor
+</pre></div>
+
+
+<p>and then presses tab (the tab key on her keyboard),
+the shell automatically completes the directory name for her:</p>
+<div class="highlight"><pre><span></span>$ ls north-pacific-gyre/
+</pre></div>
+
+
+<p>If she presses tab again,
+Bash will add <code>2012-07-03/</code> to the command,
+since it's the only possible completion.
+Pressing tab again does nothing,
+since there are 19 possibilities;
+pressing tab twice brings up a list of all the files,
+and so on.
+This is called <strong>tab completion</strong>,
+and we will see it in many other tools as we go on.</p>
+<h2>Key Points:</h2>
+<ul>
+<li>"The file system is responsible for managing information on the disk."</li>
+<li>"Information is stored in files, which are stored in directories (folders)."</li>
+<li>"Directories can also store other directories, which forms a directory tree."</li>
+<li>"<code>cd path</code> changes the current working directory."</li>
+<li>"<code>ls path</code> prints a listing of a specific file or directory; <code>ls</code> on its own lists the current working directory."</li>
+<li><code>pwd</code> prints the user's current working directory.</li>
+<li><code>whoami</code> shows the user's current identity.</li>
+<li><code>/</code> on its own is the root directory of the whole file system.</li>
+<li>A relative path specifies a location starting from the current location.</li>
+<li>An absolute path specifies a location from the root of the file system.</li>
+<li>Directory names in a path are separated with '/' on Unix, but '\\' on Windows.</li>
+<li>'..' means 'the directory above the current one'; '.' on its own means 'the current directory'.</li>
+<li>Most files' names are <code>something.extension</code>. The extension isn't required, and doesn't guarantee anything, but is normally used to indicate the type of data in the file.</li>
+<li>Most commands take options (flags) which begin with a '-'.</li>
+</ul>
+<h2>Next:</h2>
+<p><a href="./intro-to-unix-part-3-working-with-files-and-directories.html">Part 3: Working With Files and Directories</a></p>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<!-- Sidebar -->
+<section class="well well-sm">
+  <ul class="list-group list-group-flush">
+
+<!-- Sidebar/Recent Posts -->
+<li class="list-group-item">
+  <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
+  <ul class="list-group" id="recentposts">
+    <li class="list-group-item"><a href="./intro-to-python.html">Introduction to Python</a></li>
+    <li class="list-group-item"><a href="./assignment-2-unix-and-version-control.html">Assignment #2 -  Unix and Version Control</a></li>
+    <li class="list-group-item"><a href="./intro-to-git.html">Intro to Git</a></li>
+    <li class="list-group-item"><a href="./intro-to-unix-part-1.html">Intro to Unix, Part 1</a></li>
+    <li class="list-group-item"><a href="./intro-to-unix-part-2-navigating-files-and-directories.html">Intro to Unix, Part 2: Navigating Files and Directories</a></li>
+    <li class="list-group-item"><a href="./intro-to-unix-part-3-working-with-files-and-directories.html">Intro to Unix, Part 3: Working With Files and Directories</a></li>
+    <li class="list-group-item"><a href="./intro-to-unix-part-4-pipes-and-filters.html">Intro to Unix, Part 4: Pipes and Filters</a></li>
+    <li class="list-group-item"><a href="./intro-to-unix-part-5-loops.html">Intro to Unix, Part 5: Loops</a></li>
+    <li class="list-group-item"><a href="./intro-to-unix-part-6-shell-scripts.html">Intro to Unix, Part 6: Shell Scripts</a></li>
+    <li class="list-group-item"><a href="./intro-to-unix-part-7-finding-things.html">Intro to Unix, Part 7: Finding Things</a></li>
+  </ul>
+</li>
+<!-- End Sidebar/Recent Posts -->
+
+<!-- Sidebar/Tag Cloud -->
+<li class="list-group-item">
+  <a href="./"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+  <ul class="list-group " id="tags">
+    <li class="list-group-item tag-1">
+      <a href="./tag/shell.html">shell</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/file-system.html">file system</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/bash.html">bash</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/unix.html">unix</a>
+    </li>
+    <li class="list-group-item tag-3">
+      <a href="./tag/assignment.html">assignment</a>
+    </li>
+    <li class="list-group-item tag-3">
+      <a href="./tag/git.html">git</a>
+    </li>
+    <li class="list-group-item tag-3">
+      <a href="./tag/python.html">python</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/version-control.html">version control</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/gmt.html">gmt</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/matlab.html">matlab</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/source-code-editor.html">source code editor</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/github.html">github</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/geomapapp.html">GeoMapApp</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/programming.html">programming</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/vpn.html">vpn</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/fortran.html">fortran</a>
+    </li>
+  </ul>
+</li>
+<!-- End Sidebar/Tag Cloud -->
+  </ul>
+</section>
+<!-- End Sidebar -->            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2017 Ryan Abernathey and Kerry Key
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>                <p><small>  <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/deed.en"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a>
+    Content
+  licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/deed.en">Creative Commons Attribution-NonCommercial 4.0 International License</a>, except where indicated otherwise.
+</small></p>
+         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="./theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="./theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="./theme/js/respond.min.js"></script>
+
+    <script src="./theme/js/bodypadding.js"></script>
+
+
+</body>
+</html>
