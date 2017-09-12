@@ -47,7 +47,7 @@ may need to call grep more than once.
 
 
 9. Create a shell script named `countEq.sh` that returns the total number of earthquakes for a given country, where the country is specified as the option when calling the script. Hint: see the Shell Script notes and use the special variable `$1`.  Paste your script  below and give an example calling sequence for country USA.
- 
+
 
 10.  Create a shell script named `countEq_getLargestEq.sh` that returns both the total number of earthquakes AND the largest earthquake for a given country, where the country is specified as the option when calling the script. Use the echo command before each command to create labels for each returned value. Paste your script  below and give an example calling sequence for country CHILE.   
 
@@ -62,4 +62,4 @@ may need to call grep more than once.
 
 
 
-13. Turn in your homework by sharing it with us on a GitHub repository.  Instructions: on GitHub, create a *private* git repository called Assignment_2. Share this repository with users `kerrykey` and `rabernat`. Clone the repository to your laptop.  Save your answers to the exercises above in a text file called `answers.txt`. Use git to `commit` `answers.txt` to your repository on your laptop, and then `push` the changes to the remote repository on GitHub.   
+13. Turn in your homework by sharing it with us on a GitHub repository.  Instructions: on GitHub, create a *private* git repository called Assignment_2. Share this repository with users `roxyboy` (Takaya Uchida), `kerrykey` and `rabernat`. Clone the repository to your laptop.  Save your answers to the exercises above in a text file called `answers.txt`. Use git to `commit` `answers.txt` to your repository on your laptop, and then `push` the changes to the remote repository on GitHub.   
