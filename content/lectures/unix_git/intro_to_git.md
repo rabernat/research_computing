@@ -26,7 +26,7 @@ Commit staged files:
 git commit -m "your brief commit message goes here"
 ~~~
 
-Other useful commands
+Other useful commands:
 
 ~~~
 git status    # tells you what files are staged, which ones have been modified, are new,... )
@@ -34,6 +34,19 @@ git log       # view the commit log
 git diff      # view file content differences
 ~~~
 
+Working with a remote repository on GitHub:
+
+~~~
+git push
+git pull
+~~~
+
+Basis collaboration workflow:
+
+* update your local repo with `git pull origin master`,
+* make your changes and stage them with `git add`,
+* commit your changes with `git commit -m`, and
+* upload the changes to GitHub with` git push origin master`
 
 **Graphical Git**
 
