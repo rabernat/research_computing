@@ -6,4 +6,5 @@
 *.out
 *.py[cod]
 *.pid
+*.ipynb_checkpoints
 output
