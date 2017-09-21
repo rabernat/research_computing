@@ -13,6 +13,6 @@ You will also need to download these two files:
 
 [pspectrum.m]({attach}/Assignments/pspectrum.m)
 
-[Okmok_s00.mat]({attach}/Assignments/aOkmok_s00.mat)
+[Okmok_s00.mat]({attach}/Assignments/Okmok_s00.mat)
 
 Hand in your edited version of assignment_4.m and the three figure files you will make by uploading them to your GitHub repository in a new folder called assignment_4.
