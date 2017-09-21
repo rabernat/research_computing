@@ -13,30 +13,30 @@ http://swcarpentry.github.io/matlab-novice-inflammation/).
 Open MATLAB. We will be mostly working in the Command Window and the Editor panels. The Command Window is similar to a Unix shell and to the iPhython shell. It is where you  enter MATLAB commands interactively and where MATLAB displays text output.  Some unix commands such as ``pwd ``  ``cd`` ``ls`` ``cp`` ``mv``  etc work in the command window.
 
 Enter commands to the right of the prompt symbol ``>>``.  You can use MATLAB like a calculator. For example, type in an expression and then hit enter
-```
+```matlab
 >> 1 + 2.2
 ans =
     3.2000
 ```
 By default, MATLAB returns the value of this addition in the variable ans.  You can instead assign it to a variable
 
-```
+```matlab
 >> a = 1 + 2.2
 a =
     3.2000
 ```
 You can suppress the answer being printed out by terminating the expression with a semicolon
-```
+```matlab
 >> a = 1 + 2.2;
 ```
 There are lots of ways to create expressions and assign the answer to a new variable, for example
-```
+```matlab
 >> a = 1;
 >> b = 2;
 >> c = a + b;
 ```
 
-```
+```matlab
 >> a = 1;
 >> b = 2;
 >> c = 3;
@@ -46,7 +46,7 @@ d =
 ```
 
 The various arithmetic, relational and logical operators in MATLAB can be found by typing ``help ops`` in the command Window
-```
+``` 
 >> help ops
 
   Operators and special characters.
@@ -86,10 +86,11 @@ The various arithmetic, relational and logical operators in MATLAB can be found 
     any        - True if any element of vector is nonzero
     all        - True if all elements of vector are nonzero
 
-   ```
+```
 
 To see what variables are in the workspace, you can either view the Workspace Panel or simply type in ``whos`` in the Command Window.
-   ```
+
+```matlab
 >> whos
      Name      Size            Bytes  Class     Attributes
 
@@ -101,13 +102,13 @@ To see what variables are in the workspace, you can either view the Workspace Pa
 
 To clear a variable from the workspace, you can ``clear`` it
 
-```
+```matlab
 >> clear b
 ```
 
 To clear all the variables from the workspace, use
 
-```
+```matlab
 >> clear all
 ```
 
@@ -118,22 +119,22 @@ This will clear all the variables and release the memory they were holding, whic
 MATLAB was designed originally for easy matrix and vector computations and linear algebra. Vectors and matrices can de defined using square brackets
 
 Create a row vector:
-```
+```matlab
 >> a = [1 2 3 4];
 ```
 Create a column vector be separating the rows with semicolons.
-```
+```matlab
 >> b = [5; 6; 7; 8];
 ```
 
 You can compute a vector dot product using the ``*`` Operators
-```
+```matlab
 >> a*b
 ans =
     70
 ```
 However, this will only work if the vectors are compatible for linear algebra. One needs to be a row vector and the other a column vector and they have to have the same number of Element-wise
-```
+```matlab
 >>   length(a)
 ans =
      4
@@ -142,13 +143,13 @@ ans =
           4     
 ```
 While ``length`` returns the number of elements in a vector, the ``size`` command is more general and gives the number of rows and columns.
-```
+```matlab
 >> size(a)
 ans =
      1     4
 ```
 This command is more useful when you assign the output to some variables
-```
+```matlab
 >> [nrows, ncols] = size(a)
 nrows =
      1
@@ -157,7 +158,7 @@ ncols =
 ```
 A key sticking point for new MATLAB uses is to remember that ``*`` does vector (and also matrix) multiplication. To instead do array multiplication, use the ``.*`` operator. The vectors or matrices to be multiplied should have the same size (same number of rows and columns).
 
-```
+```matlab
 >> c = [9 10 11 12];
 >> a.*c
 ans =
@@ -165,7 +166,7 @@ ans =
 ```
 Similarly, you can raise the elements of an array to a power using the ``.^ `` Operators
 
-```
+```matlab
 >> a.^2
 ans =
      1     4     9    16
@@ -173,14 +174,14 @@ ans =
 
 Matrices are like vectors. Define them by rows, separating the columns using semicolons:
 
-```
+```matlab
 >> m = [ 1 2 3 4; 5 6 7 8]
 m =
      1     2     3     4
      5     6     7     8
 ```
 You can take the transpose of a matrix using the ``'`` operator or using the ``transpose`` function
-```
+```matlab
 >> m'
 ans =
      1     5
@@ -195,7 +196,7 @@ ans =
      4     8
 ```
 You can add matrices
-```
+```matlab
 >> n = [9 10 11 12; 13 14 15 16]
 n =
      9    10    11    12
@@ -208,13 +209,13 @@ ans =
 
 You can create arrays of numbers using index notation
 
-```
+```matlab
 >> series = 1:10
 series =
      1     2     3     4     5     6     7     8     9    10
 ```   
 To change the spacing, using the notation ``start:spacing:stop``
-```
+```matlab
 >>  series = 1:2:20
 series =
      1     3     5     7     9    11    13    15    17    19
@@ -222,19 +223,19 @@ series =
 
 **Slicing  vectors and matrices**
 You can use indices to extract a slice from a matrix or vector
-```
+```matlab
 >> subset = series(1:4)
 subset =
      1     3     5     7
 ```
 You can use the keyword ``end`` to specify slicing all the way to the end rather than listing the specific index for the last value
-```
+```matlab
 >> subset = series(3:end)
 subset =
      5     7     9    11    13    15    17    19
 ```
 Matrices are easily sliced too:
-```
+```matlab
 >> msubset = m(2,3:4)
 msubset =
      7     8
@@ -243,13 +244,13 @@ msubset =
 **linspace and logspace**
 
 You can create arrays of evenly spaced numbers using the ``linspace`` and ``logspace`` functions.
-```
+``` matlab
 >> linspace(-1,10,5)
 ans =
    -1.0000    1.7500    4.5000    7.2500   10.0000
 ```
 Type ``help linspace`` for more info.
-```
+``` matlab
 >> logspace(-1,3,5)
 ans =
    1.0e+03 *
@@ -265,7 +266,7 @@ You can type ``help <function name>`` into the command window if you know the na
 
 Character strings in MATLAB are defined using single quotes:
 
-```
+``` matlab
 >> clear all;
 astring = 'hello world';
 whos
@@ -274,7 +275,7 @@ whos
   astring      1x11               22  char       
 ```
 You can slice strings too
-```
+``` matlab
 >> astring(1:5)
 ans =
     'hello'
@@ -286,17 +287,17 @@ ans =
 
 You can create a script file containing MATLAB commands. This are known as m-files, since their name must end with the extension '.m'. You can then run the m-file in the command window, and MATLAB will read the file and execute the comands as if you had typed them into the command window at the prompt.
 
- Create an m-file called 'test.m' using the MATLAB editor. Paste this in for the contents: 
- ```
- str = 'hello world';
- disp(str);
+ Create an m-file called 'test.m' using the MATLAB editor. Paste this in for the contents:  
+``` matlab
+str = 'hello world';
+disp(str);
 
 a = [1 2 3 4];
 b = 2*a;
 disp(b)
- ```
-Then in the command window run test.m:
 ```
+Then in the command window run test.m:
+``` matlab
 >> ls
 test.m
 
@@ -311,20 +312,20 @@ This was just a simple script, but you can make much more complex scripts that r
 MATLAB comes with a large number of built-in standard mathematical functions such as ``sin()``,``cos()``,``log()``,``log10()``,``exp()``, etc. You can find lists of all the built in mathematical  functions by looking in the Documentation browser.
 
 You can also defined you own custom functions by creating function m-files. For example, create an m-file called myfunc.m with the contents
-```
+~~~ matlab
 function y = myfunc(x)
   y = x.^2;
 end
-```
+~~~
 Then call it from the command window
-```
+~~~ matlab
 >> x = [1:10];
 >> y = myfunc(x);
 >> disp(y)
      1     4     9    16    25    36    49    64    81   100
-```
+~~~
 Functions can have more than one input and more than one output:
-```
+``` matlab
 function [z,z2,x2,y2] = myfunc2(x,y)
   x2 = x.^2;
   y2 = y.^2;
@@ -336,7 +337,7 @@ end
 **Loops**
 In myfun2() above, we used array notation to deal with case when the inputs x and y are vectors or matrices. MATLAB is optimized to work fastest using array operations. However, sometimes it is inevitable that you need to use a ``for`` or ``while`` loop to carry out some operations. Here are two simple examples
 
-```
+``` matlab
 clear x y
 x = [1 2 3 4 5];
 for i = 1:length(x)
@@ -345,7 +346,7 @@ end
 disp(y)
 ```
 Note that you do not need to indent the for loop code in MATLAB (but you do in Python). So the above could also be written as
-```
+``` matlab
 clear x y
 x = [1 2 3 4 5];
 for i = 1:length(x); y(i) = x(i).^2; end
@@ -356,7 +357,7 @@ However, the indented code in the middle of the for-loop is easier to read and s
 You can define for loops on the command line, but typically they are best used in m-files.
 
 Here's an example of a very simple while loop:
-```
+``` matlab
 x = 0;
 while x < 10
   x = x + 1;
@@ -367,7 +368,7 @@ end
 **Flow control**
 
 You can control the flow of your code using an `if` statement. For example
-```
+``` matlab
 if I == J
   A(I,J) = 2;
 elseif abs(I-J) == 1
@@ -378,7 +379,7 @@ end
 ```
 If you have more than two or three `if`,`elseif` conditions, it is better to use a `switch`:
 
-```
+``` matlab
 method = 'Bilinear';
 switch lower(method)
    case {'linear','bilinear'}
@@ -394,13 +395,13 @@ end
 Here method is a string and `lower(method)` converts it to lower case for use in the switch construct.
 
 **Plotting**
-```
+``` matlab
 x = linspace(0,10,100);
 y = x.^2;
 plot(x,y,'b-');
 ```
 Plot two items on the same figure:
-```
+``` matlab
 u = x.^3;
 plot(x,y,'b-',x,u,'r-')
 xlabel('x axis')
@@ -408,7 +409,7 @@ ylabel('y axis')
 title('This is the title')
 ```
 or you can add then sequentially using the `hold` command
-```
+``` matlab
 figure;
 plot(x,y,'b-');
 hold on;
@@ -423,7 +424,7 @@ legend('y','u')
 
 Some other useful plotting commands:
 
-```
+``` matlab
 surf(x,y,z)
 pcolor(x,y,z)
 semilogx(x,y)
