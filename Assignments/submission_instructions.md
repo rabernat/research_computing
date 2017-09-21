@@ -4,7 +4,7 @@ tags: assignment
 Category: assignments
 
 You should already have created a
-[github repository]({filename}/content/Software/install_git.md) for
+[github repository]({filename}/content/software/install_git.md) for
 [assignment 2]({filename}Assignment_2.md).
 We would like you to use this repository for _all your future assignments_.
 
