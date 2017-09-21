@@ -311,275 +311,224 @@ ans =
 
 
 <p>You can create arrays of numbers using index notation</p>
-<p>``` &gt;&gt; series = 1:10
+<div class="highlight"><pre><span></span>&gt;&gt; series = 1:10
 series =
-     1     2     3     4     5     6     7     8     9    10</p>
-<div class="highlight"><pre><span></span>To change the spacing, using the notation ``start:spacing:stop``
+     1     2     3     4     5     6     7     8     9    10
 </pre></div>
 
 
-<blockquote>
-<blockquote>
-<p>series = 1:2:20
+<p>To change the spacing, using the notation <code>start:spacing:stop</code></p>
+<div class="highlight"><pre><span></span>&gt;&gt;  series = 1:2:20
 series =
-     1     3     5     7     9    11    13    15    17    19</p>
-</blockquote>
-</blockquote>
-<div class="highlight"><pre><span></span>**Slicing  vectors and matrices**
-You can use indices to extract a slice from a matrix or vector
+     1     3     5     7     9    11    13    15    17    19
 </pre></div>
 
 
-<blockquote>
-<blockquote>
-<p>subset = series(1:4)
+<p><strong>Slicing  vectors and matrices</strong>
+You can use indices to extract a slice from a matrix or vector</p>
+<div class="highlight"><pre><span></span>&gt;&gt; subset = series(1:4)
 subset =
-     1     3     5     7</p>
-</blockquote>
-</blockquote>
-<div class="highlight"><pre><span></span>You can use the keyword ``end`` to specify slicing all the way to the end rather than listing the specific index for the last value
+     1     3     5     7
 </pre></div>
 
 
-<blockquote>
-<blockquote>
-<p>subset = series(3:end)
+<p>You can use the keyword <code>end</code> to specify slicing all the way to the end rather than listing the specific index for the last value</p>
+<div class="highlight"><pre><span></span>&gt;&gt; subset = series(3:end)
 subset =
-     5     7     9    11    13    15    17    19</p>
-</blockquote>
-</blockquote>
-<div class="highlight"><pre><span></span>Matrices are easily sliced too:
+     5     7     9    11    13    15    17    19
 </pre></div>
 
 
-<blockquote>
-<blockquote>
-<p>msubset = m(2,3:4)
+<p>Matrices are easily sliced too:</p>
+<div class="highlight"><pre><span></span>&gt;&gt; msubset = m(2,3:4)
 msubset =
-     7     8</p>
-</blockquote>
-</blockquote>
-<div class="highlight"><pre><span></span>**linspace and logspace**
-
-You can create arrays of evenly spaced numbers using the ``linspace`` and ``logspace`` functions.
+     7     8
 </pre></div>
 
 
-<blockquote>
-<blockquote>
-<p>linspace(-1,10,5)
+<p><strong>linspace and logspace</strong></p>
+<p>You can create arrays of evenly spaced numbers using the <code>linspace</code> and <code>logspace</code> functions.</p>
+<div class="highlight"><pre><span></span>&gt;&gt; linspace(-1,10,5)
 ans =
-   -1.0000    1.7500    4.5000    7.2500   10.0000</p>
-</blockquote>
-</blockquote>
-<div class="highlight"><pre><span></span>Type ``help linspace`` for more info.
+   -1.0000    1.7500    4.5000    7.2500   10.0000
 </pre></div>
 
 
-<blockquote>
-<blockquote>
-<p>logspace(-1,3,5)
+<p>Type <code>help linspace</code> for more info.</p>
+<div class="highlight"><pre><span></span>&gt;&gt; logspace(-1,3,5)
 ans =
    1.0e+03 *
-    0.0001    0.0010    0.0100    0.1000    1.0000</p>
-</blockquote>
-</blockquote>
-<div class="highlight"><pre><span></span>Notice how the exponent of these numbers is shown.
-
-**Help and Documentation**
-
-You can type ``help &lt;function name&gt;`` into the command window if you know the name of the function. The MATLAB Documentation is also very helpful. Type ``doc`` into the Command Window to launch the Documentation browser.
-
-**Strings**
-
-Character strings in MATLAB are defined using single quotes:
+    0.0001    0.0010    0.0100    0.1000    1.0000
 </pre></div>
 
 
-<blockquote>
-<blockquote>
-<p>clear all;
-astring = 'hello world';
+<p>Notice how the exponent of these numbers is shown.</p>
+<p><strong>Help and Documentation</strong></p>
+<p>You can type <code>help &lt;function name&gt;</code> into the command window if you know the name of the function. The MATLAB Documentation is also very helpful. Type <code>doc</code> into the Command Window to launch the Documentation browser.</p>
+<p><strong>Strings</strong></p>
+<p>Character strings in MATLAB are defined using single quotes:</p>
+<div class="highlight"><pre><span></span>&gt;&gt; clear all;
+astring = &#39;hello world&#39;;
 whos
-  Name         Size            Bytes  Class    Attributes</p>
-</blockquote>
-</blockquote>
-<p>astring      1x11               22  char       </p>
-<div class="highlight"><pre><span></span>You can slice strings too
+  Name         Size            Bytes  Class    Attributes
+
+  astring      1x11               22  char       
 </pre></div>
 
 
-<blockquote>
-<blockquote>
-<p>astring(1:5)
+<p>You can slice strings too</p>
+<div class="highlight"><pre><span></span>&gt;&gt; astring(1:5)
 ans =
-    'hello'</p>
-</blockquote>
-</blockquote>
-<div class="highlight"><pre><span></span>**Scripts**
+    &#39;hello&#39;
+</pre></div>
 
-You can create a script file containing MATLAB commands. This are known as m-files, since their name must end with the extension &#39;.m&#39;. You can then run the m-file in the command window, and MATLAB will read the file and execute the comands as if you had typed them into the command window at the prompt.
 
- Create an m-file called &#39;test.m&#39; using the MATLAB editor. Paste this in for the contents
+<p><strong>Scripts</strong></p>
+<p>You can create a script file containing MATLAB commands. This are known as m-files, since their name must end with the extension '.m'. You can then run the m-file in the command window, and MATLAB will read the file and execute the comands as if you had typed them into the command window at the prompt.</p>
+<p>Create an m-file called 'test.m' using the MATLAB editor. Paste this in for the contents
  ```
- str = &#39;hello world&#39;;
- disp(str);
-
-a = [1 2 3 4];
+ str = 'hello world';
+ disp(str);</p>
+<p>a = [1 2 3 4];
 b = 2*a;
 disp(b)
  ```
-Then in the command window run test.m:
-</pre></div>
+Then in the command window run test.m:</p>
+<div class="highlight"><pre><span></span>&gt;&gt; ls
+test.m
 
-
-<blockquote>
-<blockquote>
-<p>ls
-test.m</p>
-<p>test
+&gt;&gt; test
 hello world
-     2     4     6     8</p>
-</blockquote>
-</blockquote>
-<div class="highlight"><pre><span></span>This was just a simple script, but you can make much more complex scripts that read and write data, do complex operations and plot results in figures, etc.
-
-**Functions**
-
-MATLAB comes with a large number of built-in standard mathematical functions such as ``sin()``,``cos()``,``log()``,``log10()``,``exp()``, etc. You can find lists of all the built in mathematical  functions by looking in the Documentation browser.
-
-You can also defined you own custom functions by creating function m-files. For example, create an m-file called myfunc.m with the contents
+     2     4     6     8
 </pre></div>
 
 
-<p>function y = myfunc(x)
-  y = x.^2;
-end</p>
-<div class="highlight"><pre><span></span>Then call it from the command window
+<p>This was just a simple script, but you can make much more complex scripts that read and write data, do complex operations and plot results in figures, etc.</p>
+<p><strong>Functions</strong></p>
+<p>MATLAB comes with a large number of built-in standard mathematical functions such as <code>sin()</code>,<code>cos()</code>,<code>log()</code>,<code>log10()</code>,<code>exp()</code>, etc. You can find lists of all the built in mathematical  functions by looking in the Documentation browser.</p>
+<p>You can also defined you own custom functions by creating function m-files. For example, create an m-file called myfunc.m with the contents</p>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">myfunc</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
+  <span class="nx">y</span> <span class="o">=</span> <span class="nx">x</span><span class="p">.</span><span class="o">^</span><span class="mi">2</span><span class="p">;</span>
+<span class="nx">end</span>
 </pre></div>
 
 
-<blockquote>
-<blockquote>
-<p>x = [1:10];
-y = myfunc(x);
-disp(y)
-     1     4     9    16    25    36    49    64    81   100</p>
-</blockquote>
-</blockquote>
-<div class="highlight"><pre><span></span>Functions can have more than one input and more than one output:
+<p>Then call it from the command window</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="nt">x</span> <span class="o">=</span> <span class="cp">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">10</span><span class="cp">]</span><span class="o">;</span>
+<span class="o">&gt;&gt;</span> <span class="nt">y</span> <span class="o">=</span> <span class="nt">myfunc</span><span class="o">(</span><span class="nt">x</span><span class="o">);</span>
+<span class="o">&gt;&gt;</span> <span class="nt">disp</span><span class="o">(</span><span class="nt">y</span><span class="o">)</span>
+     <span class="nt">1</span>     <span class="nt">4</span>     <span class="nt">9</span>    <span class="nt">16</span>    <span class="nt">25</span>    <span class="nt">36</span>    <span class="nt">49</span>    <span class="nt">64</span>    <span class="nt">81</span>   <span class="nt">100</span>
 </pre></div>
 
 
-<p>function [z,z2,x2,y2] = myfunc2(x,y)
-  x2 = x.^2;
-  y2 = y.^2;
-  z2 = x2 + y2;
-  z  = sqrt(z2);
-end</p>
-<div class="highlight"><pre><span></span>**Loops**
-In myfun2() above, we used array notation to deal with case when the inputs x and y are vectors or matrices. MATLAB is optimized to work fastest using array operations. However, sometimes it is inevitable that you need to use a ``for`` or ``while`` loop to carry out some operations. Here are two simple examples
+<p>Functions can have more than one input and more than one output:</p>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="p">[</span><span class="nx">z</span><span class="p">,</span><span class="nx">z2</span><span class="p">,</span><span class="nx">x2</span><span class="p">,</span><span class="nx">y2</span><span class="p">]</span> <span class="o">=</span> <span class="nx">myfunc2</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="nx">y</span><span class="p">)</span>
+  <span class="nx">x2</span> <span class="o">=</span> <span class="nx">x</span><span class="p">.</span><span class="o">^</span><span class="mi">2</span><span class="p">;</span>
+  <span class="nx">y2</span> <span class="o">=</span> <span class="nx">y</span><span class="p">.</span><span class="o">^</span><span class="mi">2</span><span class="p">;</span>
+  <span class="nx">z2</span> <span class="o">=</span> <span class="nx">x2</span> <span class="o">+</span> <span class="nx">y2</span><span class="p">;</span>
+  <span class="nx">z</span>  <span class="o">=</span> <span class="nx">sqrt</span><span class="p">(</span><span class="nx">z2</span><span class="p">);</span>
+<span class="nx">end</span>
 </pre></div>
 
 
-<p>clear x y
+<p><strong>Loops</strong>
+In myfun2() above, we used array notation to deal with case when the inputs x and y are vectors or matrices. MATLAB is optimized to work fastest using array operations. However, sometimes it is inevitable that you need to use a <code>for</code> or <code>while</code> loop to carry out some operations. Here are two simple examples</p>
+<div class="highlight"><pre><span></span>clear x y
 x = [1 2 3 4 5];
 for i = 1:length(x)
   y(i) = x(i).^2;
 end
-disp(y)</p>
-<div class="highlight"><pre><span></span>Note that you do not need to indent the for loop code in MATLAB (but you do in Python). So the above could also be written as
+disp(y)
 </pre></div>
 
 
-<p>clear x y
-x = [1 2 3 4 5];
-for i = 1:length(x); y(i) = x(i).^2; end
-disp(y)</p>
-<div class="highlight"><pre><span></span>However, the indented code in the middle of the for-loop is easier to read and so we recommend that from a stylistic viewpoint.
-
-You can define for loops on the command line, but typically they are best used in m-files.
-
-Here&#39;s an example of a very simple while loop:
+<p>Note that you do not need to indent the for loop code in MATLAB (but you do in Python). So the above could also be written as</p>
+<div class="highlight"><pre><span></span><span class="nt">clear</span> <span class="nt">x</span> <span class="nt">y</span>
+<span class="nt">x</span> <span class="o">=</span> <span class="cp">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span><span class="cp">]</span><span class="o">;</span>
+<span class="nt">for</span> <span class="nt">i</span> <span class="o">=</span> <span class="nt">1</span><span class="p">:</span><span class="nd">length</span><span class="o">(</span><span class="nt">x</span><span class="o">);</span> <span class="nt">y</span><span class="o">(</span><span class="nt">i</span><span class="o">)</span> <span class="o">=</span> <span class="nt">x</span><span class="o">(</span><span class="nt">i</span><span class="o">).^</span><span class="nt">2</span><span class="o">;</span> <span class="nt">end</span>
+<span class="nt">disp</span><span class="o">(</span><span class="nt">y</span><span class="o">)</span>
 </pre></div>
 
 
-<p>x = 0;
+<p>However, the indented code in the middle of the for-loop is easier to read and so we recommend that from a stylistic viewpoint.</p>
+<p>You can define for loops on the command line, but typically they are best used in m-files.</p>
+<p>Here's an example of a very simple while loop:</p>
+<div class="highlight"><pre><span></span>x = 0;
 while x &lt; 10
   x = x + 1;
   disp(x)
-end</p>
-<div class="highlight"><pre><span></span>**Flow control**
-
-You can control the flow of your code using an `if` statement. For example
+end
 </pre></div>
 
 
-<p>if I == J
+<p><strong>Flow control</strong></p>
+<p>You can control the flow of your code using an <code>if</code> statement. For example</p>
+<div class="highlight"><pre><span></span>if I == J
   A(I,J) = 2;
 elseif abs(I-J) == 1
   A(I,J) = -1;
 else
   A(I,J) = 0;
-end</p>
-<div class="highlight"><pre><span></span>If you have more than two or three `if`,`elseif` conditions, it is better to use a `switch`:
+end
 </pre></div>
 
 
-<p>method = 'Bilinear';
+<p>If you have more than two or three <code>if</code>,<code>elseif</code> conditions, it is better to use a <code>switch</code>:</p>
+<div class="highlight"><pre><span></span>method = &#39;Bilinear&#39;;
 switch lower(method)
-   case {'linear','bilinear'}
-     disp('Method is linear')
-   case 'cubic'
-     disp('Method is cubic')
-   case 'nearest'
-     disp('Method is nearest')
+   case {&#39;linear&#39;,&#39;bilinear&#39;}
+     disp(&#39;Method is linear&#39;)
+   case &#39;cubic&#39;
+     disp(&#39;Method is cubic&#39;)
+   case &#39;nearest&#39;
+     disp(&#39;Method is nearest&#39;)
    otherwise
-     disp('Unknown method.')
-end</p>
-<div class="highlight"><pre><span></span>Here method is a string and `lower(method)` converts it to lower case for use in the switch construct.
-
-**Plotting**
+     disp(&#39;Unknown method.&#39;)
+end
 </pre></div>
 
 
-<p>x = linspace(0,10,100);
+<p>Here method is a string and <code>lower(method)</code> converts it to lower case for use in the switch construct.</p>
+<p><strong>Plotting</strong></p>
+<div class="highlight"><pre><span></span>x = linspace(0,10,100);
 y = x.^2;
-plot(x,y,'b-');</p>
-<div class="highlight"><pre><span></span>Plot two items on the same figure:
+plot(x,y,&#39;b-&#39;);
 </pre></div>
 
 
-<p>u = x.^3;
-plot(x,y,'b-',x,u,'r-')
-xlabel('x axis')
-ylabel('y axis')
-title('This is the title')</p>
-<div class="highlight"><pre><span></span>or you can add then sequentially using the `hold` command
+<p>Plot two items on the same figure:</p>
+<div class="highlight"><pre><span></span>u = x.^3;
+plot(x,y,&#39;b-&#39;,x,u,&#39;r-&#39;)
+xlabel(&#39;x axis&#39;)
+ylabel(&#39;y axis&#39;)
+title(&#39;This is the title&#39;)
 </pre></div>
 
 
-<p>figure;
-plot(x,y,'b-');
+<p>or you can add then sequentially using the <code>hold</code> command</p>
+<div class="highlight"><pre><span></span>figure;
+plot(x,y,&#39;b-&#39;);
 hold on;
-plot(x,u,'r-')
-plot(x,u,'ro')
-plot(x,y,'b.');
-xlabel('x axis')
-ylabel('y axis')
-title('This is the title')
-legend('y','u')</p>
-<div class="highlight"><pre><span></span>Some other useful plotting commands:
+plot(x,u,&#39;r-&#39;)
+plot(x,u,&#39;ro&#39;)
+plot(x,y,&#39;b.&#39;);
+xlabel(&#39;x axis&#39;)
+ylabel(&#39;y axis&#39;)
+title(&#39;This is the title&#39;)
+legend(&#39;y&#39;,&#39;u&#39;)
 </pre></div>
 
 
-<p>surf(x,y,z)
+<p>Some other useful plotting commands:</p>
+<div class="highlight"><pre><span></span>surf(x,y,z)
 pcolor(x,y,z)
 semilogx(x,y)
 semilogy(x,y)
 loglog(x,y)
 subplot(m,n,p)
-```</p>
+</pre></div>
+
+
 <p><strong>Structures</strong></p>
 <p><strong>Reading and writing data</strong></p>
 <p><strong>Working with time and dates</strong></p>
@@ -618,9 +567,6 @@ subplot(m,n,p)
   <a href="./"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
   <ul class="list-group " id="tags">
     <li class="list-group-item tag-1">
-      <a href="./tag/file-system.html">file system</a>
-    </li>
-    <li class="list-group-item tag-1">
       <a href="./tag/unix.html">unix</a>
     </li>
     <li class="list-group-item tag-1">
@@ -632,35 +578,38 @@ subplot(m,n,p)
     <li class="list-group-item tag-1">
       <a href="./tag/shell.html">shell</a>
     </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/file-system.html">file system</a>
+    </li>
     <li class="list-group-item tag-3">
       <a href="./tag/python.html">python</a>
     </li>
     <li class="list-group-item tag-3">
-      <a href="./tag/matlab.html">MATLAB</a>
-    </li>
-    <li class="list-group-item tag-3">
       <a href="./tag/git.html">git</a>
     </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/version-control.html">version control</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/gmt.html">gmt</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/vpn.html">vpn</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/geomapapp.html">GeoMapApp</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/source-code-editor.html">source code editor</a>
+    <li class="list-group-item tag-3">
+      <a href="./tag/matlab.html">MATLAB</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/github.html">github</a>
     </li>
     <li class="list-group-item tag-4">
+      <a href="./tag/geomapapp.html">GeoMapApp</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/vpn.html">vpn</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/gmt.html">gmt</a>
+    </li>
+    <li class="list-group-item tag-4">
       <a href="./tag/programming.html">programming</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/version-control.html">version control</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/source-code-editor.html">source code editor</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/fortran.html">fortran</a>
