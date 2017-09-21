@@ -16,7 +16,7 @@ Summary: Overview of course schedule and topics
 | Tuesday  | 19-Sep | RPA        | Intro to Python in-class activity   |                      |
 | Thursday | 21-Sep | KK         | Intro to MATLAB  | Janowski, Carchedi |
 | Tuesday  | 26-Sep | KK         | Intro to MATLAB in-class activity  |                       |
-| Thursday | 28-Sep | KK         | Intro to Fortran |  Gruenburg, Hun Baek                    |
+| Thursday | 28-Sep | KK         | Intro to Fortran |  Gruenburg, Hun Baek, Guo                    |
 | Tuesday  | 3-Oct  | KK         | Intro to Fortran in class-activity  |                     |
 | Thursday | 5-Oct  | KK         | Intermediate Python I: NumPy arrays and matplotlib   |    |
 | Tuesday  | 10-Oct | RPA        | Intermediate Python I in-class activity         |         |

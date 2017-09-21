@@ -286,7 +286,7 @@ ans =
 
 You can create a script file containing MATLAB commands. This are known as m-files, since their name must end with the extension '.m'. You can then run the m-file in the command window, and MATLAB will read the file and execute the comands as if you had typed them into the command window at the prompt.
 
- Create an m-file called 'test.m' using the MATLAB editor. Paste this in for the contents
+ Create an m-file called 'test.m' using the MATLAB editor. Paste this in for the contents:
  ```
  str = 'hello world';
  disp(str);
