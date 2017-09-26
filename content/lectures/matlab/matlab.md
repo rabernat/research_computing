@@ -522,6 +522,7 @@ results = processData(S);
 So you can think of structures as being like a box that you use to hold onto a collection of variables. Then instead of passing each variable to a function one at a time, you instead can just pass the box that holds all of them.
 
 **Reading and writing data**
+
 The save command will save variables to a file. Here are some examples from the documentation:
   ``` matlab
 % Save all variables from the workspace to test.mat:
@@ -559,6 +560,7 @@ The `load` command is used to read in a data file in MATLAB's .mat format. It wi
 You can also write you own custom code to read in more complicated data file formats. See the help for commands `fopen`,`fclose`,`fgets`,`fscanf`,`sscanf` to get started. Likewise, there are custom commands you can use to write data to files using your own custom format.
 
 **Working with time and dates**
+
 MATLAB has some built-in functions that are helpful for working with times and dates.
 
 `datenum` is a command that converts a date into a serial date
