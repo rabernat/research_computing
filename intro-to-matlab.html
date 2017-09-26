@@ -619,37 +619,35 @@ There are a few ways to save figures. You can use the buttons in the figure's me
 
 <p>So you can think of structures as being like a box that you use to hold onto a collection of variables. Then instead of passing each variable to a function one at a time, you instead can just pass the box that holds all of them.</p>
 <p><strong>Reading and writing data</strong></p>
-<p>The save command will save variables to a file. Here are some examples from the documentation:
-  ``` matlab
-% Save all variables from the workspace to test.mat:
-    save test.mat</p>
-<div class="highlight"><pre><span></span><span class="c">% Save two variables, where FILENAME is a variable:</span>
-<span class="n">savefile</span> <span class="p">=</span> <span class="s">&#39;pqfile.mat&#39;</span><span class="p">;</span>
-<span class="n">p</span> <span class="p">=</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
-<span class="n">q</span> <span class="p">=</span> <span class="nb">ones</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
-<span class="n">save</span><span class="p">(</span><span class="n">savefile</span><span class="p">,</span> <span class="s">&#39;p&#39;</span><span class="p">,</span> <span class="s">&#39;q&#39;</span><span class="p">);</span>
+<p>The save command will save variables to a file. Here are some examples from the documentation:</p>
+<div class="highlight"><pre><span></span><span class="c">% Save all variables from the workspace to test.mat:</span>
+    <span class="n">save</span> <span class="n">test</span><span class="p">.</span><span class="n">mat</span>
 
-<span class="c">% Save the fields of a structure as individual variables:</span>
-<span class="n">s1</span><span class="p">.</span><span class="n">a</span> <span class="p">=</span> <span class="mf">12.7</span><span class="p">;</span>
-<span class="n">s1</span><span class="p">.</span><span class="n">b</span> <span class="p">=</span> <span class="p">{</span><span class="s">&#39;abc&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">4</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">6</span> <span class="mi">7</span><span class="p">]};</span>
-<span class="n">s1</span><span class="p">.</span><span class="n">c</span> <span class="p">=</span> <span class="s">&#39;Hello!&#39;</span><span class="p">;</span>
-<span class="n">save</span><span class="p">(</span><span class="s">&#39;newstruct.mat&#39;</span><span class="p">,</span> <span class="s">&#39;-struct&#39;</span><span class="p">,</span> <span class="s">&#39;s1&#39;</span><span class="p">);</span>
+    <span class="c">% Save two variables, where FILENAME is a variable:</span>
+    <span class="n">savefile</span> <span class="p">=</span> <span class="s">&#39;pqfile.mat&#39;</span><span class="p">;</span>
+    <span class="n">p</span> <span class="p">=</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+    <span class="n">q</span> <span class="p">=</span> <span class="nb">ones</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+    <span class="n">save</span><span class="p">(</span><span class="n">savefile</span><span class="p">,</span> <span class="s">&#39;p&#39;</span><span class="p">,</span> <span class="s">&#39;q&#39;</span><span class="p">);</span>
+
+    <span class="c">% Save the fields of a structure as individual variables:</span>
+    <span class="n">s1</span><span class="p">.</span><span class="n">a</span> <span class="p">=</span> <span class="mf">12.7</span><span class="p">;</span>
+    <span class="n">s1</span><span class="p">.</span><span class="n">b</span> <span class="p">=</span> <span class="p">{</span><span class="s">&#39;abc&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">4</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">6</span> <span class="mi">7</span><span class="p">]};</span>
+    <span class="n">s1</span><span class="p">.</span><span class="n">c</span> <span class="p">=</span> <span class="s">&#39;Hello!&#39;</span><span class="p">;</span>
+    <span class="n">save</span><span class="p">(</span><span class="s">&#39;newstruct.mat&#39;</span><span class="p">,</span> <span class="s">&#39;-struct&#39;</span><span class="p">,</span> <span class="s">&#39;s1&#39;</span><span class="p">);</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>By default, MATLAB will save using its own binary .mat format. You can instead save as an ascii text file using the `&#39;-ascii&#39;` option. See the help for further details.
+<p>By default, MATLAB will save using its own binary .mat format. You can instead save as an ascii text file using the <code>'-ascii'</code> option. See the help for further details.</p>
+<p>The <code>load</code> command is used to read in a data file in MATLAB's .mat format. It will also work to load in ascii text files as long as they only have numbers in them and are either a simple vector or matrix.Here are some examples from the documentation:</p>
+<div class="highlight"><pre><span></span>  <span class="n">gongStruct</span> <span class="p">=</span> <span class="n">load</span><span class="p">(</span><span class="s">&#39;gong.mat&#39;</span><span class="p">)</span>      <span class="c">% All variables</span>
+  <span class="n">load</span><span class="p">(</span><span class="s">&#39;handel.mat&#39;</span><span class="p">,</span> <span class="s">&#39;y&#39;</span><span class="p">)</span>            <span class="c">% Only variable y</span>
+  <span class="n">load</span><span class="p">(</span><span class="s">&#39;accidents.mat&#39;</span><span class="p">,</span> <span class="s">&#39;hwy*&#39;</span><span class="p">)</span>      <span class="c">% Variables starting with &quot;hwy&quot;</span>
+  <span class="n">load</span><span class="p">(</span><span class="s">&#39;topo.mat&#39;</span><span class="p">,</span> <span class="s">&#39;-regexp&#39;</span><span class="p">,</span> <span class="s">&#39;\d&#39;</span><span class="p">)</span>  <span class="c">% Variables containing digits</span>
 
-The `load` command is used to read in a data file in MATLAB&#39;s .mat format. It will also work to load in ascii text files as long as they only have numbers in them and are either a simple vector or matrix.Here are some examples from the documentation:
-``` matlab
-  gongStruct = load(&#39;gong.mat&#39;)      % All variables
-  load(&#39;handel.mat&#39;, &#39;y&#39;)            % Only variable y
-  load(&#39;accidents.mat&#39;, &#39;hwy*&#39;)      % Variables starting with &quot;hwy&quot;
-  load(&#39;topo.mat&#39;, &#39;-regexp&#39;, &#39;\d&#39;)  % Variables containing digits
-
-  % Using command form
-  load gong.mat
-  load topo.mat -regexp \d
-  load &#39;hypothetical file.mat&#39;       % Filename with spaces
+  <span class="c">% Using command form</span>
+  <span class="n">load</span> <span class="n">gong</span><span class="p">.</span><span class="n">mat</span>
+  <span class="n">load</span> <span class="n">topo</span><span class="p">.</span><span class="n">mat</span> <span class="o">-</span><span class="n">regexp</span> <span class="o">\</span><span class="n">d</span>
+  <span class="n">load</span> <span class="s">&#39;hypothetical file.mat&#39;</span>       <span class="c">% Filename with spaces</span>
 </pre></div>
 
 
@@ -661,21 +659,23 @@ The `load` command is used to read in a data file in MATLAB&#39;s .mat format. I
     numbers N.  A serial date number of 1 corresponds to Jan-1-0000.<br>
     The year 0000 is merely a reference point and is not intended to be
     interpreted as a real year.  Examples:</p>
-<div class="highlight"><pre><span></span>        <span class="n">n</span> <span class="p">=</span> <span class="n">datenum</span><span class="p">(</span><span class="s">&#39;19-May-2000&#39;</span><span class="p">)</span>                <span class="c">% returns n = 730625.</span>
-        <span class="n">n</span> <span class="p">=</span> <span class="n">datenum</span><span class="p">(</span><span class="mi">2001</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">19</span><span class="p">)</span>                   <span class="c">% returns n = 731204.</span>
-        <span class="n">n</span> <span class="p">=</span> <span class="n">datenum</span><span class="p">(</span><span class="mi">2001</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">19</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>            <span class="c">% returns n = 731204.75.</span>
-        <span class="n">n</span> <span class="p">=</span> <span class="n">datenum</span><span class="p">(</span><span class="s">&#39;19.05.2000&#39;</span><span class="p">,</span><span class="s">&#39;dd.mm.yyyy&#39;</span><span class="p">)</span>    <span class="c">% returns n = 730625.</span>
+<div class="highlight"><pre><span></span>  <span class="n">n</span> <span class="p">=</span> <span class="n">datenum</span><span class="p">(</span><span class="s">&#39;19-May-2000&#39;</span><span class="p">)</span>                <span class="c">% returns n = 730625.</span>
+  <span class="n">n</span> <span class="p">=</span> <span class="n">datenum</span><span class="p">(</span><span class="mi">2001</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">19</span><span class="p">)</span>                   <span class="c">% returns n = 731204.</span>
+  <span class="n">n</span> <span class="p">=</span> <span class="n">datenum</span><span class="p">(</span><span class="mi">2001</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">19</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>            <span class="c">% returns n = 731204.75.</span>
+  <span class="n">n</span> <span class="p">=</span> <span class="n">datenum</span><span class="p">(</span><span class="s">&#39;19.05.2000&#39;</span><span class="p">,</span><span class="s">&#39;dd.mm.yyyy&#39;</span><span class="p">)</span>    <span class="c">% returns n = 730625.</span>
 </pre></div>
 
 
 <p>Why is this useful? It is useful since now the time and date has been converted into a single number that you can perform operations on (add, subtract, compare, etc).  The command <code>now</code> returns the current time and date as a datenum.</p>
-<p>You can then convert a datenum into a string using the <code>datestr</code> command:
-  <code>matlab
-        n = now;
-    datestr(n)
-    datestr(n,1)
-    datestr(n,13)</code>
-  See the documentation for <code>datestr</code> for futher info.  </p>
+<p>You can then convert a datenum into a string using the <code>datestr</code> command:</p>
+<div class="highlight"><pre><span></span>    <span class="n">n</span> <span class="p">=</span> <span class="n">now</span><span class="p">;</span>
+  <span class="n">datestr</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+  <span class="n">datestr</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+  <span class="n">datestr</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">13</span><span class="p">)</span>
+</pre></div>
+
+
+<p>See the documentation for <code>datestr</code> for futher info.  </p>
 <p>If you plot a time series using a datenum vector for the x-axis, you can use the <code>datetick</code> command to get nicely formatted time stamps on the x-axis labels.</p>
             </div>
             <!-- /.entry-content -->
@@ -715,22 +715,19 @@ The `load` command is used to read in a data file in MATLAB&#39;s .mat format. I
       <a href="./tag/bash.html">bash</a>
     </li>
     <li class="list-group-item tag-1">
-      <a href="./tag/file-system.html">file system</a>
+      <a href="./tag/shell.html">shell</a>
     </li>
     <li class="list-group-item tag-1">
-      <a href="./tag/assignment.html">assignment</a>
+      <a href="./tag/file-system.html">file system</a>
     </li>
     <li class="list-group-item tag-1">
       <a href="./tag/unix.html">unix</a>
     </li>
     <li class="list-group-item tag-1">
-      <a href="./tag/shell.html">shell</a>
+      <a href="./tag/assignment.html">assignment</a>
     </li>
     <li class="list-group-item tag-3">
       <a href="./tag/python.html">python</a>
-    </li>
-    <li class="list-group-item tag-3">
-      <a href="./tag/matlab.html">MATLAB</a>
     </li>
     <li class="list-group-item tag-3">
       <a href="./tag/git.html">git</a>
@@ -738,8 +735,11 @@ The `load` command is used to read in a data file in MATLAB&#39;s .mat format. I
     <li class="list-group-item tag-3">
       <a href="./tag/fortran.html">fortran</a>
     </li>
+    <li class="list-group-item tag-3">
+      <a href="./tag/matlab.html">MATLAB</a>
+    </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/geomapapp.html">GeoMapApp</a>
+      <a href="./tag/source-code-editor.html">source code editor</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/gmt.html">gmt</a>
@@ -757,7 +757,7 @@ The `load` command is used to read in a data file in MATLAB&#39;s .mat format. I
       <a href="./tag/programming.html">programming</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/source-code-editor.html">source code editor</a>
+      <a href="./tag/geomapapp.html">GeoMapApp</a>
     </li>
   </ul>
 </li>
