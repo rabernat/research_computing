@@ -555,7 +555,7 @@ has the first <code>case</code> has two strings; if either is matched, that case
 </pre></div>
 
 
-<p>Here variables <code>hFigure1</code> and <code>hFigure2</code> and handle variables that refer to the two figures. After creating the figures, type <code>hFigure1</code> into the command window. Here you will see the hidden world of all the possible settings you can specify for a figure's appearance. You can also create variables that refer to particular plot axes (created with <code>subplot</code>) as well as variables for each plot object (line, points, surfaces, etc). All of these have attributes that control their appearance. We don't have time to cover them in class, but you can dig deep into the documentation to figure out how to customize their appearances.</p>
+<p>Here variables <code>hFigure1</code> and <code>hFigure2</code> are handle variables that refer to the two figures. After creating the figures, type <code>hFigure1</code> into the command window. Here you will see the hidden world of all the possible settings you can specify for a figure's appearance. You can also create variables that refer to particular plot axes (created with <code>subplot</code>) as well as variables for each plot object (line, points, surfaces, etc). All of these have attributes that control their appearance. We don't have time to cover them in class, but you can dig deep into the documentation to figure out how to customize their appearances.</p>
 <p><strong>Saving figures</strong>
 There are a few ways to save figures. You can use the buttons in the figure's menu bar to adjust its size on the printed page (or you can do this using the figure's handle variable mentioned above) and then to save it to a file. However, for programming, its generally better to use commands in your codes to automatically save the figure. The easiest command is <code>saveas(H,'FILENAME','FORMAT')</code>. Here are a few examples where we will save the figure with handle variable hFigure 1 (as created above):</p>
 <div class="highlight"><pre><span></span><span class="n">saveas</span><span class="p">(</span><span class="n">hFigure1</span><span class="p">,</span><span class="s">&#39;myFigure&#39;</span><span class="p">,</span><span class="s">&#39;fig&#39;</span><span class="p">)</span>
@@ -570,7 +570,7 @@ There are a few ways to save figures. You can use the buttons in the figure's me
 </pre></div>
 
 
-<p>There are many other formats, see the help for <code>saveas</code> and <code>print</code> commands. The PDF forat is useful since it stores the graphics in a vector image format, allowing you to later use software like Adobe Illustrator to fine tune the appearance if desired. However, I recommend learning how to control the plot appearance using you MATLAB scripts to, e.g., change the line width and color, marker size and color, etc so that you don't need to do anything else in graphical design software later.  The other formats such as jpg and png create bitmapped images where the graphical objects get turned into pixels, so you can't later edit their appearance.</p>
+<p>There are many other formats, see the help for <code>saveas</code> and <code>print</code> commands. The PDF format is useful since it stores the graphics in a vector image format, allowing you to later use software like Adobe Illustrator to fine tune the appearance if desired. However, I recommend learning how to control the plot appearance using you MATLAB scripts to, e.g., change the line width and color, marker size and color, etc so that you don't need to do anything else in graphical design software later.  The other formats such as jpg and png create bitmapped images where the graphical objects get turned into pixels, so you can't later edit their appearance.</p>
 <p><strong>Structures</strong></p>
 <p>Structures in MATLAB are a construct for grouping many variables together into a single object. You can define a structure two different ways</p>
 <div class="highlight"><pre><span></span><span class="n">S</span> <span class="p">=</span>   <span class="n">struct</span><span class="p">(</span><span class="s">&#39;field1&#39;</span><span class="p">,</span><span class="n">VALUES1</span><span class="p">,</span><span class="s">&#39;field2&#39;</span><span class="p">,</span><span class="n">VALUES2</span><span class="p">,</span><span class="c">...)  </span>
@@ -715,49 +715,49 @@ There are a few ways to save figures. You can use the buttons in the figure's me
       <a href="./tag/bash.html">bash</a>
     </li>
     <li class="list-group-item tag-1">
-      <a href="./tag/file-system.html">file system</a>
+      <a href="./tag/unix.html">unix</a>
     </li>
     <li class="list-group-item tag-1">
       <a href="./tag/shell.html">shell</a>
     </li>
     <li class="list-group-item tag-1">
-      <a href="./tag/unix.html">unix</a>
+      <a href="./tag/file-system.html">file system</a>
     </li>
     <li class="list-group-item tag-1">
       <a href="./tag/assignment.html">assignment</a>
     </li>
     <li class="list-group-item tag-3">
-      <a href="./tag/python.html">python</a>
-    </li>
-    <li class="list-group-item tag-3">
-      <a href="./tag/fortran.html">fortran</a>
+      <a href="./tag/matlab.html">MATLAB</a>
     </li>
     <li class="list-group-item tag-3">
       <a href="./tag/git.html">git</a>
     </li>
     <li class="list-group-item tag-3">
-      <a href="./tag/matlab.html">MATLAB</a>
+      <a href="./tag/fortran.html">fortran</a>
     </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/vpn.html">vpn</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/geomapapp.html">GeoMapApp</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/programming.html">programming</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/source-code-editor.html">source code editor</a>
+    <li class="list-group-item tag-3">
+      <a href="./tag/python.html">python</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/gmt.html">gmt</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/vpn.html">vpn</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/github.html">github</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/version-control.html">version control</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/programming.html">programming</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/geomapapp.html">GeoMapApp</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/source-code-editor.html">source code editor</a>
     </li>
   </ul>
 </li>
