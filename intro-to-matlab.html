@@ -9,20 +9,20 @@
 
 
 
-<link rel="canonical" href="./intro-to-matlab.html">
+<link rel="canonical" href="././intro-to-matlab.html">
 
         <meta name="author" content="Kerry Key" />
-        <meta name="keywords" content="MATLAB" />
-        <meta name="description" content="Introduction to MATLAB" />
+        <meta name="keywords" content="fortran" />
+        <meta name="description" content="Introduction to Fortran" />
 
         <meta property="og:site_name" content="Research Computing in Earth Sciences" />
         <meta property="og:type" content="article"/>
         <meta property="og:title" content="Intro to MATLAB"/>
-        <meta property="og:url" content="./intro-to-matlab.html"/>
-        <meta property="og:description" content="Introduction to MATLAB"/>
-        <meta property="article:published_time" content="2017-09-21" />
+        <meta property="og:url" content="././intro-to-matlab.html"/>
+        <meta property="og:description" content="Introduction to Fortran"/>
+        <meta property="article:published_time" content="2017-09-28" />
             <meta property="article:section" content="lectures" />
-            <meta property="article:tag" content="MATLAB" />
+            <meta property="article:tag" content="fortran" />
             <meta property="article:author" content="Kerry Key" />
 
 
@@ -86,7 +86,7 @@ Research Computing in Earth Sciences            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="./intro-to-matlab.html"
+                    <a href="././intro-to-matlab.html"
                        rel="bookmark"
                        title="Permalink to Intro to MATLAB">
                         Intro to MATLAB
@@ -99,7 +99,7 @@ Research Computing in Earth Sciences            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2017-09-21T00:00:00-05:00"> Thu 21 September 2017</time>
+        <i class="fa fa-calendar"></i><time datetime="2017-09-28T00:00:00-05:00"> Thu 28 September 2017</time>
     </span>
 
 
@@ -107,432 +107,21 @@ Research Computing in Earth Sciences            </a>
 
 
 <span class="label label-default">Tags</span>
-	<a href="./tag/matlab.html">MATLAB</a>
-    
+	<a href="./tag/fortran.html">fortran</a>
+    <span class="label label-default">Lang</span>
+	<a href="././intro-to-matlab.html">en</a>
+
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>Here we give an introductory tutorial to get you started with MATLAB. For further training, you can find more tutorials online. In particular, Mathworks, the company that owns MATLAB, has <a href="https://matlabacademy.mathworks.com">an extensive suite of tutorials</a> on their website (you need to sign up for a free account to access them). There is also a good MATLAB tutorial at <a href="http://swcarpentry.github.io/matlab-novice-inflammation/">Software Carpentry</a>.</p>
-<p><strong>Command Window</strong></p>
-<p>Open MATLAB. We will be mostly working in the Command Window and the Editor panels. The Command Window is similar to a Unix shell and to the iPhython shell. It is where you  enter MATLAB commands interactively and where MATLAB displays text output.  Some unix commands such as <code>pwd</code>  <code>cd</code> <code>ls</code> <code>cp</code> <code>mv</code>  etc work in the command window.</p>
-<p>Enter commands to the right of the prompt symbol <code>&gt;&gt;</code>.  You can use MATLAB like a calculator. For example, type in an expression and then hit enter</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="mi">1</span> <span class="o">+</span> <span class="mf">2.2</span>
-<span class="nb">ans</span> <span class="p">=</span>
-    <span class="mf">3.2000</span>
-</pre></div>
-
-
-<p>By default, MATLAB returns the value of this addition in the variable ans.  You can instead assign it to a variable</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">a</span> <span class="p">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mf">2.2</span>
-<span class="n">a</span> <span class="p">=</span>
-    <span class="mf">3.2000</span>
-</pre></div>
-
-
-<p>You can suppress the answer being printed out by terminating the expression with a semicolon</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">a</span> <span class="p">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mf">2.2</span><span class="p">;</span>
-</pre></div>
-
-
-<p>There are lots of ways to create expressions and assign the answer to a new variable, for example</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">a</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
-<span class="o">&gt;&gt;</span> <span class="n">b</span> <span class="p">=</span> <span class="mi">2</span><span class="p">;</span>
-<span class="o">&gt;&gt;</span> <span class="n">c</span> <span class="p">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">a</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
-<span class="o">&gt;&gt;</span> <span class="n">b</span> <span class="p">=</span> <span class="mi">2</span><span class="p">;</span>
-<span class="o">&gt;&gt;</span> <span class="n">c</span> <span class="p">=</span> <span class="mi">3</span><span class="p">;</span>
-<span class="o">&gt;&gt;</span> <span class="n">d</span> <span class="p">=</span> <span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">)</span><span class="o">*</span><span class="n">c</span>
-<span class="n">d</span> <span class="p">=</span>
-     <span class="mi">9</span>
-</pre></div>
-
-
-<p>The various arithmetic, relational and logical operators in MATLAB can be found by typing <code>help ops</code> in the command Window</p>
-<div class="highlight"><pre><span></span>&gt;&gt; help ops
-
-  Operators and special characters.
-
-  Arithmetic operators.
-    plus       - Plus                               +    
-    uplus      - Unary plus                         +    
-    minus      - Minus                              -    
-    uminus     - Unary minus                        -    
-    mtimes     - Matrix multiply                    *    
-    times      - Array multiply                    .*    
-    mpower     - Matrix power                       ^    
-    power      - Array power                       .^    
-    mldivide   - Backslash or left matrix divide    \    
-    mrdivide   - Slash or right matrix divide       /    
-    ldivide    - Left array divide                 .\    
-    rdivide    - Right array divide                ./    
-    idivide    - Integer division with rounding option.
-    kron       - Kronecker tensor product   
-
-  Relational operators.
-    eq         - Equal                             ==     
-    ne         - Not equal                         ~=     
-    lt         - Less than                          &lt;      
-    gt         - Greater than                       &gt;      
-    le         - Less than or equal                &lt;=     
-    ge         - Greater than or equal             &gt;=     
-
-  Logical operators.
-    relop      - Short-circuit logical AND         &amp;&amp;     
-    relop      - Short-circuit logical OR          ||     
-    and        - Element-wise logical AND           &amp;      
-    or         - Element-wise logical OR            |      
-    not        - Logical NOT                        ~      
-    punct      - Ignore function argument or output ~
-    xor        - Logical EXCLUSIVE OR
-    any        - True if any element of vector is nonzero
-    all        - True if all elements of vector are nonzero
-</pre></div>
-
-
-<p>To see what variables are in the workspace, you can either view the Workspace Panel or simply type in <code>whos</code> in the Command Window.</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">whos</span>
-     <span class="n">Name</span>      <span class="n">Size</span>            <span class="n">Bytes</span>  <span class="n">Class</span>     <span class="n">Attributes</span>
-
-     <span class="n">a</span>         <span class="mi">1</span><span class="n">x1</span>                 <span class="mi">8</span>  <span class="n">double</span>              
-     <span class="n">b</span>         <span class="mi">1</span><span class="n">x1</span>                 <span class="mi">8</span>  <span class="n">double</span>              
-     <span class="n">c</span>         <span class="mi">1</span><span class="n">x1</span>                 <span class="mi">8</span>  <span class="n">double</span>              
-     <span class="n">d</span>         <span class="mi">1</span><span class="n">x1</span>                 <span class="mi">8</span>  <span class="n">double</span>              
-</pre></div>
-
-
-<p>To clear a variable from the workspace, you can <code>clear</code> it</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">clear</span> <span class="n">b</span>
-</pre></div>
-
-
-<p>To clear all the variables from the workspace, use</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">clear</span> <span class="n">all</span>
-</pre></div>
-
-
-<p>This will clear all the variables and release the memory they were holding, which can be useful when you have been working with large vectors or matrices.</p>
-<p><strong>Matrices and vectors</strong></p>
-<p>MATLAB was designed originally for easy matrix and vector computations and linear algebra. Vectors and matrices can de defined using square brackets</p>
-<p>Create a row vector:</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">a</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">];</span>
-</pre></div>
-
-
-<p>Create a column vector be separating the rows with semicolons.</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">b</span> <span class="p">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">;</span> <span class="mi">6</span><span class="p">;</span> <span class="mi">7</span><span class="p">;</span> <span class="mi">8</span><span class="p">];</span>
-</pre></div>
-
-
-<p>You can compute a vector dot product using the <code>*</code> Operators</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">a</span><span class="o">*</span><span class="n">b</span>
-<span class="nb">ans</span> <span class="p">=</span>
-    <span class="mi">70</span>
-</pre></div>
-
-
-<p>However, this will only work if the vectors are compatible for linear algebra. One needs to be a row vector and the other a column vector and they have to have the same number of Element-wise</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span>   <span class="nb">length</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<span class="nb">ans</span> <span class="p">=</span>
-     <span class="mi">4</span>
-<span class="o">&gt;&gt;</span>   <span class="nb">length</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
-     <span class="nb">ans</span> <span class="p">=</span>
-          <span class="mi">4</span>     
-</pre></div>
-
-
-<p>While <code>length</code> returns the number of elements in a vector, the <code>size</code> command is more general and gives the number of rows and columns.</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="nb">size</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<span class="nb">ans</span> <span class="p">=</span>
-     <span class="mi">1</span>     <span class="mi">4</span>
-</pre></div>
-
-
-<p>This command is more useful when you assign the output to some variables</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="p">[</span><span class="n">nrows</span><span class="p">,</span> <span class="n">ncols</span><span class="p">]</span> <span class="p">=</span> <span class="nb">size</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<span class="n">nrows</span> <span class="p">=</span>
-     <span class="mi">1</span>
-<span class="n">ncols</span> <span class="p">=</span>
-     <span class="mi">4</span>
-</pre></div>
-
-
-<p>A key sticking point for new MATLAB uses is to remember that <code>*</code> does vector (and also matrix) multiplication. To instead do array multiplication, use the <code>.*</code> operator. The vectors or matrices to be multiplied should have the same size (same number of rows and columns).</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">c</span> <span class="p">=</span> <span class="p">[</span><span class="mi">9</span> <span class="mi">10</span> <span class="mi">11</span> <span class="mi">12</span><span class="p">];</span>
-<span class="o">&gt;&gt;</span> <span class="n">a</span><span class="o">.*</span><span class="n">c</span>
-<span class="nb">ans</span> <span class="p">=</span>
-     <span class="mi">9</span>    <span class="mi">20</span>    <span class="mi">33</span>    <span class="mi">48</span>
-</pre></div>
-
-
-<p>Similarly, you can raise the elements of an array to a power using the <code>.^</code> Operators</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">a</span><span class="o">.^</span><span class="mi">2</span>
-<span class="nb">ans</span> <span class="p">=</span>
-     <span class="mi">1</span>     <span class="mi">4</span>     <span class="mi">9</span>    <span class="mi">16</span>
-</pre></div>
-
-
-<p>Matrices are like vectors. Define them by rows, separating the columns using semicolons:</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">m</span> <span class="p">=</span> <span class="p">[</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span><span class="p">]</span>
-<span class="n">m</span> <span class="p">=</span>
-     <span class="mi">1</span>     <span class="mi">2</span>     <span class="mi">3</span>     <span class="mi">4</span>
-     <span class="mi">5</span>     <span class="mi">6</span>     <span class="mi">7</span>     <span class="mi">8</span>
-</pre></div>
-
-
-<p>You can take the transpose of a matrix using the <code>'</code> operator or using the <code>transpose</code> function</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">m</span><span class="o">&#39;</span>
-<span class="nb">ans</span> <span class="p">=</span>
-     <span class="mi">1</span>     <span class="mi">5</span>
-     <span class="mi">2</span>     <span class="mi">6</span>
-     <span class="mi">3</span>     <span class="mi">7</span>
-     <span class="mi">4</span>     <span class="mi">8</span>
-<span class="o">&gt;&gt;</span> <span class="n">transpose</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
-<span class="nb">ans</span> <span class="p">=</span>
-     <span class="mi">1</span>     <span class="mi">5</span>
-     <span class="mi">2</span>     <span class="mi">6</span>
-     <span class="mi">3</span>     <span class="mi">7</span>
-     <span class="mi">4</span>     <span class="mi">8</span>
-</pre></div>
-
-
-<p>You can add matrices</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">n</span> <span class="p">=</span> <span class="p">[</span><span class="mi">9</span> <span class="mi">10</span> <span class="mi">11</span> <span class="mi">12</span><span class="p">;</span> <span class="mi">13</span> <span class="mi">14</span> <span class="mi">15</span> <span class="mi">16</span><span class="p">]</span>
-<span class="n">n</span> <span class="p">=</span>
-     <span class="mi">9</span>    <span class="mi">10</span>    <span class="mi">11</span>    <span class="mi">12</span>
-    <span class="mi">13</span>    <span class="mi">14</span>    <span class="mi">15</span>    <span class="mi">16</span>
-<span class="o">&gt;&gt;</span> <span class="n">m</span><span class="o">+</span><span class="n">n</span>
-<span class="nb">ans</span> <span class="p">=</span>
-    <span class="mi">10</span>    <span class="mi">12</span>    <span class="mi">14</span>    <span class="mi">16</span>
-    <span class="mi">18</span>    <span class="mi">20</span>    <span class="mi">22</span>    <span class="mi">24</span>
-</pre></div>
-
-
-<p>You can create arrays of numbers using index notation</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">series</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">10</span>
-<span class="n">series</span> <span class="p">=</span>
-     <span class="mi">1</span>     <span class="mi">2</span>     <span class="mi">3</span>     <span class="mi">4</span>     <span class="mi">5</span>     <span class="mi">6</span>     <span class="mi">7</span>     <span class="mi">8</span>     <span class="mi">9</span>    <span class="mi">10</span>
-</pre></div>
-
-
-<p>To change the spacing, using the notation <code>start:spacing:stop</code></p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span>  <span class="n">series</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="mi">20</span>
-<span class="n">series</span> <span class="p">=</span>
-     <span class="mi">1</span>     <span class="mi">3</span>     <span class="mi">5</span>     <span class="mi">7</span>     <span class="mi">9</span>    <span class="mi">11</span>    <span class="mi">13</span>    <span class="mi">15</span>    <span class="mi">17</span>    <span class="mi">19</span>
-</pre></div>
-
-
-<p><strong>Slicing  vectors and matrices</strong>
-You can use indices to extract a slice from a matrix or vector</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">subset</span> <span class="p">=</span> <span class="n">series</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">)</span>
-<span class="n">subset</span> <span class="p">=</span>
-     <span class="mi">1</span>     <span class="mi">3</span>     <span class="mi">5</span>     <span class="mi">7</span>
-</pre></div>
-
-
-<p>You can use the keyword <code>end</code> to specify slicing all the way to the end rather than listing the specific index for the last value</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">subset</span> <span class="p">=</span> <span class="n">series</span><span class="p">(</span><span class="mi">3</span><span class="p">:</span><span class="k">end</span><span class="p">)</span>
-<span class="n">subset</span> <span class="p">=</span>
-     <span class="mi">5</span>     <span class="mi">7</span>     <span class="mi">9</span>    <span class="mi">11</span>    <span class="mi">13</span>    <span class="mi">15</span>    <span class="mi">17</span>    <span class="mi">19</span>
-</pre></div>
-
-
-<p>Matrices are easily sliced too:</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">msubset</span> <span class="p">=</span> <span class="n">m</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">:</span><span class="mi">4</span><span class="p">)</span>
-<span class="n">msubset</span> <span class="p">=</span>
-     <span class="mi">7</span>     <span class="mi">8</span>
-</pre></div>
-
-
-<p><strong>linspace and logspace</strong></p>
-<p>You can create arrays of evenly spaced numbers using the <code>linspace</code> and <code>logspace</code> functions.</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="nb">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
-<span class="nb">ans</span> <span class="p">=</span>
-   <span class="o">-</span><span class="mf">1.0000</span>    <span class="mf">1.7500</span>    <span class="mf">4.5000</span>    <span class="mf">7.2500</span>   <span class="mf">10.0000</span>
-</pre></div>
-
-
-<p>Type <code>help linspace</code> for more info.</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="nb">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
-<span class="nb">ans</span> <span class="p">=</span>
-   <span class="mf">1.0e+03</span> <span class="o">*</span>
-    <span class="mf">0.0001</span>    <span class="mf">0.0010</span>    <span class="mf">0.0100</span>    <span class="mf">0.1000</span>    <span class="mf">1.0000</span>
-</pre></div>
-
-
-<p>Notice how the exponent of these numbers is shown.</p>
-<p><strong>Help and Documentation</strong></p>
-<p>You can type <code>help &lt;function name&gt;</code> into the command window if you know the name of the function. The MATLAB Documentation is also very helpful. Type <code>doc</code> into the Command Window to launch the Documentation browser.</p>
-<p><strong>Strings</strong></p>
-<p>Character strings in MATLAB are defined using single quotes:</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">clear</span> <span class="n">all</span><span class="p">;</span>
-<span class="n">astring</span> <span class="p">=</span> <span class="s">&#39;hello world&#39;</span><span class="p">;</span>
-<span class="n">whos</span>
-  <span class="n">Name</span>         <span class="n">Size</span>            <span class="n">Bytes</span>  <span class="n">Class</span>    <span class="n">Attributes</span>
-
-  <span class="n">astring</span>      <span class="mi">1</span><span class="n">x11</span>               <span class="mi">22</span>  <span class="n">char</span>       
-</pre></div>
-
-
-<p>You can slice strings too</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">astring</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span>
-<span class="nb">ans</span> <span class="p">=</span>
-    <span class="s">&#39;hello&#39;</span>
-</pre></div>
-
-
-<p><strong>Scripts</strong></p>
-<p>You can create a script file containing MATLAB commands. This are known as m-files, since their name must end with the extension '.m'. You can then run the m-file in the command window, and MATLAB will read the file and execute the comands as if you had typed them into the command window at the prompt.</p>
-<p>Create an m-file called 'test.m' using the MATLAB editor. Paste this in for the contents:  </p>
-<div class="highlight"><pre><span></span><span class="n">str</span> <span class="p">=</span> <span class="s">&#39;hello world&#39;</span><span class="p">;</span>
-<span class="nb">disp</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
-
-<span class="n">a</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">];</span>
-<span class="n">b</span> <span class="p">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">a</span><span class="p">;</span>
-<span class="nb">disp</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
-</pre></div>
-
-
-<p>Then in the command window run test.m:</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">ls</span>
-<span class="n">test</span><span class="p">.</span><span class="n">m</span>
-
-<span class="o">&gt;&gt;</span> <span class="n">test</span>
-<span class="n">hello</span> <span class="n">world</span>
-     <span class="mi">2</span>     <span class="mi">4</span>     <span class="mi">6</span>     <span class="mi">8</span>
-</pre></div>
-
-
-<p>This was just a simple script, but you can make much more complex scripts that read and write data, do complex operations and plot results in figures, etc.</p>
+                <p><strong>Basic structure</strong></p>
+<p><strong>Programs</strong></p>
+<p><strong>Subroutines</strong></p>
 <p><strong>Functions</strong></p>
-<p>MATLAB comes with a large number of built-in standard mathematical functions such as <code>sin()</code>,<code>cos()</code>,<code>log()</code>,<code>log10()</code>,<code>exp()</code>, etc. You can find lists of all the built in mathematical  functions by looking in the Documentation browser.</p>
-<p>You can also defined you own custom functions by creating function m-files. For example, create an m-file called myfunc.m with the contents</p>
-<div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>y <span class="p">=</span><span class="w"> </span><span class="nf">myfunc</span><span class="p">(</span>x<span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="n">y</span> <span class="p">=</span> <span class="n">x</span><span class="o">.^</span><span class="mi">2</span><span class="p">;</span>
-<span class="k">end</span>
-</pre></div>
-
-
-<p>Then call it from the command window</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">x</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">10</span><span class="p">];</span>
-<span class="o">&gt;&gt;</span> <span class="n">y</span> <span class="p">=</span> <span class="n">myfunc</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
-<span class="o">&gt;&gt;</span> <span class="nb">disp</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-     <span class="mi">1</span>     <span class="mi">4</span>     <span class="mi">9</span>    <span class="mi">16</span>    <span class="mi">25</span>    <span class="mi">36</span>    <span class="mi">49</span>    <span class="mi">64</span>    <span class="mi">81</span>   <span class="mi">100</span>
-</pre></div>
-
-
-<p>Functions can have more than one input and more than one output:</p>
-<div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>[z,z2,x2,y2] <span class="p">=</span><span class="w"> </span><span class="nf">myfunc2</span><span class="p">(</span>x,y<span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="n">x2</span> <span class="p">=</span> <span class="n">x</span><span class="o">.^</span><span class="mi">2</span><span class="p">;</span>
-  <span class="n">y2</span> <span class="p">=</span> <span class="n">y</span><span class="o">.^</span><span class="mi">2</span><span class="p">;</span>
-  <span class="n">z2</span> <span class="p">=</span> <span class="n">x2</span> <span class="o">+</span> <span class="n">y2</span><span class="p">;</span>
-  <span class="n">z</span>  <span class="p">=</span> <span class="nb">sqrt</span><span class="p">(</span><span class="n">z2</span><span class="p">);</span>
-<span class="k">end</span>
-</pre></div>
-
-
-<p><strong>Loops</strong>
-In myfun2() above, we used array notation to deal with case when the inputs x and y are vectors or matrices. MATLAB is optimized to work fastest using array operations. However, sometimes it is inevitable that you need to use a <code>for</code> or <code>while</code> loop to carry out some operations. Here are two simple examples</p>
-<div class="highlight"><pre><span></span><span class="n">clear</span> <span class="n">x</span> <span class="n">y</span>
-<span class="n">x</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">];</span>
-<span class="k">for</span> <span class="nb">i</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-  <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span><span class="p">;</span>
-<span class="k">end</span>
-<span class="nb">disp</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-</pre></div>
-
-
-<p>Note that you do not need to indent the for loop code in MATLAB (but you do in Python). So the above could also be written as</p>
-<div class="highlight"><pre><span></span><span class="n">clear</span> <span class="n">x</span> <span class="n">y</span>
-<span class="n">x</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">];</span>
-<span class="k">for</span> <span class="nb">i</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">);</span> <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span><span class="p">;</span> <span class="k">end</span>
-<span class="nb">disp</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-</pre></div>
-
-
-<p>However, the indented code in the middle of the for-loop is easier to read and so we recommend that from a stylistic viewpoint.</p>
-<p>You can define for loops on the command line, but typically they are best used in m-files.</p>
-<p>Here's an example of a very simple while loop:</p>
-<div class="highlight"><pre><span></span><span class="n">x</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="k">while</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">10</span>
-  <span class="n">x</span> <span class="p">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-  <span class="nb">disp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="k">end</span>
-</pre></div>
-
-
-<p><strong>Flow control</strong></p>
-<p>You can control the flow of your code using an <code>if</code> statement. For example</p>
-<div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">I</span> <span class="o">==</span> <span class="n">J</span>
-  <span class="n">A</span><span class="p">(</span><span class="n">I</span><span class="p">,</span><span class="n">J</span><span class="p">)</span> <span class="p">=</span> <span class="mi">2</span><span class="p">;</span>
-<span class="k">elseif</span> <span class="nb">abs</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="n">J</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
-  <span class="n">A</span><span class="p">(</span><span class="n">I</span><span class="p">,</span><span class="n">J</span><span class="p">)</span> <span class="p">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-<span class="k">else</span>
-  <span class="n">A</span><span class="p">(</span><span class="n">I</span><span class="p">,</span><span class="n">J</span><span class="p">)</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="k">end</span>
-</pre></div>
-
-
-<p>If you have more than two or three <code>if</code>,<code>elseif</code> conditions, it is better to use a <code>switch</code>:</p>
-<div class="highlight"><pre><span></span><span class="n">method</span> <span class="p">=</span> <span class="s">&#39;Bilinear&#39;</span><span class="p">;</span>
-<span class="k">switch</span> <span class="n">lower</span><span class="p">(</span><span class="n">method</span><span class="p">)</span>
-   <span class="k">case</span> <span class="p">{</span><span class="s">&#39;linear&#39;</span><span class="p">,</span><span class="s">&#39;bilinear&#39;</span><span class="p">}</span>
-     <span class="nb">disp</span><span class="p">(</span><span class="s">&#39;Method is linear&#39;</span><span class="p">)</span>
-   <span class="k">case</span> <span class="s">&#39;cubic&#39;</span>
-     <span class="nb">disp</span><span class="p">(</span><span class="s">&#39;Method is cubic&#39;</span><span class="p">)</span>
-   <span class="k">case</span> <span class="s">&#39;nearest&#39;</span>
-     <span class="nb">disp</span><span class="p">(</span><span class="s">&#39;Method is nearest&#39;</span><span class="p">)</span>
-   <span class="k">otherwise</span>
-     <span class="nb">disp</span><span class="p">(</span><span class="s">&#39;Unknown method.&#39;</span><span class="p">)</span>
-<span class="k">end</span>
-</pre></div>
-
-
-<p>Here method is a string and <code>lower(method)</code> converts it to lower case for use in the switch construct.</p>
-<p><strong>Plotting</strong></p>
-<div class="highlight"><pre><span></span><span class="n">x</span> <span class="p">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">);</span>
-<span class="n">y</span> <span class="p">=</span> <span class="n">x</span><span class="o">.^</span><span class="mi">2</span><span class="p">;</span>
-<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s">&#39;b-&#39;</span><span class="p">);</span>
-</pre></div>
-
-
-<p>Plot two items on the same figure:</p>
-<div class="highlight"><pre><span></span><span class="n">u</span> <span class="p">=</span> <span class="n">x</span><span class="o">.^</span><span class="mi">3</span><span class="p">;</span>
-<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s">&#39;b-&#39;</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="s">&#39;r-&#39;</span><span class="p">)</span>
-<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;x axis&#39;</span><span class="p">)</span>
-<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;y axis&#39;</span><span class="p">)</span>
-<span class="n">title</span><span class="p">(</span><span class="s">&#39;This is the title&#39;</span><span class="p">)</span>
-</pre></div>
-
-
-<p>or you can add then sequentially using the <code>hold</code> command</p>
-<div class="highlight"><pre><span></span><span class="n">figure</span><span class="p">;</span>
-<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s">&#39;b-&#39;</span><span class="p">);</span>
-<span class="n">hold</span> <span class="n">on</span><span class="p">;</span>
-<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="s">&#39;r-&#39;</span><span class="p">)</span>
-<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="s">&#39;ro&#39;</span><span class="p">)</span>
-<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s">&#39;b.&#39;</span><span class="p">);</span>
-<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;x axis&#39;</span><span class="p">)</span>
-<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;y axis&#39;</span><span class="p">)</span>
-<span class="n">title</span><span class="p">(</span><span class="s">&#39;This is the title&#39;</span><span class="p">)</span>
-<span class="n">legend</span><span class="p">(</span><span class="s">&#39;y&#39;</span><span class="p">,</span><span class="s">&#39;u&#39;</span><span class="p">)</span>
-</pre></div>
-
-
-<p>Some other useful plotting commands:</p>
-<div class="highlight"><pre><span></span><span class="n">surf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
-<span class="n">pcolor</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
-<span class="n">semilogx</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
-<span class="n">semilogy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
-<span class="n">loglog</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
-<span class="n">subplot</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">p</span><span class="p">)</span>
-</pre></div>
-
-
+<p><strong>Control flow</strong></p>
+<p><strong>Compiling a code</strong></p>
+<p><strong>Running a code</strong></p>
+<p><strong>Linking multiple object files</strong></p>
 <p><strong>Reading and writing data</strong></p>
-<p><strong>Structures</strong></p>
-<p><strong>Working with time and dates</strong></p>
             </div>
             <!-- /.entry-content -->
         </article>
@@ -549,8 +138,9 @@ In myfun2() above, we used array notation to deal with case when the inputs x an
 <li class="list-group-item">
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
   <ul class="list-group" id="recentposts">
+    <li class="list-group-item"><a href="././intro-to-matlab.html">Intro to MATLAB</a></li>
     <li class="list-group-item"><a href="./assignment-4-matlab.html">Assignment #4 -  MATLAB</a></li>
-    <li class="list-group-item"><a href="./intro-to-matlab.html">Intro to MATLAB</a></li>
+    <li class="list-group-item"><a href="././intro-to-matlab.html">Intro to MATLAB</a></li>
     <li class="list-group-item"><a href="./assignment-3-introduction-to-python.html">Assignment 3: Introduction to Python</a></li>
     <li class="list-group-item"><a href="./intro-to-python.html">Introduction to Python</a></li>
     <li class="list-group-item"><a href="./assignment-2-unix-and-version-control.html">Assignment #2 -  Unix and Version Control</a></li>
@@ -558,7 +148,6 @@ In myfun2() above, we used array notation to deal with case when the inputs x an
     <li class="list-group-item"><a href="./intro-to-git.html">Intro to Git</a></li>
     <li class="list-group-item"><a href="./intro-to-unix-part-1.html">Intro to Unix, Part 1</a></li>
     <li class="list-group-item"><a href="./intro-to-unix-part-2-navigating-files-and-directories.html">Intro to Unix, Part 2: Navigating Files and Directories</a></li>
-    <li class="list-group-item"><a href="./intro-to-unix-part-3-working-with-files-and-directories.html">Intro to Unix, Part 3: Working With Files and Directories</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Recent Posts -->
@@ -568,37 +157,31 @@ In myfun2() above, we used array notation to deal with case when the inputs x an
   <a href="./"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
   <ul class="list-group " id="tags">
     <li class="list-group-item tag-1">
-      <a href="./tag/unix.html">unix</a>
-    </li>
-    <li class="list-group-item tag-1">
       <a href="./tag/bash.html">bash</a>
-    </li>
-    <li class="list-group-item tag-1">
-      <a href="./tag/assignment.html">assignment</a>
     </li>
     <li class="list-group-item tag-1">
       <a href="./tag/shell.html">shell</a>
     </li>
     <li class="list-group-item tag-1">
+      <a href="./tag/unix.html">unix</a>
+    </li>
+    <li class="list-group-item tag-1">
       <a href="./tag/file-system.html">file system</a>
     </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/assignment.html">assignment</a>
+    </li>
     <li class="list-group-item tag-3">
-      <a href="./tag/python.html">python</a>
+      <a href="./tag/fortran.html">fortran</a>
     </li>
     <li class="list-group-item tag-3">
       <a href="./tag/matlab.html">MATLAB</a>
     </li>
     <li class="list-group-item tag-3">
+      <a href="./tag/python.html">python</a>
+    </li>
+    <li class="list-group-item tag-3">
       <a href="./tag/git.html">git</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/gmt.html">gmt</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/source-code-editor.html">source code editor</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/fortran.html">fortran</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/geomapapp.html">GeoMapApp</a>
@@ -607,10 +190,16 @@ In myfun2() above, we used array notation to deal with case when the inputs x an
       <a href="./tag/vpn.html">vpn</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/github.html">github</a>
+      <a href="./tag/version-control.html">version control</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/version-control.html">version control</a>
+      <a href="./tag/gmt.html">gmt</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/source-code-editor.html">source code editor</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/github.html">github</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/programming.html">programming</a>
