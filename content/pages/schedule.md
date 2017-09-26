@@ -18,7 +18,7 @@ Summary: Overview of course schedule and topics
 | Tuesday  | 26-Sep | KK         | Intro to MATLAB in-class activity  |                       |
 | Thursday | 28-Sep | KK         | Intro to Fortran |  Gruenburg, Hun Baek, Guo                    |
 | Tuesday  | 3-Oct  | KK         | Intro to Fortran in class-activity  |                     |
-| Thursday | 5-Oct  | KK         | Intermediate Python I: NumPy arrays and matplotlib   |    |
+| Thursday | 5-Oct  | KK         | Intermediate Python I: NumPy arrays and matplotlib  | Martinez, Miller    |
 | Tuesday  | 10-Oct | RPA        | Intermediate Python I in-class activity         |         |
 | Thursday | 12-Oct | RPA        | Intermediate Python II: Pandas for Tabular Data  |        |
 | Tuesday  | 17-Oct | RPA        | Intermediate Python II in-class activity         |        |

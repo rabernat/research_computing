@@ -457,7 +457,7 @@ hFigure1 = figure;
 hFigure2 = figure;
 % insert more plot commands here
 ```
-Here variables `hFigure1` and `hFigure2` and handle variables that refer to the two figures. After creating the figures, type `hFigure1` into the command window. Here you will see the hidden world of all the possible settings you can specify for a figure's appearance. You can also create variables that refer to particular plot axes (created with `subplot`) as well as variables for each plot object (line, points, surfaces, etc). All of these have attributes that control their appearance. We don't have time to cover them in class, but you can dig deep into the documentation to figure out how to customize their appearances.
+Here variables `hFigure1` and `hFigure2` are handle variables that refer to the two figures. After creating the figures, type `hFigure1` into the command window. Here you will see the hidden world of all the possible settings you can specify for a figure's appearance. You can also create variables that refer to particular plot axes (created with `subplot`) as well as variables for each plot object (line, points, surfaces, etc). All of these have attributes that control their appearance. We don't have time to cover them in class, but you can dig deep into the documentation to figure out how to customize their appearances.
 
 **Saving figures**
 There are a few ways to save figures. You can use the buttons in the figure's menu bar to adjust its size on the printed page (or you can do this using the figure's handle variable mentioned above) and then to save it to a file. However, for programming, its generally better to use commands in your codes to automatically save the figure. The easiest command is `saveas(H,'FILENAME','FORMAT')`. Here are a few examples where we will save the figure with handle variable hFigure 1 (as created above):
@@ -472,7 +472,7 @@ saveas(hFigure1,'myFigure','jpg')
 saveas(hFigure1,'myFigure','png')
 saveas(hFigure1,'myFigure','pdf')
 ```
-There are many other formats, see the help for `saveas` and `print` commands. The PDF forat is useful since it stores the graphics in a vector image format, allowing you to later use software like Adobe Illustrator to fine tune the appearance if desired. However, I recommend learning how to control the plot appearance using you MATLAB scripts to, e.g., change the line width and color, marker size and color, etc so that you don't need to do anything else in graphical design software later.  The other formats such as jpg and png create bitmapped images where the graphical objects get turned into pixels, so you can't later edit their appearance.
+There are many other formats, see the help for `saveas` and `print` commands. The PDF format is useful since it stores the graphics in a vector image format, allowing you to later use software like Adobe Illustrator to fine tune the appearance if desired. However, I recommend learning how to control the plot appearance using you MATLAB scripts to, e.g., change the line width and color, marker size and color, etc so that you don't need to do anything else in graphical design software later.  The other formats such as jpg and png create bitmapped images where the graphical objects get turned into pixels, so you can't later edit their appearance.
 
 
 **Structures**
