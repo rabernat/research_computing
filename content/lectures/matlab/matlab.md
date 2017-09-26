@@ -46,7 +46,7 @@ d =
 ```
 
 The various arithmetic, relational and logical operators in MATLAB can be found by typing ``help ops`` in the command Window
-``` 
+```
 >> help ops
 
   Operators and special characters.
@@ -365,7 +365,7 @@ while x < 10
 end
 
 ```
-**Flow control**
+**Control flow**
 
 You can control the flow of your code using an `if` statement. For example
 ``` matlab
@@ -377,7 +377,8 @@ else
   A(I,J) = 0;
 end
 ```
-If you have more than two or three `if`,`elseif` conditions, it is better to use a `switch`:
+If you have more than two or three `if`,`elseif` conditions, it is better to use a `switch` command
+sequence:
 
 ``` matlab
 method = 'Bilinear';
@@ -392,7 +393,8 @@ switch lower(method)
      disp('Unknown method.')
 end
 ```
-Here method is a string and `lower(method)` converts it to lower case for use in the switch construct.
+Here method is a string and `lower(method)` converts it to lower case for use in the switch construct. Notice
+has the first `case` has two strings; if either is matched, that case is executed. You can also use numeric values and mix them with strings (e.g., `case{1,2,3,'one','two','three'}`).   
 
 **Plotting**
 ``` matlab
@@ -432,10 +434,152 @@ semilogy(x,y)
 loglog(x,y)
 subplot(m,n,p)
 ```
+Once you create a plot figure, you can add more plots to it by using the `hold on` command. If you don't use the hold command, MATLAB will erase the previous plot.
+
+There are many commands for changing the appearance of your plots, depending on the particular plot type. Here are a few that are pretty commonly used (look them up in the documentation for further info):
+``` matlab
+xlabel
+ylabel
+zlabel
+title
+shading
+colormap
+colorbar
+caxis
+axis
+```
+
+The `figure` command creates a new figure. When you have lots of figures, it can be helpful to create variables that refers to each figure:
+``` matlab
+hFigure1 = figure;
+% insert plot commands here
+
+hFigure2 = figure;
+% insert more plot commands here
+```
+Here variables `hFigure1` and `hFigure2` and handle variables that refer to the two figures. After creating the figures, type `hFigure1` into the command window. Here you will see the hidden world of all the possible settings you can specify for a figure's appearance. You can also create variables that refer to particular plot axes (created with `subplot`) as well as variables for each plot object (line, points, surfaces, etc). All of these have attributes that control their appearance. We don't have time to cover them in class, but you can dig deep into the documentation to figure out how to customize their appearances.
+
+**Saving figures**
+There are a few ways to save figures. You can use the buttons in the figure's menu bar to adjust its size on the printed page (or you can do this using the figure's handle variable mentioned above) and then to save it to a file. However, for programming, its generally better to use commands in your codes to automatically save the figure. The easiest command is `saveas(H,'FILENAME','FORMAT')`. Here are a few examples where we will save the figure with handle variable hFigure 1 (as created above):
+``` matlab
+saveas(hFigure1,'myFigure','fig')
+```
+This will save the figure in MATLAB's .fig format. You can click on the figure and it will reopen, allowing you to use MATLAB to continue interacting with the figure (i.e., adding stuff to it or changing its appearance).
+
+If you  want to print the figure, you can specify an image format such as one of these.
+``` matlab
+saveas(hFigure1,'myFigure','jpg')
+saveas(hFigure1,'myFigure','png')
+saveas(hFigure1,'myFigure','pdf')
+```
+There are many other formats, see the help for `saveas` and `print` commands. The PDF forat is useful since it stores the graphics in a vector image format, allowing you to later use software like Adobe Illustrator to fine tune the appearance if desired. However, I recommend learning how to control the plot appearance using you MATLAB scripts to, e.g., change the line width and color, marker size and color, etc so that you don't need to do anything else in graphical design software later.  The other formats such as jpg and png create bitmapped images where the graphical objects get turned into pixels, so you can't later edit their appearance.
 
 
 **Structures**
 
+Structures in MATLAB are a construct for grouping many variables together into a single object. You can define a structure two different ways
+``` matlab
+S =   struct('field1',VALUES1,'field2',VALUES2,...)  
+```
+or
+``` matlab
+S.field1 = VALUES1;
+S.field2 = VALUES2;
+...
+```
+How are structures useful? Consider this example. Suppose you have a complicated set of data that has many different attributes. For example the main data is the variable `data`, which is some measured quantity of interest. However, in addition to `data`, you might have lots of meta-data that describes the data collection method, location, and other related variables such as the latitude and longitude of the data collection, time, date, temperature, elevation, instrument name, sensor ID number, etc. You get the idea. You could define a variable for each of these quantities. However, if they are normal variables, you will have to keep track of all of them. For example suppose you read them in and then want to pass them to a function, you would have to have a code similar to this
+``` matlab
+...
+[data, latitude, logitude, time,date,temperature,elevation,instrument_name, ...
+sensor_ID] = readMyData(fileName);
+
+results = processData(data, latitude, logitude, time,date,temperature,elevation,instrument_name, ...
+sensor_ID);
+...
+```
+Now suppose you instead read these variables into a structure
+
+``` matlab
+function S = readData(fileName);
+% ... commands to open file and read in the variables...
+%...
+
+% Then assign to structure:
+S.data = data;
+S.latitude = latitude;
+S.latitude = latitude;
+S.logitude = logitude;
+S.time    = time;
+...
+```
+Now your main code will be much more readable:
+
+``` matlab
+S = readMyData(fileName);
+
+results = processData(S);
+```
+So you can think of structures as being like a box that you use to hold onto a collection of variables. Then instead of passing each variable to a function one at a time, you instead can just pass the box that holds all of them.
+
 **Reading and writing data**
+The save command will save variables to a file. Here are some examples from the documentation:
+  ``` matlab
+% Save all variables from the workspace to test.mat:
+    save test.mat
+
+    % Save two variables, where FILENAME is a variable:
+    savefile = 'pqfile.mat';
+    p = rand(1, 10);
+    q = ones(10);
+    save(savefile, 'p', 'q');
+
+    % Save the fields of a structure as individual variables:
+    s1.a = 12.7;
+    s1.b = {'abc', [4 5; 6 7]};
+    s1.c = 'Hello!';
+    save('newstruct.mat', '-struct', 's1');
+```
+By default, MATLAB will save using its own binary .mat format. You can instead save as an ascii text file using the `'-ascii'` option. See the help for further details.
+
+The `load` command is used to read in a data file in MATLAB's .mat format. It will also work to load in ascii text files as long as they only have numbers in them and are either a simple vector or matrix.Here are some examples from the documentation:
+``` matlab
+      gongStruct = load('gong.mat')      % All variables
+      load('handel.mat', 'y')            % Only variable y
+      load('accidents.mat', 'hwy*')      % Variables starting with "hwy"
+      load('topo.mat', '-regexp', '\d')  % Variables containing digits
+
+      % Using command form
+      load gong.mat
+      load topo.mat -regexp \d
+      load 'hypothetical file.mat'       % Filename with spaces
+```      
+
+`xlsread` will read in an excel spreadsheet.
+
+You can also write you own custom code to read in more complicated data file formats. See the help for commands `fopen`,`fclose`,`fgets`,`fscanf`,`sscanf` to get started. Likewise, there are custom commands you can use to write data to files using your own custom format.
 
 **Working with time and dates**
+MATLAB has some built-in functions that are helpful for working with times and dates.
+
+`datenum` is a command that converts a date into a serial date
+ 	numbers N.  A serial date number of 1 corresponds to Jan-1-0000.  
+ 	The year 0000 is merely a reference point and is not intended to be
+ 	interpreted as a real year.  Examples:
+  ``` matlab
+ 		n = datenum('19-May-2000') returns n = 730625.
+ 		n = datenum(2001,12,19) returns n = 731204.
+ 		n = datenum(2001,12,19,18,0,0) returns n = 731204.75.
+ 		n = datenum('19.05.2000','dd.mm.yyyy') returns n = 730625.
+  ```
+  Why is this useful? It is useful since now the time and date has been converted into a single number that you can perform operations on (add, subtract, compare, etc).  The command `now` returns the current time and date as a datenum.
+
+  You can then convert a datenum into a string using the `datestr` command:
+  ``` matlab
+ 		n = now;
+    datestr(n)
+    datestr(n,1)
+    datestr(n,13)
+  ```
+  See the documentation for `datestr` for futher info.  
+
+  If you plot a time series using a datenum vector for the x-axis, you can use the `datetick` command to get nicely formatted time stamps on the x-axis labels.

@@ -14,7 +14,7 @@ Summary: Overview of course schedule and topics
 | Tuesday  | 12-Sep | KK         | Version control and Unix in-class activity    |            |
 | Thursday | 14-Sep | RPA        | [Intro to Python]({filename}/lectures/python/intro_to_python.ipynb) | Chesley, Case |
 | Tuesday  | 19-Sep | RPA        | Intro to Python in-class activity   |                      |
-| Thursday | 21-Sep | KK         | [Intro to MATLAB]({filename}/lectures/matlab/matlab.md)  | Janowski, Carchedi |
+| Thursday | 21-Sep | KK         | [Intro to MATLAB]({filename}/lectures/matlab/matlab.md)   | Janowski, Carchedi |
 | Tuesday  | 26-Sep | KK         | Intro to MATLAB in-class activity  |                       |
 | Thursday | 28-Sep | KK         | Intro to Fortran |  Gruenburg, Hun Baek, Guo                    |
 | Tuesday  | 3-Oct  | KK         | Intro to Fortran in class-activity  |                     |
