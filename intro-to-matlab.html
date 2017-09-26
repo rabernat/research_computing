@@ -641,15 +641,15 @@ There are a few ways to save figures. You can use the buttons in the figure's me
 
 The `load` command is used to read in a data file in MATLAB&#39;s .mat format. It will also work to load in ascii text files as long as they only have numbers in them and are either a simple vector or matrix.Here are some examples from the documentation:
 ``` matlab
-      gongStruct = load(&#39;gong.mat&#39;)      % All variables
-      load(&#39;handel.mat&#39;, &#39;y&#39;)            % Only variable y
-      load(&#39;accidents.mat&#39;, &#39;hwy*&#39;)      % Variables starting with &quot;hwy&quot;
-      load(&#39;topo.mat&#39;, &#39;-regexp&#39;, &#39;\d&#39;)  % Variables containing digits
+  gongStruct = load(&#39;gong.mat&#39;)      % All variables
+  load(&#39;handel.mat&#39;, &#39;y&#39;)            % Only variable y
+  load(&#39;accidents.mat&#39;, &#39;hwy*&#39;)      % Variables starting with &quot;hwy&quot;
+  load(&#39;topo.mat&#39;, &#39;-regexp&#39;, &#39;\d&#39;)  % Variables containing digits
 
-      % Using command form
-      load gong.mat
-      load topo.mat -regexp \d
-      load &#39;hypothetical file.mat&#39;       % Filename with spaces
+  % Using command form
+  load gong.mat
+  load topo.mat -regexp \d
+  load &#39;hypothetical file.mat&#39;       % Filename with spaces
 </pre></div>
 
 
@@ -660,13 +660,15 @@ The `load` command is used to read in a data file in MATLAB&#39;s .mat format. I
 <p><code>datenum</code> is a command that converts a date into a serial date
     numbers N.  A serial date number of 1 corresponds to Jan-1-0000.<br>
     The year 0000 is merely a reference point and is not intended to be
-    interpreted as a real year.  Examples:
-  <code>matlab
-        n = datenum('19-May-2000') returns n = 730625.
-        n = datenum(2001,12,19) returns n = 731204.
-        n = datenum(2001,12,19,18,0,0) returns n = 731204.75.
-        n = datenum('19.05.2000','dd.mm.yyyy') returns n = 730625.</code>
-  Why is this useful? It is useful since now the time and date has been converted into a single number that you can perform operations on (add, subtract, compare, etc).  The command <code>now</code> returns the current time and date as a datenum.</p>
+    interpreted as a real year.  Examples:</p>
+<div class="highlight"><pre><span></span>        <span class="n">n</span> <span class="p">=</span> <span class="n">datenum</span><span class="p">(</span><span class="s">&#39;19-May-2000&#39;</span><span class="p">)</span>                <span class="c">% returns n = 730625.</span>
+        <span class="n">n</span> <span class="p">=</span> <span class="n">datenum</span><span class="p">(</span><span class="mi">2001</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">19</span><span class="p">)</span>                   <span class="c">% returns n = 731204.</span>
+        <span class="n">n</span> <span class="p">=</span> <span class="n">datenum</span><span class="p">(</span><span class="mi">2001</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">19</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>            <span class="c">% returns n = 731204.75.</span>
+        <span class="n">n</span> <span class="p">=</span> <span class="n">datenum</span><span class="p">(</span><span class="s">&#39;19.05.2000&#39;</span><span class="p">,</span><span class="s">&#39;dd.mm.yyyy&#39;</span><span class="p">)</span>    <span class="c">% returns n = 730625.</span>
+</pre></div>
+
+
+<p>Why is this useful? It is useful since now the time and date has been converted into a single number that you can perform operations on (add, subtract, compare, etc).  The command <code>now</code> returns the current time and date as a datenum.</p>
 <p>You can then convert a datenum into a string using the <code>datestr</code> command:
   <code>matlab
         n = now;
@@ -713,7 +715,7 @@ The `load` command is used to read in a data file in MATLAB&#39;s .mat format. I
       <a href="./tag/bash.html">bash</a>
     </li>
     <li class="list-group-item tag-1">
-      <a href="./tag/shell.html">shell</a>
+      <a href="./tag/file-system.html">file system</a>
     </li>
     <li class="list-group-item tag-1">
       <a href="./tag/assignment.html">assignment</a>
@@ -722,7 +724,7 @@ The `load` command is used to read in a data file in MATLAB&#39;s .mat format. I
       <a href="./tag/unix.html">unix</a>
     </li>
     <li class="list-group-item tag-1">
-      <a href="./tag/file-system.html">file system</a>
+      <a href="./tag/shell.html">shell</a>
     </li>
     <li class="list-group-item tag-3">
       <a href="./tag/python.html">python</a>
@@ -731,16 +733,10 @@ The `load` command is used to read in a data file in MATLAB&#39;s .mat format. I
       <a href="./tag/matlab.html">MATLAB</a>
     </li>
     <li class="list-group-item tag-3">
-      <a href="./tag/fortran.html">fortran</a>
-    </li>
-    <li class="list-group-item tag-3">
       <a href="./tag/git.html">git</a>
     </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/source-code-editor.html">source code editor</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/version-control.html">version control</a>
+    <li class="list-group-item tag-3">
+      <a href="./tag/fortran.html">fortran</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/geomapapp.html">GeoMapApp</a>
@@ -752,10 +748,16 @@ The `load` command is used to read in a data file in MATLAB&#39;s .mat format. I
       <a href="./tag/github.html">github</a>
     </li>
     <li class="list-group-item tag-4">
+      <a href="./tag/vpn.html">vpn</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/version-control.html">version control</a>
+    </li>
+    <li class="list-group-item tag-4">
       <a href="./tag/programming.html">programming</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/vpn.html">vpn</a>
+      <a href="./tag/source-code-editor.html">source code editor</a>
     </li>
   </ul>
 </li>
