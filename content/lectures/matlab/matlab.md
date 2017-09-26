@@ -524,7 +524,7 @@ So you can think of structures as being like a box that you use to hold onto a c
 **Reading and writing data**
 
 The save command will save variables to a file. Here are some examples from the documentation:
-  ``` matlab
+``` matlab
 % Save all variables from the workspace to test.mat:
     save test.mat
 
@@ -544,15 +544,15 @@ By default, MATLAB will save using its own binary .mat format. You can instead s
 
 The `load` command is used to read in a data file in MATLAB's .mat format. It will also work to load in ascii text files as long as they only have numbers in them and are either a simple vector or matrix.Here are some examples from the documentation:
 ``` matlab
-      gongStruct = load('gong.mat')      % All variables
-      load('handel.mat', 'y')            % Only variable y
-      load('accidents.mat', 'hwy*')      % Variables starting with "hwy"
-      load('topo.mat', '-regexp', '\d')  % Variables containing digits
+  gongStruct = load('gong.mat')      % All variables
+  load('handel.mat', 'y')            % Only variable y
+  load('accidents.mat', 'hwy*')      % Variables starting with "hwy"
+  load('topo.mat', '-regexp', '\d')  % Variables containing digits
 
-      % Using command form
-      load gong.mat
-      load topo.mat -regexp \d
-      load 'hypothetical file.mat'       % Filename with spaces
+  % Using command form
+  load gong.mat
+  load topo.mat -regexp \d
+  load 'hypothetical file.mat'       % Filename with spaces
 ```      
 
 `xlsread` will read in an excel spreadsheet.
@@ -567,21 +567,21 @@ MATLAB has some built-in functions that are helpful for working with times and d
  	numbers N.  A serial date number of 1 corresponds to Jan-1-0000.  
  	The year 0000 is merely a reference point and is not intended to be
  	interpreted as a real year.  Examples:
-  ``` matlab
- 		n = datenum('19-May-2000') returns n = 730625.
- 		n = datenum(2001,12,19) returns n = 731204.
- 		n = datenum(2001,12,19,18,0,0) returns n = 731204.75.
- 		n = datenum('19.05.2000','dd.mm.yyyy') returns n = 730625.
-  ```
+``` matlab
+  n = datenum('19-May-2000')                % returns n = 730625.
+  n = datenum(2001,12,19)                   % returns n = 731204.
+  n = datenum(2001,12,19,18,0,0)            % returns n = 731204.75.
+  n = datenum('19.05.2000','dd.mm.yyyy')    % returns n = 730625.
+```
   Why is this useful? It is useful since now the time and date has been converted into a single number that you can perform operations on (add, subtract, compare, etc).  The command `now` returns the current time and date as a datenum.
 
   You can then convert a datenum into a string using the `datestr` command:
-  ``` matlab
- 		n = now;
-    datestr(n)
-    datestr(n,1)
-    datestr(n,13)
-  ```
+``` matlab
+  n = now;
+  datestr(n)
+  datestr(n,1)
+  datestr(n,13)
+```
   See the documentation for `datestr` for futher info.  
 
   If you plot a time series using a datenum vector for the x-axis, you can use the `datetick` command to get nicely formatted time stamps on the x-axis labels.
