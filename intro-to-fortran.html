@@ -219,9 +219,22 @@ Error: Unclassifiable statement at <span class="o">(</span><span class="m">1</sp
 <p>Note that the variable declarations in Fortran have to be made at the start of the program (or subroutine or function), before any commands are made. Unlike Python, you can't declare a new variable in the middle of a sequence of commands.  If you try to, the compiler will throw an error message.</p>
 <p><strong>Fortran is case insensitive</strong></p>
 <p>Fortran is case insensitive, meaning that it will treat variables <code>x</code> and <code>X</code> as the same quantity.</p>
-<p>| Fortran | Python | MATLAB|
-|-------------|-------------|--------|-------|--------------|
-| case insensitive | case sensitive| case sensitive|</p>
+<table class="table table-striped table-hover">
+<thead>
+<tr>
+<th>Fortran</th>
+<th>Python</th>
+<th>MATLAB</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>case insensitive</td>
+<td>case sensitive</td>
+<td>case sensitive</td>
+</tr>
+</tbody>
+</table>
 <p><strong>Variable Precision</strong></p>
 <p><code>real(8)</code> declared above means a real variable that has 8 bytes (64 bits) of precision. This is what is known as <a href="https://en.wikipedia.org/wiki/Double-precision_floating-point_format">double precision</a>, which is  the default precision in MATLAB and Python.  You can also declare a lower or higher order precision (e.g. <code>real(4)</code> and <code>real(16)</code>) but you should only do this if you have a very good reason to do so. 99.99% of the time you should just use <code>real(8)</code> rather than (4) or (16). The <code>complex(8)</code> declaration means a complex number with 8 bytes of precision for each of the real and imaginary parts of the number. For integers, you typically  don't need to specify the precision and most of the time you can just use <code>integer</code> and then let the compiler assign the precision (usually either 4 or 8 bytes).</p>
 <p>You can use the <code>huge()</code> intrinsic function to show the largest numbers that can be represented by each precision. For example, compile and run this code to see the largest possible values that can be represented by each numerical variable type:</p>
@@ -387,8 +400,8 @@ Error: Unclassifiable statement at <span class="o">(</span><span class="m">1</sp
 </pre></div>
 
 
-<p><strong>if statements</strong>
-These are similar to MATLAB and Python, except that  the logical or relational statements need to be in parentheses and you need to include the keyword <code>then</code> after the logical statement. The <code>if</code> statement also ends with the keyword <code>endif</code>.</p>
+<p><strong>if statements</strong></p>
+<p>These are similar to MATLAB and Python, except that  the logical or relational statements need to be in parentheses and you need to include the keyword <code>then</code> after the logical statement. The <code>if</code> statement also ends with the keyword <code>endif</code>.</p>
 <div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span><span class="p">)</span> <span class="k">then</span>
 <span class="k">    write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="s1">&#39;x is less than y&#39;</span>
 <span class="n">elseif</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span> <span class="p">)</span> <span class="k">then</span>
@@ -444,8 +457,8 @@ These are similar to MATLAB and Python, except that  the logical or relational s
 </pre></div>
 
 
-<p><strong>do while loops</strong>
-The <code>do while</code> loop is similar but instead of using a counter, it uses a logical variable to exit the loop.</p>
+<p><strong>do while loops</strong></p>
+<p>The <code>do while</code> loop is similar but instead of using a counter, it uses a logical variable to exit the loop.</p>
 <div class="highlight"><pre><span></span><span class="k">program </span><span class="n">DoWhileTest</span>
 
 <span class="k">implicit none</span>
@@ -494,8 +507,8 @@ The <code>do while</code> loop is similar but instead of using a counter, it use
 
 
 <p>The arrays above are fixed dimensional, meaning that we declared their sizes in the declaration statements.</p>
-<p><strong>allocatable arrays</strong>
-A more flexible construct is the allocatable array. The arrays you have already seen in Python and MATLAB were allocatable arrays, but you didn't need to do anything special to create them. In Fortran you need to explicitly declare them.</p>
+<p><strong>allocatable arrays</strong></p>
+<p>A more flexible construct is the allocatable array. The arrays you have already seen in Python and MATLAB were allocatable arrays, but you didn't need to do anything special to create them. In Fortran you need to explicitly declare them.</p>
 <div class="highlight"><pre><span></span><span class="kt">integer</span>                             <span class="kd">::</span> <span class="n">m</span><span class="p">,</span><span class="n">n</span>
 <span class="kt">real</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:),</span>   <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">xArray1D</span>
 <span class="kt">real</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:,:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">xArray2D</span>
@@ -570,52 +583,52 @@ to find ways to make the code run faster.  We don't have time to go into the det
   <a href="./"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
   <ul class="list-group " id="tags">
     <li class="list-group-item tag-1">
-      <a href="./tag/bash.html">bash</a>
-    </li>
-    <li class="list-group-item tag-1">
-      <a href="./tag/unix.html">unix</a>
+      <a href="./tag/file-system.html">file system</a>
     </li>
     <li class="list-group-item tag-1">
       <a href="./tag/shell.html">shell</a>
     </li>
     <li class="list-group-item tag-1">
-      <a href="./tag/file-system.html">file system</a>
-    </li>
-    <li class="list-group-item tag-1">
       <a href="./tag/assignment.html">assignment</a>
     </li>
-    <li class="list-group-item tag-3">
-      <a href="./tag/matlab.html">MATLAB</a>
+    <li class="list-group-item tag-1">
+      <a href="./tag/unix.html">unix</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/bash.html">bash</a>
     </li>
     <li class="list-group-item tag-3">
       <a href="./tag/fortran.html">fortran</a>
     </li>
     <li class="list-group-item tag-3">
-      <a href="./tag/python.html">python</a>
+      <a href="./tag/git.html">git</a>
     </li>
     <li class="list-group-item tag-3">
-      <a href="./tag/git.html">git</a>
+      <a href="./tag/matlab.html">MATLAB</a>
+    </li>
+    <li class="list-group-item tag-3">
+      <a href="./tag/python.html">python</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/version-control.html">version control</a>
     </li>
     <li class="list-group-item tag-4">
+      <a href="./tag/source-code-editor.html">source code editor</a>
+    </li>
+    <li class="list-group-item tag-4">
       <a href="./tag/geomapapp.html">GeoMapApp</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/gmt.html">gmt</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/github.html">github</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/programming.html">programming</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/vpn.html">vpn</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/source-code-editor.html">source code editor</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/github.html">github</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/gmt.html">gmt</a>
     </li>
   </ul>
 </li>
