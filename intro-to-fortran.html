@@ -111,33 +111,430 @@ Research Computing in Earth Sciences            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p><strong>Basic structure</strong></p>
+                <p>Fortran is a powerful language for creating  fast and memory efficient codes for heavy numerical  computations. However, it is also a more verbose language than Python and MATLAB, so it generally will take you much longer to write Fortran codes compared to an equivalent code in Python and MATLAB. Also, unlike MATLAB and Python which can easily be run interactively, Fortran codes must be compiled before you can run them in a terminal shell. That makes debugging and testing a bit slower too.  Finally, Fortran doesn't have a built-in graphics library, so you can't interactively plot results like you can with MATLAB and Python. So with those points in mind, we recommend you stick to MATLAB and Python for you day-to-day scientific computing tasks. However,  Fortran is good when you have some computational problem where you need it to run as fast as possible, for example when it would take days to run on MATLAB or Python. Learning the basics of Fortran will also be useful for when you come across  Fortran codes that do some computational task you need and you  want to interface those codes with your own codes or you might want to modify them for your own research needs.</p>
 <p><strong>Programs</strong></p>
-<p>Make a file named <code>HelloWorld.f90</code> that has the following content:</p>
+<p>Fortran is a procedural language where you define a sequence of commands to execute in a program file. The program file is then compiled using a Fortran compiler. The compiler turns the program commands in the text file  into machine language instructions that will execute on the computer's CPU.  You  run the compiled code from a terminal shell.  </p>
+<p>Let's begin by looking at a  simple example showing the basic workflow for using Fortran. Start by making  a plain text file named <code>HelloWorld.f90</code> that has the following content:</p>
 <div class="highlight"><pre><span></span><span class="k">program </span><span class="n">HelloWorld</span>
-  <span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="s1">&#39;Hello World&#39;</span>
+  <span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="s1">&#39;Hello world&#39;</span>
 <span class="k">end program </span><span class="n">HelloWorld</span>
 </pre></div>
 
 
-<p>You can compile the code by</p>
+<p>Compile the code using the command</p>
 <div class="highlight"><pre><span></span>$ gfortran HelloWorld.f90 -o HelloWorld
 </pre></div>
 
 
-<p>Run the code in the terminal</p>
+<p>Run the code in the terminal using</p>
 <div class="highlight"><pre><span></span>$ ./HelloWorld
 Hello World
 </pre></div>
 
 
-<p><strong>Subroutines</strong></p>
-<p><strong>Functions</strong></p>
-<p><strong>Control flow</strong></p>
-<p><strong>Compiling a code</strong></p>
-<p><strong>Running a code</strong></p>
+<p>A Fortran program has to have a single <code>program</code> file that lists the sequence of commands to execute. The program file has to start with the first command being the word <code>program</code> and it must end with the last command being the keyword <code>end</code>. The words <code>program HelloWorld</code> after the final   <code>end</code> statement aren't necessary, but they are a  useful organization construct for pointing out what exactly is ending, especially when your program file is very long and also contains subroutine and function code beneath the  <code>program</code> section.</p>
+<p><strong>Compiling</strong></p>
+<p>In the example above, we compiled the code by calling our compiler, here the <em>gfortran</em> compiler which is open source and freely available.  Intel's <em>ifort</em> compiler is a commercial compiler that is fairly ubiquitous, especially on cluster systems. For some codes, ifort can produce an executable that runs 10-20x faster than what gfortran produces.</p>
+<p>To compile our HelloWorld.f90 code, we used the output flag <code>-o</code> and then listed the name we wanted to use for the compiled program that was output. Here we used HelloWorld for the name, but if for some (not recommended!) reason we wanted to name it MyProgram instead, we could compile it using</p>
+<div class="highlight"><pre><span></span>$ gfortran HelloWorld.f90 -o MyProgram
+</pre></div>
+
+
+<p>If you don't specify <code>-o</code> and the output program name, then the compiler will by default name the program  <code>a.out</code>.</p>
+<p>If there are any errors with your code, the compiler should let you know what the problem is. For example, try compiling the code below, which has an errant 'a' character:</p>
+<div class="highlight"><pre><span></span><span class="k">program </span><span class="n">HelloWorld</span>
+  <span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="s1">&#39;Hello World&#39;</span>
+<span class="n">a</span>
+<span class="k">end program </span><span class="n">HelloWorld</span>
+</pre></div>
+
+
+<p>The compiler returns an error message:</p>
+<div class="highlight"><pre><span></span>$ gfortran HelloWorld.f90
+HelloWorld.f90:3:0:
+
+ a
+
+Error: Unclassifiable statement at <span class="o">(</span><span class="m">1</span><span class="o">)</span>
+</pre></div>
+
+
+<p>The statement <code>HelloWorld.f90:3:0:</code> specifies that the 'unclassifiable statement' is in file HelloWorld.f90 on line 3, column 0. It then prints out what is on that line (here the errant letter a). When there are errors in long and complicated Fortran codes, the first error the compiler finds can lead it to  other errors which stem from it not being able to interpret the code that had the first error. So if you get more than one error message when compiling a code, go fix the first listed error and try recompiling the code to see if the other errors are now gone.</p>
+<p><strong>Comments</strong></p>
+<p>Anything to the right of an exclamation point <code>!</code> in a Fortran code is considered a comment. For example a commented version of our HelloWorld.f90 program is</p>
+<div class="highlight"><pre><span></span><span class="c">!</span>
+<span class="c">! This program writes &#39;Hello world&#39; to the shell.</span>
+<span class="c">! Version 0.1, September 27, 2017</span>
+<span class="c">!</span>
+<span class="k">program </span><span class="n">HelloWorld</span>
+
+<span class="c">!</span>
+<span class="c">! Send a message to the world:</span>
+<span class="c">!</span>
+  <span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="s1">&#39;Hello world&#39;</span>
+
+<span class="c">!</span>
+<span class="c">! All done, goodbye</span>
+<span class="c">!</span>
+<span class="k">end program </span><span class="n">HelloWorld</span>
+</pre></div>
+
+
+<p>We haven't talked much about writing comments in your codes, but they are an essential part of good coding practice. You can use them to document what each section of a code does; this can be very helpful for when you return to a code you wrote a long time ago and are trying to remember what it does, or when you get someone else's code and are trying to understand what it does. You can also use code comments as an outline when first starting to write a long and complicated code. The comments can outline  the sequence of steps you intend the code to do. Once your outline is complete, you can start coding by filling in the necessary commands below each section of comments.</p>
+<p>At a minimum, your code should have at least a few comments at the start of the text file that indicates what the codes does. This is also a place where you can add a date stamp and possibly a version number. You can also list the authorship of the code, which can be useful if it will be shared with other or is part of a collaborative effort .</p>
+<p><strong>Variables</strong></p>
+<p>Unlike MATLAB and Python, Fortran requires you to declare the type of each variable. For example, you need to declare whether a variable is an <code>integer</code>, <code>real</code>, <code>complex</code>, <code>logical</code> or <code>character</code>. Here is an example program declaring several different variable types:</p>
+<div class="highlight"><pre><span></span><span class="k">program </span><span class="n">VariableShowcase</span>
+
+<span class="k">implicit none</span>
+
+<span class="c">! Declare variables:</span>
+<span class="kt">integer</span>         <span class="kd">::</span> <span class="n">i</span>
+<span class="kt">real</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>         <span class="kd">::</span> <span class="n">x</span>
+<span class="kt">complex</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>      <span class="kd">::</span> <span class="n">z</span>
+<span class="kt">logical</span>         <span class="kd">::</span> <span class="nb">bTest</span>
+<span class="kt">character</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">sFileName</span>
+
+<span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">z</span> <span class="o">=</span> <span class="nb">cmplx</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">2.0</span><span class="p">)</span>
+<span class="nb">bTest</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>    <span class="c">! logical types are .true. or .false.</span>
+<span class="n">sFileName</span> <span class="o">=</span> <span class="s1">&#39;data.txt&#39;</span>
+
+<span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="s1">&#39;i: &#39;</span><span class="p">,</span> <span class="n">i</span>
+<span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="s1">&#39;x: &#39;</span><span class="p">,</span> <span class="n">x</span>
+<span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="s1">&#39;z: &#39;</span><span class="p">,</span> <span class="n">z</span>
+<span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="s1">&#39;bTest: &#39;</span><span class="p">,</span> <span class="nb">bTest</span>
+<span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="s1">&#39;sFileName: &#39;</span><span class="p">,</span> <span class="n">sFileName</span>
+
+<span class="k">end program </span><span class="n">VariableShowcase</span>
+</pre></div>
+
+
+<p>Compile and run this demo:</p>
+<div class="highlight"><pre><span></span>$ gfortran VariableShowcase.f90 -o VariableShowcase<span class="p">;</span> ./VariableShowcase
+</pre></div>
+
+
+<p>Note that the variable declarations in Fortran have to be made at the start of the program (or subroutine or function), before any commands are made. Unlike Python, you can't declare a new variable in the middle of a sequence of commands.  If you try to, the compiler will throw an error message.</p>
+<p><strong>Fortran is case insensitive</strong></p>
+<p>Fortran is case insensitive, meaning that it will treat variables <code>x</code> and <code>X</code> as the same quantity.</p>
+<p>| Fortran | Python | MATLAB|
+|-------------|-------------|--------|-------|--------------|
+| case insensitive | case sensitive| case sensitive|</p>
+<p><strong>Variable Precision</strong></p>
+<p><code>real(8)</code> declared above means a real variable that has 8 bytes (64 bits) of precision. This is what is known as <a href="https://en.wikipedia.org/wiki/Double-precision_floating-point_format">double precision</a>, which is  the default precision in MATLAB and Python.  You can also declare a lower or higher order precision (e.g. <code>real(4)</code> and <code>real(16)</code>) but you should only do this if you have a very good reason to do so. 99.99% of the time you should just use <code>real(8)</code> rather than (4) or (16). The <code>complex(8)</code> declaration means a complex number with 8 bytes of precision for each of the real and imaginary parts of the number. For integers, you typically  don't need to specify the precision and most of the time you can just use <code>integer</code> and then let the compiler assign the precision (usually either 4 or 8 bytes).</p>
+<p>You can use the <code>huge()</code> intrinsic function to show the largest numbers that can be represented by each precision. For example, compile and run this code to see the largest possible values that can be represented by each numerical variable type:</p>
+<div class="highlight"><pre><span></span><span class="k">program </span><span class="n">PrecisionTest</span>
+
+<span class="k">implicit none</span>
+
+<span class="c">! Declare variables:</span>
+<span class="kt">integer</span>         <span class="kd">::</span> <span class="n">i</span>
+<span class="kt">integer</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>      <span class="kd">::</span> <span class="n">i4</span>
+<span class="kt">integer</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>      <span class="kd">::</span> <span class="n">i8</span>
+<span class="kt">real</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>         <span class="kd">::</span> <span class="n">x4</span>
+<span class="kt">real</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>         <span class="kd">::</span> <span class="n">x8</span>
+
+<span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="s1">&#39;integer:    &#39;</span><span class="p">,</span> <span class="nb">huge</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="s1">&#39;integer:    &#39;</span><span class="p">,</span> <span class="nb">huge</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="s1">&#39;integer(4): &#39;</span><span class="p">,</span> <span class="nb">huge</span><span class="p">(</span><span class="n">i4</span><span class="p">)</span>
+<span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="s1">&#39;integer(8): &#39;</span><span class="p">,</span> <span class="nb">huge</span><span class="p">(</span><span class="n">i8</span><span class="p">)</span>
+<span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="s1">&#39;real(4):    &#39;</span><span class="p">,</span> <span class="nb">huge</span><span class="p">(</span><span class="n">x4</span><span class="p">)</span>
+<span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="s1">&#39;real(8):    &#39;</span><span class="p">,</span> <span class="nb">huge</span><span class="p">(</span><span class="n">x8</span><span class="p">)</span>
+
+<span class="k">end program </span><span class="n">PrecisionTest</span>
+</pre></div>
+
+
+<p>In this tutorial I am using modern Fortran syntax to define the variables.  However, there are older ways of defining variables that you should be aware of since you may stumble across them. The older syntax does not use the <code>::</code> separator between the declaration and the list of variable names and has slightly different type names.   Most Fortran compilers support the older and modern syntax:</p>
+<div class="highlight"><pre><span></span><span class="c">! Old style Fortran variable types:</span>
+<span class="kt">double precision</span>      <span class="c">! same as real(8)</span>
+<span class="kt">real</span><span class="o">*</span><span class="mi">8</span>                <span class="c">! same as real(8)</span>
+<span class="kt">real</span><span class="o">*</span><span class="mi">4</span>                <span class="c">! same as real(4)</span>
+<span class="kt">double complex</span>        <span class="c">! same as complex(8)</span>
+<span class="kt">complex</span><span class="o">*</span><span class="mi">16</span>            <span class="c">! same as complex(8)</span>
+<span class="kt">integer</span><span class="o">*</span><span class="mi">4</span>             <span class="c">! same as integer(4)</span>
+</pre></div>
+
+
+<p><strong>implicit none</strong></p>
+<p><em>You should always include the statement <code>implicit none</code> at the start of your Fortran codes (programs, subroutines and functions).</em></p>
+<p>By default, Fortran has a rather insidious implicit typing for variables that have certain first letters in their names.  Unless specified otherwise, all variables starting with letters I, J, K, L, M and N are default integers, and all others are default real. This can lead to nasty programming errors if you aren't careful. For example, consider the following code:</p>
+<div class="highlight"><pre><span></span><span class="k">program </span><span class="n">ImplicitTypeTest</span>
+
+<span class="n">ireal</span> <span class="o">=</span> <span class="mf">1.5</span>   <span class="c">! we want this to be a real number, but since the variable</span>
+              <span class="c">! name starts with an i Fortran thinks its an integer.</span>
+
+<span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="s1">&#39;ireal is: &#39;</span><span class="p">,</span> <span class="n">ireal</span>
+
+<span class="k">end program </span><span class="n">ImplicitTypeTest</span>
+</pre></div>
+
+
+<p>Try running this program and you will see that it prints out ireal as the integer 1. If instead, you use <code>implicit none</code> at the start of this code, the compiler will issue an error because <code>ireal</code> was not yet declared.  If we had instead used <code>implicit none</code> at the start of the code, the compiler would have warned us that <code>ireal</code> was undeclared.</p>
+<p>Here's another example where <code>implicit none</code> would help avoid getting the wrong result. Can you spot the error?  </p>
+<div class="highlight"><pre><span></span><span class="k">program </span><span class="n">TestUndeclared</span>
+
+<span class="kt">real</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">distance</span><span class="p">,</span> <span class="n">velocity</span><span class="p">,</span> <span class="nb">time</span>
+
+<span class="nb">time</span>     <span class="o">=</span> <span class="mf">2.0</span>
+<span class="n">velocity</span> <span class="o">=</span> <span class="mf">5.0</span>
+
+<span class="n">distance</span> <span class="o">=</span> <span class="n">velocity</span><span class="o">*</span><span class="n">times</span>
+
+<span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="s1">&#39;distance: &#39;</span><span class="p">,</span> <span class="n">distance</span>
+
+<span class="k">end program </span><span class="n">TestUndeclared</span>
+</pre></div>
+
+
+<p><strong>Relational operators</strong></p>
+<table class="table table-striped table-hover">
+<thead>
+<tr>
+<th>Older Fortran</th>
+<th>Newer Fortran</th>
+<th>Python</th>
+<th>MATLAB</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.eq.</td>
+<td>==</td>
+<td>==</td>
+<td>==</td>
+<td>equality</td>
+</tr>
+<tr>
+<td>.ne.</td>
+<td>/=</td>
+<td>!=</td>
+<td>~=</td>
+<td>not equality</td>
+</tr>
+<tr>
+<td>.lt.</td>
+<td>&lt;</td>
+<td>&lt;</td>
+<td>&lt;</td>
+<td>less than</td>
+</tr>
+<tr>
+<td>.le.</td>
+<td>&lt;=</td>
+<td>&lt;=</td>
+<td>&lt;=</td>
+<td>less than or equal to</td>
+</tr>
+<tr>
+<td>.gt.</td>
+<td>&gt;</td>
+<td>&gt;</td>
+<td>&gt;</td>
+<td>greater than</td>
+</tr>
+<tr>
+<td>.ge.</td>
+<td>&gt;=</td>
+<td>&gt;=</td>
+<td>&gt;=</td>
+<td>greater than or equal to</td>
+</tr>
+<tr>
+<td>.and.</td>
+<td>.and.</td>
+<td>and</td>
+<td>&amp;</td>
+<td>logical and</td>
+</tr>
+<tr>
+<td>.or.</td>
+<td>.or.</td>
+<td>or</td>
+<td>|</td>
+<td>logical or</td>
+</tr>
+<tr>
+<td>.not.</td>
+<td>.not.</td>
+<td>not</td>
+<td>~</td>
+<td>logical not</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><span class="k">program </span><span class="n">TestRelationalOps</span>
+
+<span class="kt">real</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="kd">::</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span>
+<span class="kt">logical</span> <span class="kd">::</span> <span class="n">ltest1</span><span class="p">,</span> <span class="n">ltest2</span><span class="p">,</span> <span class="n">ltest3</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mf">2.0</span>
+<span class="n">z</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+<span class="n">ltest1</span> <span class="o">=</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span>
+<span class="n">ltest2</span> <span class="o">=</span> <span class="n">x</span> <span class="o">==</span> <span class="n">z</span>
+<span class="n">ltest3</span> <span class="o">=</span> <span class="p">(</span><span class="n">ltest1</span><span class="p">.</span><span class="nb">and</span><span class="p">.</span><span class="n">ltest2</span><span class="p">)</span>
+
+<span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="s1">&#39;ltest1: &#39;</span><span class="p">,</span> <span class="n">ltest1</span>
+<span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="s1">&#39;ltest2: &#39;</span><span class="p">,</span> <span class="n">ltest2</span>
+<span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="s1">&#39;ltest3: &#39;</span><span class="p">,</span> <span class="n">ltest3</span>
+
+<span class="k">end program </span><span class="n">TestRelationalOps</span>
+</pre></div>
+
+
+<p><strong>if statements</strong>
+These are similar to MATLAB and Python, except that  the logical or relational statements need to be in parentheses and you need to include the keyword <code>then</code> after the logical statement. The <code>if</code> statement also ends with the keyword <code>endif</code>.</p>
+<div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">    write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="s1">&#39;x is less than y&#39;</span>
+<span class="n">elseif</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span> <span class="p">)</span> <span class="k">then</span>
+<span class="k">    write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="s1">&#39;x is greater than y&#39;</span>
+<span class="n">elseif</span> <span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">y</span> <span class="p">)</span> <span class="k">then</span>
+<span class="k">    write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="s1">&#39;x equals y&#39;</span>
+<span class="k">else</span>
+<span class="k">    write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="s1">&#39;this case should never be found&#39;</span>      
+<span class="n">endif</span>
+</pre></div>
+
+
+<p><strong>do loops</strong></p>
+<p>Loops in Fortran are done using the <code>do</code> <code>enddo</code> construct:</p>
+<div class="highlight"><pre><span></span><span class="k">program </span><span class="n">DoLoopTest</span>
+<span class="k">implicit none</span>
+
+<span class="kt">integer</span> <span class="kd">::</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="n">n</span>
+  <span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="s1">&#39;i is &#39;</span><span class="p">,</span> <span class="n">i</span>
+<span class="n">enddo</span>
+
+<span class="k">end program </span><span class="n">DoLoopTest</span>
+</pre></div>
+
+
+<p>Note that unlike Python, you don't need to indent the commands inside the <code>do</code> <code>enddo</code> construct. However, it helps to make your code much more readable if you do indent the commands. Indenting is also super helpful if you loop has spans a page or more of code, since the indentation is a visual guide to the scope of the loop. Indenting is also helpful when you have nested loops. For example, both of these loops below are valid Fortran, but which one is easier to read?</p>
+<div class="highlight"><pre><span></span><span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="n">l</span>
+<span class="k">do </span><span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="n">m</span>
+<span class="k">do </span><span class="n">k</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="n">n</span>
+<span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">k</span>
+<span class="n">enddo</span>
+<span class="n">endo</span>
+<span class="n">enddo</span>
+
+<span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="n">l</span>
+  <span class="k">do </span><span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="n">m</span>
+    <span class="k">do </span><span class="n">k</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="n">n</span>
+      <span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">k</span>
+    <span class="n">enddo</span>
+  <span class="n">endo</span>
+<span class="n">enddo</span>
+</pre></div>
+
+
+<p>You can change the increment for a do loop using the syntax <code>start,stop,increment</code>. Also, Fortran is like MATLAB where the loop is inclusive over the stop value. This is in contrast to Python, which is exclusive for the stop value (meaning Python counts up to but not including the stop value).</p>
+<div class="highlight"><pre><span></span><span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">5</span>
+  <span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="n">i</span>
+<span class="n">enddo</span>
+</pre></div>
+
+
+<p><strong>do while loops</strong>
+The <code>do while</code> loop is similar but instead of using a counter, it uses a logical variable to exit the loop.</p>
+<div class="highlight"><pre><span></span><span class="k">program </span><span class="n">DoWhileTest</span>
+
+<span class="k">implicit none</span>
+
+<span class="kt">integer</span> <span class="kd">::</span> <span class="n">i</span><span class="p">,</span> <span class="n">iCounter</span>
+<span class="kt">logical</span> <span class="kd">::</span> <span class="n">lKeepGoing</span>
+
+<span class="n">lKeepGoing</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
+<span class="n">iCounter</span>   <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">do while</span> <span class="p">(</span><span class="n">lKeepGoing</span><span class="p">)</span>
+
+  <span class="n">iCounter</span> <span class="o">=</span> <span class="n">iCounter</span> <span class="o">+</span> <span class="mi">1</span>
+  <span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="s1">&#39;iCounter: &#39;</span><span class="p">,</span><span class="n">iCounter</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">iCounter</span> <span class="o">==</span> <span class="mi">10</span> <span class="p">)</span> <span class="n">lKeepGoing</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
+
+<span class="n">enddo</span>
+<span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="s1">&#39;All done&#39;</span>
+
+<span class="k">end program </span><span class="n">DoWhileTest</span>
+</pre></div>
+
+
+<p><strong>arrays</strong></p>
+<div class="highlight"><pre><span></span><span class="k">program </span><span class="n">TestArray</span>
+
+<span class="kt">real</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="kd">::</span> <span class="n">xArray</span>
+<span class="kt">integer</span>                <span class="kd">::</span> <span class="n">i</span>
+
+<span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="n">size</span><span class="p">(</span><span class="n">xArray</span><span class="p">)</span>
+  <span class="n">xArray</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="mf">5.0</span><span class="o">*</span><span class="n">i</span>
+<span class="n">enddo</span>
+
+<span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="s1">&#39;xArray: &#39;</span><span class="p">,</span> <span class="n">xArray</span>
+
+<span class="k">end program </span><span class="n">TestArray</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="kt">real</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>          <span class="kd">::</span> <span class="n">xArray1D</span>
+<span class="kt">real</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>       <span class="kd">::</span> <span class="n">xArray2D</span>
+<span class="kt">real</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">xArray3D</span>
+<span class="kt">integer</span><span class="p">,</span> <span class="k">dimension</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="kd">::</span> <span class="mi">4</span><span class="n">D</span> <span class="k">array</span>
+</pre></div>
+
+
+<p>The arrays above are fixed dimensional, meaning that we declared their sizes in the declaration statements.</p>
+<p><strong>allocatable arrays</strong>
+A more flexible construct is the allocatable array. The arrays you have already seen in Python and MATLAB were allocatable arrays, but you didn't need to do anything special to create them. In Fortran you need to explicitly declare them.</p>
+<div class="highlight"><pre><span></span><span class="kt">integer</span>                             <span class="kd">::</span> <span class="n">m</span><span class="p">,</span><span class="n">n</span>
+<span class="kt">real</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:),</span>   <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">xArray1D</span>
+<span class="kt">real</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:,:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">xArray2D</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="k">allocate</span><span class="p">(</span><span class="n">xArray1D</span><span class="p">(</span><span class="n">m</span><span class="p">))</span>
+<span class="k">allocate</span><span class="p">(</span><span class="n">xArray2D</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">))</span>
+</pre></div>
+
+
+<p>You can then assign values to the elements of the arrays.</p>
+<p>If you need to free up memory later on in your program, you can <code>deallocate</code> the arrays:</p>
+<div class="highlight"><pre><span></span><span class="k">deallocate</span><span class="p">(</span><span class="n">xArray1D</span><span class="p">,</span> <span class="n">xArray2D</span><span class="p">)</span>
+</pre></div>
+
+
+<p>If you need to know the size of an array, you can use the  <code>size</code> command:</p>
+<div class="highlight"><pre><span></span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="n">size</span><span class="p">(</span><span class="n">xArray2D</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>   <span class="c">! returns the size of the 1st dimension</span>
+<span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="n">size</span><span class="p">(</span><span class="n">xArray2D</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>   <span class="c">! returns the size of the 2nd dimension</span>
+<span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="n">size</span><span class="p">(</span><span class="n">xArray2D</span><span class="p">)</span>     <span class="c">! returns the total number of elements (m*n in this example)</span>
+</pre></div>
+
+
+<p><strong>Compiler Optimization Flags</strong></p>
+<p>You can specify an optimization flag when compiling a code and it will tell the compiler to spend time analyzing your code in order
+to find ways to make the code run faster.  We don't have time to go into the details and all the possible optimization options, but in general using the optimization flag <code>-O2</code> results in a code that will run much faster.  You give the optimization flag right after specifying the compiler:</p>
+<p>$ gfortran -O2 HelloWorld.f90 -o MyProgram</p>
+<p><strong>Free and fixed form source code: the .f90 and .f extensions</strong></p>
+<p>Modern Fortran uses a free form source code format and these files are specified by the .f90 extension.  The .f90 file extension is used for any codes adhering to the Fortran 2015, Fortran 2008, Fortran 2003, Fortran 95 or Fortran 90 standards.  </p>
+<p>Prior to Fortran 90, Fortran was known as FORTRAN77 and used a fixed form file format specified with the .f and .for extensions. The fixed form came from the really old days when FORTRAN code was entered onto punch cards that were read by the earliest computers. Fix form  requires that you have 6 spaces at the start of each line before any commands. There is also maximum width of 72 characters for each line (including the 6 spaces). If you need extra space you can put any character in column 6 to indicate that line is a continuation of the previous line's commands.</p>
+<p>Thankfully Fortran moved to using free form files with the .f90 extension. However, there is quite a bit of legacy code out there that is in the .f fixed format files.  </p>
 <p><strong>Linking multiple object files</strong></p>
 <p><strong>Reading and writing data</strong></p>
+<p><strong>Timing functions</strong></p>
+<p><strong>Functions</strong></p>
+<p><strong>Subroutines</strong></p>
+<p><strong>Modules</strong></p>
             </div>
             <!-- /.entry-content -->
         </article>
@@ -173,13 +570,13 @@ Hello World
   <a href="./"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
   <ul class="list-group " id="tags">
     <li class="list-group-item tag-1">
-      <a href="./tag/shell.html">shell</a>
+      <a href="./tag/bash.html">bash</a>
     </li>
     <li class="list-group-item tag-1">
       <a href="./tag/unix.html">unix</a>
     </li>
     <li class="list-group-item tag-1">
-      <a href="./tag/bash.html">bash</a>
+      <a href="./tag/shell.html">shell</a>
     </li>
     <li class="list-group-item tag-1">
       <a href="./tag/file-system.html">file system</a>
@@ -188,37 +585,37 @@ Hello World
       <a href="./tag/assignment.html">assignment</a>
     </li>
     <li class="list-group-item tag-3">
-      <a href="./tag/python.html">python</a>
+      <a href="./tag/matlab.html">MATLAB</a>
     </li>
     <li class="list-group-item tag-3">
       <a href="./tag/fortran.html">fortran</a>
     </li>
     <li class="list-group-item tag-3">
-      <a href="./tag/matlab.html">MATLAB</a>
+      <a href="./tag/python.html">python</a>
     </li>
     <li class="list-group-item tag-3">
       <a href="./tag/git.html">git</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/gmt.html">gmt</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/github.html">github</a>
+      <a href="./tag/version-control.html">version control</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/geomapapp.html">GeoMapApp</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/version-control.html">version control</a>
+      <a href="./tag/programming.html">programming</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/vpn.html">vpn</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/programming.html">programming</a>
+      <a href="./tag/source-code-editor.html">source code editor</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/source-code-editor.html">source code editor</a>
+      <a href="./tag/github.html">github</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/gmt.html">gmt</a>
     </li>
   </ul>
 </li>
