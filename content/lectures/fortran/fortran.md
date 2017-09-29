@@ -128,7 +128,7 @@ Note that the variable declarations in Fortran have to be made at the start of t
 Fortran is case insensitive, meaning that it will treat variables `x` and `X` as the same quantity.
 
 | Fortran | Python | MATLAB|
-|-------------|-------------|--------|-------|--------------|
+|-------------|-------------|-------|
 | case insensitive | case sensitive| case sensitive|
 
 
@@ -216,7 +216,6 @@ end program TestUndeclared
 **Relational operators**
 
 
-
 | Older Fortran | Newer Fortran | Python | MATLAB|  Description |
 |-------------|-------------|--------|-------|--------------|
 | .eq. | == | == | == | equality|
@@ -253,6 +252,8 @@ end program TestRelationalOps
 
 
 **if statements**
+
+
 These are similar to MATLAB and Python, except that  the logical or relational statements need to be in parentheses and you need to include the keyword `then` after the logical statement. The `if` statement also ends with the keyword `endif`.
 
 ``` Fortran
@@ -268,6 +269,7 @@ endif
 ```
 
 **do loops**
+
 
 Loops in Fortran are done using the `do` `enddo` construct:
 ``` Fortran
@@ -314,6 +316,7 @@ enddo
 ```
 
 **do while loops**
+
 The `do while` loop is similar but instead of using a counter, it uses a logical variable to exit the loop.
 
 ``` Fortran
@@ -366,6 +369,7 @@ integer, dimension(10,10,10,10) :: 4D array
 The arrays above are fixed dimensional, meaning that we declared their sizes in the declaration statements.
 
 **allocatable arrays**
+
 A more flexible construct is the allocatable array. The arrays you have already seen in Python and MATLAB were allocatable arrays, but you didn't need to do anything special to create them. In Fortran you need to explicitly declare them.
 
 ``` Fortran
