@@ -61,3 +61,7 @@ For this part, list your answers in a plain text file called `answers_part1.txt`
 
 3c) Based on these results and the big-O scaling, how long do you think it would
 take for `n=10000` and `n=100,000`. How much RAM would you need on your computer for these two cases?
+
+**Part 4 - Turn it in**
+
+Put all the files created for this assignment into a folder called assignment_5 and upload that folder to your github repository.  
