@@ -19,8 +19,6 @@ For this part, list your answers in a plain text file called `answers_part1.txt`
 
 1b) Element `C(i,j)` is equal to the sum of `A(i,k)*B(k,j)` over all values of index `k` from 1 to `n`.  How many multiplication operations does it take to compute the single element `C(i,j)`? How many addition operations does it  take to compute the single element `C(i,j)`?   
 
-    n multiplications and n-1 additions  
-
 1c) Write down the code snippet for computing element `C(i,j)` using a `do` loop.  Assume i and j are given fixed values so you don't need to loop over i or j here.
 
 
