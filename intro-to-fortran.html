@@ -271,6 +271,17 @@ Error: Unclassifiable statement at <span class="o">(</span><span class="m">1</sp
 </pre></div>
 
 
+<p><strong>Integer Division</strong></p>
+<p>Be careful when dividing integers in Fortran. For example, the expression <code>fraction = (N-1)/N</code> where <code>N</code> is an integer and <code>fraction</code> has been declared as <code>real(8)</code> will result in <code>fraction</code> being assigned the value 0. Why is this? Because all the terms in <code>(N-1)/N</code> are integers so the compiler uses integer division. You can easily fix this by making at least one of the terms in the expression a floating point number. Either of the following expressions will force the compiler to use floating point arithmetic and <code>fraction</code> will then be assigned the intended value:</p>
+<div class="highlight"><pre><span></span><span class="nb">fraction</span> <span class="o">=</span> <span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mf">1.</span><span class="p">)</span><span class="o">/</span><span class="n">N</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="nb">fraction</span> <span class="o">=</span> <span class="p">(</span><span class="nb">dble</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">N</span>
+</pre></div>
+
+
+<p>where the <code>dble()</code> function turns integer <code>N</code> into a double precision value.</p>
 <p><strong>implicit none</strong></p>
 <p><em>You should always include the statement <code>implicit none</code> at the start of your Fortran codes (programs, subroutines and functions).</em></p>
 <p>By default, Fortran has a rather insidious implicit typing for variables that have certain first letters in their names.  Unless specified otherwise, all variables starting with letters I, J, K, L, M and N are default integers, and all others are default real. This can lead to nasty programming errors if you aren't careful. For example, consider the following code:</p>
@@ -484,6 +495,7 @@ Error: Unclassifiable statement at <span class="o">(</span><span class="m">1</sp
 
 
 <p><strong>arrays</strong></p>
+<p>The modern way of declaring a fixed size array in Fortran is to use the <code>dimension()</code> keyword. For example:</p>
 <div class="highlight"><pre><span></span><span class="k">program </span><span class="n">TestArray</span>
 
 <span class="kt">real</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="kd">::</span> <span class="n">xArray</span>
@@ -499,16 +511,27 @@ Error: Unclassifiable statement at <span class="o">(</span><span class="m">1</sp
 </pre></div>
 
 
+<p>Arrays can have multiple dimensions, otherwise referred to as the rank of the array. The Fortran2008 standard allows up to rank 15, whereas the previous standard only allowed a maximum rank of 7. Here are some examples:</p>
 <div class="highlight"><pre><span></span><span class="kt">real</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>          <span class="kd">::</span> <span class="n">xArray1D</span>
 <span class="kt">real</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>       <span class="kd">::</span> <span class="n">xArray2D</span>
 <span class="kt">real</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">xArray3D</span>
-<span class="kt">integer</span><span class="p">,</span> <span class="k">dimension</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="kd">::</span> <span class="mi">4</span><span class="n">D</span> <span class="k">array</span>
+<span class="kt">integer</span><span class="p">,</span> <span class="k">dimension</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">xArray4D</span>
 </pre></div>
 
 
-<p>The arrays above are fixed dimensional, meaning that we declared their sizes in the declaration statements.</p>
+<p>You can get the length or size of any dimension of the array using the <code>size(array,dim)</code> function where <code>dim</code> is an integer for the dimension you want to measure. For example we can write out the lengths of all four dimensions of <code>xArray4D</code> that was defined above using the commands:</p>
+<div class="highlight"><pre><span></span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="s1">&#39;The four dimensions of xArray4D have lengths: &#39;</span><span class="p">,</span> <span class="n">size</span><span class="p">(</span><span class="n">xArray4D</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">size</span><span class="p">(</span><span class="n">xArray4D</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="n">size</span><span class="p">(</span><span class="n">xArray4D</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">size</span><span class="p">(</span><span class="n">xArray4D</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Note that that line is quite long, we can use the <em>continuation</em> character <code>&amp;</code> to break that command into multiple lines using:</p>
+<div class="highlight"><pre><span></span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="s1">&#39;The four dimensions of xArray4D have lengths: &#39;</span><span class="p">,</span> <span class="p">&amp;</span>  
+<span class="p">&amp;</span> <span class="n">size</span><span class="p">(</span><span class="n">xArray4D</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">size</span><span class="p">(</span><span class="n">xArray4D</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="n">size</span><span class="p">(</span><span class="n">xArray4D</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">size</span><span class="p">(</span><span class="n">xArray4D</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+
+
 <p><strong>allocatable arrays</strong></p>
-<p>A more flexible construct is the allocatable array. The arrays you have already seen in Python and MATLAB were allocatable arrays, but you didn't need to do anything special to create them. In Fortran you need to explicitly declare them.</p>
+<p>The arrays above are fixed dimensional, meaning that we declared their sizes in the declaration statements.  A more flexible construct is the allocatable array. The arrays you have already seen in Python and MATLAB were allocatable arrays, but you didn't need to do anything special to create them. In Fortran you need to explicitly declare them using the <code>allocatable</code> keyword.</p>
 <div class="highlight"><pre><span></span><span class="kt">integer</span>                             <span class="kd">::</span> <span class="n">m</span><span class="p">,</span><span class="n">n</span>
 <span class="kt">real</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:),</span>   <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">xArray1D</span>
 <span class="kt">real</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:,:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">xArray2D</span>
@@ -527,13 +550,197 @@ Error: Unclassifiable statement at <span class="o">(</span><span class="m">1</sp
 </pre></div>
 
 
-<p>If you need to know the size of an array, you can use the  <code>size</code> command:</p>
+<p>You can use the  <code>size</code> command to get their lengths in each dimension:</p>
 <div class="highlight"><pre><span></span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="n">size</span><span class="p">(</span><span class="n">xArray2D</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>   <span class="c">! returns the size of the 1st dimension</span>
 <span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="n">size</span><span class="p">(</span><span class="n">xArray2D</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>   <span class="c">! returns the size of the 2nd dimension</span>
 <span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="n">size</span><span class="p">(</span><span class="n">xArray2D</span><span class="p">)</span>     <span class="c">! returns the total number of elements (m*n in this example)</span>
 </pre></div>
 
 
+<p>There is another type of array called an <em>automatic</em> array, but we won't discuss those until we get to the subroutine section below.</p>
+<p><strong>Reading and writing data from the terminal</strong></p>
+<p>We've already seen some writing commands in action in the code snippets above. Now lets look at reading and writing data in a little bit more detail.</p>
+<div class="highlight"><pre><span></span><span class="k">write</span><span class="p">(</span><span class="n">unit</span><span class="err">#</span><span class="p">,</span> <span class="k">format</span><span class="p">,</span> <span class="k">options</span><span class="p">)</span> <span class="n">item1</span><span class="p">,</span> <span class="n">item</span> <span class="mi">2</span><span class="p">,...</span>
+<span class="k">read</span><span class="p">(</span><span class="n">unit</span><span class="err">#</span><span class="p">,</span> <span class="k">format</span><span class="p">,</span> <span class="k">options</span><span class="p">)</span> <span class="n">item1</span><span class="p">,</span> <span class="n">item2</span><span class="p">,...</span>
+</pre></div>
+
+
+<p>The <code>unit#</code> is an integer which tells Fortran where to read or write teh data from. Standard Fortran reserves two unit numbers for I/O to user. They are:</p>
+<div class="highlight"><pre><span></span>     <span class="n">UNIT</span> <span class="o">=</span> <span class="mi">5</span>   <span class="n">for</span> <span class="n">input</span> <span class="n">from</span> <span class="n">the</span> <span class="n">keyboard</span> <span class="n">with</span> <span class="n">the</span> <span class="k">READ </span><span class="n">statement</span>
+
+     <span class="n">UNIT</span> <span class="o">=</span> <span class="mi">6</span>   <span class="n">for</span> <span class="n">output</span> <span class="n">to</span> <span class="n">the</span> <span class="n">screen</span> <span class="n">with</span> <span class="n">the</span> <span class="k">WRITE </span><span class="n">statement</span>
+</pre></div>
+
+
+<p>However, you can also use the asterisk <code>*</code> instead of having to specify units 5 and 6 and this will have the input and  output be done from the terminal shell. For example, to ask a question and read the answer, we can use</p>
+<div class="highlight"><pre><span></span><span class="k">program </span><span class="n">AskQuestion</span>
+
+<span class="kt">real</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="kd">::</span> <span class="n">number</span>
+
+<span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="s1">&#39;What is your favorite number?&#39;</span>
+<span class="k">read</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="n">number</span>
+<span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="s1">&#39;You entered &#39;</span><span class="p">,</span> <span class="n">number</span>
+
+<span class="k">end program </span><span class="n">AskQuestion</span>
+</pre></div>
+
+
+<p><strong>Reading and writing data from a file</strong></p>
+<p>To read or write data from a file, you need to first open the file using the <code>open()</code> command. When you are done, you use the <code>close()</code> command. For example, to read data from an existing file:</p>
+<div class="highlight"><pre><span></span><span class="k">program </span><span class="n">FileReadTest</span>
+
+<span class="kt">integer</span>                            <span class="kd">::</span> <span class="n">u</span><span class="p">,</span> <span class="n">n</span>
+<span class="kt">real</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span>
+
+<span class="c">! Open the file:</span>
+<span class="k">open</span><span class="p">(</span><span class="n">newunit</span><span class="o">=</span><span class="n">u</span><span class="p">,</span> <span class="k">file</span><span class="o">=</span><span class="s1">&#39;log.txt&#39;</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="s1">&#39;old&#39;</span><span class="p">)</span>
+
+<span class="c">! The first line of the file has the number of values for arrays a and b:</span>
+<span class="k">read</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="n">n</span>
+
+<span class="c">! Allocate the arrays:</span>
+<span class="k">allocate</span><span class="p">(</span><span class="n">a</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="n">b</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+
+<span class="c">! Read in the values using an inline expression:</span>
+<span class="k">read</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="o">*</span><span class="p">)</span> <span class="p">(</span> <span class="n">a</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">b</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+
+<span class="c">! or you could use a do loop:</span>
+<span class="c">! do i = 1,n</span>
+<span class="c">!   read(u, *) a(i), b(i)</span>
+<span class="c">! enddo</span>
+<span class="c">!</span>
+
+<span class="c">! Close the file:</span>
+<span class="k">close</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+
+<span class="c">! Display the values:</span>
+<span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="n">n</span>
+    <span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="n">a</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">b</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="n">enddo</span>
+
+<span class="k">end program </span><span class="n">FileReadTest</span>
+</pre></div>
+
+
+<p>A few comments on this code. First, the Fortran2008 standard introduced the <code>newunit</code> keyword, which automatically creates a file unit number when you open a file. Here, the variable <code>u</code> is assigned the new unit number. In previous versions of Fortran, you has to pick a number (usually an integer between 10 - 100) and assign that as the file unit. It's much easier and better to have Fortran pick the number for you (like MATLAB and Python) and then you use that unit number for all read or write commands to the file, rather than having to refer to it by the filename each time. <code>status = 'old'</code> tells Fortran that the file exists already. This is optional, but can be helpful since if the file doesn't exist, Fortran will issue a helpful error message.</p>
+<p>For the read commands, here we are using the asterisk <code>*</code> to denote a free-format read, which means that Fortran will decide what the format is.</p>
+<p>Now lets look at writing to a file. Suppose the code above  modified the values in arrays <code>a</code> and <code>b</code>. We could then save the modified values to a new file using:</p>
+<div class="highlight"><pre><span></span><span class="k">open</span><span class="p">(</span><span class="n">newunit</span><span class="o">=</span><span class="n">u</span><span class="p">,</span> <span class="k">file</span><span class="o">=</span><span class="err">`</span><span class="n">newlog</span><span class="p">.</span><span class="n">txt</span><span class="s1">&#39;, status=&#39;</span><span class="n">replace</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="k">write</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="o">*</span><span class="p">)</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span>
+<span class="k">close</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+</pre></div>
+
+
+<p>If we want to append the values to an existing file, we could use:</p>
+<div class="highlight"><pre><span></span><span class="k">open</span><span class="p">(</span><span class="n">newunit</span><span class="o">=</span><span class="n">u</span><span class="p">,</span> <span class="k">file</span><span class="o">=</span><span class="err">`</span><span class="nb">log</span><span class="p">.</span><span class="n">txt</span><span class="err">`</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="err">`</span><span class="n">append</span><span class="err">`</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="err">`</span><span class="n">old</span><span class="err">`</span><span class="p">)</span>
+<span class="k">write</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="o">*</span><span class="p">)</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span>
+<span class="k">close</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+</pre></div>
+
+
+<p><strong>Format specifiers</strong></p>
+<p>In all of our read and write examples above we used the generic <code>*</code> for the format specifier. When writing, Fortran will write out the full precision of each floating point number. For example: 0.65569999999999995.  You can use the format specifier to specify another format. We don't have time to go into the details of format specifiers here, but you can look them up online. In Fortran, they are often referred to as "edit descriptors". Here are a few examples:</p>
+<div class="highlight"><pre><span></span><span class="kt">real</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="kd">::</span> <span class="n">x</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="mi">123</span><span class="mf">4.1234567890</span>
+<span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span>  <span class="s1">&#39;the number is&#39;</span><span class="p">,</span><span class="n">x</span>
+<span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(a,1x,f6.1)&#39;</span><span class="p">)</span>  <span class="s1">&#39;the number is&#39;</span><span class="p">,</span><span class="n">x</span>
+<span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(a,1x,e15.3)&#39;</span><span class="p">)</span> <span class="s1">&#39;the number is&#39;</span><span class="p">,</span><span class="n">x</span>
+</pre></div>
+
+
+<p><code>a</code> specifies character string output, <code>1x</code> means add a space and the others are for fixed point <code>f</code> and floating point format <code>e</code> with the format <code>w.d</code> where w is the width (number of characters) and d is the number of decimal places. Try them out.</p>
+<p><strong>Functions</strong></p>
+<p>You can define functions using the <code>function</code> keyword.  Functions are useful when you need to do a complicated calculation that has only one result.
+ Functions need to be either in a separate .f90 file or have to be listed outside the main program. For example:</p>
+<div class="highlight"><pre><span></span><span class="k">program </span><span class="n">FunctionTest</span>
+
+<span class="k">implicit none</span>
+
+<span class="kt">real</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="kd">::</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">myFunction</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="mf">2.0</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mf">5.0</span>
+
+<span class="n">c</span> <span class="o">=</span> <span class="n">myFunction</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+
+<span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="s1">&#39;c is: &#39;</span><span class="p">,</span> <span class="n">c</span>
+
+<span class="k">end program </span><span class="n">FunctionTest</span>
+
+<span class="c">!-----------------------------------</span>
+<span class="c">! This is the external function:</span>
+<span class="kt">real</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="k">function </span><span class="n">myFunction</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>  
+
+<span class="kt">real</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="kd">::</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span>
+<span class="n">myFunction</span> <span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="n">y</span>
+
+<span class="k">end function </span><span class="n">myFunction</span>
+<span class="c">!-----------------------------------</span>
+</pre></div>
+
+
+<p><strong>Subroutines</strong>
+Use a subroutine to break your code up unto various sections that are easier to read. Subroutines are like functions, but the I/O is all done as arguments after the subroutine name.</p>
+<div class="highlight"><pre><span></span><span class="k">program </span><span class="n">SubRoutineTest</span>
+
+<span class="k">implicit none</span>
+
+<span class="kt">real</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="kd">::</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">d</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="mf">2.0</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mf">5.0</span>
+
+<span class="k">call </span><span class="n">subroutineA</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">)</span>  <span class="c">! a and b are input, c is returned</span>
+<span class="k">call </span><span class="n">subroutineB</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">)</span>  <span class="c">! a,b and c are input, d is returned</span>
+<span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="s1">&#39;c is: &#39;</span><span class="p">,</span> <span class="n">c</span>
+<span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="s1">&#39;d is: &#39;</span><span class="p">,</span> <span class="n">d</span>
+
+<span class="k">end program </span><span class="n">SubRoutineTest</span>
+
+<span class="c">!-----------------------------------</span>
+<span class="k">subroutine </span><span class="n">subroutineA</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">)</span>
+<span class="k">implicit none</span>
+<span class="kt">real</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span>
+<span class="kt">real</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">c</span>
+
+<span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">b</span>
+
+<span class="k">end subroutine </span><span class="n">subroutineA</span>
+<span class="c">!-----------------------------------</span>
+<span class="k">subroutine </span><span class="n">subroutineB</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">)</span>
+<span class="k">implicit none</span>
+<span class="kt">real</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span>
+<span class="kt">real</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">d</span>
+
+<span class="kt">real</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>              <span class="kd">::</span> <span class="n">x</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="mi">11</span><span class="n">d0</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="n">x</span><span class="o">*</span><span class="n">c</span>
+
+<span class="k">end subroutine </span><span class="n">subroutineB</span>
+<span class="c">!-----------------------------------</span>
+</pre></div>
+
+
+<p><strong>Timing subroutine</strong></p>
+<p>The <code>cpu_time()</code> function can be used to time sections of Fortran code.  The command <code>cpu_time(time)</code> returns the time in variable time. You need to difference two calls to this subroutine to get the time difference.</p>
+<div class="highlight"><pre><span></span><span class="kt">real</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">time_start</span><span class="p">,</span> <span class="n">time_end</span>
+
+<span class="p">...</span>
+<span class="k">call </span><span class="nb">cpu_time</span><span class="p">(</span><span class="n">time_start</span><span class="p">)</span>
+
+<span class="p">...</span> <span class="n">section</span> <span class="n">of</span> <span class="n">code</span> <span class="n">to</span> <span class="n">test</span> <span class="n">goes</span> <span class="n">in</span> <span class="n">between</span> <span class="p">...</span>
+
+<span class="k">call </span><span class="nb">cpu_time</span><span class="p">(</span><span class="n">time_end</span><span class="p">)</span>
+
+<span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="s1">&#39;Time to run section of code:&#39;</span> <span class="p">,</span> <span class="n">time_end</span> <span class="o">-</span> <span class="n">time_start</span><span class="p">,</span> <span class="s1">&#39; seconds&#39;</span>
+</pre></div>
+
+
+<p><strong>Modules</strong></p>
+<p>Modern Fortran best practices are to put all subroutines and functions into one or more module files. A module file is similar to an object, if you are familiar with object oriented program. In a module you can define variables and all the actions that work on them. You can have public and private variables, subroutines and functions. Your main program can then use the modules. Variables defined at the top of a module are available to be used in any of the contained subroutines (so they are globally available).  Unfortunately we don't have time to cover modules, so look them up for more information.</p>
 <p><strong>Compiler Optimization Flags</strong></p>
 <p>You can specify an optimization flag when compiling a code and it will tell the compiler to spend time analyzing your code in order
 to find ways to make the code run faster.  We don't have time to go into the details and all the possible optimization options, but in general using the optimization flag <code>-O2</code> results in a code that will run much faster.  You give the optimization flag right after specifying the compiler:</p>
@@ -543,11 +750,10 @@ to find ways to make the code run faster.  We don't have time to go into the det
 <p>Prior to Fortran 90, Fortran was known as FORTRAN77 and used a fixed form file format specified with the .f and .for extensions. The fixed form came from the really old days when FORTRAN code was entered onto punch cards that were read by the earliest computers. Fix form  requires that you have 6 spaces at the start of each line before any commands. There is also maximum width of 72 characters for each line (including the 6 spaces). If you need extra space you can put any character in column 6 to indicate that line is a continuation of the previous line's commands.</p>
 <p>Thankfully Fortran moved to using free form files with the .f90 extension. However, there is quite a bit of legacy code out there that is in the .f fixed format files.  </p>
 <p><strong>Linking multiple object files</strong></p>
-<p><strong>Reading and writing data</strong></p>
-<p><strong>Timing functions</strong></p>
-<p><strong>Functions</strong></p>
-<p><strong>Subroutines</strong></p>
-<p><strong>Modules</strong></p>
+<p>We're out of time, so you will need to look this up online.</p>
+<p><strong>Further Help</strong></p>
+<p>The Fortran90 website is incredibly useful. Despite its name, it actually has recommendations for best practices that include commands up to the modern Fortran2008 standard. It also has a nice <em>Python Fortran Rosetta Stone</em> that will help Python experts translate Python commands into Fortran commands.
+http://www.fortran90.org/</p>
             </div>
             <!-- /.entry-content -->
         </article>
@@ -583,22 +789,19 @@ to find ways to make the code run faster.  We don't have time to go into the det
   <a href="./"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
   <ul class="list-group " id="tags">
     <li class="list-group-item tag-1">
-      <a href="./tag/unix.html">unix</a>
+      <a href="./tag/file-system.html">file system</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/assignment.html">assignment</a>
     </li>
     <li class="list-group-item tag-1">
       <a href="./tag/shell.html">shell</a>
     </li>
     <li class="list-group-item tag-1">
-      <a href="./tag/file-system.html">file system</a>
-    </li>
-    <li class="list-group-item tag-1">
       <a href="./tag/bash.html">bash</a>
     </li>
     <li class="list-group-item tag-1">
-      <a href="./tag/assignment.html">assignment</a>
-    </li>
-    <li class="list-group-item tag-3">
-      <a href="./tag/python.html">python</a>
+      <a href="./tag/unix.html">unix</a>
     </li>
     <li class="list-group-item tag-3">
       <a href="./tag/fortran.html">fortran</a>
@@ -609,8 +812,14 @@ to find ways to make the code run faster.  We don't have time to go into the det
     <li class="list-group-item tag-3">
       <a href="./tag/git.html">git</a>
     </li>
+    <li class="list-group-item tag-3">
+      <a href="./tag/python.html">python</a>
+    </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/gmt.html">gmt</a>
+      <a href="./tag/github.html">github</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/programming.html">programming</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/version-control.html">version control</a>
@@ -619,16 +828,13 @@ to find ways to make the code run faster.  We don't have time to go into the det
       <a href="./tag/geomapapp.html">GeoMapApp</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/programming.html">programming</a>
+      <a href="./tag/vpn.html">vpn</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/source-code-editor.html">source code editor</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/github.html">github</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/vpn.html">vpn</a>
+      <a href="./tag/gmt.html">gmt</a>
     </li>
   </ul>
 </li>
