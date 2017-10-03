@@ -172,7 +172,19 @@ complex*16            ! same as complex(8)
 integer*4             ! same as integer(4)
 ```
 
+**Integer Division**
 
+Be careful when dividing integers in Fortran. For example, the expression `fraction = (N-1)/N` where `N` is an integer and `fraction` has been declared as `real(8)` will result in `fraction` being assigned the value 0. Why is this? Because all the terms in `(N-1)/N` are integers so the compiler uses integer division. You can easily fix this by making at least one of the terms in the expression a floating point number. Either of the following expressions will force the compiler to use floating point arithmetic and `fraction` will then be assigned the intended value:
+
+``` Fortran
+fraction = (N-1.)/N
+```
+
+``` Fortran
+fraction = (dble(N)-1)/N
+```
+
+where the `dble()` function turns integer `N` into a double precision value.
 
 **implicit none**
 
@@ -345,6 +357,8 @@ end program DoWhileTest
 
 **arrays**
 
+The modern way of declaring a fixed size array in Fortran is to use the `dimension()` keyword. For example:
+
 ``` Fortran
 program TestArray
 
@@ -360,17 +374,30 @@ write(*,*) 'xArray: ', xArray
 end program TestArray
 ```
 
+Arrays can have multiple dimensions, otherwise referred to as the rank of the array. The Fortran2008 standard allows up to rank 15, whereas the previous standard only allowed a maximum rank of 7. Here are some examples:
+
 ``` Fortran
 real(8), dimension(10)          :: xArray1D
 real(8), dimension(10,20)       :: xArray2D
 real(8), dimension(10,20,10)    :: xArray3D
-integer, dimension(10,10,10,10) :: 4D array
+integer, dimension(10,5,30,50)  :: xArray4D
 ```
-The arrays above are fixed dimensional, meaning that we declared their sizes in the declaration statements.
+
+You can get the length or size of any dimension of the array using the `size(array,dim)` function where `dim` is an integer for the dimension you want to measure. For example we can write out the lengths of all four dimensions of `xArray4D` that was defined above using the commands:
+
+``` Fortran
+write(*,*) 'The four dimensions of xArray4D have lengths: ', size(xArray4D,1),size(xArray4D,2),size(xArray4D,3),size(xArray4D,4)
+```
+Note that that line is quite long, we can use the *continuation* character `&` to break that command into multiple lines using:
+``` Fortran
+write(*,*) 'The four dimensions of xArray4D have lengths: ', &  
+& size(xArray4D,1),size(xArray4D,2),size(xArray4D,3),size(xArray4D,4)
+```
+
 
 **allocatable arrays**
 
-A more flexible construct is the allocatable array. The arrays you have already seen in Python and MATLAB were allocatable arrays, but you didn't need to do anything special to create them. In Fortran you need to explicitly declare them.
+The arrays above are fixed dimensional, meaning that we declared their sizes in the declaration statements.  A more flexible construct is the allocatable array. The arrays you have already seen in Python and MATLAB were allocatable arrays, but you didn't need to do anything special to create them. In Fortran you need to explicitly declare them using the `allocatable` keyword.
 
 ``` Fortran
 integer                             :: m,n
@@ -391,13 +418,213 @@ If you need to free up memory later on in your program, you can `deallocate` the
 ``` Fortran
 deallocate(xArray1D, xArray2D)
 ```
-If you need to know the size of an array, you can use the  `size` command:
+You can use the  `size` command to get their lengths in each dimension:
 
 ``` Fortran
 write(*,*) size(xArray2D,1)   ! returns the size of the 1st dimension
 write(*,*) size(xArray2D,2)   ! returns the size of the 2nd dimension
 write(*,*) size(xArray2D)     ! returns the total number of elements (m*n in this example)
 ```
+
+There is another type of array called an *automatic* array, but we won't discuss those until we get to the subroutine section below.
+
+
+**Reading and writing data from the terminal**
+
+We've already seen some writing commands in action in the code snippets above. Now lets look at reading and writing data in a little bit more detail.
+
+``` Fortran
+write(unit#, format, options) item1, item 2,...
+read(unit#, format, options) item1, item2,...
+```
+The `unit#` is an integer which tells Fortran where to read or write teh data from. Standard Fortran reserves two unit numbers for I/O to user. They are:
+``` Fortran
+     UNIT = 5   for input from the keyboard with the READ statement
+
+     UNIT = 6   for output to the screen with the WRITE statement
+```
+However, you can also use the asterisk `*` instead of having to specify units 5 and 6 and this will have the input and  output be done from the terminal shell. For example, to ask a question and read the answer, we can use
+
+``` Fortran
+program AskQuestion
+
+real(8) :: number
+
+write(*,*) 'What is your favorite number?'
+read(*,*) number
+write(*,*) 'You entered ', number
+
+end program AskQuestion
+```
+
+**Reading and writing data from a file**
+
+To read or write data from a file, you need to first open the file using the `open()` command. When you are done, you use the `close()` command. For example, to read data from an existing file:
+``` Fortran
+program FileReadTest
+
+integer                            :: u, n
+real(8), dimension(:), allocatable :: a,b
+
+! Open the file:
+open(newunit=u, file='log.txt', status='old')
+
+! The first line of the file has the number of values for arrays a and b:
+read(u,*) n
+
+! Allocate the arrays:
+allocate(a(n),b(n))
+
+! Read in the values using an inline expression:
+read(u, *) ( a(i), b(i), i = 1,n)
+
+! or you could use a do loop:
+! do i = 1,n
+!   read(u, *) a(i), b(i)
+! enddo
+!
+
+! Close the file:
+close(u)
+
+! Display the values:
+do i = 1,n
+    write(*,*) a(i), b(i)
+enddo
+
+end program FileReadTest
+
+```
+A few comments on this code. First, the Fortran2008 standard introduced the `newunit` keyword, which automatically creates a file unit number when you open a file. Here, the variable `u` is assigned the new unit number. In previous versions of Fortran, you has to pick a number (usually an integer between 10 - 100) and assign that as the file unit. It's much easier and better to have Fortran pick the number for you (like MATLAB and Python) and then you use that unit number for all read or write commands to the file, rather than having to refer to it by the filename each time. `status = 'old'` tells Fortran that the file exists already. This is optional, but can be helpful since if the file doesn't exist, Fortran will issue a helpful error message.
+
+For the read commands, here we are using the asterisk `*` to denote a free-format read, which means that Fortran will decide what the format is.
+
+Now lets look at writing to a file. Suppose the code above  modified the values in arrays `a` and `b`. We could then save the modified values to a new file using:
+
+``` Fortran
+open(newunit=u, file=`newlog.txt', status='replace')
+write(u, *) a, b
+close(u)
+```
+
+If we want to append the values to an existing file, we could use:
+``` Fortran
+open(newunit=u, file=`log.txt`, position=`append`, status=`old`)
+write(u, *) a,b
+close(u)
+```
+**Format specifiers**
+
+In all of our read and write examples above we used the generic `*` for the format specifier. When writing, Fortran will write out the full precision of each floating point number. For example: 0.65569999999999995.  You can use the format specifier to specify another format. We don't have time to go into the details of format specifiers here, but you can look them up online. In Fortran, they are often referred to as "edit descriptors". Here are a few examples:
+
+``` Fortran
+real(8) :: x
+
+x = 1234.1234567890
+write(*,*)  'the number is',x
+write(*,'(a,1x,f6.1)')  'the number is',x
+write(*,'(a,1x,e15.3)') 'the number is',x
+```
+`a` specifies character string output, `1x` means add a space and the others are for fixed point `f` and floating point format `e` with the format `w.d` where w is the width (number of characters) and d is the number of decimal places. Try them out.
+
+**Functions**
+
+You can define functions using the `function` keyword.  Functions are useful when you need to do a complicated calculation that has only one result.
+ Functions need to be either in a separate .f90 file or have to be listed outside the main program. For example:
+
+``` Fortran
+program FunctionTest
+
+implicit none
+
+real(8) :: a,b,c,myFunction
+
+a = 2.0
+b = 5.0
+
+c = myFunction(a,b)
+
+write(*,*) 'c is: ', c
+
+end program FunctionTest
+
+!-----------------------------------
+! This is the external function:
+real(8) function myFunction(x,y)  
+
+real(8) :: x,y
+myFunction = x*y
+
+end function myFunction
+!-----------------------------------
+```
+
+**Subroutines**
+Use a subroutine to break your code up unto various sections that are easier to read. Subroutines are like functions, but the I/O is all done as arguments after the subroutine name.
+
+``` Fortran
+program SubRoutineTest
+
+implicit none
+
+real(8) :: a,b,c,d
+
+a = 2.0
+b = 5.0
+
+call subroutineA(a,b,c)  ! a and b are input, c is returned
+call subroutineB(a,b,c,d)  ! a,b and c are input, d is returned
+write(*,*) 'c is: ', c
+write(*,*) 'd is: ', d
+
+end program SubRoutineTest
+
+!-----------------------------------
+subroutine subroutineA(a,b,c)
+implicit none
+real(8), intent(in)  :: a,b
+real(8), intent(out) :: c
+
+c = a*b
+
+end subroutine subroutineA
+!-----------------------------------
+subroutine subroutineB(a,b,c,d)
+implicit none
+real(8), intent(in)  :: a,b,c
+real(8), intent(out) :: d
+
+real(8)              :: x
+
+x = 11d0
+
+d = a + b + x*c
+
+end subroutine subroutineB
+!-----------------------------------
+```
+
+
+**Timing subroutine**
+
+The `cpu_time()` function can be used to time sections of Fortran code.  The command `cpu_time(time)` returns the time in variable time. You need to difference two calls to this subroutine to get the time difference.
+
+```Fortran
+real(8)  :: time_start, time_end
+
+...
+call cpu_time(time_start)
+
+... section of code to test goes in between ...
+
+call cpu_time(time_end)
+
+write(*,*) 'Time to run section of code:' , time_end - time_start, ' seconds'
+```
+
+**Modules**
+
+Modern Fortran best practices are to put all subroutines and functions into one or more module files. A module file is similar to an object, if you are familiar with object oriented program. In a module you can define variables and all the actions that work on them. You can have public and private variables, subroutines and functions. Your main program can then use the modules. Variables defined at the top of a module are available to be used in any of the contained subroutines (so they are globally available).  Unfortunately we don't have time to cover modules, so look them up for more information.
 
 
 **Compiler Optimization Flags**
@@ -415,16 +642,11 @@ Prior to Fortran 90, Fortran was known as FORTRAN77 and used a fixed form file f
 
 Thankfully Fortran moved to using free form files with the .f90 extension. However, there is quite a bit of legacy code out there that is in the .f fixed format files.  
 
-
 **Linking multiple object files**
 
-**Reading and writing data**
+We're out of time, so you will need to look this up online.
 
-**Timing functions**
+**Further Help**
 
-
-**Functions**
-
-**Subroutines**
-
-**Modules**
+The Fortran90 website is incredibly useful. Despite its name, it actually has recommendations for best practices that include commands up to the modern Fortran2008 standard. It also has a nice *Python Fortran Rosetta Stone* that will help Python experts translate Python commands into Fortran commands.
+http://www.fortran90.org/
