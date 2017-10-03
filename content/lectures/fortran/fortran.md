@@ -502,14 +502,14 @@ For the read commands, here we are using the asterisk `*` to denote a free-forma
 Now lets look at writing to a file. Suppose the code above  modified the values in arrays `a` and `b`. We could then save the modified values to a new file using:
 
 ``` Fortran
-open(newunit=u, file=`newlog.txt', status='replace')
+open(newunit=u, file='newlog.txt', status='replace')
 write(u, *) a, b
 close(u)
 ```
 
 If we want to append the values to an existing file, we could use:
 ``` Fortran
-open(newunit=u, file=`log.txt`, position=`append`, status=`old`)
+open(newunit=u, file='log.txt', position='append', status='old')
 write(u, *) a,b
 close(u)
 ```
@@ -560,6 +560,7 @@ end function myFunction
 ```
 
 **Subroutines**
+
 Use a subroutine to break your code up unto various sections that are easier to read. Subroutines are like functions, but the I/O is all done as arguments after the subroutine name.
 
 ``` Fortran
@@ -649,4 +650,5 @@ We're out of time, so you will need to look this up online.
 **Further Help**
 
 The Fortran90 website is incredibly useful. Despite its name, it actually has recommendations for best practices that include commands up to the modern Fortran2008 standard. It also has a nice *Python Fortran Rosetta Stone* that will help Python experts translate Python commands into Fortran commands.
-http://www.fortran90.org/
+
+[http://www.fortran90.org/](http://www.fortran90.org/)
