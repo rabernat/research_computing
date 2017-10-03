@@ -625,14 +625,14 @@ Error: Unclassifiable statement at <span class="o">(</span><span class="m">1</sp
 <p>A few comments on this code. First, the Fortran2008 standard introduced the <code>newunit</code> keyword, which automatically creates a file unit number when you open a file. Here, the variable <code>u</code> is assigned the new unit number. In previous versions of Fortran, you has to pick a number (usually an integer between 10 - 100) and assign that as the file unit. It's much easier and better to have Fortran pick the number for you (like MATLAB and Python) and then you use that unit number for all read or write commands to the file, rather than having to refer to it by the filename each time. <code>status = 'old'</code> tells Fortran that the file exists already. This is optional, but can be helpful since if the file doesn't exist, Fortran will issue a helpful error message.</p>
 <p>For the read commands, here we are using the asterisk <code>*</code> to denote a free-format read, which means that Fortran will decide what the format is.</p>
 <p>Now lets look at writing to a file. Suppose the code above  modified the values in arrays <code>a</code> and <code>b</code>. We could then save the modified values to a new file using:</p>
-<div class="highlight"><pre><span></span><span class="k">open</span><span class="p">(</span><span class="n">newunit</span><span class="o">=</span><span class="n">u</span><span class="p">,</span> <span class="k">file</span><span class="o">=</span><span class="err">`</span><span class="n">newlog</span><span class="p">.</span><span class="n">txt</span><span class="s1">&#39;, status=&#39;</span><span class="n">replace</span><span class="err">&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="k">open</span><span class="p">(</span><span class="n">newunit</span><span class="o">=</span><span class="n">u</span><span class="p">,</span> <span class="k">file</span><span class="o">=</span><span class="s1">&#39;newlog.txt&#39;</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="s1">&#39;replace&#39;</span><span class="p">)</span>
 <span class="k">write</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="o">*</span><span class="p">)</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span>
 <span class="k">close</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
 </pre></div>
 
 
 <p>If we want to append the values to an existing file, we could use:</p>
-<div class="highlight"><pre><span></span><span class="k">open</span><span class="p">(</span><span class="n">newunit</span><span class="o">=</span><span class="n">u</span><span class="p">,</span> <span class="k">file</span><span class="o">=</span><span class="err">`</span><span class="nb">log</span><span class="p">.</span><span class="n">txt</span><span class="err">`</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="err">`</span><span class="n">append</span><span class="err">`</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="err">`</span><span class="n">old</span><span class="err">`</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="k">open</span><span class="p">(</span><span class="n">newunit</span><span class="o">=</span><span class="n">u</span><span class="p">,</span> <span class="k">file</span><span class="o">=</span><span class="s1">&#39;log.txt&#39;</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="s1">&#39;append&#39;</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="s1">&#39;old&#39;</span><span class="p">)</span>
 <span class="k">write</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="o">*</span><span class="p">)</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span>
 <span class="k">close</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
 </pre></div>
@@ -680,8 +680,8 @@ Error: Unclassifiable statement at <span class="o">(</span><span class="m">1</sp
 </pre></div>
 
 
-<p><strong>Subroutines</strong>
-Use a subroutine to break your code up unto various sections that are easier to read. Subroutines are like functions, but the I/O is all done as arguments after the subroutine name.</p>
+<p><strong>Subroutines</strong></p>
+<p>Use a subroutine to break your code up unto various sections that are easier to read. Subroutines are like functions, but the I/O is all done as arguments after the subroutine name.</p>
 <div class="highlight"><pre><span></span><span class="k">program </span><span class="n">SubRoutineTest</span>
 
 <span class="k">implicit none</span>
@@ -752,8 +752,8 @@ to find ways to make the code run faster.  We don't have time to go into the det
 <p><strong>Linking multiple object files</strong></p>
 <p>We're out of time, so you will need to look this up online.</p>
 <p><strong>Further Help</strong></p>
-<p>The Fortran90 website is incredibly useful. Despite its name, it actually has recommendations for best practices that include commands up to the modern Fortran2008 standard. It also has a nice <em>Python Fortran Rosetta Stone</em> that will help Python experts translate Python commands into Fortran commands.
-http://www.fortran90.org/</p>
+<p>The Fortran90 website is incredibly useful. Despite its name, it actually has recommendations for best practices that include commands up to the modern Fortran2008 standard. It also has a nice <em>Python Fortran Rosetta Stone</em> that will help Python experts translate Python commands into Fortran commands.</p>
+<p><a href="http://www.fortran90.org/">http://www.fortran90.org/</a></p>
             </div>
             <!-- /.entry-content -->
         </article>
@@ -789,13 +789,10 @@ http://www.fortran90.org/</p>
   <a href="./"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
   <ul class="list-group " id="tags">
     <li class="list-group-item tag-1">
-      <a href="./tag/file-system.html">file system</a>
-    </li>
-    <li class="list-group-item tag-1">
       <a href="./tag/assignment.html">assignment</a>
     </li>
     <li class="list-group-item tag-1">
-      <a href="./tag/shell.html">shell</a>
+      <a href="./tag/file-system.html">file system</a>
     </li>
     <li class="list-group-item tag-1">
       <a href="./tag/bash.html">bash</a>
@@ -803,38 +800,41 @@ http://www.fortran90.org/</p>
     <li class="list-group-item tag-1">
       <a href="./tag/unix.html">unix</a>
     </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/shell.html">shell</a>
+    </li>
     <li class="list-group-item tag-3">
       <a href="./tag/fortran.html">fortran</a>
     </li>
     <li class="list-group-item tag-3">
-      <a href="./tag/matlab.html">MATLAB</a>
+      <a href="./tag/python.html">python</a>
     </li>
     <li class="list-group-item tag-3">
       <a href="./tag/git.html">git</a>
     </li>
     <li class="list-group-item tag-3">
-      <a href="./tag/python.html">python</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/github.html">github</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/programming.html">programming</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/version-control.html">version control</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/geomapapp.html">GeoMapApp</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/vpn.html">vpn</a>
+      <a href="./tag/matlab.html">MATLAB</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/source-code-editor.html">source code editor</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/gmt.html">gmt</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/vpn.html">vpn</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/programming.html">programming</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/github.html">github</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/geomapapp.html">GeoMapApp</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/version-control.html">version control</a>
     </li>
   </ul>
 </li>
