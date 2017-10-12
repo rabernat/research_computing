@@ -19,4 +19,4 @@ Thursday's lecture.
 
 4. [Sign up for a GitHub Student Developer Pack]({filename}/software/install_github.md)
 
-5. [Install a source code editor]({filename}/software/install_sourceEditor.md)
+5. [Install a source code editor]({filename}/software/install_sourceeditor.md)
