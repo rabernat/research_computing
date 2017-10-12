@@ -1086,381 +1086,410 @@ h6:hover .anchor-link {
 
 .ansi-bold { font-weight: bold; }
 </style>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Assignment-6---Numpy-and-Matplotlib">Assignment 6 - Numpy and Matplotlib<a class="anchor-link" href="#Assignment-6---Numpy-and-Matplotlib">¶</a></h1><h3 id="Due-Thursday-October-12">Due Thursday October 12<a class="anchor-link" href="#Due-Thursday-October-12">¶</a></h3><p>Your assignment should be handed in as an ipython notebook checked into your github repository in a new folder named <code>assignment_6</code>. To download this assignment, your best option is to clone the original github repository for the course website:</p>
+<h1 id="Assignment-6---Numpy-and-Matplotlib">Assignment 6 - Numpy and Matplotlib<a class="anchor-link" href="#Assignment-6---Numpy-and-Matplotlib">&#182;</a></h1><h3 id="Due-Thursday-October-12">Due Thursday October 12<a class="anchor-link" href="#Due-Thursday-October-12">&#182;</a></h3><p>Your assignment should be handed in as an ipython notebook checked into your github repository in a new folder named <code>assignment_6</code>. To download this assignment, your best option is to clone the original github repository for the course website:</p>
 <p><code>git clone https://github.com/rabernat/research_computing.git</code></p>
 <p>and then navigate to the <code>assignment</code> folder.</p>
-<h2 id="1-Plotting-and-analyzing-ARGO-float-data">1 Plotting and analyzing ARGO float data<a class="anchor-link" href="#1-Plotting-and-analyzing-ARGO-float-data">¶</a></h2><h4 id="1.1-Import-numpy">1.1 Import numpy<a class="anchor-link" href="#1.1-Import-numpy">¶</a></h4>
+<h2 id="1-Plotting-and-analyzing-ARGO-float-data">1 Plotting and analyzing ARGO float data<a class="anchor-link" href="#1-Plotting-and-analyzing-ARGO-float-data">&#182;</a></h2><h4 id="1.1-Import-numpy">1.1 Import numpy<a class="anchor-link" href="#1.1-Import-numpy">&#182;</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="1.2-Use-the-shell-command-curl-to-download-an-example-ARGO-float-profile-from-the-North-Atlantic.">1.2 Use the shell command <code>curl</code> to download an example ARGO float profile from the North Atlantic.<a class="anchor-link" href="#1.2-Use-the-shell-command-curl-to-download-an-example-ARGO-float-profile-from-the-North-Atlantic.">¶</a></h4><p>The data file's url is <a href="http://www.ldeo.columbia.edu/~rpa/argo_float_4901412.npz">http://www.ldeo.columbia.edu/~rpa/argo_float_4901412.npz</a></p>
+<h4 id="1.2-Use-the-shell-command-curl-to-download-an-example-ARGO-float-profile-from-the-North-Atlantic.">1.2 Use the shell command <code>curl</code> to download an example ARGO float profile from the North Atlantic.<a class="anchor-link" href="#1.2-Use-the-shell-command-curl-to-download-an-example-ARGO-float-profile-from-the-North-Atlantic.">&#182;</a></h4><p>The data file's url is <a href="http://www.ldeo.columbia.edu/~rpa/argo_float_4901412.npz">http://www.ldeo.columbia.edu/~rpa/argo_float_4901412.npz</a></p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="1.3-Load-the-data-file">1.3 Load the data file<a class="anchor-link" href="#1.3-Load-the-data-file">¶</a></h4>
+<h4 id="1.3-Load-the-data-file">1.3 Load the data file<a class="anchor-link" href="#1.3-Load-the-data-file">&#182;</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="1.4-Extract-the-temperature,-pressure-and-salinity-arrays-to-arrays-T,-S,-P-and-mask-out-invalid-data-(the-nan-values-from-missing-points).">1.4 Extract the temperature, pressure and salinity arrays to arrays T, S, P and mask out invalid data (the nan values from missing points).<a class="anchor-link" href="#1.4-Extract-the-temperature,-pressure-and-salinity-arrays-to-arrays-T,-S,-P-and-mask-out-invalid-data-(the-nan-values-from-missing-points).">¶</a></h4>
+<h4 id="1.4-Extract-the-temperature,-pressure-and-salinity-arrays-to-arrays-T,-S,-P-and-mask-out-invalid-data-(the-nan-values-from-missing-points).">1.4 Extract the temperature, pressure and salinity arrays to arrays T, S, P and mask out invalid data (the nan values from missing points).<a class="anchor-link" href="#1.4-Extract-the-temperature,-pressure-and-salinity-arrays-to-arrays-T,-S,-P-and-mask-out-invalid-data-(the-nan-values-from-missing-points).">&#182;</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="1.5-Extract-the-date,-lat,-lon,-and-level-arrays.">1.5 Extract the date, lat, lon, and level arrays.<a class="anchor-link" href="#1.5-Extract-the-date,-lat,-lon,-and-level-arrays.">¶</a></h4>
+<h4 id="1.5-Extract-the-date,-lat,-lon,-and-level-arrays.">1.5 Extract the date, lat, lon, and level arrays.<a class="anchor-link" href="#1.5-Extract-the-date,-lat,-lon,-and-level-arrays.">&#182;</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="1.5-Note-the-shapes-of-T,-S-and-P-compared-to-these-arrays.-How-do-they-line-up?">1.5 Note the shapes of T, S and P compared to these arrays. How do they line up?<a class="anchor-link" href="#1.5-Note-the-shapes-of-T,-S-and-P-compared-to-these-arrays.-How-do-they-line-up?">¶</a></h4>
+<h4 id="1.5-Note-the-shapes-of-T,-S-and-P-compared-to-these-arrays.-How-do-they-line-up?">1.5 Note the shapes of T, S and P compared to these arrays. How do they line up?<a class="anchor-link" href="#1.5-Note-the-shapes-of-T,-S-and-P-compared-to-these-arrays.-How-do-they-line-up?">&#182;</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="1.6-Load-the-necessary-package-for-plotting-using-pyplot-from-matplotlib.">1.6 Load the necessary package for plotting using pyplot from matplotlib.<a class="anchor-link" href="#1.6-Load-the-necessary-package-for-plotting-using-pyplot-from-matplotlib.">¶</a></h4>
+<h4 id="1.6-Load-the-necessary-package-for-plotting-using-pyplot-from-matplotlib.">1.6 Load the necessary package for plotting using pyplot from matplotlib.<a class="anchor-link" href="#1.6-Load-the-necessary-package-for-plotting-using-pyplot-from-matplotlib.">&#182;</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="1.7-Make-a-1-x-3-array-of-plots-for-each-column-of-data-in-T,-S-and-P.">1.7 Make a 1 x 3 array of plots for each column of data in T, S and P.<a class="anchor-link" href="#1.7-Make-a-1-x-3-array-of-plots-for-each-column-of-data-in-T,-S-and-P.">¶</a></h4><p>The vertical scale should be the <code>levels</code> data. Flip the veritcal axis direction so that levels increase downward on the plot. Each plot should have a line for each column of data. It will look messy.  Make sure you label the axes and put a title on each subplot.</p>
+<h4 id="1.7-Make-a-1-x-3-array-of-plots-for-each-column-of-data-in-T,-S-and-P.">1.7 Make a 1 x 3 array of plots for each column of data in T, S and P.<a class="anchor-link" href="#1.7-Make-a-1-x-3-array-of-plots-for-each-column-of-data-in-T,-S-and-P.">&#182;</a></h4><p>The vertical scale should be the <code>levels</code> data. Flip the veritcal axis direction so that levels increase downward on the plot. Each plot should have a line for each column of data. It will look messy.  Make sure you label the axes and put a title on each subplot.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="1.8-Compute-the-mean-and-standard-deviation-of-each-of-T,-S-and-P-at-each-depth-in-level.">1.8 Compute the mean and standard deviation of each of T, S and P at each depth in <code>level</code>.<a class="anchor-link" href="#1.8-Compute-the-mean-and-standard-deviation-of-each-of-T,-S-and-P-at-each-depth-in-level.">¶</a></h4>
+<h4 id="1.8-Compute-the-mean-and-standard-deviation-of-each-of-T,-S-and-P-at-each-depth-in-level.">1.8 Compute the mean and standard deviation of each of T, S and P at each depth in <code>level</code>.<a class="anchor-link" href="#1.8-Compute-the-mean-and-standard-deviation-of-each-of-T,-S-and-P-at-each-depth-in-level.">&#182;</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="1.9-Now-make-a-similar-plot,-but-show-only-the-mean-T,-S-and-P-at-each-depth.-Show-error-bars-on-each-plot-using-the-standard-deviations.">1.9 Now make a similar plot, but show only the mean T, S and P at each depth. Show error bars on each plot using the standard deviations.<a class="anchor-link" href="#1.9-Now-make-a-similar-plot,-but-show-only-the-mean-T,-S-and-P-at-each-depth.-Show-error-bars-on-each-plot-using-the-standard-deviations.">¶</a></h4><p>Again, make sure you label the axes and put a title on each subplot.</p>
+<h4 id="1.9-Now-make-a-similar-plot,-but-show-only-the-mean-T,-S-and-P-at-each-depth.-Show-error-bars-on-each-plot-using-the-standard-deviations.">1.9 Now make a similar plot, but show only the mean T, S and P at each depth. Show error bars on each plot using the standard deviations.<a class="anchor-link" href="#1.9-Now-make-a-similar-plot,-but-show-only-the-mean-T,-S-and-P-at-each-depth.-Show-error-bars-on-each-plot-using-the-standard-deviations.">&#182;</a></h4><p>Again, make sure you label the axes and put a title on each subplot.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="1.10--Compute-the-mean-and-standard-deviation-of-each-of-T,-S-and-P-for-each-time-in-date.">1.10  Compute the mean and standard deviation of each of T, S and P for each time in <code>date</code>.<a class="anchor-link" href="#1.10--Compute-the-mean-and-standard-deviation-of-each-of-T,-S-and-P-for-each-time-in-date.">¶</a></h4>
+<h4 id="1.10--Compute-the-mean-and-standard-deviation-of-each-of-T,-S-and-P-for-each-time-in-date.">1.10  Compute the mean and standard deviation of each of T, S and P for each time in <code>date</code>.<a class="anchor-link" href="#1.10--Compute-the-mean-and-standard-deviation-of-each-of-T,-S-and-P-for-each-time-in-date.">&#182;</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="1.11-Plot-the-mean-T,-S-and-P-for-each-entry-in-time,-now-on-a-3-x-1-subplot-grid-with-time-on-the-horizontal-axis.-Show-error-bars-on-each-plot-using-the-standard-deviations.">1.11 Plot the mean T, S and P for each entry in <em>time</em>, now on a <em>3 x 1</em> subplot grid with time on the horizontal axis. Show error bars on each plot using the standard deviations.<a class="anchor-link" href="#1.11-Plot-the-mean-T,-S-and-P-for-each-entry-in-time,-now-on-a-3-x-1-subplot-grid-with-time-on-the-horizontal-axis.-Show-error-bars-on-each-plot-using-the-standard-deviations.">¶</a></h4>
+<h4 id="1.11-Plot-the-mean-T,-S-and-P-for-each-entry-in-time,-now-on-a-3-x-1-subplot-grid-with-time-on-the-horizontal-axis.-Show-error-bars-on-each-plot-using-the-standard-deviations.">1.11 Plot the mean T, S and P for each entry in <em>time</em>, now on a <em>3 x 1</em> subplot grid with time on the horizontal axis. Show error bars on each plot using the standard deviations.<a class="anchor-link" href="#1.11-Plot-the-mean-T,-S-and-P-for-each-entry-in-time,-now-on-a-3-x-1-subplot-grid-with-time-on-the-horizontal-axis.-Show-error-bars-on-each-plot-using-the-standard-deviations.">&#182;</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="1.12-Create-a-scatter-plot-of-the-positions-of-the-ARGO-float-data.--Color-the-positions-by-the-date.-Add-a-grid-overlay.">1.12 Create a scatter plot of the positions of the ARGO float data.  Color the positions by the date. Add a grid overlay.<a class="anchor-link" href="#1.12-Create-a-scatter-plot-of-the-positions-of-the-ARGO-float-data.--Color-the-positions-by-the-date.-Add-a-grid-overlay.">¶</a></h4><p>Don't forget to label the axes!</p>
+<h4 id="1.12-Create-a-scatter-plot-of-the-positions-of-the-ARGO-float-data.--Color-the-positions-by-the-date.-Add-a-grid-overlay.">1.12 Create a scatter plot of the positions of the ARGO float data.  Color the positions by the date. Add a grid overlay.<a class="anchor-link" href="#1.12-Create-a-scatter-plot-of-the-positions-of-the-ARGO-float-data.--Color-the-positions-by-the-date.-Add-a-grid-overlay.">&#182;</a></h4><p>Don't forget to label the axes!</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="2-Matrix--multiplication-revisited">2 Matrix  multiplication revisited<a class="anchor-link" href="#2-Matrix--multiplication-revisited">¶</a></h2><h4 id="2.1-Create-a-function-called-myMatrixMultiply-that-takes-input-matrices-X-and-Y-and-computes-their-matrix-product.">2.1 Create a function called myMatrixMultiply that takes input matrices X and Y and computes their matrix product.<a class="anchor-link" href="#2.1-Create-a-function-called-myMatrixMultiply-that-takes-input-matrices-X-and-Y-and-computes-their-matrix-product.">¶</a></h4><p>Use the same three loop formulation from Assignment 5. If you want, you can replace the innermost loop with the sum operation or a matrix dot product since that may speed things up a bit.</p>
+<h2 id="2-Matrix--multiplication-revisited">2 Matrix  multiplication revisited<a class="anchor-link" href="#2-Matrix--multiplication-revisited">&#182;</a></h2><h4 id="2.1-Create-a-function-called-myMatrixMultiply-that-takes-input-matrices-X-and-Y-and-computes-their-matrix-product.">2.1 Create a function called myMatrixMultiply that takes input matrices X and Y and computes their matrix product.<a class="anchor-link" href="#2.1-Create-a-function-called-myMatrixMultiply-that-takes-input-matrices-X-and-Y-and-computes-their-matrix-product.">&#182;</a></h4><p>Use the same three loop formulation from Assignment 5. If you want, you can replace the innermost loop with the sum operation or a matrix dot product since that may speed things up a bit.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="2.2-Create-ones()-square-matrices-for-A-and-B-with-n-=-100.-Use-the-%timeit-function-to-compute-the-matrix-product-AB-using-your-function-myMatrixMultiply.">2.2 Create ones() square matrices for A and B with n = 100. Use the <code>%timeit</code> function to compute the matrix product AB using your function <code>myMatrixMultiply</code>.<a class="anchor-link" href="#2.2-Create-ones()-square-matrices-for-A-and-B-with-n-=-100.-Use-the-%timeit-function-to-compute-the-matrix-product-AB-using-your-function-myMatrixMultiply.">¶</a></h4>
+<h4 id="2.2-Create-ones()-square-matrices-for-A-and-B-with-n-=-100.-Use-the-%timeit-function-to-compute-the-matrix-product-AB-using-your-function-myMatrixMultiply.">2.2 Create ones() square matrices for A and B with n = 100. Use the <code>%timeit</code> function to compute the matrix product AB using your function <code>myMatrixMultiply</code>.<a class="anchor-link" href="#2.2-Create-ones()-square-matrices-for-A-and-B-with-n-=-100.-Use-the-%timeit-function-to-compute-the-matrix-product-AB-using-your-function-myMatrixMultiply.">&#182;</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="2.3-Now-let's-see-how-much-faster-Numpy's-built-in-matrix-multiplication-routine-is.">2.3 Now let's see how much faster Numpy's built in matrix multiplication routine is.<a class="anchor-link" href="#2.3-Now-let's-see-how-much-faster-Numpy's-built-in-matrix-multiplication-routine-is.">¶</a></h4><p>In Numpy, matrix multiplication is done using the <code>dot()</code> function. Use the <code>%timeit</code> function to compute the matrix product AB for n = 100 using <code>dot()</code> and time it using the <code>%timeit</code> function.</p>
+<h4 id="2.3-Now-let's-see-how-much-faster-Numpy's-built-in-matrix-multiplication-routine-is.">2.3 Now let's see how much faster Numpy's built in matrix multiplication routine is.<a class="anchor-link" href="#2.3-Now-let's-see-how-much-faster-Numpy's-built-in-matrix-multiplication-routine-is.">&#182;</a></h4><p>In Numpy, matrix multiplication is done using the <code>dot()</code> function. Use the <code>%timeit</code> function to compute the matrix product AB for n = 100 using <code>dot()</code> and time it using the <code>%timeit</code> function.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Now time how long it takes for n = 1000</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>When I ran this on my Mac laptop and used Activity Monitor.app to view the CPU usage of Python, I noticed that it was using up to 400% of my CPU. My laptop has 4 processing cores, so 400% means it was using all four cores to compute the matrix product. In other words, it was using parallel processing to speed up the calculations. Numpy uses some highly optimized versions of the BLAS linear algebra routines that are part of the Intel Math Kernel Library. By default, it  uses a multi-threaded version of the MKL to take advantage of the many processing cores available on modern computers. Let's turn off multithreading and see how much slower it runs.</p>
+
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In your notebook type:</p>
+
 <pre><code>import mkl
 mkl.set_num_threads(1)</code></pre>
 <p>Now rerun the n=1000 example using the <code>dot()</code> function.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
+ 
+
 
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
@@ -1507,16 +1536,16 @@ mkl.set_num_threads(1)</code></pre>
 <li class="list-group-item">
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
   <ul class="list-group" id="recentposts">
+    <li class="list-group-item"><a href="./pandas.html">Intermediate Python II: Pandas for Tabular Data</a></li>
     <li class="list-group-item"><a href="./assignment-6-numpy-and-matplotlib.html">Assignment 6 - Numpy and Matplotlib</a></li>
     <li class="list-group-item"><a href="./numpy-arrays-and-matplotlib.html">Intermediate Python I: NumPy arrays and matplotlib</a></li>
     <li class="list-group-item"><a href="./assignment-5-fortran.html">Assignment #5 -  Fortran</a></li>
     <li class="list-group-item"><a href="./intro-to-fortran.html">Intro to Fortran</a></li>
     <li class="list-group-item"><a href="./assignment-4-matlab.html">Assignment #4 -  MATLAB</a></li>
     <li class="list-group-item"><a href="./intro-to-matlab.html">Intro to MATLAB</a></li>
+    <li class="list-group-item"><a href="./assignment-submission-instructions.html">Assignment Submission Instructions</a></li>
     <li class="list-group-item"><a href="./assignment-3-introduction-to-python.html">Assignment 3: Introduction to Python</a></li>
     <li class="list-group-item"><a href="./intro-to-python.html">Introduction to Python</a></li>
-    <li class="list-group-item"><a href="./assignment-2-unix-and-version-control.html">Assignment #2 -  Unix and Version Control</a></li>
-    <li class="list-group-item"><a href="./assignment-submission-instructions.html">Assignment Submission Instructions</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Recent Posts -->
@@ -1526,22 +1555,25 @@ mkl.set_num_threads(1)</code></pre>
   <a href="./"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
   <ul class="list-group " id="tags">
     <li class="list-group-item tag-1">
-      <a href="./tag/file-system.html">file system</a>
+      <a href="./tag/shell.html">shell</a>
     </li>
     <li class="list-group-item tag-1">
       <a href="./tag/bash.html">bash</a>
     </li>
     <li class="list-group-item tag-1">
+      <a href="./tag/python.html">python</a>
+    </li>
+    <li class="list-group-item tag-1">
       <a href="./tag/assignment.html">assignment</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/file-system.html">file system</a>
     </li>
     <li class="list-group-item tag-1">
       <a href="./tag/unix.html">unix</a>
     </li>
-    <li class="list-group-item tag-1">
-      <a href="./tag/shell.html">shell</a>
-    </li>
     <li class="list-group-item tag-2">
-      <a href="./tag/python.html">python</a>
+      <a href="./tag/programming.html">programming</a>
     </li>
     <li class="list-group-item tag-3">
       <a href="./tag/git.html">git</a>
@@ -1550,40 +1582,43 @@ mkl.set_num_threads(1)</code></pre>
       <a href="./tag/matlab.html">MATLAB</a>
     </li>
     <li class="list-group-item tag-3">
-      <a href="./tag/programming.html">programming</a>
-    </li>
-    <li class="list-group-item tag-3">
       <a href="./tag/fortran.html">fortran</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/numpy.html">numpy</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/ndarray.html">ndarray</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/version-control.html">version control</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/source-code-editor.html">source code editor</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/github.html">github</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/matplotlib.html">matplotlib</a>
     </li>
     <li class="list-group-item tag-4">
+      <a href="./tag/numpy.html">numpy</a>
+    </li>
+    <li class="list-group-item tag-4">
       <a href="./tag/arrays.html">arrays</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/vpn.html">vpn</a>
+      <a href="./tag/source-code-editor.html">source code editor</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/geomapapp.html">GeoMapApp</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/gmt.html">gmt</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/visualization.html">visualization</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/github.html">github</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/pandas.html">pandas</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/ndarray.html">ndarray</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/vpn.html">vpn</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/version-control.html">version control</a>
     </li>
   </ul>
 </li>
