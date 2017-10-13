@@ -1102,724 +1102,764 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Numpy-and-Matplotlib">Numpy and Matplotlib<a class="anchor-link" href="#Numpy-and-Matplotlib">¶</a></h1><p>These are two of the most fundamental parts of the scientific python "ecosystem". Most everything else is built on top of them.</p>
+<h1 id="Numpy-and-Matplotlib">Numpy and Matplotlib<a class="anchor-link" href="#Numpy-and-Matplotlib">&#182;</a></h1><p>These are two of the most fundamental parts of the scientific python "ecosystem". Most everything else is built on top of them.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [3]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>What did we just do? We <em>imported</em> a package. This brings new variables (mostly functions) into our interpreter. We access them as follows.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [2]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># find out what is in our namespace</span>
 <span class="nb">dir</span><span class="p">()</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[2]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
-<pre>['In',
- 'Out',
- '_',
- '__',
- '___',
- '__builtin__',
- '__builtins__',
- '__doc__',
- '__loader__',
- '__name__',
- '__package__',
- '__spec__',
- '_dh',
- '_i',
- '_i1',
- '_i2',
- '_ih',
- '_ii',
- '_iii',
- '_oh',
- '_sh',
- 'exit',
- 'get_ipython',
- 'np',
- 'quit']</pre>
+<pre>[&#39;In&#39;,
+ &#39;Out&#39;,
+ &#39;_&#39;,
+ &#39;__&#39;,
+ &#39;___&#39;,
+ &#39;__builtin__&#39;,
+ &#39;__builtins__&#39;,
+ &#39;__doc__&#39;,
+ &#39;__loader__&#39;,
+ &#39;__name__&#39;,
+ &#39;__package__&#39;,
+ &#39;__spec__&#39;,
+ &#39;_dh&#39;,
+ &#39;_i&#39;,
+ &#39;_i1&#39;,
+ &#39;_i2&#39;,
+ &#39;_ih&#39;,
+ &#39;_ii&#39;,
+ &#39;_iii&#39;,
+ &#39;_oh&#39;,
+ &#39;_sh&#39;,
+ &#39;exit&#39;,
+ &#39;get_ipython&#39;,
+ &#39;np&#39;,
+ &#39;quit&#39;]</pre>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [3]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># find out what's in numpy</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># find out what&#39;s in numpy</span>
 <span class="nb">dir</span><span class="p">(</span><span class="n">np</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[3]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
-<pre>['ALLOW_THREADS',
- 'BUFSIZE',
- 'CLIP',
- 'ComplexWarning',
- 'DataSource',
- 'ERR_CALL',
- 'ERR_DEFAULT',
- 'ERR_IGNORE',
- 'ERR_LOG',
- 'ERR_PRINT',
- 'ERR_RAISE',
- 'ERR_WARN',
- 'FLOATING_POINT_SUPPORT',
- 'FPE_DIVIDEBYZERO',
- 'FPE_INVALID',
- 'FPE_OVERFLOW',
- 'FPE_UNDERFLOW',
- 'False_',
- 'Inf',
- 'Infinity',
- 'MAXDIMS',
- 'MAY_SHARE_BOUNDS',
- 'MAY_SHARE_EXACT',
- 'MachAr',
- 'ModuleDeprecationWarning',
- 'NAN',
- 'NINF',
- 'NZERO',
- 'NaN',
- 'PINF',
- 'PZERO',
- 'PackageLoader',
- 'RAISE',
- 'RankWarning',
- 'SHIFT_DIVIDEBYZERO',
- 'SHIFT_INVALID',
- 'SHIFT_OVERFLOW',
- 'SHIFT_UNDERFLOW',
- 'ScalarType',
- 'Tester',
- 'TooHardError',
- 'True_',
- 'UFUNC_BUFSIZE_DEFAULT',
- 'UFUNC_PYVALS_NAME',
- 'VisibleDeprecationWarning',
- 'WRAP',
- '_NoValue',
- '__NUMPY_SETUP__',
- '__all__',
- '__builtins__',
- '__cached__',
- '__config__',
- '__doc__',
- '__file__',
- '__git_revision__',
- '__loader__',
- '__mkl_version__',
- '__name__',
- '__package__',
- '__path__',
- '__spec__',
- '__version__',
- '_distributor_init',
- '_globals',
- '_import_tools',
- '_mat',
- 'abs',
- 'absolute',
- 'absolute_import',
- 'add',
- 'add_docstring',
- 'add_newdoc',
- 'add_newdoc_ufunc',
- 'add_newdocs',
- 'alen',
- 'all',
- 'allclose',
- 'alltrue',
- 'alterdot',
- 'amax',
- 'amin',
- 'angle',
- 'any',
- 'append',
- 'apply_along_axis',
- 'apply_over_axes',
- 'arange',
- 'arccos',
- 'arccosh',
- 'arcsin',
- 'arcsinh',
- 'arctan',
- 'arctan2',
- 'arctanh',
- 'argmax',
- 'argmin',
- 'argpartition',
- 'argsort',
- 'argwhere',
- 'around',
- 'array',
- 'array2string',
- 'array_equal',
- 'array_equiv',
- 'array_repr',
- 'array_split',
- 'array_str',
- 'asanyarray',
- 'asarray',
- 'asarray_chkfinite',
- 'ascontiguousarray',
- 'asfarray',
- 'asfortranarray',
- 'asmatrix',
- 'asscalar',
- 'atleast_1d',
- 'atleast_2d',
- 'atleast_3d',
- 'average',
- 'bartlett',
- 'base_repr',
- 'bench',
- 'binary_repr',
- 'bincount',
- 'bitwise_and',
- 'bitwise_not',
- 'bitwise_or',
- 'bitwise_xor',
- 'blackman',
- 'bmat',
- 'bool',
- 'bool8',
- 'bool_',
- 'broadcast',
- 'broadcast_arrays',
- 'broadcast_to',
- 'busday_count',
- 'busday_offset',
- 'busdaycalendar',
- 'byte',
- 'byte_bounds',
- 'bytes0',
- 'bytes_',
- 'c_',
- 'can_cast',
- 'cast',
- 'cbrt',
- 'cdouble',
- 'ceil',
- 'cfloat',
- 'char',
- 'character',
- 'chararray',
- 'choose',
- 'clip',
- 'clongdouble',
- 'clongfloat',
- 'column_stack',
- 'common_type',
- 'compare_chararrays',
- 'compat',
- 'complex',
- 'complex128',
- 'complex256',
- 'complex64',
- 'complex_',
- 'complexfloating',
- 'compress',
- 'concatenate',
- 'conj',
- 'conjugate',
- 'convolve',
- 'copy',
- 'copysign',
- 'copyto',
- 'core',
- 'corrcoef',
- 'correlate',
- 'cos',
- 'cosh',
- 'count_nonzero',
- 'cov',
- 'cross',
- 'csingle',
- 'ctypeslib',
- 'cumprod',
- 'cumproduct',
- 'cumsum',
- 'datetime64',
- 'datetime_as_string',
- 'datetime_data',
- 'deg2rad',
- 'degrees',
- 'delete',
- 'deprecate',
- 'deprecate_with_doc',
- 'diag',
- 'diag_indices',
- 'diag_indices_from',
- 'diagflat',
- 'diagonal',
- 'diff',
- 'digitize',
- 'disp',
- 'divide',
- 'division',
- 'dot',
- 'double',
- 'dsplit',
- 'dstack',
- 'dtype',
- 'e',
- 'ediff1d',
- 'einsum',
- 'einsum_path',
- 'emath',
- 'empty',
- 'empty_like',
- 'equal',
- 'errstate',
- 'euler_gamma',
- 'exp',
- 'exp2',
- 'expand_dims',
- 'expm1',
- 'extract',
- 'eye',
- 'fabs',
- 'fastCopyAndTranspose',
- 'fft',
- 'fill_diagonal',
- 'find_common_type',
- 'finfo',
- 'fix',
- 'flatiter',
- 'flatnonzero',
- 'flexible',
- 'flip',
- 'fliplr',
- 'flipud',
- 'float',
- 'float128',
- 'float16',
- 'float32',
- 'float64',
- 'float_',
- 'float_power',
- 'floating',
- 'floor',
- 'floor_divide',
- 'fmax',
- 'fmin',
- 'fmod',
- 'format_parser',
- 'frexp',
- 'frombuffer',
- 'fromfile',
- 'fromfunction',
- 'fromiter',
- 'frompyfunc',
- 'fromregex',
- 'fromstring',
- 'full',
- 'full_like',
- 'fv',
- 'generic',
- 'genfromtxt',
- 'geomspace',
- 'get_array_wrap',
- 'get_include',
- 'get_printoptions',
- 'getbufsize',
- 'geterr',
- 'geterrcall',
- 'geterrobj',
- 'gradient',
- 'greater',
- 'greater_equal',
- 'half',
- 'hamming',
- 'hanning',
- 'histogram',
- 'histogram2d',
- 'histogramdd',
- 'hsplit',
- 'hstack',
- 'hypot',
- 'i0',
- 'identity',
- 'iinfo',
- 'imag',
- 'in1d',
- 'index_exp',
- 'indices',
- 'inexact',
- 'inf',
- 'info',
- 'infty',
- 'inner',
- 'insert',
- 'int',
- 'int0',
- 'int16',
- 'int32',
- 'int64',
- 'int8',
- 'int_',
- 'int_asbuffer',
- 'intc',
- 'integer',
- 'interp',
- 'intersect1d',
- 'intp',
- 'invert',
- 'ipmt',
- 'irr',
- 'is_busday',
- 'isclose',
- 'iscomplex',
- 'iscomplexobj',
- 'isfinite',
- 'isfortran',
- 'isinf',
- 'isnan',
- 'isneginf',
- 'isposinf',
- 'isreal',
- 'isrealobj',
- 'isscalar',
- 'issctype',
- 'issubclass_',
- 'issubdtype',
- 'issubsctype',
- 'iterable',
- 'ix_',
- 'kaiser',
- 'kron',
- 'ldexp',
- 'left_shift',
- 'less',
- 'less_equal',
- 'lexsort',
- 'lib',
- 'linalg',
- 'linspace',
- 'little_endian',
- 'load',
- 'loads',
- 'loadtxt',
- 'log',
- 'log10',
- 'log1p',
- 'log2',
- 'logaddexp',
- 'logaddexp2',
- 'logical_and',
- 'logical_not',
- 'logical_or',
- 'logical_xor',
- 'logspace',
- 'long',
- 'longcomplex',
- 'longdouble',
- 'longfloat',
- 'longlong',
- 'lookfor',
- 'ma',
- 'mafromtxt',
- 'mask_indices',
- 'mat',
- 'math',
- 'matmul',
- 'matrix',
- 'matrixlib',
- 'max',
- 'maximum',
- 'maximum_sctype',
- 'may_share_memory',
- 'mean',
- 'median',
- 'memmap',
- 'meshgrid',
- 'mgrid',
- 'min',
- 'min_scalar_type',
- 'minimum',
- 'mintypecode',
- 'mirr',
- 'mod',
- 'modf',
- 'moveaxis',
- 'msort',
- 'multiply',
- 'nan',
- 'nan_to_num',
- 'nanargmax',
- 'nanargmin',
- 'nancumprod',
- 'nancumsum',
- 'nanmax',
- 'nanmean',
- 'nanmedian',
- 'nanmin',
- 'nanpercentile',
- 'nanprod',
- 'nanstd',
- 'nansum',
- 'nanvar',
- 'nbytes',
- 'ndarray',
- 'ndenumerate',
- 'ndfromtxt',
- 'ndim',
- 'ndindex',
- 'nditer',
- 'negative',
- 'nested_iters',
- 'newaxis',
- 'nextafter',
- 'nonzero',
- 'not_equal',
- 'nper',
- 'npv',
- 'numarray',
- 'number',
- 'obj2sctype',
- 'object',
- 'object0',
- 'object_',
- 'ogrid',
- 'oldnumeric',
- 'ones',
- 'ones_like',
- 'outer',
- 'packbits',
- 'pad',
- 'partition',
- 'percentile',
- 'pi',
- 'piecewise',
- 'pkgload',
- 'place',
- 'pmt',
- 'poly',
- 'poly1d',
- 'polyadd',
- 'polyder',
- 'polydiv',
- 'polyfit',
- 'polyint',
- 'polymul',
- 'polynomial',
- 'polysub',
- 'polyval',
- 'power',
- 'ppmt',
- 'print_function',
- 'prod',
- 'product',
- 'promote_types',
- 'ptp',
- 'put',
- 'putmask',
- 'pv',
- 'r_',
- 'rad2deg',
- 'radians',
- 'random',
- 'rank',
- 'rate',
- 'ravel',
- 'ravel_multi_index',
- 'real',
- 'real_if_close',
- 'rec',
- 'recarray',
- 'recfromcsv',
- 'recfromtxt',
- 'reciprocal',
- 'record',
- 'remainder',
- 'repeat',
- 'require',
- 'reshape',
- 'resize',
- 'restoredot',
- 'result_type',
- 'right_shift',
- 'rint',
- 'roll',
- 'rollaxis',
- 'roots',
- 'rot90',
- 'round',
- 'round_',
- 'row_stack',
- 's_',
- 'safe_eval',
- 'save',
- 'savetxt',
- 'savez',
- 'savez_compressed',
- 'sctype2char',
- 'sctypeDict',
- 'sctypeNA',
- 'sctypes',
- 'searchsorted',
- 'select',
- 'set_numeric_ops',
- 'set_printoptions',
- 'set_string_function',
- 'setbufsize',
- 'setdiff1d',
- 'seterr',
- 'seterrcall',
- 'seterrobj',
- 'setxor1d',
- 'shape',
- 'shares_memory',
- 'short',
- 'show_config',
- 'sign',
- 'signbit',
- 'signedinteger',
- 'sin',
- 'sinc',
- 'single',
- 'singlecomplex',
- 'sinh',
- 'size',
- 'sometrue',
- 'sort',
- 'sort_complex',
- 'source',
- 'spacing',
- 'split',
- 'sqrt',
- 'square',
- 'squeeze',
- 'stack',
- 'std',
- 'str',
- 'str0',
- 'str_',
- 'string_',
- 'subtract',
- 'sum',
- 'swapaxes',
- 'take',
- 'tan',
- 'tanh',
- 'tensordot',
- 'test',
- 'testing',
- 'tile',
- 'timedelta64',
- 'trace',
- 'transpose',
- 'trapz',
- 'tri',
- 'tril',
- 'tril_indices',
- 'tril_indices_from',
- 'trim_zeros',
- 'triu',
- 'triu_indices',
- 'triu_indices_from',
- 'true_divide',
- 'trunc',
- 'typeDict',
- 'typeNA',
- 'typecodes',
- 'typename',
- 'ubyte',
- 'ufunc',
- 'uint',
- 'uint0',
- 'uint16',
- 'uint32',
- 'uint64',
- 'uint8',
- 'uintc',
- 'uintp',
- 'ulonglong',
- 'unicode',
- 'unicode_',
- 'union1d',
- 'unique',
- 'unpackbits',
- 'unravel_index',
- 'unsignedinteger',
- 'unwrap',
- 'ushort',
- 'vander',
- 'var',
- 'vdot',
- 'vectorize',
- 'version',
- 'void',
- 'void0',
- 'vsplit',
- 'vstack',
- 'warnings',
- 'where',
- 'who',
- 'zeros',
- 'zeros_like']</pre>
+<pre>[&#39;ALLOW_THREADS&#39;,
+ &#39;BUFSIZE&#39;,
+ &#39;CLIP&#39;,
+ &#39;ComplexWarning&#39;,
+ &#39;DataSource&#39;,
+ &#39;ERR_CALL&#39;,
+ &#39;ERR_DEFAULT&#39;,
+ &#39;ERR_IGNORE&#39;,
+ &#39;ERR_LOG&#39;,
+ &#39;ERR_PRINT&#39;,
+ &#39;ERR_RAISE&#39;,
+ &#39;ERR_WARN&#39;,
+ &#39;FLOATING_POINT_SUPPORT&#39;,
+ &#39;FPE_DIVIDEBYZERO&#39;,
+ &#39;FPE_INVALID&#39;,
+ &#39;FPE_OVERFLOW&#39;,
+ &#39;FPE_UNDERFLOW&#39;,
+ &#39;False_&#39;,
+ &#39;Inf&#39;,
+ &#39;Infinity&#39;,
+ &#39;MAXDIMS&#39;,
+ &#39;MAY_SHARE_BOUNDS&#39;,
+ &#39;MAY_SHARE_EXACT&#39;,
+ &#39;MachAr&#39;,
+ &#39;ModuleDeprecationWarning&#39;,
+ &#39;NAN&#39;,
+ &#39;NINF&#39;,
+ &#39;NZERO&#39;,
+ &#39;NaN&#39;,
+ &#39;PINF&#39;,
+ &#39;PZERO&#39;,
+ &#39;PackageLoader&#39;,
+ &#39;RAISE&#39;,
+ &#39;RankWarning&#39;,
+ &#39;SHIFT_DIVIDEBYZERO&#39;,
+ &#39;SHIFT_INVALID&#39;,
+ &#39;SHIFT_OVERFLOW&#39;,
+ &#39;SHIFT_UNDERFLOW&#39;,
+ &#39;ScalarType&#39;,
+ &#39;Tester&#39;,
+ &#39;TooHardError&#39;,
+ &#39;True_&#39;,
+ &#39;UFUNC_BUFSIZE_DEFAULT&#39;,
+ &#39;UFUNC_PYVALS_NAME&#39;,
+ &#39;VisibleDeprecationWarning&#39;,
+ &#39;WRAP&#39;,
+ &#39;_NoValue&#39;,
+ &#39;__NUMPY_SETUP__&#39;,
+ &#39;__all__&#39;,
+ &#39;__builtins__&#39;,
+ &#39;__cached__&#39;,
+ &#39;__config__&#39;,
+ &#39;__doc__&#39;,
+ &#39;__file__&#39;,
+ &#39;__git_revision__&#39;,
+ &#39;__loader__&#39;,
+ &#39;__mkl_version__&#39;,
+ &#39;__name__&#39;,
+ &#39;__package__&#39;,
+ &#39;__path__&#39;,
+ &#39;__spec__&#39;,
+ &#39;__version__&#39;,
+ &#39;_distributor_init&#39;,
+ &#39;_globals&#39;,
+ &#39;_import_tools&#39;,
+ &#39;_mat&#39;,
+ &#39;abs&#39;,
+ &#39;absolute&#39;,
+ &#39;absolute_import&#39;,
+ &#39;add&#39;,
+ &#39;add_docstring&#39;,
+ &#39;add_newdoc&#39;,
+ &#39;add_newdoc_ufunc&#39;,
+ &#39;add_newdocs&#39;,
+ &#39;alen&#39;,
+ &#39;all&#39;,
+ &#39;allclose&#39;,
+ &#39;alltrue&#39;,
+ &#39;alterdot&#39;,
+ &#39;amax&#39;,
+ &#39;amin&#39;,
+ &#39;angle&#39;,
+ &#39;any&#39;,
+ &#39;append&#39;,
+ &#39;apply_along_axis&#39;,
+ &#39;apply_over_axes&#39;,
+ &#39;arange&#39;,
+ &#39;arccos&#39;,
+ &#39;arccosh&#39;,
+ &#39;arcsin&#39;,
+ &#39;arcsinh&#39;,
+ &#39;arctan&#39;,
+ &#39;arctan2&#39;,
+ &#39;arctanh&#39;,
+ &#39;argmax&#39;,
+ &#39;argmin&#39;,
+ &#39;argpartition&#39;,
+ &#39;argsort&#39;,
+ &#39;argwhere&#39;,
+ &#39;around&#39;,
+ &#39;array&#39;,
+ &#39;array2string&#39;,
+ &#39;array_equal&#39;,
+ &#39;array_equiv&#39;,
+ &#39;array_repr&#39;,
+ &#39;array_split&#39;,
+ &#39;array_str&#39;,
+ &#39;asanyarray&#39;,
+ &#39;asarray&#39;,
+ &#39;asarray_chkfinite&#39;,
+ &#39;ascontiguousarray&#39;,
+ &#39;asfarray&#39;,
+ &#39;asfortranarray&#39;,
+ &#39;asmatrix&#39;,
+ &#39;asscalar&#39;,
+ &#39;atleast_1d&#39;,
+ &#39;atleast_2d&#39;,
+ &#39;atleast_3d&#39;,
+ &#39;average&#39;,
+ &#39;bartlett&#39;,
+ &#39;base_repr&#39;,
+ &#39;bench&#39;,
+ &#39;binary_repr&#39;,
+ &#39;bincount&#39;,
+ &#39;bitwise_and&#39;,
+ &#39;bitwise_not&#39;,
+ &#39;bitwise_or&#39;,
+ &#39;bitwise_xor&#39;,
+ &#39;blackman&#39;,
+ &#39;bmat&#39;,
+ &#39;bool&#39;,
+ &#39;bool8&#39;,
+ &#39;bool_&#39;,
+ &#39;broadcast&#39;,
+ &#39;broadcast_arrays&#39;,
+ &#39;broadcast_to&#39;,
+ &#39;busday_count&#39;,
+ &#39;busday_offset&#39;,
+ &#39;busdaycalendar&#39;,
+ &#39;byte&#39;,
+ &#39;byte_bounds&#39;,
+ &#39;bytes0&#39;,
+ &#39;bytes_&#39;,
+ &#39;c_&#39;,
+ &#39;can_cast&#39;,
+ &#39;cast&#39;,
+ &#39;cbrt&#39;,
+ &#39;cdouble&#39;,
+ &#39;ceil&#39;,
+ &#39;cfloat&#39;,
+ &#39;char&#39;,
+ &#39;character&#39;,
+ &#39;chararray&#39;,
+ &#39;choose&#39;,
+ &#39;clip&#39;,
+ &#39;clongdouble&#39;,
+ &#39;clongfloat&#39;,
+ &#39;column_stack&#39;,
+ &#39;common_type&#39;,
+ &#39;compare_chararrays&#39;,
+ &#39;compat&#39;,
+ &#39;complex&#39;,
+ &#39;complex128&#39;,
+ &#39;complex256&#39;,
+ &#39;complex64&#39;,
+ &#39;complex_&#39;,
+ &#39;complexfloating&#39;,
+ &#39;compress&#39;,
+ &#39;concatenate&#39;,
+ &#39;conj&#39;,
+ &#39;conjugate&#39;,
+ &#39;convolve&#39;,
+ &#39;copy&#39;,
+ &#39;copysign&#39;,
+ &#39;copyto&#39;,
+ &#39;core&#39;,
+ &#39;corrcoef&#39;,
+ &#39;correlate&#39;,
+ &#39;cos&#39;,
+ &#39;cosh&#39;,
+ &#39;count_nonzero&#39;,
+ &#39;cov&#39;,
+ &#39;cross&#39;,
+ &#39;csingle&#39;,
+ &#39;ctypeslib&#39;,
+ &#39;cumprod&#39;,
+ &#39;cumproduct&#39;,
+ &#39;cumsum&#39;,
+ &#39;datetime64&#39;,
+ &#39;datetime_as_string&#39;,
+ &#39;datetime_data&#39;,
+ &#39;deg2rad&#39;,
+ &#39;degrees&#39;,
+ &#39;delete&#39;,
+ &#39;deprecate&#39;,
+ &#39;deprecate_with_doc&#39;,
+ &#39;diag&#39;,
+ &#39;diag_indices&#39;,
+ &#39;diag_indices_from&#39;,
+ &#39;diagflat&#39;,
+ &#39;diagonal&#39;,
+ &#39;diff&#39;,
+ &#39;digitize&#39;,
+ &#39;disp&#39;,
+ &#39;divide&#39;,
+ &#39;division&#39;,
+ &#39;dot&#39;,
+ &#39;double&#39;,
+ &#39;dsplit&#39;,
+ &#39;dstack&#39;,
+ &#39;dtype&#39;,
+ &#39;e&#39;,
+ &#39;ediff1d&#39;,
+ &#39;einsum&#39;,
+ &#39;einsum_path&#39;,
+ &#39;emath&#39;,
+ &#39;empty&#39;,
+ &#39;empty_like&#39;,
+ &#39;equal&#39;,
+ &#39;errstate&#39;,
+ &#39;euler_gamma&#39;,
+ &#39;exp&#39;,
+ &#39;exp2&#39;,
+ &#39;expand_dims&#39;,
+ &#39;expm1&#39;,
+ &#39;extract&#39;,
+ &#39;eye&#39;,
+ &#39;fabs&#39;,
+ &#39;fastCopyAndTranspose&#39;,
+ &#39;fft&#39;,
+ &#39;fill_diagonal&#39;,
+ &#39;find_common_type&#39;,
+ &#39;finfo&#39;,
+ &#39;fix&#39;,
+ &#39;flatiter&#39;,
+ &#39;flatnonzero&#39;,
+ &#39;flexible&#39;,
+ &#39;flip&#39;,
+ &#39;fliplr&#39;,
+ &#39;flipud&#39;,
+ &#39;float&#39;,
+ &#39;float128&#39;,
+ &#39;float16&#39;,
+ &#39;float32&#39;,
+ &#39;float64&#39;,
+ &#39;float_&#39;,
+ &#39;float_power&#39;,
+ &#39;floating&#39;,
+ &#39;floor&#39;,
+ &#39;floor_divide&#39;,
+ &#39;fmax&#39;,
+ &#39;fmin&#39;,
+ &#39;fmod&#39;,
+ &#39;format_parser&#39;,
+ &#39;frexp&#39;,
+ &#39;frombuffer&#39;,
+ &#39;fromfile&#39;,
+ &#39;fromfunction&#39;,
+ &#39;fromiter&#39;,
+ &#39;frompyfunc&#39;,
+ &#39;fromregex&#39;,
+ &#39;fromstring&#39;,
+ &#39;full&#39;,
+ &#39;full_like&#39;,
+ &#39;fv&#39;,
+ &#39;generic&#39;,
+ &#39;genfromtxt&#39;,
+ &#39;geomspace&#39;,
+ &#39;get_array_wrap&#39;,
+ &#39;get_include&#39;,
+ &#39;get_printoptions&#39;,
+ &#39;getbufsize&#39;,
+ &#39;geterr&#39;,
+ &#39;geterrcall&#39;,
+ &#39;geterrobj&#39;,
+ &#39;gradient&#39;,
+ &#39;greater&#39;,
+ &#39;greater_equal&#39;,
+ &#39;half&#39;,
+ &#39;hamming&#39;,
+ &#39;hanning&#39;,
+ &#39;histogram&#39;,
+ &#39;histogram2d&#39;,
+ &#39;histogramdd&#39;,
+ &#39;hsplit&#39;,
+ &#39;hstack&#39;,
+ &#39;hypot&#39;,
+ &#39;i0&#39;,
+ &#39;identity&#39;,
+ &#39;iinfo&#39;,
+ &#39;imag&#39;,
+ &#39;in1d&#39;,
+ &#39;index_exp&#39;,
+ &#39;indices&#39;,
+ &#39;inexact&#39;,
+ &#39;inf&#39;,
+ &#39;info&#39;,
+ &#39;infty&#39;,
+ &#39;inner&#39;,
+ &#39;insert&#39;,
+ &#39;int&#39;,
+ &#39;int0&#39;,
+ &#39;int16&#39;,
+ &#39;int32&#39;,
+ &#39;int64&#39;,
+ &#39;int8&#39;,
+ &#39;int_&#39;,
+ &#39;int_asbuffer&#39;,
+ &#39;intc&#39;,
+ &#39;integer&#39;,
+ &#39;interp&#39;,
+ &#39;intersect1d&#39;,
+ &#39;intp&#39;,
+ &#39;invert&#39;,
+ &#39;ipmt&#39;,
+ &#39;irr&#39;,
+ &#39;is_busday&#39;,
+ &#39;isclose&#39;,
+ &#39;iscomplex&#39;,
+ &#39;iscomplexobj&#39;,
+ &#39;isfinite&#39;,
+ &#39;isfortran&#39;,
+ &#39;isinf&#39;,
+ &#39;isnan&#39;,
+ &#39;isneginf&#39;,
+ &#39;isposinf&#39;,
+ &#39;isreal&#39;,
+ &#39;isrealobj&#39;,
+ &#39;isscalar&#39;,
+ &#39;issctype&#39;,
+ &#39;issubclass_&#39;,
+ &#39;issubdtype&#39;,
+ &#39;issubsctype&#39;,
+ &#39;iterable&#39;,
+ &#39;ix_&#39;,
+ &#39;kaiser&#39;,
+ &#39;kron&#39;,
+ &#39;ldexp&#39;,
+ &#39;left_shift&#39;,
+ &#39;less&#39;,
+ &#39;less_equal&#39;,
+ &#39;lexsort&#39;,
+ &#39;lib&#39;,
+ &#39;linalg&#39;,
+ &#39;linspace&#39;,
+ &#39;little_endian&#39;,
+ &#39;load&#39;,
+ &#39;loads&#39;,
+ &#39;loadtxt&#39;,
+ &#39;log&#39;,
+ &#39;log10&#39;,
+ &#39;log1p&#39;,
+ &#39;log2&#39;,
+ &#39;logaddexp&#39;,
+ &#39;logaddexp2&#39;,
+ &#39;logical_and&#39;,
+ &#39;logical_not&#39;,
+ &#39;logical_or&#39;,
+ &#39;logical_xor&#39;,
+ &#39;logspace&#39;,
+ &#39;long&#39;,
+ &#39;longcomplex&#39;,
+ &#39;longdouble&#39;,
+ &#39;longfloat&#39;,
+ &#39;longlong&#39;,
+ &#39;lookfor&#39;,
+ &#39;ma&#39;,
+ &#39;mafromtxt&#39;,
+ &#39;mask_indices&#39;,
+ &#39;mat&#39;,
+ &#39;math&#39;,
+ &#39;matmul&#39;,
+ &#39;matrix&#39;,
+ &#39;matrixlib&#39;,
+ &#39;max&#39;,
+ &#39;maximum&#39;,
+ &#39;maximum_sctype&#39;,
+ &#39;may_share_memory&#39;,
+ &#39;mean&#39;,
+ &#39;median&#39;,
+ &#39;memmap&#39;,
+ &#39;meshgrid&#39;,
+ &#39;mgrid&#39;,
+ &#39;min&#39;,
+ &#39;min_scalar_type&#39;,
+ &#39;minimum&#39;,
+ &#39;mintypecode&#39;,
+ &#39;mirr&#39;,
+ &#39;mod&#39;,
+ &#39;modf&#39;,
+ &#39;moveaxis&#39;,
+ &#39;msort&#39;,
+ &#39;multiply&#39;,
+ &#39;nan&#39;,
+ &#39;nan_to_num&#39;,
+ &#39;nanargmax&#39;,
+ &#39;nanargmin&#39;,
+ &#39;nancumprod&#39;,
+ &#39;nancumsum&#39;,
+ &#39;nanmax&#39;,
+ &#39;nanmean&#39;,
+ &#39;nanmedian&#39;,
+ &#39;nanmin&#39;,
+ &#39;nanpercentile&#39;,
+ &#39;nanprod&#39;,
+ &#39;nanstd&#39;,
+ &#39;nansum&#39;,
+ &#39;nanvar&#39;,
+ &#39;nbytes&#39;,
+ &#39;ndarray&#39;,
+ &#39;ndenumerate&#39;,
+ &#39;ndfromtxt&#39;,
+ &#39;ndim&#39;,
+ &#39;ndindex&#39;,
+ &#39;nditer&#39;,
+ &#39;negative&#39;,
+ &#39;nested_iters&#39;,
+ &#39;newaxis&#39;,
+ &#39;nextafter&#39;,
+ &#39;nonzero&#39;,
+ &#39;not_equal&#39;,
+ &#39;nper&#39;,
+ &#39;npv&#39;,
+ &#39;numarray&#39;,
+ &#39;number&#39;,
+ &#39;obj2sctype&#39;,
+ &#39;object&#39;,
+ &#39;object0&#39;,
+ &#39;object_&#39;,
+ &#39;ogrid&#39;,
+ &#39;oldnumeric&#39;,
+ &#39;ones&#39;,
+ &#39;ones_like&#39;,
+ &#39;outer&#39;,
+ &#39;packbits&#39;,
+ &#39;pad&#39;,
+ &#39;partition&#39;,
+ &#39;percentile&#39;,
+ &#39;pi&#39;,
+ &#39;piecewise&#39;,
+ &#39;pkgload&#39;,
+ &#39;place&#39;,
+ &#39;pmt&#39;,
+ &#39;poly&#39;,
+ &#39;poly1d&#39;,
+ &#39;polyadd&#39;,
+ &#39;polyder&#39;,
+ &#39;polydiv&#39;,
+ &#39;polyfit&#39;,
+ &#39;polyint&#39;,
+ &#39;polymul&#39;,
+ &#39;polynomial&#39;,
+ &#39;polysub&#39;,
+ &#39;polyval&#39;,
+ &#39;power&#39;,
+ &#39;ppmt&#39;,
+ &#39;print_function&#39;,
+ &#39;prod&#39;,
+ &#39;product&#39;,
+ &#39;promote_types&#39;,
+ &#39;ptp&#39;,
+ &#39;put&#39;,
+ &#39;putmask&#39;,
+ &#39;pv&#39;,
+ &#39;r_&#39;,
+ &#39;rad2deg&#39;,
+ &#39;radians&#39;,
+ &#39;random&#39;,
+ &#39;rank&#39;,
+ &#39;rate&#39;,
+ &#39;ravel&#39;,
+ &#39;ravel_multi_index&#39;,
+ &#39;real&#39;,
+ &#39;real_if_close&#39;,
+ &#39;rec&#39;,
+ &#39;recarray&#39;,
+ &#39;recfromcsv&#39;,
+ &#39;recfromtxt&#39;,
+ &#39;reciprocal&#39;,
+ &#39;record&#39;,
+ &#39;remainder&#39;,
+ &#39;repeat&#39;,
+ &#39;require&#39;,
+ &#39;reshape&#39;,
+ &#39;resize&#39;,
+ &#39;restoredot&#39;,
+ &#39;result_type&#39;,
+ &#39;right_shift&#39;,
+ &#39;rint&#39;,
+ &#39;roll&#39;,
+ &#39;rollaxis&#39;,
+ &#39;roots&#39;,
+ &#39;rot90&#39;,
+ &#39;round&#39;,
+ &#39;round_&#39;,
+ &#39;row_stack&#39;,
+ &#39;s_&#39;,
+ &#39;safe_eval&#39;,
+ &#39;save&#39;,
+ &#39;savetxt&#39;,
+ &#39;savez&#39;,
+ &#39;savez_compressed&#39;,
+ &#39;sctype2char&#39;,
+ &#39;sctypeDict&#39;,
+ &#39;sctypeNA&#39;,
+ &#39;sctypes&#39;,
+ &#39;searchsorted&#39;,
+ &#39;select&#39;,
+ &#39;set_numeric_ops&#39;,
+ &#39;set_printoptions&#39;,
+ &#39;set_string_function&#39;,
+ &#39;setbufsize&#39;,
+ &#39;setdiff1d&#39;,
+ &#39;seterr&#39;,
+ &#39;seterrcall&#39;,
+ &#39;seterrobj&#39;,
+ &#39;setxor1d&#39;,
+ &#39;shape&#39;,
+ &#39;shares_memory&#39;,
+ &#39;short&#39;,
+ &#39;show_config&#39;,
+ &#39;sign&#39;,
+ &#39;signbit&#39;,
+ &#39;signedinteger&#39;,
+ &#39;sin&#39;,
+ &#39;sinc&#39;,
+ &#39;single&#39;,
+ &#39;singlecomplex&#39;,
+ &#39;sinh&#39;,
+ &#39;size&#39;,
+ &#39;sometrue&#39;,
+ &#39;sort&#39;,
+ &#39;sort_complex&#39;,
+ &#39;source&#39;,
+ &#39;spacing&#39;,
+ &#39;split&#39;,
+ &#39;sqrt&#39;,
+ &#39;square&#39;,
+ &#39;squeeze&#39;,
+ &#39;stack&#39;,
+ &#39;std&#39;,
+ &#39;str&#39;,
+ &#39;str0&#39;,
+ &#39;str_&#39;,
+ &#39;string_&#39;,
+ &#39;subtract&#39;,
+ &#39;sum&#39;,
+ &#39;swapaxes&#39;,
+ &#39;take&#39;,
+ &#39;tan&#39;,
+ &#39;tanh&#39;,
+ &#39;tensordot&#39;,
+ &#39;test&#39;,
+ &#39;testing&#39;,
+ &#39;tile&#39;,
+ &#39;timedelta64&#39;,
+ &#39;trace&#39;,
+ &#39;transpose&#39;,
+ &#39;trapz&#39;,
+ &#39;tri&#39;,
+ &#39;tril&#39;,
+ &#39;tril_indices&#39;,
+ &#39;tril_indices_from&#39;,
+ &#39;trim_zeros&#39;,
+ &#39;triu&#39;,
+ &#39;triu_indices&#39;,
+ &#39;triu_indices_from&#39;,
+ &#39;true_divide&#39;,
+ &#39;trunc&#39;,
+ &#39;typeDict&#39;,
+ &#39;typeNA&#39;,
+ &#39;typecodes&#39;,
+ &#39;typename&#39;,
+ &#39;ubyte&#39;,
+ &#39;ufunc&#39;,
+ &#39;uint&#39;,
+ &#39;uint0&#39;,
+ &#39;uint16&#39;,
+ &#39;uint32&#39;,
+ &#39;uint64&#39;,
+ &#39;uint8&#39;,
+ &#39;uintc&#39;,
+ &#39;uintp&#39;,
+ &#39;ulonglong&#39;,
+ &#39;unicode&#39;,
+ &#39;unicode_&#39;,
+ &#39;union1d&#39;,
+ &#39;unique&#39;,
+ &#39;unpackbits&#39;,
+ &#39;unravel_index&#39;,
+ &#39;unsignedinteger&#39;,
+ &#39;unwrap&#39;,
+ &#39;ushort&#39;,
+ &#39;vander&#39;,
+ &#39;var&#39;,
+ &#39;vdot&#39;,
+ &#39;vectorize&#39;,
+ &#39;version&#39;,
+ &#39;void&#39;,
+ &#39;void0&#39;,
+ &#39;vsplit&#39;,
+ &#39;vstack&#39;,
+ &#39;warnings&#39;,
+ &#39;where&#39;,
+ &#39;who&#39;,
+ &#39;zeros&#39;,
+ &#39;zeros_like&#39;]</pre>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [4]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># find out what version we have</span>
 <span class="n">np</span><span class="o">.</span><span class="n">__version__</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[4]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
-<pre>'1.12.1'</pre>
+<pre>&#39;1.12.1&#39;</pre>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
@@ -1827,149 +1867,214 @@ h6:hover .anchor-link {
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The numpy documentation is crucial!</p>
 <p><a href="http://docs.scipy.org/doc/numpy/reference/">http://docs.scipy.org/doc/numpy/reference/</a></p>
-<h2 id="NDArrays">NDArrays<a class="anchor-link" href="#NDArrays">¶</a></h2><p>The core class is the numpy ndarray (n-dimensional array).</p>
+<h2 id="NDArrays">NDArrays<a class="anchor-link" href="#NDArrays">&#182;</a></h2><p>The core class is the numpy ndarray (n-dimensional array).</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [5]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="n">Image</span>
-<span class="n">Image</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s1">'http://docs.scipy.org/doc/numpy/_images/threefundamental.png'</span><span class="p">)</span>
+<span class="n">Image</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s1">&#39;http://docs.scipy.org/doc/numpy/_images/threefundamental.png&#39;</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[5]:</div>
+
+
+
 <div class="output_html rendered_html output_subarea output_execute_result">
 <img src="http://docs.scipy.org/doc/numpy/_images/threefundamental.png" />
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [6]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># create an array from a list</span>
 <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">9</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [7]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># find out the datatype</span>
 <span class="n">a</span><span class="o">.</span><span class="n">dtype</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[7]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
-<pre>dtype('int64')</pre>
+<pre>dtype(&#39;int64&#39;)</pre>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [8]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># find out the shape</span>
 <span class="n">a</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[8]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>(5,)</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [9]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># what is the shape</span>
 <span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[9]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>tuple</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [10]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># another array with a different datatype and shape</span>
 <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">9</span><span class="p">],[</span><span class="mi">9</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [11]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># check dtype and shape</span>
 <span class="n">b</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">b</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[11]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
-<pre>(dtype('float64'), (2, 4))</pre>
+<pre>(dtype(&#39;float64&#39;), (2, 4))</pre>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Important Concept</strong>: The fastest varying dimension is the last dimension! The outer level of the hierarchy is the first dimension. (This is called "c-style" indexing)</p>
+
 </div>
 </div>
 </div>
@@ -1977,15 +2082,16 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="More-array-creation">More array creation<a class="anchor-link" href="#More-array-creation">¶</a></h2><p>There are lots of ways to create arrays.</p>
+<h2 id="More-array-creation">More array creation<a class="anchor-link" href="#More-array-creation">&#182;</a></h2><p>There are lots of ways to create arrays.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [12]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># create some uniform arrays</span>
 <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">))</span>
 <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">complex128</span><span class="p">)</span>
@@ -1993,315 +2099,460 @@ h6:hover .anchor-link {
 <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
 <span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [13]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># create some ranges</span>
 <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[13]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [14]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># arange is left inclusive, right exclusive</span>
 <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mf">0.25</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[14]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>array([ 2.  ,  2.25,  2.5 ,  2.75,  3.  ,  3.25,  3.5 ,  3.75])</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [15]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># linearly spaced</span>
 <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[15]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>array([ 2.        ,  2.10526316,  2.21052632,  2.31578947,  2.42105263,
         2.52631579,  2.63157895,  2.73684211,  2.84210526,  2.94736842,
         3.05263158,  3.15789474,  3.26315789,  3.36842105,  3.47368421,
         3.57894737,  3.68421053,  3.78947368,  3.89473684,  4.        ])</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [16]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># log spaced</span>
 <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[16]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>array([  10.        ,   12.91549665,   16.68100537,   21.5443469 ,
          27.82559402,   35.93813664,   46.41588834,   59.94842503,
          77.42636827,  100.        ])</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [17]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># two dimensional grids</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
 <span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 <span class="n">xx</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">yy</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[17]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>((50, 100), (50, 100))</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Indexing">Indexing<a class="anchor-link" href="#Indexing">¶</a></h2><p>Basic indexing is similar to lists</p>
+<h2 id="Indexing">Indexing<a class="anchor-link" href="#Indexing">&#182;</a></h2><p>Basic indexing is similar to lists</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [18]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># get some individual elements of xx</span>
 <span class="n">xx</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">xx</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">xx</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">5</span><span class="p">]</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[18]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>(-6.2831853071795862, 6.2831853071795862, 5.7754531611448723)</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [19]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># get some whole rows and columns</span>
 <span class="n">xx</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">xx</span><span class="p">[:,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[19]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>((100,), (50,))</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [20]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># get some ranges</span>
 <span class="n">xx</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="mi">30</span><span class="p">:</span><span class="mi">40</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[20]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>(7, 10)</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>There are many advanced ways to index arrays. You can read about them in the manual. Here is one example.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [21]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># use a boolean array as an index</span>
-<span class="n">idx</span> <span class="o">=</span> <span class="n">xx</span><span class="o"><</span><span class="mi">0</span>
+<span class="n">idx</span> <span class="o">=</span> <span class="n">xx</span><span class="o">&lt;</span><span class="mi">0</span>
 <span class="n">yy</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[21]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>(2500,)</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [22]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># the array got flattened</span>
 <span class="n">xx</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[22]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>(5000,)</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Array-Operations">Array Operations<a class="anchor-link" href="#Array-Operations">¶</a></h2><p>There are a huge number of operations available on arrays. All the familiar arithemtic operators are applied on an element-by-element basis.</p>
-<h3 id="Basic-Math">Basic Math<a class="anchor-link" href="#Basic-Math">¶</a></h3>
+<h2 id="Array-Operations">Array Operations<a class="anchor-link" href="#Array-Operations">&#182;</a></h2><p>There are a huge number of operations available on arrays. All the familiar arithemtic operators are applied on an element-by-element basis.</p>
+<h3 id="Basic-Math">Basic Math<a class="anchor-link" href="#Basic-Math">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [23]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">xx</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="n">yy</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>At this point you might be getting curious what these arrays "look" like. So we need to introduce some visualization.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [24]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="o">%</span><span class="k">matplotlib</span> inline
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [25]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[25]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
-<pre><matplotlib.collections.quadmesh at 0x119899358></pre>
+<pre>&lt;matplotlib.collections.QuadMesh at 0x119899358&gt;</pre>
 </div>
+
 </div>
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXoAAAD8CAYAAAB5Pm/hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJztnV+MJNd13r9T1T27XFKyyMQmGIqC9EA4UAxISghHiYwg
@@ -2523,41 +2774,60 @@ WwDcD+D3bni1Usqx/wfgfQD+N4D/A+DnbsU9T8t/AH4Eh//b9ccAvrD5730A/hoO3fRnAfx3AHed
 dFtvcb/8QwCf3Wyfyb4A8HYAT21i478AuPMM98XPA/gygKcB/EcA585KXwD4JA69iQUO/0/vQ7XP
 DuDnNmPpVwD82Jh7qASCEEJMHJmxQggxcTTQCyHExNFAL4QQE0cDvRBCTBwN9EIIMXE00AshxMTR
 QC+EEBPn/wN2tnExYUN6JAAAAABJRU5ErkJggg==
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Manipulating-array-dimensions">Manipulating array dimensions<a class="anchor-link" href="#Manipulating-array-dimensions">¶</a></h2>
+<h2 id="Manipulating-array-dimensions">Manipulating array dimensions<a class="anchor-link" href="#Manipulating-array-dimensions">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [26]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># transpose</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[26]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
-<pre><matplotlib.collections.quadmesh at 0x1199c5c88></pre>
+<pre>&lt;matplotlib.collections.QuadMesh at 0x1199c5c88&gt;</pre>
 </div>
+
 </div>
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAX0AAAD8CAYAAACb4nSYAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJztnV2sbddV3/9jf5x7fa+dYhe4MrajpJJF5VYltBZNG1Sl
@@ -2786,85 +3056,117 @@ y0TE+Yi45eX/l/TPJH1ZW47Hie/IjYif1ipu93K5hg+faId2SER8QtJbtSoV+6KkD0n6r5Iek/R6
 Sc9Kemdr7ZWLva85IuLHJf0PSV/S9fjtL2kV1x/UeETE39NqQW6slTB7rLX2HyLib2pgY/Ey6/DO
 +1trbx/qOETE39JK3Uur0PxvtNY+vO14nPhDvyiKotgdJx3eKYqiKHZIPfSLoigGRD30i6IoBkQ9
 9IuiKAZEPfSLoigGRD30i6IoBkQ99IuiKAbE/wdsKuM79JHSKAAAAABJRU5ErkJggg==
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [27]:</div>
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># reshape an array (wrong size)</span>
 <span class="n">g</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">))</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_text output_error">
 <pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
-<span class="ansi-green-fg"><ipython-input-27-294e006fc417></span> in <span class="ansi-cyan-fg"><module></span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">&lt;ipython-input-27-294e006fc417&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
 <span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-red-fg"># reshape an array (wrong size)</span>
-<span class="ansi-green-fg">----> 2</span><span class="ansi-red-fg"> </span>g <span class="ansi-blue-fg">=</span> np<span class="ansi-blue-fg">.</span>reshape<span class="ansi-blue-fg">(</span>f<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">8</span><span class="ansi-blue-fg">,</span><span class="ansi-cyan-fg">9</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg"> </span>g <span class="ansi-blue-fg">=</span> np<span class="ansi-blue-fg">.</span>reshape<span class="ansi-blue-fg">(</span>f<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">8</span><span class="ansi-blue-fg">,</span><span class="ansi-cyan-fg">9</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
 
 <span class="ansi-green-fg">/anaconda/lib/python3.6/site-packages/numpy/core/fromnumeric.py</span> in <span class="ansi-cyan-fg">reshape</span><span class="ansi-blue-fg">(a, newshape, order)</span>
 <span class="ansi-green-intense-fg ansi-bold">    230</span>            [5, 6]])
-<span class="ansi-green-intense-fg ansi-bold">    231</span>     """
-<span class="ansi-green-fg">--> 232</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">return</span> _wrapfunc<span class="ansi-blue-fg">(</span>a<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">'reshape'</span><span class="ansi-blue-fg">,</span> newshape<span class="ansi-blue-fg">,</span> order<span class="ansi-blue-fg">=</span>order<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    231</span>     &#34;&#34;&#34;
+<span class="ansi-green-fg">--&gt; 232</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">return</span> _wrapfunc<span class="ansi-blue-fg">(</span>a<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;reshape&#39;</span><span class="ansi-blue-fg">,</span> newshape<span class="ansi-blue-fg">,</span> order<span class="ansi-blue-fg">=</span>order<span class="ansi-blue-fg">)</span>
 <span class="ansi-green-intense-fg ansi-bold">    233</span> 
 <span class="ansi-green-intense-fg ansi-bold">    234</span> 
 
 <span class="ansi-green-fg">/anaconda/lib/python3.6/site-packages/numpy/core/fromnumeric.py</span> in <span class="ansi-cyan-fg">_wrapfunc</span><span class="ansi-blue-fg">(obj, method, *args, **kwds)</span>
 <span class="ansi-green-intense-fg ansi-bold">     55</span> <span class="ansi-green-fg">def</span> _wrapfunc<span class="ansi-blue-fg">(</span>obj<span class="ansi-blue-fg">,</span> method<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwds<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
 <span class="ansi-green-intense-fg ansi-bold">     56</span>     <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">---> 57</span><span class="ansi-red-fg">         </span><span class="ansi-green-fg">return</span> getattr<span class="ansi-blue-fg">(</span>obj<span class="ansi-blue-fg">,</span> method<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwds<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">---&gt; 57</span><span class="ansi-red-fg">         </span><span class="ansi-green-fg">return</span> getattr<span class="ansi-blue-fg">(</span>obj<span class="ansi-blue-fg">,</span> method<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwds<span class="ansi-blue-fg">)</span>
 <span class="ansi-green-intense-fg ansi-bold">     58</span> 
 <span class="ansi-green-intense-fg ansi-bold">     59</span>     <span class="ansi-red-fg"># An AttributeError occurs if the object does not have</span>
 
 <span class="ansi-red-fg">ValueError</span>: cannot reshape array of size 5000 into shape (8,9)</pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [28]:</div>
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># reshape an array (right size) and mess it up</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
 <span class="n">g</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="mi">25</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>5000
 </pre>
 </div>
 </div>
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[28]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
-<pre><matplotlib.collections.quadmesh at 0x119b1b978></pre>
+<pre>&lt;matplotlib.collections.QuadMesh at 0x119b1b978&gt;</pre>
 </div>
+
 </div>
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAX0AAAD8CAYAAACb4nSYAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJztvXuMZdlV5vmte+47IvJZWZlZWVkPt2wksDSFQJ4/oBl3
@@ -3171,33 +3473,52 @@ aKGujVc7D+S6OPAVuXOL0f+lnXYN7znQAzogmNlrtM3upe32GL+/SOfCzD4i6Y3abpt7TdK7Jf2x
 pI9JekzS85Le7O4PfIHzVc7FG7U9hXdJz0n6qV2a9gMLM/t+SX8h6W8kzeYvv0vbevbCXBt3OA9P
 K3hdHHjSz8jIyMhIh4OWdzIyMjIyEiIn/YyMjIwFQk76GRkZGQuEnPQzMjIyFgg56WdkZGQsEHLS
 z8jIyFgg5KSfkZGRsUD4/wEr1zs5XrfKswAAAABJRU5ErkJggg==
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [29]:</div>
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># tile an array</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">f</span><span class="p">,(</span><span class="mi">6</span><span class="p">,</span><span class="mi">1</span><span class="p">)))</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[29]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
-<pre><matplotlib.collections.quadmesh at 0x119c42160></pre>
+<pre>&lt;matplotlib.collections.QuadMesh at 0x119c42160&gt;</pre>
 </div>
+
 </div>
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYAAAAD8CAYAAAB+UHOxAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsvV2obmt21zme+X6stdfe+9Q5dSoWlaRCaDq5SLyItOTG
@@ -3899,152 +4220,214 @@ DGvz7e8B/N3m3zcAeAzr6P4/A/gTAI9e9Vwf4Jp8BYDf3xwf8jp8HoD3bXDjdwE8cojrAeCHAXwQ
 wPsB/CKA40NaBwC/inX8Y461Zfgd2fsD+KENL/0QgK9/vvsPpSAGGGCAAQ4UrtoFNMAAAwwwwBXB
 IAAGGGCAAQ4UBgEwwAADDHCgMAiAAQYYYIADhUEADDDAAAMcKAwCYIABBhjgQGEQAAMMMMAABwr/
 B6RkfXvK5oMKAAAAAElFTkSuQmCC
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Broadcasting">Broadcasting<a class="anchor-link" href="#Broadcasting">¶</a></h2><p>Broadcasting is an efficient way to multiply arrays of different sizes</p>
+<h2 id="Broadcasting">Broadcasting<a class="anchor-link" href="#Broadcasting">&#182;</a></h2><p>Broadcasting is an efficient way to multiply arrays of different sizes</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [30]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s1">'http://scipy-lectures.github.io/_images/numpy_broadcasting.png'</span><span class="p">,</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s1">&#39;http://scipy-lectures.github.io/_images/numpy_broadcasting.png&#39;</span><span class="p">,</span>
      <span class="n">width</span><span class="o">=</span><span class="mi">720</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[30]:</div>
+
+
+
 <div class="output_html rendered_html output_subarea output_execute_result">
-<img src="http://scipy-lectures.github.io/_images/numpy_broadcasting.png" width="720">
-</img></div>
+<img src="http://scipy-lectures.github.io/_images/numpy_broadcasting.png" width="720" />
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [31]:</div>
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># multiply f by x</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="n">g</span> <span class="o">=</span> <span class="n">f</span> <span class="o">*</span> <span class="n">x</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>(50, 100) (100,)
 (50, 100)
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [32]:</div>
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># multiply f by y</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="n">h</span> <span class="o">=</span> <span class="n">f</span> <span class="o">*</span> <span class="n">y</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">h</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>(50, 100) (50,)
 </pre>
 </div>
 </div>
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_text output_error">
 <pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
-<span class="ansi-green-fg"><ipython-input-32-79198d42b1dc></span> in <span class="ansi-cyan-fg"><module></span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">&lt;ipython-input-32-79198d42b1dc&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
 <span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-red-fg"># multiply f by y</span>
 <span class="ansi-green-intense-fg ansi-bold">      2</span> print<span class="ansi-blue-fg">(</span>f<span class="ansi-blue-fg">.</span>shape<span class="ansi-blue-fg">,</span> y<span class="ansi-blue-fg">.</span>shape<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">----> 3</span><span class="ansi-red-fg"> </span>h <span class="ansi-blue-fg">=</span> f <span class="ansi-blue-fg">*</span> y
+<span class="ansi-green-fg">----&gt; 3</span><span class="ansi-red-fg"> </span>h <span class="ansi-blue-fg">=</span> f <span class="ansi-blue-fg">*</span> y
 <span class="ansi-green-intense-fg ansi-bold">      4</span> print<span class="ansi-blue-fg">(</span>h<span class="ansi-blue-fg">.</span>shape<span class="ansi-blue-fg">)</span>
 
 <span class="ansi-red-fg">ValueError</span>: operands could not be broadcast together with shapes (50,100) (50,) </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [33]:</div>
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># use newaxis special syntax</span>
 <span class="n">h</span> <span class="o">=</span> <span class="n">f</span> <span class="o">*</span> <span class="n">y</span><span class="p">[:,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">h</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>(50, 100)
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [34]:</div>
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[34]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
-<pre><matplotlib.collections.quadmesh at 0x119f4e2e8></pre>
+<pre>&lt;matplotlib.collections.QuadMesh at 0x119f4e2e8&gt;</pre>
 </div>
+
 </div>
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXoAAAD8CAYAAAB5Pm/hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJztnV2MLVl13/+r6py+PXwkzCTmagIo8DAyIpaAZOSQgCLH
@@ -4259,119 +4642,176 @@ X3H3b7r7CsDHAfx9XM2+eJHSs0+yp7fD0F/pVAlmZjj1wz7l7r9Ahx4F8OBm+0EAn7rdbbvduPv7
 +K8A7rrott7mfvkhAJ/ebF/JvgDwJgBPbN6NTwK48wr3xc8D+CKAJwH8BwDXrkpfAPgoTrWJFU7/
 T++9tWcH8HMbW/olAD8y5h5KgSCEEDNHYqwQQswcGXohhJg5MvRCCDFzZOiFEGLmyNALIcTMkaEX
 QoiZI0MvhBAz5/8DpsVwN/UPxcMAAAAASUVORK5CYII=
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Reduction-Operations">Reduction Operations<a class="anchor-link" href="#Reduction-Operations">¶</a></h2>
+<h2 id="Reduction-Operations">Reduction Operations<a class="anchor-link" href="#Reduction-Operations">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [35]:</div>
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># sum</span>
 <span class="n">g</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[35]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>-3083.0383878071548</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [36]:</div>
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># mean</span>
 <span class="n">g</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[36]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>-0.61660767756143098</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [37]:</div>
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># std</span>
 <span class="n">g</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[37]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>1.6402280119141424</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [38]:</div>
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># apply on just one axis</span>
 <span class="n">g_ymean</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">g_xmean</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [39]:</div>
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">g_ymean</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[39]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
-<pre>[<matplotlib.lines.line2d at 0x11a02fb38>]</pre>
+<pre>[&lt;matplotlib.lines.Line2D at 0x11a02fb38&gt;]</pre>
 </div>
+
 </div>
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXYAAAD8CAYAAABjAo9vAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3Xd0nPWd7/H3bzTqdVRtdUuW3JskG0wxzZRsKIbADdlk
@@ -4597,32 +5037,51 @@ WSzUmf4+bZk+BxrgGqDGiFosOWKfwSPAI0qpI8AkcJdFRox28h9AJLBz+sljr9ba1Aeda63dSqlP
 AS8CYcAjWutqg8uai0uBvwIOK6UOTP+3L2mtnzewplD0aeDX04ODeuBjRhQhK0+FEMJm7NiKEUKI
 kCbBLoQQNiPBLoQQNiPBLoQQNiPBLoQQNiPBLoQQNiPBLoQQNiPBLoQQNvP/AUPqoxXhtTabAAAA
 AElFTkSuQmCC
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [40]:</div>
+<div class="prompt input_prompt">In&nbsp;[40]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">g_xmean</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[40]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
-<pre>[<matplotlib.lines.line2d at 0x11a123240>]</pre>
+<pre>[&lt;matplotlib.lines.Line2D at 0x11a123240&gt;]</pre>
 </div>
+
 </div>
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXYAAAD8CAYAAABjAo9vAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3Xl0XGeZ5/Hvq92SJZVKqy1VSbIt77YsS5bXxFnAcdKE
@@ -4802,36 +5261,49 @@ vrZq2x8e6LpZa+fVB/AefCu0EaAdeMb/9cXA05e97g7gNHAWXwsn6LXP8LzT8U0KnAGeA5xXOe+/
 BE7imx76NyA+2LXP0XlvACqAGuDfgbRg1z7b53zZ628Cngp23XNx3sAOwPr/nKv8H3cEu/brONc3
 5RPwKeBT/l8bfJMzZ4HX8U26Bez9deepiEiYCdVWjIiIXIWCXUQkzCjYRUTCjIJdRCTMKNhFRMKM
 gl1EJMwo2EVEwoyCXUQkzPx/C2vtOi/dOOgAAAAASUVORK5CYII=
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Fancy-Plotting">Fancy Plotting<a class="anchor-link" href="#Fancy-Plotting">¶</a></h2><p>Enough lessons, let's have some fun.</p>
+<h2 id="Fancy-Plotting">Fancy Plotting<a class="anchor-link" href="#Fancy-Plotting">&#182;</a></h2><p>Enough lessons, let's have some fun.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [41]:</div>
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
 <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">colspan</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 <span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span><span class="n">rowspan</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAssAAAHWCAYAAACBqMQDAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAFmZJREFUeJzt3VGInfd55/Hfs3IMXbdbl1rbZm2LNYsa12nrkkydUAJ1
@@ -4936,17 +5408,20 @@ z26VvSY7ztbd3+nu7y4+fzTJm6rqutWN+IYc5J89AMDa7XcsH/ZbZe84f1X9fFXV4vPbsvkz/ebK
 J92dg/yzBwBYu329DOOw3yp7yfnfk+SPqupikn9JclcfkDu9VNWnktye5LqqupDkQ0nelBz8nz0A
 wEHgDn4AADBwBz8AABiIZQAAGIhlAAAYiGUAABiIZQAAGIhlAAAYiGUAABiIZQAAGPx/6Up204Xr
 rCgAAAAASUVORK5CYII=
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [42]:</div>
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
 <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">colspan</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 <span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span><span class="n">rowspan</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
@@ -4963,13 +5438,22 @@ rCgAAAAASUVORK5CYII=
 
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAsgAAAGoCAYAAABbtxOxAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl4HFeZL/7v6U27ZG2WbEm25H1JHCdxnMRZCCQhgQQI
@@ -5459,35 +5943,46 @@ bGZnmdlqSUdLusnMbsm7pjxt3ujzEUm3aGzTxDUppYfzrarl/lbSnma2WGMbcS7gEzh0mSskTZH0
 SzN7wMy+m3dB3a5P58J2equkfyfp+M1j9oHNn3YC3eIiSVeb2SJJh0j6UjMvzq+aBgAAAMbJ/RNk
 AAAAoJOwQAYAAADGYYEMAAAAjMMCGQAAABiHBTIAAAAwDgtkAAAAYBwWyAAAAMA4/xee/AdKCI59
 JQAAAABJRU5ErkJggg==
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Real-Data">Real Data<a class="anchor-link" href="#Real-Data">¶</a></h2><p>ARGO float profile from North Atlantic</p>
+<h2 id="Real-Data">Real Data<a class="anchor-link" href="#Real-Data">&#182;</a></h2><p>ARGO float profile from North Atlantic</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [43]:</div>
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># download with curl</span>
 <span class="o">!</span>curl -O http://www.ldeo.columbia.edu/~rpa/argo_float_4901412.npz
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
@@ -5495,223 +5990,330 @@ JQAAAABJRU5ErkJggg==
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [4]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># load numpy file and examine keys</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">'argo_float_4901412.npz'</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;argo_float_4901412.npz&#39;</span><span class="p">)</span>
 <span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[4]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
-<pre>['S', 'T', 'levels', 'lon', 'date', 'P', 'lat']</pre>
+<pre>[&#39;S&#39;, &#39;T&#39;, &#39;levels&#39;, &#39;lon&#39;, &#39;date&#39;, &#39;P&#39;, &#39;lat&#39;]</pre>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [5]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># access some data</span>
-<span class="n">T</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'T'</span><span class="p">]</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;T&#39;</span><span class="p">]</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [6]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># there are "nans", missing data, which screw up our routines</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># there are &quot;nans&quot;, missing data, which screw up our routines</span>
 <span class="n">T</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[6]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>nan</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [7]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">ar_w_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
                         <span class="n">mask</span><span class="o">=</span><span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">])</span>
 <span class="n">ar_w_mask</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[7]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>masked_array(data = [-- -- 3 4 5],
              mask = [ True  True False False False],
        fill_value = 999999)</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [8]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">ar_w_mask</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[8]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>4.0</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [10]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">T_ma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_invalid</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
 <span class="n">T_ma</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[10]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>11.104955983298781</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Masked-Arrays">Masked Arrays<a class="anchor-link" href="#Masked-Arrays">¶</a></h2><p>This is how we deal with missing data in numpy</p>
+<h2 id="Masked-Arrays">Masked Arrays<a class="anchor-link" href="#Masked-Arrays">&#182;</a></h2><p>This is how we deal with missing data in numpy</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [47]:</div>
+<div class="prompt input_prompt">In&nbsp;[47]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># create masked array</span>
-<span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_invalid</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'T'</span><span class="p">])</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_invalid</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;T&#39;</span><span class="p">])</span>
 <span class="nb">type</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[47]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>numpy.ma.core.MaskedArray</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [48]:</div>
+<div class="prompt input_prompt">In&nbsp;[48]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># max and min</span>
 <span class="n">T</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">T</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[48]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>(24.364999771118164, 3.5320000648498535)</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [49]:</div>
+<div class="prompt input_prompt">In&nbsp;[49]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># load other data</span>
-<span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_invalid</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'S'</span><span class="p">])</span>
-<span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_invalid</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'P'</span><span class="p">])</span>
+<span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_invalid</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;S&#39;</span><span class="p">])</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_invalid</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;P&#39;</span><span class="p">])</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [50]:</div>
+<div class="prompt input_prompt">In&nbsp;[50]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># scatter plot</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">P</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[50]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
-<pre><matplotlib.colorbar.colorbar at 0x11a97e908></pre>
+<pre>&lt;matplotlib.colorbar.Colorbar at 0x11a97e908&gt;</pre>
 </div>
+
 </div>
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAWoAAAD8CAYAAABekO4JAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXd8FNX2wL9ntqXRS+hSRbHTxC4WRFHBhr337ntW9D1R
@@ -6239,12 +6841,30 @@ Am7x6y8HVvr1q4BvFvY/EzdafQ/w1zNlC3ASbhDnl8DNfjlzJq5J4TgnM/2sj+l+PscBG/12XwcW
 zaAtH8KJ2K1+n3KX7SgBF/l1NwGnzuA9O6Et3bxnwzL+EioTA4FAoMeZ9aGPQCAQmOsEoQ4EAoEe
 Jwh1IBAI9DhBqAOBQKDHCUIdCAQCPU4Q6kAgEOhxglAHAoFAjxOEOhAIBHqc/w/+09L65E/pIgAA
 AABJRU5ErkJggg==
-" />
+">
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
-</div>
+ 
+
 
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
@@ -6291,6 +6911,7 @@ AABJRU5ErkJggg==
 <li class="list-group-item">
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
   <ul class="list-group" id="recentposts">
+    <li class="list-group-item"><a href="./assignment-7-pandas.html">Assignment 7 - Pandas</a></li>
     <li class="list-group-item"><a href="./pandas.html">Intermediate Python II: Pandas for Tabular Data</a></li>
     <li class="list-group-item"><a href="./assignment-6-numpy-and-matplotlib.html">Assignment 6 - Numpy and Matplotlib</a></li>
     <li class="list-group-item"><a href="./numpy-arrays-and-matplotlib.html">Intermediate Python I: NumPy arrays and matplotlib</a></li>
@@ -6300,7 +6921,6 @@ AABJRU5ErkJggg==
     <li class="list-group-item"><a href="./intro-to-matlab.html">Intro to MATLAB</a></li>
     <li class="list-group-item"><a href="./assignment-submission-instructions.html">Assignment Submission Instructions</a></li>
     <li class="list-group-item"><a href="./assignment-3-introduction-to-python.html">Assignment 3: Introduction to Python</a></li>
-    <li class="list-group-item"><a href="./intro-to-python.html">Introduction to Python</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Recent Posts -->
@@ -6310,28 +6930,25 @@ AABJRU5ErkJggg==
   <a href="./"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
   <ul class="list-group " id="tags">
     <li class="list-group-item tag-1">
+      <a href="./tag/assignment.html">assignment</a>
+    </li>
+    <li class="list-group-item tag-1">
       <a href="./tag/shell.html">shell</a>
     </li>
     <li class="list-group-item tag-1">
-      <a href="./tag/python.html">python</a>
-    </li>
-    <li class="list-group-item tag-1">
-      <a href="./tag/bash.html">bash</a>
-    </li>
-    <li class="list-group-item tag-1">
-      <a href="./tag/assignment.html">assignment</a>
+      <a href="./tag/file-system.html">file system</a>
     </li>
     <li class="list-group-item tag-1">
       <a href="./tag/unix.html">unix</a>
     </li>
     <li class="list-group-item tag-1">
-      <a href="./tag/file-system.html">file system</a>
+      <a href="./tag/bash.html">bash</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/python.html">python</a>
     </li>
     <li class="list-group-item tag-2">
       <a href="./tag/programming.html">programming</a>
-    </li>
-    <li class="list-group-item tag-3">
-      <a href="./tag/git.html">git</a>
     </li>
     <li class="list-group-item tag-3">
       <a href="./tag/fortran.html">fortran</a>
@@ -6339,14 +6956,35 @@ AABJRU5ErkJggg==
     <li class="list-group-item tag-3">
       <a href="./tag/matlab.html">MATLAB</a>
     </li>
+    <li class="list-group-item tag-3">
+      <a href="./tag/git.html">git</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/pandas.html">pandas</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/geomapapp.html">GeoMapApp</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/numpy.html">numpy</a>
+    </li>
     <li class="list-group-item tag-4">
       <a href="./tag/github.html">github</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/version-control.html">version control</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/arrays.html">arrays</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/gmt.html">gmt</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/geomapapp.html">GeoMapApp</a>
+      <a href="./tag/visualization.html">visualization</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/ndarray.html">ndarray</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/source-code-editor.html">source code editor</a>
@@ -6355,25 +6993,7 @@ AABJRU5ErkJggg==
       <a href="./tag/vpn.html">vpn</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/version-control.html">version control</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/pandas.html">pandas</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/ndarray.html">ndarray</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/arrays.html">arrays</a>
-    </li>
-    <li class="list-group-item tag-4">
       <a href="./tag/matplotlib.html">matplotlib</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/numpy.html">numpy</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/visualization.html">visualization</a>
     </li>
   </ul>
 </li>

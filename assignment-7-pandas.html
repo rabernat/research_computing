@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>Assignment 6 - Numpy and Matplotlib - Research Computing in Earth Sciences</title>
+    <title>Assignment 7 - Pandas - Research Computing in Earth Sciences</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,22 +9,22 @@
 
 
 
-<link rel="canonical" href="./assignment-6-numpy-and-matplotlib.html">
+<link rel="canonical" href="./assignment-7-pandas.html">
 
-        <meta name="author" content="Kerry Key" />
+        <meta name="author" content="Ryan Abernathey" />
         <meta name="keywords" content="assignment,python" />
-        <meta name="description" content="Assignment 6 - Numpy and Matplotlib¶Due Thursday October 12¶Your assignment should be handed in as an ipython notebook checked into your github repository in a new folder named assignment_6. To download this assignment, your best option is to clone the original github repository for the course website: git clone https://github.com/rabernat/research_computing.git and then navigate to the assignment" />
+        <meta name="description" content="Assignment 7 - Pandas¶Due Oct 19. In this assignment we will use pandas to examine earthquake data. Start by importing pandas, numpy and matplotlib." />
 
         <meta property="og:site_name" content="Research Computing in Earth Sciences" />
         <meta property="og:type" content="article"/>
-        <meta property="og:title" content="Assignment 6 - Numpy and Matplotlib"/>
-        <meta property="og:url" content="./assignment-6-numpy-and-matplotlib.html"/>
-        <meta property="og:description" content="Assignment 6 - Numpy and Matplotlib¶Due Thursday October 12¶Your assignment should be handed in as an ipython notebook checked into your github repository in a new folder named assignment_6. To download this assignment, your best option is to clone the original github repository for the course website: git clone https://github.com/rabernat/research_computing.git and then navigate to the assignment"/>
-        <meta property="article:published_time" content="2017-10-05" />
+        <meta property="og:title" content="Assignment 7 - Pandas"/>
+        <meta property="og:url" content="./assignment-7-pandas.html"/>
+        <meta property="og:description" content="Assignment 7 - Pandas¶Due Oct 19. In this assignment we will use pandas to examine earthquake data. Start by importing pandas, numpy and matplotlib."/>
+        <meta property="article:published_time" content="2017-10-13" />
             <meta property="article:section" content="assignments" />
             <meta property="article:tag" content="assignment" />
             <meta property="article:tag" content="python" />
-            <meta property="article:author" content="Kerry Key" />
+            <meta property="article:author" content="Ryan Abernathey" />
 
 
     <!-- Bootstrap -->
@@ -87,10 +87,10 @@ Research Computing in Earth Sciences            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="./assignment-6-numpy-and-matplotlib.html"
+                    <a href="./assignment-7-pandas.html"
                        rel="bookmark"
-                       title="Permalink to Assignment 6 - Numpy and Matplotlib">
-                        Assignment 6 - Numpy and Matplotlib
+                       title="Permalink to Assignment 7 - Pandas">
+                        Assignment 7 - Pandas
                     </a>
                 </h1>
             </header>
@@ -100,7 +100,7 @@ Research Computing in Earth Sciences            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2017-10-05T00:00:00-05:00"> Thu 05 October 2017</time>
+        <i class="fa fa-calendar"></i><time datetime="2017-10-13T00:00:00-05:00"> Fri 13 October 2017</time>
     </span>
 
 
@@ -1090,31 +1090,9 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Assignment-6---Numpy-and-Matplotlib">Assignment 6 - Numpy and Matplotlib<a class="anchor-link" href="#Assignment-6---Numpy-and-Matplotlib">&#182;</a></h1><h3 id="Due-Thursday-October-12">Due Thursday October 12<a class="anchor-link" href="#Due-Thursday-October-12">&#182;</a></h3><p>Your assignment should be handed in as an ipython notebook checked into your github repository in a new folder named <code>assignment_6</code>. To download this assignment, your best option is to clone the original github repository for the course website:</p>
-<p><code>git clone https://github.com/rabernat/research_computing.git</code></p>
-<p>and then navigate to the <code>assignment</code> folder.</p>
-<h2 id="1-Plotting-and-analyzing-ARGO-float-data">1 Plotting and analyzing ARGO float data<a class="anchor-link" href="#1-Plotting-and-analyzing-ARGO-float-data">&#182;</a></h2><h4 id="1.1-Import-numpy">1.1 Import numpy<a class="anchor-link" href="#1.1-Import-numpy">&#182;</a></h4>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="1.2-Use-the-shell-command-curl-to-download-an-example-ARGO-float-profile-from-the-North-Atlantic.">1.2 Use the shell command <code>curl</code> to download an example ARGO float profile from the North Atlantic.<a class="anchor-link" href="#1.2-Use-the-shell-command-curl-to-download-an-example-ARGO-float-profile-from-the-North-Atlantic.">&#182;</a></h4><p>The data file's url is <a href="http://www.ldeo.columbia.edu/~rpa/argo_float_4901412.npz">http://www.ldeo.columbia.edu/~rpa/argo_float_4901412.npz</a></p>
+<h1 id="Assignment-7---Pandas">Assignment 7 - Pandas<a class="anchor-link" href="#Assignment-7---Pandas">&#182;</a></h1><p>Due Oct 19.</p>
+<p>In this assignment we will use pandas to examine earthquake data.</p>
+<p>Start by importing pandas, numpy and matplotlib.</p>
 
 </div>
 </div>
@@ -1136,112 +1114,18 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="1.3-Load-the-data-file">1.3 Load the data file<a class="anchor-link" href="#1.3-Load-the-data-file">&#182;</a></h4>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
+<p>I saved you some time by pre-downloading some data in .csv format from the <a href="https://earthquake.usgs.gov/earthquakes/search/">USGS Earthquakes Database</a>. It is located at:</p>
+<p><a href="http://www.ldeo.columbia.edu/~rpa/usgs_earthquakes_2014.csv">http://www.ldeo.columbia.edu/~rpa/usgs_earthquakes_2014.csv</a></p>
+<p>You don't even need to download it. You can open it directly with Pandas.</p>
 
 </div>
 </div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="1.4-Extract-the-temperature,-pressure-and-salinity-arrays-to-arrays-T,-S,-P-and-mask-out-invalid-data-(the-nan-values-from-missing-points).">1.4 Extract the temperature, pressure and salinity arrays to arrays T, S, P and mask out invalid data (the nan values from missing points).<a class="anchor-link" href="#1.4-Extract-the-temperature,-pressure-and-salinity-arrays-to-arrays-T,-S,-P-and-mask-out-invalid-data-(the-nan-values-from-missing-points).">&#182;</a></h4>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="1.5-Extract-the-date,-lat,-lon,-and-level-arrays.">1.5 Extract the date, lat, lon, and level arrays.<a class="anchor-link" href="#1.5-Extract-the-date,-lat,-lon,-and-level-arrays.">&#182;</a></h4>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="1.5-Note-the-shapes-of-T,-S-and-P-compared-to-these-arrays.-How-do-they-line-up?">1.5 Note the shapes of T, S and P compared to these arrays. How do they line up?<a class="anchor-link" href="#1.5-Note-the-shapes-of-T,-S-and-P-compared-to-these-arrays.-How-do-they-line-up?">&#182;</a></h4>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="1.6-Load-the-necessary-package-for-plotting-using-pyplot-from-matplotlib.">1.6 Load the necessary package for plotting using pyplot from matplotlib.<a class="anchor-link" href="#1.6-Load-the-necessary-package-for-plotting-using-pyplot-from-matplotlib.">&#182;</a></h4>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="1.7-Make-a-1-x-3-array-of-plots-for-each-column-of-data-in-T,-S-and-P.">1.7 Make a 1 x 3 array of plots for each column of data in T, S and P.<a class="anchor-link" href="#1.7-Make-a-1-x-3-array-of-plots-for-each-column-of-data-in-T,-S-and-P.">&#182;</a></h4><p>The vertical scale should be the <code>levels</code> data. Flip the veritcal axis direction so that levels increase downward on the plot. Each plot should have a line for each column of data. It will look messy.  Make sure you label the axes and put a title on each subplot.</p>
+<h3 id="1)-Use-Pandas'-read_csv-function-directly-on-this-url-to-open-it-as-a-DataFrame">1) Use Pandas' read_csv function directly on this url to open it as a DataFrame<a class="anchor-link" href="#1)-Use-Pandas'-read_csv-function-directly-on-this-url-to-open-it-as-a-DataFrame">&#182;</a></h3><p>(Don't use any special options). Display the first few rows and the DataFrame info.</p>
 
 </div>
 </div>
@@ -1263,28 +1147,8 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="1.8-Compute-the-mean-and-standard-deviation-of-each-of-T,-S-and-P-at-each-depth-in-level.">1.8 Compute the mean and standard deviation of each of T, S and P at each depth in <code>level</code>.<a class="anchor-link" href="#1.8-Compute-the-mean-and-standard-deviation-of-each-of-T,-S-and-P-at-each-depth-in-level.">&#182;</a></h4>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="1.9-Now-make-a-similar-plot,-but-show-only-the-mean-T,-S-and-P-at-each-depth.-Show-error-bars-on-each-plot-using-the-standard-deviations.">1.9 Now make a similar plot, but show only the mean T, S and P at each depth. Show error bars on each plot using the standard deviations.<a class="anchor-link" href="#1.9-Now-make-a-similar-plot,-but-show-only-the-mean-T,-S-and-P-at-each-depth.-Show-error-bars-on-each-plot-using-the-standard-deviations.">&#182;</a></h4><p>Again, make sure you label the axes and put a title on each subplot.</p>
+<p>You should have seen that the dates were not automatically parsed into datetime types.</p>
+<h3 id="2)-Re-read-the-data-in-such-a-way-that-all-date-columns-are-identified-as-dates-and-the-earthquake-id-is-used-as-the-index">2) Re-read the data in such a way that all date columns are identified as dates and the earthquake id is used as the index<a class="anchor-link" href="#2)-Re-read-the-data-in-such-a-way-that-all-date-columns-are-identified-as-dates-and-the-earthquake-id-is-used-as-the-index">&#182;</a></h3><p>Verify that this worked using the <code>head</code> and <code>info</code> functions.</p>
 
 </div>
 </div>
@@ -1306,49 +1170,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="1.10--Compute-the-mean-and-standard-deviation-of-each-of-T,-S-and-P-for-each-time-in-date.">1.10  Compute the mean and standard deviation of each of T, S and P for each time in <code>date</code>.<a class="anchor-link" href="#1.10--Compute-the-mean-and-standard-deviation-of-each-of-T,-S-and-P-for-each-time-in-date.">&#182;</a></h4>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="1.11-Plot-the-mean-T,-S-and-P-for-each-entry-in-time,-now-on-a-3-x-1-subplot-grid-with-time-on-the-horizontal-axis.-Show-error-bars-on-each-plot-using-the-standard-deviations.">1.11 Plot the mean T, S and P for each entry in <em>time</em>, now on a <em>3 x 1</em> subplot grid with time on the horizontal axis. Show error bars on each plot using the standard deviations.<a class="anchor-link" href="#1.11-Plot-the-mean-T,-S-and-P-for-each-entry-in-time,-now-on-a-3-x-1-subplot-grid-with-time-on-the-horizontal-axis.-Show-error-bars-on-each-plot-using-the-standard-deviations.">&#182;</a></h4>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="1.12-Create-a-scatter-plot-of-the-positions-of-the-ARGO-float-data.--Color-the-positions-by-the-date.-Add-a-grid-overlay.">1.12 Create a scatter plot of the positions of the ARGO float data.  Color the positions by the date. Add a grid overlay.<a class="anchor-link" href="#1.12-Create-a-scatter-plot-of-the-positions-of-the-ARGO-float-data.--Color-the-positions-by-the-date.-Add-a-grid-overlay.">&#182;</a></h4><p>Don't forget to label the axes!</p>
+<h3 id="3)-Use-describe-to-get-the-basic-statistics-of-all-the-columns">3) Use <code>describe</code> to get the basic statistics of all the columns<a class="anchor-link" href="#3)-Use-describe-to-get-the-basic-statistics-of-all-the-columns">&#182;</a></h3><p>Note the highest and lowest magnitude of earthquakes in the databse.</p>
 
 </div>
 </div>
@@ -1370,7 +1192,29 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="2-Matrix--multiplication-revisited">2 Matrix  multiplication revisited<a class="anchor-link" href="#2-Matrix--multiplication-revisited">&#182;</a></h2><h4 id="2.1-Create-a-function-called-myMatrixMultiply-that-takes-input-matrices-X-and-Y-and-computes-their-matrix-product.">2.1 Create a function called myMatrixMultiply that takes input matrices X and Y and computes their matrix product.<a class="anchor-link" href="#2.1-Create-a-function-called-myMatrixMultiply-that-takes-input-matrices-X-and-Y-and-computes-their-matrix-product.">&#182;</a></h4><p>Use the same three loop formulation from Assignment 5. If you want, you can replace the innermost loop with the sum operation or a matrix dot product since that may speed things up a bit.</p>
+<h3 id="4)-Use-sort_values-to-get-the-top-20-earthquakes-by-magnitude">4) Use <code>sort_values</code> to get the top 20 earthquakes by magnitude<a class="anchor-link" href="#4)-Use-sort_values-to-get-the-top-20-earthquakes-by-magnitude">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Examine the structure of the <code>place</code> column. The country information seems to be in there. How would you get it out?</p>
+<h3 id="5)-Extract-the-country-using-Pandas-text-data-functions">5) Extract the country using Pandas <a href="https://pandas.pydata.org/pandas-docs/stable/text.html">text data functions</a><a class="anchor-link" href="#5)-Extract-the-country-using-Pandas-text-data-functions">&#182;</a></h3><p>Add it as a new column to the dataframe. (Is it really just country? No, some rows have the name of a US state.)</p>
 
 </div>
 </div>
@@ -1392,7 +1236,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="2.2-Create-ones()-square-matrices-for-A-and-B-with-n-=-100.-Use-the-%timeit-function-to-compute-the-matrix-product-AB-using-your-function-myMatrixMultiply.">2.2 Create ones() square matrices for A and B with n = 100. Use the <code>%timeit</code> function to compute the matrix product AB using your function <code>myMatrixMultiply</code>.<a class="anchor-link" href="#2.2-Create-ones()-square-matrices-for-A-and-B-with-n-=-100.-Use-the-%timeit-function-to-compute-the-matrix-product-AB-using-your-function-myMatrixMultiply.">&#182;</a></h4>
+<h3 id="6)-Find-the-10-states-/-countries-with-the-highest-number-of-earthquakes">6) Find the 10 states / countries with the highest <em>number</em> of earthquakes<a class="anchor-link" href="#6)-Find-the-10-states-/-countries-with-the-highest-number-of-earthquakes">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -1413,7 +1257,39 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="2.3-Now-let's-see-how-much-faster-Numpy's-built-in-matrix-multiplication-routine-is.">2.3 Now let's see how much faster Numpy's built in matrix multiplication routine is.<a class="anchor-link" href="#2.3-Now-let's-see-how-much-faster-Numpy's-built-in-matrix-multiplication-routine-is.">&#182;</a></h4><p>In Numpy, matrix multiplication is done using the <code>dot()</code> function. Use the <code>%timeit</code> function to compute the matrix product AB for n = 100 using <code>dot()</code> and time it using the <code>%timeit</code> function.</p>
+<h3 id="7)-Find-the-top-10-states-/-countries-where-the-strongest-and-weakest-earthquakes-occured">7) Find the top 10 states / countries where the strongest and weakest earthquakes occured<a class="anchor-link" href="#7)-Find-the-top-10-states-/-countries-where-the-strongest-and-weakest-earthquakes-occured">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It looks like US states are being treated differently from foreign countries. We would like to fix that.</p>
+<p>How can we tell if a name is a US state name? Python has a package for that: <a href="https://pypi.python.org/pypi/us!">https://pypi.python.org/pypi/us!</a></p>
+<p>This is a good time to try installing a new package using <code>pip</code>. Pip is the original python package manager that predates <code>conda</code>. Basically <code>conda</code> is more oriented towards data science while <code>pip</code> is more general purpose. There are lots more packages on <code>pip</code> than on <code>conda</code>. You can read a <a href="https://www.quora.com/What-is-the-comparison-among-conda-vs-pip-vs-anaconda">comparision</a> of these two utilities if you want to know more.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="8)-Install-the-us-package-using-pip,-either-directly-from-the-notebook-or-the-command-line">8) Install the <code>us</code> package using pip, either directly from the notebook or the command line<a class="anchor-link" href="#8)-Install-the-us-package-using-pip,-either-directly-from-the-notebook-or-the-command-line">&#182;</a></h3><p>The shell command is <code>pip install us</code>.</p>
 
 </div>
 </div>
@@ -1435,7 +1311,49 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Now time how long it takes for n = 1000</p>
+<h3 id="9)-Import-the-us-package-to-verify-your-installation-works">9) Import the <code>us</code> package to verify your installation works<a class="anchor-link" href="#9)-Import-the-us-package-to-verify-your-installation-works">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="10)-Read-the-us-documentation-to-figure-out-how-to-create-a-list-of-state-names-(all-upper-case)">10) Read the <a href="https://pypi.python.org/pypi/us"><code>us</code> documentation</a> to figure out how to create a list of state names (all upper case)<a class="anchor-link" href="#10)-Read-the-us-documentation-to-figure-out-how-to-create-a-list-of-state-names-(all-upper-case)">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="11)-Write-a-function-to-check-whether-a-string-is-a-US-state-name.">11) Write a function to check whether a string is a US state name.<a class="anchor-link" href="#11)-Write-a-function-to-check-whether-a-string-is-a-US-state-name.">&#182;</a></h3><p>This function should not be case sensitive. It should also strip any whitespace out of the test string.</p>
 
 </div>
 </div>
@@ -1457,7 +1375,115 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>When I ran this on my Mac laptop and used Activity Monitor.app to view the CPU usage of Python, I noticed that it was using up to 400% of my CPU. My laptop has 4 processing cores, so 400% means it was using all four cores to compute the matrix product. In other words, it was using parallel processing to speed up the calculations. Numpy uses some highly optimized versions of the BLAS linear algebra routines that are part of the Intel Math Kernel Library. By default, it  uses a multi-threaded version of the MKL to take advantage of the many processing cores available on modern computers. Let's turn off multithreading and see how much slower it runs.</p>
+<h3 id="12)-Use-Pandas'-apply-function-to-apply-this-to-each-row-of-the-country-name-series">12) Use Pandas' <a href="https://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.apply.html">apply</a> function to apply this to each row of the country name series<a class="anchor-link" href="#12)-Use-Pandas'-apply-function-to-apply-this-to-each-row-of-the-country-name-series">&#182;</a></h3><p>You should produce a new boolean series. (Hint: use <code>dropna()</code> to drop rows that have null values before calling apply.)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="13)-reindex-this-boolean-series-to-match-the-dataframe's-index">13) reindex this boolean series to match the dataframe's index<a class="anchor-link" href="#13)-reindex-this-boolean-series-to-match-the-dataframe's-index">&#182;</a></h3><p>Fill the null values with <code>False</code> using <code>.fillna()</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="14)-Now-re-assign-the-country-column-in-the-DataFrame-to-USA-if-the-row-is-a-state.">14) Now re-assign the country column in the DataFrame to <code>USA</code> if the row is a state.<a class="anchor-link" href="#14)-Now-re-assign-the-country-column-in-the-DataFrame-to-USA-if-the-row-is-a-state.">&#182;</a></h3><p>Also add the state name as a new column.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="15)-Now-redo-the-country-count-and-minimum-magnitdue-using-the-corrected-data">15) Now redo the country count and minimum magnitdue using the corrected data<a class="anchor-link" href="#15)-Now-redo-the-country-count-and-minimum-magnitdue-using-the-corrected-data">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="16)-Create-a-filtered-dataset-that-only-has-earthquakes-of-magnitude-4-or-larger">16) Create a filtered dataset that only has earthquakes of magnitude 4 or larger<a class="anchor-link" href="#16)-Create-a-filtered-dataset-that-only-has-earthquakes-of-magnitude-4-or-larger">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="17)-Analyze-the-distribution-of-the-Earthquake-magnitudes-in-the-filtered-distribution">17) Analyze the distribution of the Earthquake magnitudes in the filtered distribution<a class="anchor-link" href="#17)-Analyze-the-distribution-of-the-Earthquake-magnitudes-in-the-filtered-distribution">&#182;</a></h3><p>Make a histogram of the Earthquake count versus magnitude. Make sure to use a Logarithmic scale. What sort of relationship do you see?</p>
 
 </div>
 </div>
@@ -1466,12 +1492,40 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In your notebook type:</p>
+<p>fig, ax = plt.subplots()
+df_filt.hist('mag', bins=20, ax=ax)
+ax.set_yscale('log')</p>
 
-<pre><code>import mkl
-mkl.set_num_threads(1)</code></pre>
-<p>Now rerun the n=1000 example using the <code>dot()</code> function.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="18)-Visualize-the-locations-of-earthquakes-by-making-a-scatterplot-of-their-latitude-and-longitude.">18) Visualize the locations of earthquakes by making a scatterplot of their latitude and longitude.<a class="anchor-link" href="#18)-Visualize-the-locations-of-earthquakes-by-making-a-scatterplot-of-their-latitude-and-longitude.">&#182;</a></h3><p>Use the filtered data. Color it by magnitude. Make it pretty</p>
 
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="19)-Do-the-same-for-depth">19) Do the same for depth<a class="anchor-link" href="#19)-Do-the-same-for-depth">&#182;</a></h3>
 </div>
 </div>
 </div>
