@@ -1,0 +1,22 @@
+# https://github.com/drdoctr/doctr
+# doctr requires python >=3.5
+language: python
+python:
+  - 3.6
+
+# This gives doctr the key we've generated
+sudo: false
+env:
+  global:
+    secure: "<your secure key from doctr here>"
+
+# This is the script to build the docs on travis, then deploy
+script:
+  - set -e
+  - pip install doctr pelican jupyter ipython nbconvert beautifulsoup4
+  - make html
+  - doctr deploy . --built-docs output/
+
+env:
+  global:`
+    - secure: "aqe9rcJZnYXQuwSTl3WOB5YBPvow/x9fXTkLYuO+Q5PPYK4Jbf1mLALgXT6QLnFvfLpV4wb0QXh1DsYeknQK8mF+pWHtx2CPuuho2iW/KMPsghuvpQ1I3etdOi7t6pZZQo6RcV+D5QjsA79WhZpUpyDfSePbDWfRwrnWvoq6UvzmSiwyIQHNRQzfbwYbkwX3Z1Ui/6mDtE6e7OLQD70h7UWmqeR2pzxBZocBNAqlWONPKKzDmUyMklaEB+gVNLQdXpN0/fb7qcmUM082dyjFt/nNm1UcZdepZxTRdLOjiV/M5b5sC8QSV1RssCM0IzGTtEBYJ0ik+Desb+QE+ULIDqwFQytmv9JozcpCHKI2rOS8Gp6reB6CxFTQdgJMPw8ldJbXmKDTeVYrtZJ6Ber85lZ1J0XBuUOWKR/nHN1YQOchvXtCXHXvzS6QqjOof2Um3hlO8bkVzq1tEK4T9P9D5vigfjiowKn41wl5Ivbw2cI2NMjdiW9R4jIw9rAA1A1NXwAVWMmRkZOZB8Jipjbf7bwifLFlZHGv+KyJ7LFJcPt5j9bJo1DjKz9OoCYzwUaUGezKOvNxOIttWajaAhx5KTpE3KHOcAlmsRV5ZUSC/jR2ql3peROkBopxWCTPfkVek7gaAHIGeJTOvIqkqk4jl1pT41NyjIiBcPMR0w2gwg4="
