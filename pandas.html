@@ -1096,13 +1096,13 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Pandas">Pandas<a class="anchor-link" href="#Pandas">&#182;</a></h1><p><a href="http://pandas.pydata.org/">Pandas</a> is a an open source library providing high-performance, easy-to-use data structures and data analysis tools. Pandas is particularly suited to the analysis of <em>tabular</em> data, i.e. data that can can go into a table. In other words, if you can imagine the data in an Excel spreadsheet, then Pandas is the tool for the job.</p>
+<h1 id="Pandas">Pandas<a class="anchor-link" href="#Pandas">¶</a></h1><p><a href="http://pandas.pydata.org/">Pandas</a> is a an open source library providing high-performance, easy-to-use data structures and data analysis tools. Pandas is particularly suited to the analysis of <em>tabular</em> data, i.e. data that can can go into a table. In other words, if you can imagine the data in an Excel spreadsheet, then Pandas is the tool for the job.</p>
 <p>A <a href="https://stackoverflow.blog/2017/09/06/incredible-growth-python/">recent analysis</a> of questions from Stack Overflow showed that python is the fastest growing and most widely used programming language in the world (in developed countries).</p>
-<p><img src="https://zgab33vy595fw5zq-zippykid.netdna-ssl.com/wp-content/uploads/2017/09/growth_major_languages-1-1024x878.png" alt="python growth"></p>
+<p><img alt="python growth" src="https://zgab33vy595fw5zq-zippykid.netdna-ssl.com/wp-content/uploads/2017/09/growth_major_languages-1-1024x878.png" /></p>
 <p>A <a href="https://stackoverflow.blog/2017/09/14/python-growing-quickly/">follow-up analysis</a> showed that this growth is driven by the data science packages such as numpy, matplotlib, and especially pandas.</p>
-<p><img src="https://zgab33vy595fw5zq-zippykid.netdna-ssl.com/wp-content/uploads/2017/09/related_tags_over_time-1-1024x1024.png" alt="pandas growth"></p>
+<p><img alt="pandas growth" src="https://zgab33vy595fw5zq-zippykid.netdna-ssl.com/wp-content/uploads/2017/09/related_tags_over_time-1-1024x1024.png" /></p>
 <p>The exponential growth of pandas is due to the fact that it <em>just works</em>. It saves you time and helps you do science more efficiently and effictively.</p>
-<h3 id="Pandas-capabilities-(from-the-Pandas-website):">Pandas capabilities (from the Pandas website):<a class="anchor-link" href="#Pandas-capabilities-(from-the-Pandas-website):">&#182;</a></h3><ul>
+<h3 id="Pandas-capabilities-(from-the-Pandas-website):">Pandas capabilities (from the Pandas website):<a class="anchor-link" href="#Pandas-capabilities-(from-the-Pandas-website):">¶</a></h3><ul>
 <li>A fast and efficient DataFrame object for data manipulation with integrated indexing;</li>
 <li>Tools for reading and writing data between in-memory data structures and different formats: CSV and text files, Microsoft Excel, SQL databases, and the fast HDF5 format;</li>
 <li>Intelligent data alignment and integrated handling of missing data: gain automatic label-based alignment in computations and easily manipulate messy data into an orderly form;</li>
@@ -1118,120 +1118,87 @@ h6:hover .anchor-link {
 </ul>
 <p>In this lecture, we will go over the basic capabilities of Pandas. It is a very deep library, and you will need to dig into the <a href="http://pandas.pydata.org/pandas-docs/stable/">documentation</a> for more advanced usage.</p>
 <p>Pandas was created by <a href="http://wesmckinney.com/">Wes McKinney</a>. Many of the examples here are drawn from Wes McKinney's book <a href="http://shop.oreilly.com/product/0636920023784.do">Python for Data Analysis</a>, which includes a github repo of <a href="https://github.com/wesm/pydata-book">code samples</a>.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In [1]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="o">%</span><span class="k">matplotlib</span> inline
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Pandas-Data-Structures:-Series">Pandas Data Structures: Series<a class="anchor-link" href="#Pandas-Data-Structures:-Series">&#182;</a></h2><p>A Series represents a one-dimensional array of data. The main difference between a Series and numpy array is that a Series has an <em>index</em>. The index contains the labels that we use to access the data.</p>
+<h2 id="Pandas-Data-Structures:-Series">Pandas Data Structures: Series<a class="anchor-link" href="#Pandas-Data-Structures:-Series">¶</a></h2><p>A Series represents a one-dimensional array of data. The main difference between a Series and numpy array is that a Series has an <em>index</em>. The index contains the labels that we use to access the data.</p>
 <p>There are many ways to <a href="https://pandas.pydata.org/pandas-docs/stable/dsintro.html#series">create a Series</a>. We will just show a few.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[83]:</div>
+<div class="prompt input_prompt">In [83]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Ryan&#39;</span><span class="p">,</span> <span class="s1">&#39;Chiara&#39;</span><span class="p">,</span> <span class="s1">&#39;Johnny&#39;</span><span class="p">]</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Ryan'</span><span class="p">,</span> <span class="s1">'Chiara'</span><span class="p">,</span> <span class="s1">'Johnny'</span><span class="p">]</span>
 <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">35</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">]</span>
 <span class="n">ages</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">names</span><span class="p">)</span>
 <span class="n">ages</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[83]:</div>
-
-
-
-
 <div class="output_text output_subarea output_execute_result">
 <pre>Ryan      35.0
 Chiara    36.0
 Johnny     1.8
 dtype: float64</pre>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Series have built in plotting methods.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[84]:</div>
+<div class="prompt input_prompt">In [84]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ages</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">)</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ages</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">'bar'</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[84]:</div>
-
-
-
-
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11b73fbe0&gt;</pre>
+<pre><matplotlib.axes._subplots.axessubplot at 0x11b73fbe0></pre>
 </div>
-
 </div>
-
 <div class="output_area">
-
 <div class="prompt"></div>
-
-
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXQAAAEUCAYAAAA7l80JAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAEHpJREFUeJzt3X2sZHV9x/H3R2AL9aFguNINgquEWinK0txSKklVUIta
@@ -1309,14 +1276,11 @@ s8DbPTnX8tadnOtFO2blSWaAf62qY/pN1j/P5aK90Zr5DvGvqjkGSxi1vD1ul10sP8AuA9zlor3T
 r62qT/QcaVmw0LXX6VZIXA78mMFpc2GwJn0VcFpV3dNXNi0syQMMVifBoMh39r/AN4A/25tPiGeh
 a6+V5AXA0d3DW6vq833m0fi6k+IdDVxcVUcP275VFrqkZiR5XVV9sO8cfbHQJakRLvWRpEZY6JLU
 CAtdkhphoUtSIyx0SWrE/wHIhnek2nrgIAAAAABJRU5ErkJggg==
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
@@ -1324,284 +1288,198 @@ CAtdkhphoUtSIyx0SWrE/wHIhnek2nrgIAAAAABJRU5ErkJggg==
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Arithmetic operations and most numpy function can be applied to Series.
 An important point is that the Series keep their index during such operations.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[90]:</div>
+<div class="prompt input_prompt">In [90]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">ages</span><span class="p">)</span> <span class="o">/</span> <span class="n">ages</span><span class="o">**</span><span class="mi">2</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[90]:</div>
-
-
-
-
 <div class="output_text output_subarea output_execute_result">
 <pre>Ryan      0.002902
 Chiara    0.002765
 Johnny    0.181416
 dtype: float64</pre>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We can access the underlying index object if we need to:</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[93]:</div>
+<div class="prompt input_prompt">In [93]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">ages</span><span class="o">.</span><span class="n">index</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[93]:</div>
-
-
-
-
 <div class="output_text output_subarea output_execute_result">
-<pre>Index([&#39;Ryan&#39;, &#39;Chiara&#39;, &#39;Johnny&#39;], dtype=&#39;object&#39;)</pre>
-</div>
-
-</div>
-
+<pre>Index(['Ryan', 'Chiara', 'Johnny'], dtype='object')</pre>
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We can get values back out using the index via the <code>.loc</code> attribute</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[95]:</div>
+<div class="prompt input_prompt">In [95]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ages</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Johnny&#39;</span><span class="p">]</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ages</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">'Johnny'</span><span class="p">]</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[95]:</div>
-
-
-
-
 <div class="output_text output_subarea output_execute_result">
 <pre>1.8</pre>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Or by raw position using <code>.iloc</code></p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[96]:</div>
+<div class="prompt input_prompt">In [96]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">ages</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[96]:</div>
-
-
-
-
 <div class="output_text output_subarea output_execute_result">
 <pre>1.8</pre>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>If we need to, we can always get the raw data back out as well</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[97]:</div>
+<div class="prompt input_prompt">In [97]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">ages</span><span class="o">.</span><span class="n">values</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[97]:</div>
-
-
-
-
 <div class="output_text output_subarea output_execute_result">
 <pre>array([ 35. ,  36. ,   1.8])</pre>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[98]:</div>
+<div class="prompt input_prompt">In [98]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">ages</span><span class="o">.</span><span class="n">index</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[98]:</div>
-
-
-
-
 <div class="output_text output_subarea output_execute_result">
-<pre>Index([&#39;Ryan&#39;, &#39;Chiara&#39;, &#39;Johnny&#39;], dtype=&#39;object&#39;)</pre>
-</div>
-
-</div>
-
+<pre>Index(['Ryan', 'Chiara', 'Johnny'], dtype='object')</pre>
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Pandas-Data-Structures:-DataFrame">Pandas Data Structures: DataFrame<a class="anchor-link" href="#Pandas-Data-Structures:-DataFrame">&#182;</a></h2><p>There is a lot more to Series, but they are limit to a single "column". A more useful Pandas data structure is the DataFrame. A DataFrame is basically a bunch of series that share the same index. It's a lot like a table in a spreadsheet.</p>
+<h2 id="Pandas-Data-Structures:-DataFrame">Pandas Data Structures: DataFrame<a class="anchor-link" href="#Pandas-Data-Structures:-DataFrame">¶</a></h2><p>There is a lot more to Series, but they are limit to a single "column". A more useful Pandas data structure is the DataFrame. A DataFrame is basically a bunch of series that share the same index. It's a lot like a table in a spreadsheet.</p>
 <p>Below we create a DataFrame.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[122]:</div>
+<div class="prompt input_prompt">In [122]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># first we create a dictionary</span>
-<span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">35</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">],</span>
-        <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">180</span><span class="p">,</span> <span class="mi">155</span><span class="p">,</span> <span class="mi">83</span><span class="p">],</span>
-        <span class="s1">&#39;weight&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">72.5</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mf">11.3</span><span class="p">]}</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Ryan&#39;</span><span class="p">,</span> <span class="s1">&#39;Chiara&#39;</span><span class="p">,</span> <span class="s1">&#39;Johnny&#39;</span><span class="p">])</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'age'</span><span class="p">:</span> <span class="p">[</span><span class="mi">35</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">],</span>
+        <span class="s1">'height'</span><span class="p">:</span> <span class="p">[</span><span class="mi">180</span><span class="p">,</span> <span class="mi">155</span><span class="p">,</span> <span class="mi">83</span><span class="p">],</span>
+        <span class="s1">'weight'</span><span class="p">:</span> <span class="p">[</span><span class="mf">72.5</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mf">11.3</span><span class="p">]}</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">'Ryan'</span><span class="p">,</span> <span class="s1">'Chiara'</span><span class="p">,</span> <span class="s1">'Johnny'</span><span class="p">])</span>
 <span class="n">df</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[122]:</div>
-
-
-
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
 <style>
@@ -1618,76 +1496,65 @@ dtype: float64</pre>
     }
 </style>
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>age</th>
-      <th>height</th>
-      <th>weight</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Ryan</th>
-      <td>35.0</td>
-      <td>180</td>
-      <td>72.5</td>
-    </tr>
-    <tr>
-      <th>Chiara</th>
-      <td>36.0</td>
-      <td>155</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>Johnny</th>
-      <td>1.8</td>
-      <td>83</td>
-      <td>11.3</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>age</th>
+<th>height</th>
+<th>weight</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Ryan</th>
+<td>35.0</td>
+<td>180</td>
+<td>72.5</td>
+</tr>
+<tr>
+<th>Chiara</th>
+<td>36.0</td>
+<td>155</td>
+<td>NaN</td>
+</tr>
+<tr>
+<th>Johnny</th>
+<td>1.8</td>
+<td>83</td>
+<td>11.3</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pandas handles missing data very elegantly, keeping track of it through all calculations.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[101]:</div>
+<div class="prompt input_prompt">In [101]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt"></div>
-
-
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+<pre><class &#x27;pandas.core.frame.dataframe&#x27;>
 Index: 3 entries, Ryan to Johnny
 Data columns (total 3 columns):
 age       3 non-null float64
@@ -1698,150 +1565,103 @@ memory usage: 96.0+ bytes
 </pre>
 </div>
 </div>
-
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>A wide range of statistical functions are available on both Series and DataFrames.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[113]:</div>
+<div class="prompt input_prompt">In [113]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[113]:</div>
-
-
-
-
 <div class="output_text output_subarea output_execute_result">
 <pre>age        1.8
 height    83.0
 weight    11.3
 dtype: float64</pre>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[114]:</div>
+<div class="prompt input_prompt">In [114]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[114]:</div>
-
-
-
-
 <div class="output_text output_subarea output_execute_result">
 <pre>age        24.266667
 height    139.333333
 weight     41.900000
 dtype: float64</pre>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[115]:</div>
+<div class="prompt input_prompt">In [115]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[115]:</div>
-
-
-
-
 <div class="output_text output_subarea output_execute_result">
 <pre>age       19.463128
 height    50.362023
 weight    43.274935
 dtype: float64</pre>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[102]:</div>
+<div class="prompt input_prompt">In [102]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[102]:</div>
-
-
-
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
 <style>
@@ -1858,196 +1678,158 @@ dtype: float64</pre>
     }
 </style>
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>age</th>
-      <th>height</th>
-      <th>weight</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>count</th>
-      <td>3.000000</td>
-      <td>3.000000</td>
-      <td>2.000000</td>
-    </tr>
-    <tr>
-      <th>mean</th>
-      <td>24.266667</td>
-      <td>139.333333</td>
-      <td>41.900000</td>
-    </tr>
-    <tr>
-      <th>std</th>
-      <td>19.463128</td>
-      <td>50.362023</td>
-      <td>43.274935</td>
-    </tr>
-    <tr>
-      <th>min</th>
-      <td>1.800000</td>
-      <td>83.000000</td>
-      <td>11.300000</td>
-    </tr>
-    <tr>
-      <th>25%</th>
-      <td>18.400000</td>
-      <td>119.000000</td>
-      <td>26.600000</td>
-    </tr>
-    <tr>
-      <th>50%</th>
-      <td>35.000000</td>
-      <td>155.000000</td>
-      <td>41.900000</td>
-    </tr>
-    <tr>
-      <th>75%</th>
-      <td>35.500000</td>
-      <td>167.500000</td>
-      <td>57.200000</td>
-    </tr>
-    <tr>
-      <th>max</th>
-      <td>36.000000</td>
-      <td>180.000000</td>
-      <td>72.500000</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>age</th>
+<th>height</th>
+<th>weight</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>count</th>
+<td>3.000000</td>
+<td>3.000000</td>
+<td>2.000000</td>
+</tr>
+<tr>
+<th>mean</th>
+<td>24.266667</td>
+<td>139.333333</td>
+<td>41.900000</td>
+</tr>
+<tr>
+<th>std</th>
+<td>19.463128</td>
+<td>50.362023</td>
+<td>43.274935</td>
+</tr>
+<tr>
+<th>min</th>
+<td>1.800000</td>
+<td>83.000000</td>
+<td>11.300000</td>
+</tr>
+<tr>
+<th>25%</th>
+<td>18.400000</td>
+<td>119.000000</td>
+<td>26.600000</td>
+</tr>
+<tr>
+<th>50%</th>
+<td>35.000000</td>
+<td>155.000000</td>
+<td>41.900000</td>
+</tr>
+<tr>
+<th>75%</th>
+<td>35.500000</td>
+<td>167.500000</td>
+<td>57.200000</td>
+</tr>
+<tr>
+<th>max</th>
+<td>36.000000</td>
+<td>180.000000</td>
+<td>72.500000</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We can get a single column as a Series using python's getitem syntax on the DataFrame object.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[112]:</div>
+<div class="prompt input_prompt">In [112]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;height&#39;</span><span class="p">]</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'height'</span><span class="p">]</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[112]:</div>
-
-
-
-
 <div class="output_text output_subarea output_execute_result">
 <pre>Ryan      180
 Chiara    155
 Johnny     83
 Name: height, dtype: int64</pre>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>...or using attribute syntax.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[116]:</div>
+<div class="prompt input_prompt">In [116]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">height</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[116]:</div>
-
-
-
-
 <div class="output_text output_subarea output_execute_result">
 <pre>Ryan      180
 Chiara    155
 Johnny     83
 Name: height, dtype: int64</pre>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>New columns can easily be added to DataFrames</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[123]:</div>
+<div class="prompt input_prompt">In [123]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;density&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">weight</span> <span class="o">/</span> <span class="n">df</span><span class="o">.</span><span class="n">height</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'density'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">weight</span> <span class="o">/</span> <span class="n">df</span><span class="o">.</span><span class="n">height</span>
 <span class="n">df</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[123]:</div>
-
-
-
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
 <style>
@@ -2064,83 +1846,71 @@ Name: height, dtype: int64</pre>
     }
 </style>
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>age</th>
-      <th>height</th>
-      <th>weight</th>
-      <th>density</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Ryan</th>
-      <td>35.0</td>
-      <td>180</td>
-      <td>72.5</td>
-      <td>0.402778</td>
-    </tr>
-    <tr>
-      <th>Chiara</th>
-      <td>36.0</td>
-      <td>155</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>Johnny</th>
-      <td>1.8</td>
-      <td>83</td>
-      <td>11.3</td>
-      <td>0.136145</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>age</th>
+<th>height</th>
+<th>weight</th>
+<th>density</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Ryan</th>
+<td>35.0</td>
+<td>180</td>
+<td>72.5</td>
+<td>0.402778</td>
+</tr>
+<tr>
+<th>Chiara</th>
+<td>36.0</td>
+<td>155</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr>
+<th>Johnny</th>
+<td>1.8</td>
+<td>83</td>
+<td>11.3</td>
+<td>0.136145</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Merging-Data">Merging Data<a class="anchor-link" href="#Merging-Data">&#182;</a></h2><p>Pandas supports a wide range of methods for merging different datasets. These are described extensively in the <a href="https://pandas.pydata.org/pandas-docs/stable/merging.html">documentation</a>. Here we just give a few examples.</p>
-
+<h2 id="Merging-Data">Merging Data<a class="anchor-link" href="#Merging-Data">¶</a></h2><p>Pandas supports a wide range of methods for merging different datasets. These are described extensively in the <a href="https://pandas.pydata.org/pandas-docs/stable/merging.html">documentation</a>. Here we just give a few examples.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[125]:</div>
+<div class="prompt input_prompt">In [125]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">education</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s1">&#39;PhD&#39;</span><span class="p">,</span> <span class="s1">&#39;PhD&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;masters&#39;</span><span class="p">],</span>
-                     <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Ryan&#39;</span><span class="p">,</span> <span class="s1">&#39;Chiara&#39;</span><span class="p">,</span> <span class="s1">&#39;Johnny&#39;</span><span class="p">,</span> <span class="s1">&#39;Takaya&#39;</span><span class="p">],</span>
-                     <span class="n">name</span><span class="o">=</span><span class="s1">&#39;education&#39;</span><span class="p">)</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">education</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s1">'PhD'</span><span class="p">,</span> <span class="s1">'PhD'</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">'masters'</span><span class="p">],</span>
+                     <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">'Ryan'</span><span class="p">,</span> <span class="s1">'Chiara'</span><span class="p">,</span> <span class="s1">'Johnny'</span><span class="p">,</span> <span class="s1">'Takaya'</span><span class="p">],</span>
+                     <span class="n">name</span><span class="o">=</span><span class="s1">'education'</span><span class="p">)</span>
 <span class="c1"># returns a new DataFrame</span>
 <span class="n">df</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">education</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[125]:</div>
-
-
-
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
 <style>
@@ -2157,75 +1927,64 @@ Name: height, dtype: int64</pre>
     }
 </style>
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>age</th>
-      <th>height</th>
-      <th>weight</th>
-      <th>density</th>
-      <th>education</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Ryan</th>
-      <td>35.0</td>
-      <td>180</td>
-      <td>72.5</td>
-      <td>0.402778</td>
-      <td>PhD</td>
-    </tr>
-    <tr>
-      <th>Chiara</th>
-      <td>36.0</td>
-      <td>155</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>PhD</td>
-    </tr>
-    <tr>
-      <th>Johnny</th>
-      <td>1.8</td>
-      <td>83</td>
-      <td>11.3</td>
-      <td>0.136145</td>
-      <td>None</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>age</th>
+<th>height</th>
+<th>weight</th>
+<th>density</th>
+<th>education</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Ryan</th>
+<td>35.0</td>
+<td>180</td>
+<td>72.5</td>
+<td>0.402778</td>
+<td>PhD</td>
+</tr>
+<tr>
+<th>Chiara</th>
+<td>36.0</td>
+<td>155</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>PhD</td>
+</tr>
+<tr>
+<th>Johnny</th>
+<td>1.8</td>
+<td>83</td>
+<td>11.3</td>
+<td>0.136145</td>
+<td>None</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[127]:</div>
+<div class="prompt input_prompt">In [127]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># returns a new DataFrame</span>
-<span class="n">df</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">education</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">education</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">'right'</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[127]:</div>
-
-
-
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
 <style>
@@ -2242,83 +2001,72 @@ Name: height, dtype: int64</pre>
     }
 </style>
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>age</th>
-      <th>height</th>
-      <th>weight</th>
-      <th>density</th>
-      <th>education</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Ryan</th>
-      <td>35.0</td>
-      <td>180.0</td>
-      <td>72.5</td>
-      <td>0.402778</td>
-      <td>PhD</td>
-    </tr>
-    <tr>
-      <th>Chiara</th>
-      <td>36.0</td>
-      <td>155.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>PhD</td>
-    </tr>
-    <tr>
-      <th>Johnny</th>
-      <td>1.8</td>
-      <td>83.0</td>
-      <td>11.3</td>
-      <td>0.136145</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>Takaya</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>masters</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>age</th>
+<th>height</th>
+<th>weight</th>
+<th>density</th>
+<th>education</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Ryan</th>
+<td>35.0</td>
+<td>180.0</td>
+<td>72.5</td>
+<td>0.402778</td>
+<td>PhD</td>
+</tr>
+<tr>
+<th>Chiara</th>
+<td>36.0</td>
+<td>155.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>PhD</td>
+</tr>
+<tr>
+<th>Johnny</th>
+<td>1.8</td>
+<td>83.0</td>
+<td>11.3</td>
+<td>0.136145</td>
+<td>None</td>
+</tr>
+<tr>
+<th>Takaya</th>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>masters</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[128]:</div>
+<div class="prompt input_prompt">In [128]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># returns a new DataFrame</span>
-<span class="n">df</span><span class="o">.</span><span class="n">reindex</span><span class="p">([</span><span class="s1">&#39;Ryan&#39;</span><span class="p">,</span> <span class="s1">&#39;Chiara&#39;</span><span class="p">,</span> <span class="s1">&#39;Johnny&#39;</span><span class="p">,</span> <span class="s1">&#39;Takaya&#39;</span><span class="p">,</span> <span class="s1">&#39;Kerry&#39;</span><span class="p">])</span>
+<span class="n">df</span><span class="o">.</span><span class="n">reindex</span><span class="p">([</span><span class="s1">'Ryan'</span><span class="p">,</span> <span class="s1">'Chiara'</span><span class="p">,</span> <span class="s1">'Johnny'</span><span class="p">,</span> <span class="s1">'Takaya'</span><span class="p">,</span> <span class="s1">'Kerry'</span><span class="p">])</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[128]:</div>
-
-
-
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
 <style>
@@ -2335,94 +2083,82 @@ Name: height, dtype: int64</pre>
     }
 </style>
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>age</th>
-      <th>height</th>
-      <th>weight</th>
-      <th>density</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Ryan</th>
-      <td>35.0</td>
-      <td>180.0</td>
-      <td>72.5</td>
-      <td>0.402778</td>
-    </tr>
-    <tr>
-      <th>Chiara</th>
-      <td>36.0</td>
-      <td>155.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>Johnny</th>
-      <td>1.8</td>
-      <td>83.0</td>
-      <td>11.3</td>
-      <td>0.136145</td>
-    </tr>
-    <tr>
-      <th>Takaya</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>Kerry</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>age</th>
+<th>height</th>
+<th>weight</th>
+<th>density</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Ryan</th>
+<td>35.0</td>
+<td>180.0</td>
+<td>72.5</td>
+<td>0.402778</td>
+</tr>
+<tr>
+<th>Chiara</th>
+<td>36.0</td>
+<td>155.0</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr>
+<th>Johnny</th>
+<td>1.8</td>
+<td>83.0</td>
+<td>11.3</td>
+<td>0.136145</td>
+</tr>
+<tr>
+<th>Takaya</th>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr>
+<th>Kerry</th>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We can also index using a boolean series. This is very useful</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[131]:</div>
+<div class="prompt input_prompt">In [131]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">adults</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">age</span> <span class="o">&gt;</span> <span class="mi">18</span><span class="p">]</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">adults</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">age</span> <span class="o">></span> <span class="mi">18</span><span class="p">]</span>
 <span class="n">adults</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[131]:</div>
-
-
-
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
 <style>
@@ -2439,64 +2175,53 @@ Name: height, dtype: int64</pre>
     }
 </style>
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>age</th>
-      <th>height</th>
-      <th>weight</th>
-      <th>density</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Ryan</th>
-      <td>35.0</td>
-      <td>180</td>
-      <td>72.5</td>
-      <td>0.402778</td>
-    </tr>
-    <tr>
-      <th>Chiara</th>
-      <td>36.0</td>
-      <td>155</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>age</th>
+<th>height</th>
+<th>weight</th>
+<th>density</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Ryan</th>
+<td>35.0</td>
+<td>180</td>
+<td>72.5</td>
+<td>0.402778</td>
+</tr>
+<tr>
+<th>Chiara</th>
+<td>36.0</td>
+<td>155</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[133]:</div>
+<div class="prompt input_prompt">In [133]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;is_adult&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">age</span> <span class="o">&gt;</span> <span class="mi">18</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'is_adult'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">age</span> <span class="o">></span> <span class="mi">18</span>
 <span class="n">df</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[133]:</div>
-
-
-
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
 <style>
@@ -2513,97 +2238,77 @@ Name: height, dtype: int64</pre>
     }
 </style>
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>age</th>
-      <th>height</th>
-      <th>weight</th>
-      <th>density</th>
-      <th>is_adult</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Ryan</th>
-      <td>35.0</td>
-      <td>180</td>
-      <td>72.5</td>
-      <td>0.402778</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>Chiara</th>
-      <td>36.0</td>
-      <td>155</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>Johnny</th>
-      <td>1.8</td>
-      <td>83</td>
-      <td>11.3</td>
-      <td>0.136145</td>
-      <td>False</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>age</th>
+<th>height</th>
+<th>weight</th>
+<th>density</th>
+<th>is_adult</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Ryan</th>
+<td>35.0</td>
+<td>180</td>
+<td>72.5</td>
+<td>0.402778</td>
+<td>True</td>
+</tr>
+<tr>
+<th>Chiara</th>
+<td>36.0</td>
+<td>155</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>True</td>
+</tr>
+<tr>
+<th>Johnny</th>
+<td>1.8</td>
+<td>83</td>
+<td>11.3</td>
+<td>0.136145</td>
+<td>False</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Plotting">Plotting<a class="anchor-link" href="#Plotting">&#182;</a></h2><p>DataFrames have all kinds of <a href="https://pandas.pydata.org/pandas-docs/stable/visualization.html">useful plotting</a> built in.</p>
-
+<h2 id="Plotting">Plotting<a class="anchor-link" href="#Plotting">¶</a></h2><p>DataFrames have all kinds of <a href="https://pandas.pydata.org/pandas-docs/stable/visualization.html">useful plotting</a> built in.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[108]:</div>
+<div class="prompt input_prompt">In [108]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">'scatter'</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">'age'</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">'height'</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[108]:</div>
-
-
-
-
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1294ebcc0&gt;</pre>
+<pre><matplotlib.axes._subplots.axessubplot at 0x1294ebcc0></pre>
 </div>
-
 </div>
-
 <div class="output_area">
-
 <div class="prompt"></div>
-
-
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYgAAAEKCAYAAAAIO8L1AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3X2QJHd93/H3d3oe9tAe0p1O2Mqt7ANbMgZxVvBaQJTE
@@ -2781,51 +2486,32 @@ H859WQjhZDlCz3v6+TkIz1tbpwNHssHh+fSnlH4W8PNmtiWbWvryJc//LPDWwYOq7jHseZPkA4Tn
 ra2/AOpmthf4z8B9wGPA79OfnfUvgUeAuez5bwNmszuEPUL/nsOeF3V+ktrz1jEzm85uQF+nP8X7
 TSGET4z7c54XY74H4Xnr23XZ/YUfBr5N/54anieZ70F4nud5I/M9CM/zPG9kPkB4nud5I/MBwvM8
 zxuZDxCe53neyHyA8DzP80bmA4TneZ43sv8P9+KOtC/vdUwAAAAASUVORK5CYII=
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[110]:</div>
+<div class="prompt input_prompt">In [110]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">)</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">'bar'</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[110]:</div>
-
-
-
-
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1296e65f8&gt;</pre>
+<pre><matplotlib.axes._subplots.axessubplot at 0x1296e65f8></pre>
 </div>
-
 </div>
-
 <div class="output_area">
-
 <div class="prompt"></div>
-
-
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXoAAAEUCAYAAAAlXv26AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAGa9JREFUeJzt3X2UVPWd5/H3R0QeFAWk4yqI3XrECULTI+0DGLAHViSJ
@@ -2944,102 +2630,43 @@ LSxl7tGbJSQ9Akzf8yxYSdXA1V7UrPQli5qd2diLl1QGLImIYelWli6vdWP2mfLmljqIiDpyUy2t
 vHQqs/0h6evA6eTG6J+JiF+mXFLqHPRmiWS2xkPA/yO3PDHk5tQfBEyMiD+lVZu1TNI2cjOmIBfw
 TX0MrAf+4fO6mKCD3mwPkv4KGJI8fSUi/j3Neiw/yYKCQ4B7ImJIa9tnkYPezD4XJH03Iv457TrS
 4KA3M8u4z/20IzOzrHPQm5llnIPezCzjHPRmZhnnoDczy7j/D2b6fhMIWDgUAAAAAElFTkSuQmCC
-">
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
+" />
 </div>
 </div>
 </div>
-
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Time-Indexes">Time Indexes<a class="anchor-link" href="#Time-Indexes">&#182;</a></h2><p>Indexes are very powerful. They are a big part of why Pandas is so useful. There are different indices for different types of data. Time Indexes are especially great!</p>
-
+<h2 id="Time-Indexes">Time Indexes<a class="anchor-link" href="#Time-Indexes">¶</a></h2><p>Indexes are very powerful. They are a big part of why Pandas is so useful. There are different indices for different types of data. Time Indexes are especially great!</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[134]:</div>
+<div class="prompt input_prompt">In [134]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">two_years</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;2014-01-01&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;2016-01-01&#39;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">)</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">two_years</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">'2014-01-01'</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">'2016-01-01'</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">'D'</span><span class="p">)</span>
 <span class="n">timeseries</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span><span class="n">two_years</span><span class="o">.</span><span class="n">dayofyear</span> <span class="o">/</span> <span class="mi">365</span><span class="p">),</span>
                        <span class="n">index</span><span class="o">=</span><span class="n">two_years</span><span class="p">)</span>
 <span class="n">timeseries</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[134]:</div>
-
-
-
-
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x129a3c898&gt;</pre>
+<pre><matplotlib.axes._subplots.axessubplot at 0x129a3c898></pre>
 </div>
-
 </div>
-
 <div class="output_area">
-
 <div class="prompt"></div>
-
-
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAY8AAAEHCAYAAABWecpSAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3Xl8VfWZ+PHPk30hZA+BJBCWhCXsRFyAoIiIo4J1adV2
@@ -3331,60 +2958,40 @@ z6brgdLLvrc/DBIUkZXALuBd/tJW8Y+46+6eAqbinj/mLmNMk4hkAiXARM/+7cC8/sU1f56KQQUO
 q65NII2/zCMVAfzBGHO5leiUGpaV350ishh3R6Mo3LMF/40x5uKQ7+0PyUMppVRg8YtqK6WUUoFF
 k4dSSqlR0+ShlFJq1DR5KKWUGjVNHkoppUZNk4dSSqlR0+ShlFJq1P4/Ru3USj87BeQAAAAASUVO
 RK5CYII=
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We can use python's slicing notation inside <code>.loc</code> to select a date range.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[137]:</div>
+<div class="prompt input_prompt">In [137]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">timeseries</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2015-01-01&#39;</span><span class="p">:</span><span class="s1">&#39;2015-07-01&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">timeseries</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">'2015-01-01'</span><span class="p">:</span><span class="s1">'2015-07-01'</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[137]:</div>
-
-
-
-
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1296c7d68&gt;</pre>
+<pre><matplotlib.axes._subplots.axessubplot at 0x1296c7d68></pre>
 </div>
-
 </div>
-
 <div class="output_area">
-
 <div class="prompt"></div>
-
-
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXoAAAEHCAYAAACgHI2PAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3Xd4VGX6xvHvkx5CCpAAAUJCSaGDRIoogooUEcTFgmt3
@@ -3597,46 +3204,35 @@ TvTaQRFKKeVsjrzqRoD3gXRjzCs1npoL3GD/+gbgP7VsJ8T+YS72OWIuxjYkXSmlVAM48qqbc4Ef
 gU3YpiIGeATbefrZQEcgB7jCGHNYRNoCKUCYfflioDsQyf/mGPEDPjPGPOuQkEop1QTpyFillPJy
 OjJWKaW8nBa9Ukp5OS16pZTyclr0Sinl5bTolVLKy2nRK6WUl9OiV0opL/f/sBGPwc542dQAAAAA
 SUVORK5CYII=
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Stock-Market-Data">Stock Market Data<a class="anchor-link" href="#Stock-Market-Data">&#182;</a></h2><p>Now we read some stock market data from Google finance. I have created direct links to Google and Apple stock price data.</p>
-
+<h2 id="Stock-Market-Data">Stock Market Data<a class="anchor-link" href="#Stock-Market-Data">¶</a></h2><p>Now we read some stock market data from Google finance. I have created direct links to Google and Apple stock price data.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[169]:</div>
+<div class="prompt input_prompt">In [169]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>curl -L -o goog.csv http://tinyurl.com/rces-goog
 <span class="o">!</span>curl -L -o aapl.csv http://tinyurl.com/rces-aapl-csv
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt"></div>
-
-
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
@@ -3649,32 +3245,23 @@ SUVORK5CYII=
 </pre>
 </div>
 </div>
-
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In [15]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span> head goog.csv
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt"></div>
-
-
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>﻿Date,Open,High,Low,Close,Volume
 11-Oct-17,973.72,990.71,972.25,989.25,1693274
@@ -3689,10 +3276,8 @@ SUVORK5CYII=
 </pre>
 </div>
 </div>
-
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
@@ -3700,33 +3285,24 @@ SUVORK5CYII=
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We can see that this is well-formated, tidy CSV data, ready for immediate ingestion into Pandas.
 We use Pandas' amazing <a href="https://pandas.pydata.org/pandas-docs/stable/generated/pandas.read_csv.html">read_csv</a> function to do this.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[170]:</div>
+<div class="prompt input_prompt">In [170]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">goog</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;goog.csv&#39;</span><span class="p">)</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">goog</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'goog.csv'</span><span class="p">)</span>
 <span class="n">goog</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[170]:</div>
-
-
-
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
 <style>
@@ -3743,106 +3319,94 @@ We use Pandas' amazing <a href="https://pandas.pydata.org/pandas-docs/stable/gen
     }
 </style>
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Date</th>
-      <th>Open</th>
-      <th>High</th>
-      <th>Low</th>
-      <th>Close</th>
-      <th>Volume</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>11-Oct-17</td>
-      <td>973.72</td>
-      <td>990.71</td>
-      <td>972.25</td>
-      <td>989.25</td>
-      <td>1693274</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>10-Oct-17</td>
-      <td>980.00</td>
-      <td>981.57</td>
-      <td>966.08</td>
-      <td>972.60</td>
-      <td>968362</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>9-Oct-17</td>
-      <td>980.00</td>
-      <td>985.42</td>
-      <td>976.11</td>
-      <td>977.00</td>
-      <td>891355</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>6-Oct-17</td>
-      <td>966.70</td>
-      <td>979.46</td>
-      <td>963.36</td>
-      <td>978.89</td>
-      <td>1173882</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>5-Oct-17</td>
-      <td>955.49</td>
-      <td>970.91</td>
-      <td>955.18</td>
-      <td>969.96</td>
-      <td>1213816</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Date</th>
+<th>Open</th>
+<th>High</th>
+<th>Low</th>
+<th>Close</th>
+<th>Volume</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>11-Oct-17</td>
+<td>973.72</td>
+<td>990.71</td>
+<td>972.25</td>
+<td>989.25</td>
+<td>1693274</td>
+</tr>
+<tr>
+<th>1</th>
+<td>10-Oct-17</td>
+<td>980.00</td>
+<td>981.57</td>
+<td>966.08</td>
+<td>972.60</td>
+<td>968362</td>
+</tr>
+<tr>
+<th>2</th>
+<td>9-Oct-17</td>
+<td>980.00</td>
+<td>985.42</td>
+<td>976.11</td>
+<td>977.00</td>
+<td>891355</td>
+</tr>
+<tr>
+<th>3</th>
+<td>6-Oct-17</td>
+<td>966.70</td>
+<td>979.46</td>
+<td>963.36</td>
+<td>978.89</td>
+<td>1173882</td>
+</tr>
+<tr>
+<th>4</th>
+<td>5-Oct-17</td>
+<td>955.49</td>
+<td>970.91</td>
+<td>955.18</td>
+<td>969.96</td>
+<td>1213816</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Not bad! But we can do better by giving read_csv some hints.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[172]:</div>
+<div class="prompt input_prompt">In [172]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">goog</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;goog.csv&#39;</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">goog</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'goog.csv'</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">goog</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[172]:</div>
-
-
-
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
 <style>
@@ -3859,99 +3423,89 @@ We use Pandas' amazing <a href="https://pandas.pydata.org/pandas-docs/stable/gen
     }
 </style>
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Open</th>
-      <th>High</th>
-      <th>Low</th>
-      <th>Close</th>
-      <th>Volume</th>
-    </tr>
-    <tr>
-      <th>Date</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2017-10-11</th>
-      <td>973.72</td>
-      <td>990.71</td>
-      <td>972.25</td>
-      <td>989.25</td>
-      <td>1693274</td>
-    </tr>
-    <tr>
-      <th>2017-10-10</th>
-      <td>980.00</td>
-      <td>981.57</td>
-      <td>966.08</td>
-      <td>972.60</td>
-      <td>968362</td>
-    </tr>
-    <tr>
-      <th>2017-10-09</th>
-      <td>980.00</td>
-      <td>985.42</td>
-      <td>976.11</td>
-      <td>977.00</td>
-      <td>891355</td>
-    </tr>
-    <tr>
-      <th>2017-10-06</th>
-      <td>966.70</td>
-      <td>979.46</td>
-      <td>963.36</td>
-      <td>978.89</td>
-      <td>1173882</td>
-    </tr>
-    <tr>
-      <th>2017-10-05</th>
-      <td>955.49</td>
-      <td>970.91</td>
-      <td>955.18</td>
-      <td>969.96</td>
-      <td>1213816</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Open</th>
+<th>High</th>
+<th>Low</th>
+<th>Close</th>
+<th>Volume</th>
+</tr>
+<tr>
+<th>Date</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>2017-10-11</th>
+<td>973.72</td>
+<td>990.71</td>
+<td>972.25</td>
+<td>989.25</td>
+<td>1693274</td>
+</tr>
+<tr>
+<th>2017-10-10</th>
+<td>980.00</td>
+<td>981.57</td>
+<td>966.08</td>
+<td>972.60</td>
+<td>968362</td>
+</tr>
+<tr>
+<th>2017-10-09</th>
+<td>980.00</td>
+<td>985.42</td>
+<td>976.11</td>
+<td>977.00</td>
+<td>891355</td>
+</tr>
+<tr>
+<th>2017-10-06</th>
+<td>966.70</td>
+<td>979.46</td>
+<td>963.36</td>
+<td>978.89</td>
+<td>1173882</td>
+</tr>
+<tr>
+<th>2017-10-05</th>
+<td>955.49</td>
+<td>970.91</td>
+<td>955.18</td>
+<td>969.96</td>
+<td>1213816</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[173]:</div>
+<div class="prompt input_prompt">In [173]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">goog</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt"></div>
-
-
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+<pre><class &#x27;pandas.core.frame.dataframe&#x27;>
 DatetimeIndex: 3310 entries, 2017-10-11 to 2004-08-19
 Data columns (total 5 columns):
 Open      3310 non-null float64
@@ -3964,47 +3518,29 @@ memory usage: 155.2+ KB
 </pre>
 </div>
 </div>
-
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[174]:</div>
+<div class="prompt input_prompt">In [174]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">goog</span><span class="o">.</span><span class="n">Close</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[174]:</div>
-
-
-
-
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x12a1b8240&gt;</pre>
+<pre><matplotlib.axes._subplots.axessubplot at 0x12a1b8240></pre>
 </div>
-
 </div>
-
 <div class="output_area">
-
 <div class="prompt"></div>
-
-
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYAAAAEACAYAAAC6d6FnAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3Xd4VFX6wPHvm0JCIIXekd4EqYIUka6CP7FhXUXXXV17
@@ -4254,39 +3790,29 @@ sEvs/WSgI9YTglIhQwOAUqWwq4AKsNYLfgTYD/TEaj/LKellwG3GmG+rJZNKVZA2AitVAhFpBLwK
 vGSsutJkYK+xVoC6GnCtEnUUSHS89FvgJhGJtd+nk4jUQakQo08ASnmqLSK/YFX35GM1+j5nH3sF
 +FREJgBzgeN2+hogX0RWA+8A/8TqGbTSXh0qHbigugqglL+0EVgppSKUVgEppVSE0gCglFIRSgOA
 UkpFKA0ASikVoTQAKKVUhNIAoJRSEUoDgFJKRSgNAEopFaH+H2Yy5MXFCxG4AAAAAElFTkSuQmCC
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[180]:</div>
+<div class="prompt input_prompt">In [180]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">aapl</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;aapl.csv&#39;</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">aapl</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'aapl.csv'</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">aapl</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt"></div>
-
-
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+<pre><class &#x27;pandas.core.frame.dataframe&#x27;>
 DatetimeIndex: 4000 entries, 2017-10-11 to 2001-11-20
 Data columns (total 5 columns):
 Open      4000 non-null float64
@@ -4299,36 +3825,26 @@ memory usage: 187.5 KB
 </pre>
 </div>
 </div>
-
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[176]:</div>
+<div class="prompt input_prompt">In [176]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">aapl_close</span> <span class="o">=</span> <span class="n">aapl</span><span class="o">.</span><span class="n">Close</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;aapl&#39;</span><span class="p">)</span>
-<span class="n">goog_close</span> <span class="o">=</span> <span class="n">goog</span><span class="o">.</span><span class="n">Close</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;goog&#39;</span><span class="p">)</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">aapl_close</span> <span class="o">=</span> <span class="n">aapl</span><span class="o">.</span><span class="n">Close</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">'aapl'</span><span class="p">)</span>
+<span class="n">goog_close</span> <span class="o">=</span> <span class="n">goog</span><span class="o">.</span><span class="n">Close</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">'goog'</span><span class="p">)</span>
 <span class="n">stocks</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">aapl_close</span><span class="p">,</span> <span class="n">goog_close</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">stocks</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[176]:</div>
-
-
-
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
 <style>
@@ -4345,91 +3861,72 @@ memory usage: 187.5 KB
     }
 </style>
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>aapl</th>
-      <th>goog</th>
-    </tr>
-    <tr>
-      <th>Date</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2001-11-20</th>
-      <td>1.40</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2001-11-21</th>
-      <td>1.41</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2001-11-23</th>
-      <td>1.42</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2001-11-26</th>
-      <td>1.53</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2001-11-27</th>
-      <td>1.50</td>
-      <td>NaN</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>aapl</th>
+<th>goog</th>
+</tr>
+<tr>
+<th>Date</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>2001-11-20</th>
+<td>1.40</td>
+<td>NaN</td>
+</tr>
+<tr>
+<th>2001-11-21</th>
+<td>1.41</td>
+<td>NaN</td>
+</tr>
+<tr>
+<th>2001-11-23</th>
+<td>1.42</td>
+<td>NaN</td>
+</tr>
+<tr>
+<th>2001-11-26</th>
+<td>1.53</td>
+<td>NaN</td>
+</tr>
+<tr>
+<th>2001-11-27</th>
+<td>1.50</td>
+<td>NaN</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[177]:</div>
+<div class="prompt input_prompt">In [177]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">stocks</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[177]:</div>
-
-
-
-
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x12a331b38&gt;</pre>
+<pre><matplotlib.axes._subplots.axessubplot at 0x12a331b38></pre>
 </div>
-
 </div>
-
 <div class="output_area">
-
 <div class="prompt"></div>
-
-
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYAAAAEACAYAAAC6d6FnAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3Xd8VFX6+PHPk95DqNKkCAjSiwqIgh0rWFCxoavL6lrX
@@ -4708,46 +4205,34 @@ Z4Enja0rzQS2Grvi0wWAe1WoPCDd66MfApeLSLxznT4ikopSEUbfAJTylSwiK7HVPeXYRt+HnXNP
 A2+JyCTgU6DASV8FlIvI98BLwGPYnkHfOatB7QQmNtUfQKlgaSOwUkq1UFoFpJRSLZQWAEop1UJp
 AaCUUi2UFgBKKdVCaQGglFItlBYASinVQmkBoJRSLZQWAEop1UL9fyu1bPo9YO4IAAAAAElFTkSu
 QmCC
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pandas knows how to take correlations. And <a href="https://pandas.pydata.org/pandas-docs/stable/computation.html">tons of other computations</a>.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[181]:</div>
+<div class="prompt input_prompt">In [181]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">stocks</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[181]:</div>
-
-
-
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
 <style>
@@ -4764,97 +4249,73 @@ QmCC
     }
 </style>
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>aapl</th>
-      <th>goog</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>aapl</th>
-      <td>1.000000</td>
-      <td>0.917181</td>
-    </tr>
-    <tr>
-      <th>goog</th>
-      <td>0.917181</td>
-      <td>1.000000</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>aapl</th>
+<th>goog</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>aapl</th>
+<td>1.000000</td>
+<td>0.917181</td>
+</tr>
+<tr>
+<th>goog</th>
+<td>0.917181</td>
+<td>1.000000</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Because it understands times, it can do really cool stuff like resampling.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[190]:</div>
+<div class="prompt input_prompt">In [190]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># resample by taking the mean over each month</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">stocks</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;MS&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">])</span>
+<span class="n">stocks</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">'MS'</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="s1">'r'</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">])</span>
 <span class="c1"># and each year</span>
-<span class="n">stocks</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;AS&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">])</span>
+<span class="n">stocks</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">'AS'</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="s1">'r'</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">])</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt"></div>
-
-
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>/Users/rpa/anaconda/envs/phys_ocean/lib/python3.6/site-packages/pandas/plotting/_core.py:179: UserWarning: &#39;colors&#39; is being deprecated. Please use &#39;color&#39;instead of &#39;colors&#39;
-  warnings.warn((&#34;&#39;colors&#39; is being deprecated. Please use &#39;color&#39;&#34;
+<pre>/Users/rpa/anaconda/envs/phys_ocean/lib/python3.6/site-packages/pandas/plotting/_core.py:179: UserWarning: 'colors' is being deprecated. Please use 'color'instead of 'colors'
+  warnings.warn(("'colors' is being deprecated. Please use 'color'"
 </pre>
 </div>
 </div>
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[190]:</div>
-
-
-
-
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x12ad81fd0&gt;</pre>
+<pre><matplotlib.axes._subplots.axessubplot at 0x12ad81fd0></pre>
 </div>
-
 </div>
-
 <div class="output_area">
-
 <div class="prompt"></div>
-
-
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYAAAAEKCAYAAAAb7IIBAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJztnXd4VNXTgN8DCYRQYgBBmiBFaYKQUAQVFLCgAurPAhbA
@@ -5164,14 +4625,11 @@ YDvQFp0/S87tMuBWEfFrGGvD8Dc2CWwYueCcOxZ4A3hF1FYaBWwVkXTgajQdH6hpqGqGS78FhnlC
 /+KcO9ETVdIwQgobARhGZio5zVQVjiZ5+QDwhu59DZjinLsU+Bk46ClfDKQ65/4G3gNeQj2DFnpC
 ACcAfs+6ZhhFxSaBDcMwyihmAjIMwyijmAIwDMMoo5gCMAzDKKOYAjAMwyijmAIwDMMoo5gCMAzD
 KKOYAjAMwyijmAIwDMMoo/w/iz3aoUBtjpMAAAAASUVORK5CYII=
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
@@ -5179,49 +4637,32 @@ KKOYAjAMwyijmAIwDMMoo/w/iz3aoUBtjpMAAAAASUVORK5CYII=
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The string <code>QS</code> means "month start. The string <code>AS</code> mean "year start". There is a long list of possible <a href="https://pandas.pydata.org/pandas-docs/stable/timeseries.html#timeseries-offset-aliases">frequency aliases</a>.</p>
 <p>We can also apply other reduction operations with resample. These are described in the <a href="https://pandas.pydata.org/pandas-docs/stable/timeseries.html#resampling">resample docs</a>.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[196]:</div>
+<div class="prompt input_prompt">In [196]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># get resample object</span>
-<span class="n">rs</span> <span class="o">=</span> <span class="n">stocks</span><span class="o">.</span><span class="n">goog</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;MS&#39;</span><span class="p">)</span>
+<span class="n">rs</span> <span class="o">=</span> <span class="n">stocks</span><span class="o">.</span><span class="n">goog</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">'MS'</span><span class="p">)</span>
 <span class="c1"># standard deviation of each month</span>
 <span class="n">rs</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[196]:</div>
-
-
-
-
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x12b484f98&gt;</pre>
+<pre><matplotlib.axes._subplots.axessubplot at 0x12b484f98></pre>
 </div>
-
 </div>
-
 <div class="output_area">
-
 <div class="prompt"></div>
-
-
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXQAAAEKCAYAAAACS67iAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJztvXmYHFd19/89Vb13z75pRiN5NLJkeZeEbGwc22BjMIbX
@@ -5566,45 +5007,34 @@ AxgFcDHMuaRkuacB+JAQoi7tgRnGTXhSlDkjIKIeAP8G4F+E6TO2ARgRQuQAvBPm8l+AacW0OJ56
 L4Dft1qlgog2Wt37GKbhYIXONDNBMlfW8cJc1OKbAGSr038F8H0ieguAhwDErO3PAsgS0S4AXwdw
 O8zMl51Wy9RxAHVbRYphlgJPijIMwzQJbLkwDMM0CRzQGYZhmgQO6AzDME0CB3SGYZgmgQM6wzBM
 k8ABnWEYpknggM4wDNMkcEBnGIZpEv4fNAkfupDlUMUAAAAASUVORK5CYII=
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Temperature-Data">Temperature Data<a class="anchor-link" href="#Temperature-Data">&#182;</a></h2><p>We download some timeseries data from the [Berkeley Earth(<a href="http://berkeleyearth.org/">http://berkeleyearth.org/</a>) surface temperature dataset. This is timeseries data from various locations around earth. Let's get our local temperatures.</p>
-
+<h2 id="Temperature-Data">Temperature Data<a class="anchor-link" href="#Temperature-Data">¶</a></h2><p>We download some timeseries data from the [Berkeley Earth(<a href="http://berkeleyearth.org/">http://berkeleyearth.org/</a>) surface temperature dataset. This is timeseries data from various locations around earth. Let's get our local temperatures.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[207]:</div>
+<div class="prompt input_prompt">In [207]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span> curl -o nyc_temp.txt http://berkeleyearth.lbl.gov/auto/Local/TAVG/Text/40.99N-74.56W-TAVG-Trend.txt
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt"></div>
-
-
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
@@ -5612,41 +5042,31 @@ k8ABnWEYpknggM4wDNMkcEBnGIZpEv4fNAkfupDlUMUAAAAASUVORK5CYII=
 </pre>
 </div>
 </div>
-
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>If we examine this data, we see it is NOT a well formated CSV file. Loading it will be a bit painful, but Pandas makes the job retatively easy.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[238]:</div>
+<div class="prompt input_prompt">In [238]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span> head -72 nyc_temp.txt <span class="p">|</span> tail -8
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt"></div>
-
-
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>% 
 %                  Monthly          Annual          Five-year        Ten-year        Twenty-year
@@ -5659,57 +5079,34 @@ k8ABnWEYpknggM4wDNMkcEBnGIZpEv4fNAkfupDlUMUAAAAASUVORK5CYII=
 </pre>
 </div>
 </div>
-
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In [4]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
-<div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">##### http://berkeleyearth.lbl.gov/locations/40.99N-74.56W</span>
 <span class="c1"># http://berkeleyearth.lbl.gov/auto/Local/TAVG/Text/40.99N-74.56W-TAVG-Trend.txt</span>
 
 
-<span class="c1">#temp = pd.read_csv(&#39;nyc_temp.txt&#39;)</span>
+<span class="c1">#temp = pd.read_csv('nyc_temp.txt')</span>
 
-<span class="n">col_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;monthly_anom&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">10</span><span class="o">*</span><span class="p">[]</span>
-<span class="n">temp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;nyc_temp.txt&#39;</span><span class="p">,</span>
+<span class="n">col_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'year'</span><span class="p">,</span> <span class="s1">'month'</span><span class="p">,</span> <span class="s1">'monthly_anom'</span><span class="p">]</span> <span class="o">+</span> <span class="mi">10</span><span class="o">*</span><span class="p">[]</span>
+<span class="n">temp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'nyc_temp.txt'</span><span class="p">,</span>
                    <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">names</span><span class="o">=</span><span class="n">col_names</span><span class="p">,</span>
-                   <span class="n">delim_whitespace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">comment</span><span class="o">=</span><span class="s1">&#39;%&#39;</span><span class="p">)</span>
+                   <span class="n">delim_whitespace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">comment</span><span class="o">=</span><span class="s1">'%'</span><span class="p">)</span>
 
 <span class="n">temp</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[4]:</div>
-
-
-
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
 <style>
@@ -5726,83 +5123,72 @@ k8ABnWEYpknggM4wDNMkcEBnGIZpEv4fNAkfupDlUMUAAAAASUVORK5CYII=
     }
 </style>
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>year</th>
-      <th>month</th>
-      <th>monthly_anom</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1743</td>
-      <td>11</td>
-      <td>-2.276</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1743</td>
-      <td>12</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>1744</td>
-      <td>1</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>1744</td>
-      <td>2</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>1744</td>
-      <td>3</td>
-      <td>NaN</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>year</th>
+<th>month</th>
+<th>monthly_anom</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>1743</td>
+<td>11</td>
+<td>-2.276</td>
+</tr>
+<tr>
+<th>1</th>
+<td>1743</td>
+<td>12</td>
+<td>NaN</td>
+</tr>
+<tr>
+<th>2</th>
+<td>1744</td>
+<td>1</td>
+<td>NaN</td>
+</tr>
+<tr>
+<th>3</th>
+<td>1744</td>
+<td>2</td>
+<td>NaN</td>
+</tr>
+<tr>
+<th>4</th>
+<td>1744</td>
+<td>3</td>
+<td>NaN</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In [5]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># need a day</span>
-<span class="n">date_df</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;monthly_anom&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">date_df</span><span class="p">[</span><span class="s1">&#39;day&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">date_df</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">'monthly_anom'</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">date_df</span><span class="p">[</span><span class="s1">'day'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">date_index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">date_df</span><span class="p">))</span>
-<span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">date_index</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">date_index</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">'year'</span><span class="p">,</span> <span class="s1">'month'</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">temp</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[5]:</div>
-
-
-
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
 <style>
@@ -5819,80 +5205,61 @@ k8ABnWEYpknggM4wDNMkcEBnGIZpEv4fNAkfupDlUMUAAAAASUVORK5CYII=
     }
 </style>
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>monthly_anom</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1743-11-01</th>
-      <td>-2.276</td>
-    </tr>
-    <tr>
-      <th>1743-12-01</th>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>1744-01-01</th>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>1744-02-01</th>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>1744-03-01</th>
-      <td>NaN</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>monthly_anom</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>1743-11-01</th>
+<td>-2.276</td>
+</tr>
+<tr>
+<th>1743-12-01</th>
+<td>NaN</td>
+</tr>
+<tr>
+<th>1744-01-01</th>
+<td>NaN</td>
+</tr>
+<tr>
+<th>1744-02-01</th>
+<td>NaN</td>
+</tr>
+<tr>
+<th>1744-03-01</th>
+<td>NaN</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In [6]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">temp</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[6]:</div>
-
-
-
-
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x115550b00&gt;</pre>
+<pre><matplotlib.axes._subplots.axessubplot at 0x115550b00></pre>
 </div>
-
 </div>
-
 <div class="output_area">
-
 <div class="prompt"></div>
-
-
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXYAAAD8CAYAAABjAo9vAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJztnXecFEXax3+1gV2WzBJECUtGMoIERUQwoGC+Myc45c6I
@@ -6206,54 +5573,35 @@ GGNZUZNLHwBrgHCct+ocMgA8DOB1C8ek7Tg3OO+wP99y+L1668Y/RB7IHYgsDBYD+EP0+7cB/ElQ
 HS1/X/T8VgK4W/V9GM57FIC10X9jEA06jJYvQmQmcjBavqOqnnQf50bnHYrn28k/ijwlCIIIGWE3
 xRAEQVQ5SLATBEGEDBLsBEEQIYMEO0EQRMggwU4QBBEySLATBEGEDBLsBEEQIYMEO0EQRMj4f5P2
 76vbBtG7AAAAAElFTkSuQmCC
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In [7]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">temp</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
-<span class="n">temp</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;AS&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
-<span class="n">temp</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;10AS&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">temp</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">'AS'</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">temp</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">'10AS'</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[7]:</div>
-
-
-
-
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x10a64b8d0&gt;</pre>
+<pre><matplotlib.axes._subplots.axessubplot at 0x10a64b8d0></pre>
 </div>
-
 </div>
-
 <div class="output_area">
-
 <div class="prompt"></div>
-
-
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXYAAAD8CAYAAABjAo9vAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXecFOX9+N/PbLteOO5ox1FVkCIqCna+EhMVjZoYYzQa
@@ -6848,65 +6196,45 @@ ELHT3Wk6zrvqz2fT3a9E+k3k9fNVIqaFfwFz1W1HqNu0E8mnsQMoUb97Xu3zmwwDTwE3/Va3/5La
 v7eBawyfZ0O/rwY+UH++gxp0qG6/hcibyAF1+2mG4wz3cR6r31nxfCfz40Weenh4eGQZ2W6K8fDw
 8Djk8AS7h4eHR5bhCXYPDw+PLMMT7B4eHh5ZhifYPTw8PLIMT7B7eHh4ZBmeYPfw8PDIMjzB7uHh
 4ZFl/H8EMkRBlmc/8wAAAABJRU5ErkJggg==
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pandas can do both time-based resampling and operation over fixed-length rolling windows. These are very similar but distinct; see <a href="https://pandas.pydata.org/pandas-docs/stable/computation.html#time-aware-rolling-vs-resampling">discussion in Pandas docs</a>.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In [14]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># more advanced operation on rolling windows</span>
 <span class="k">def</span> <span class="nf">difference_max_min</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">data</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
 
-<span class="n">rw</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="s1">&#39;365D&#39;</span><span class="p">)</span>
+<span class="n">rw</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="s1">'365D'</span><span class="p">)</span>
 <span class="n">rw</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">difference_max_min</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[14]:</div>
-
-
-
-
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11849d518&gt;</pre>
+<pre><matplotlib.axes._subplots.axessubplot at 0x11849d518></pre>
 </div>
-
 </div>
-
 <div class="output_area">
-
 <div class="prompt"></div>
-
-
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXQAAAD8CAYAAABn919SAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJztnXmcFcW59391zmwM6wDDJquggLKoIOCGCmrwol5j1Lgb
@@ -7331,61 +6659,41 @@ fXP3kADwSwCPR7imzdb1gPs+HNp4OK09Kxv3H6xGuBXWZF8VgBvs488C+IHk/KsALINlg/utkM5y
 w33fAmCV/e8B2IsE7fM3wBp51NnnH8Ol02bqeoz7zps2HvefWSlqMBgMeUI+mlwMBoPhsMQIdIPB
 YMgTjEA3GAyGPMEIdIPBYMgTjEA3GAyGPMEIdIPBYMgTjEA3GAyGPMEIdIPBYMgT/j/cSpW2l8pv
 fgAAAABJRU5ErkJggg==
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>To create a "climatology" (i.e. the average of all same months), we can use Pandas' <a href="https://pandas.pydata.org/pandas-docs/stable/groupby.html">groupby</a> functionality.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In [18]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># diurnal cycle has been removed!</span>
 <span class="n">temp</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">temp</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">month</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[18]:</div>
-
-
-
-
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11801b6d8&gt;</pre>
+<pre><matplotlib.axes._subplots.axessubplot at 0x11801b6d8></pre>
 </div>
-
 </div>
-
 <div class="output_area">
-
 <div class="prompt"></div>
-
-
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYIAAAD8CAYAAAB6paOMAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3Xd8leX9//HX55zsEAIJIQGSsEcGECQMAVFBNDIErTLa
@@ -7622,38 +6930,27 @@ MQVAnogMbnpqMh3/sql7gbEiEtT0cz6ZDj5AfoJFwDVN968BzuZiWh5NRFKAPwCXGWMqz+Y1GgT/
 Mx74KY3/FW9o+phqdVGqXfw/4A0R2QQkAQ9bXE+7ajr6eR/4DthM4+99h5txKyJvAWnAYBHJF5Gf
 AY8CU0RkOzCl6XGHcYr3/BwQAixr+jv2zzPuR2cWK6WUd9MjAqWU8nIaBEop5eU0CJRSystpECil
 lJfTIFBKKS+nQaCUUl5Og0AppbycBoFSSnm5/w93DzaOb6v6IwAAAABJRU5ErkJggg==
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="prompt input_prompt">In [26]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># find the hottest years</span>
-<span class="n">temp</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">temp</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">year</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;monthly_anom&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">temp</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">temp</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">year</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">'monthly_anom'</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[26]:</div>
-
-
-
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
 <style>
@@ -7670,111 +6967,98 @@ lJfTIFBKKS+nQaCUUl5Og0AppbycBoFSSnm5/w93DzaOb6v6IwAAAABJRU5ErkJggg==
     }
 </style>
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>monthly_anom</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2012</th>
-      <td>2.009833</td>
-    </tr>
-    <tr>
-      <th>1998</th>
-      <td>1.862250</td>
-    </tr>
-    <tr>
-      <th>2006</th>
-      <td>1.557583</td>
-    </tr>
-    <tr>
-      <th>1949</th>
-      <td>1.424500</td>
-    </tr>
-    <tr>
-      <th>2010</th>
-      <td>1.395917</td>
-    </tr>
-    <tr>
-      <th>1991</th>
-      <td>1.395583</td>
-    </tr>
-    <tr>
-      <th>1990</th>
-      <td>1.360833</td>
-    </tr>
-    <tr>
-      <th>2011</th>
-      <td>1.310583</td>
-    </tr>
-    <tr>
-      <th>2002</th>
-      <td>1.290500</td>
-    </tr>
-    <tr>
-      <th>1953</th>
-      <td>1.212833</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>monthly_anom</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>2012</th>
+<td>2.009833</td>
+</tr>
+<tr>
+<th>1998</th>
+<td>1.862250</td>
+</tr>
+<tr>
+<th>2006</th>
+<td>1.557583</td>
+</tr>
+<tr>
+<th>1949</th>
+<td>1.424500</td>
+</tr>
+<tr>
+<th>2010</th>
+<td>1.395917</td>
+</tr>
+<tr>
+<th>1991</th>
+<td>1.395583</td>
+</tr>
+<tr>
+<th>1990</th>
+<td>1.360833</td>
+</tr>
+<tr>
+<th>2011</th>
+<td>1.310583</td>
+</tr>
+<tr>
+<th>2002</th>
+<td>1.290500</td>
+</tr>
+<tr>
+<th>1953</th>
+<td>1.212833</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Groupby">Groupby<a class="anchor-link" href="#Groupby">&#182;</a></h2><p>Now we will explore groupby's capabilities more in a public dataset from the City of New York: the <a href="The Rat Information Portal">Rat Information Portal</a>!</p>
-
+<h2 id="Groupby">Groupby<a class="anchor-link" href="#Groupby">¶</a></h2><p>Now we will explore groupby's capabilities more in a public dataset from the City of New York: the <a href="The Rat Information Portal">Rat Information Portal</a>!</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="prompt input_prompt">In [28]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># https://data.cityofnewyork.us/Health/Rats/amyk-xiv9</span>
-<span class="n">rats</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://data.cityofnewyork.us/api/views/amyk-xiv9/rows.csv&#39;</span><span class="p">,</span>
-                  <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;APPROVED_DATE&#39;</span><span class="p">,</span> <span class="s1">&#39;INSPECTION_DATE&#39;</span><span class="p">])</span>
+<span class="n">rats</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'https://data.cityofnewyork.us/api/views/amyk-xiv9/rows.csv'</span><span class="p">,</span>
+                  <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">'APPROVED_DATE'</span><span class="p">,</span> <span class="s1">'INSPECTION_DATE'</span><span class="p">])</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="prompt input_prompt">In [29]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">rats</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt"></div>
-
-
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+<pre><class &#x27;pandas.core.frame.dataframe&#x27;>
 RangeIndex: 151315 entries, 0 to 151314
 Data columns (total 20 columns):
 INSPECTION_TYPE                151315 non-null object
@@ -7802,33 +7086,23 @@ memory usage: 23.1+ MB
 </pre>
 </div>
 </div>
-
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="prompt input_prompt">In [33]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">rats</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[33]:</div>
-
-
-
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
 <style>
@@ -7845,226 +7119,201 @@ memory usage: 23.1+ MB
     }
 </style>
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>INSPECTION_TYPE</th>
-      <th>JOB_TICKET_OR_WORK_ORDER_ID</th>
-      <th>JOB_ID</th>
-      <th>JOB_PROGRESS</th>
-      <th>BBL</th>
-      <th>BORO_CODE</th>
-      <th>BLOCK</th>
-      <th>LOT</th>
-      <th>HOUSE_NUMBER</th>
-      <th>STREET_NAME</th>
-      <th>ZIP_CODE</th>
-      <th>X_COORD</th>
-      <th>Y_COORD</th>
-      <th>LATITUDE</th>
-      <th>LONGITUDE</th>
-      <th>BOROUGH</th>
-      <th>INSPECTION_DATE</th>
-      <th>RESULT</th>
-      <th>APPROVED_DATE</th>
-      <th>LOCATION</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>COMPLIANCE</td>
-      <td>20090</td>
-      <td>PO14874</td>
-      <td>2</td>
-      <td>3001480046</td>
-      <td>3</td>
-      <td>148</td>
-      <td>46</td>
-      <td>81</td>
-      <td>WILLOUGHBY STREET</td>
-      <td>11201.0</td>
-      <td>988201.0</td>
-      <td>191458.0</td>
-      <td>40.692184</td>
-      <td>-73.985753</td>
-      <td>Brooklyn</td>
-      <td>2010-05-14 13:46:39</td>
-      <td>Active Rat Signs</td>
-      <td>2010-05-18 13:00:01</td>
-      <td>(40.6921838341671, -73.9857525784075)</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>COMPLIANCE</td>
-      <td>24538</td>
-      <td>PO17193</td>
-      <td>2</td>
-      <td>4123940091</td>
-      <td>4</td>
-      <td>12394</td>
-      <td>91</td>
-      <td>172-04</td>
-      <td>LINDEN BOULEVARD</td>
-      <td>11434.0</td>
-      <td>1045829.0</td>
-      <td>191395.0</td>
-      <td>40.691804</td>
-      <td>-73.777942</td>
-      <td>Queens</td>
-      <td>2010-03-03 09:21:09</td>
-      <td>Active Rat Signs</td>
-      <td>2010-03-05 11:30:16</td>
-      <td>(40.6918037759981, -73.7779418602477)</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>COMPLIANCE</td>
-      <td>25025</td>
-      <td>PO15009</td>
-      <td>2</td>
-      <td>2029470041</td>
-      <td>2</td>
-      <td>2947</td>
-      <td>41</td>
-      <td>1881</td>
-      <td>BELMONT AVENUE</td>
-      <td>10457.0</td>
-      <td>1013847.0</td>
-      <td>247021.0</td>
-      <td>40.844647</td>
-      <td>-73.893030</td>
-      <td>Bronx</td>
-      <td>2010-01-06 10:45:24</td>
-      <td>Active Rat Signs</td>
-      <td>2010-01-14 11:45:09</td>
-      <td>(40.8446468740184, -73.89302971662)</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>COMPLIANCE</td>
-      <td>25027</td>
-      <td>PO15005</td>
-      <td>2</td>
-      <td>2032340065</td>
-      <td>2</td>
-      <td>3234</td>
-      <td>65</td>
-      <td>212</td>
-      <td>WEST FORDHAM ROAD</td>
-      <td>10468.0</td>
-      <td>1009198.0</td>
-      <td>253356.0</td>
-      <td>40.862049</td>
-      <td>-73.909810</td>
-      <td>Bronx</td>
-      <td>2010-01-06 15:15:55</td>
-      <td>Active Rat Signs</td>
-      <td>2010-01-14 11:44:46</td>
-      <td>(40.8620488653607, -73.9098097882175)</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>COMPLIANCE</td>
-      <td>25032</td>
-      <td>PO15007</td>
-      <td>2</td>
-      <td>2043520001</td>
-      <td>2</td>
-      <td>4352</td>
-      <td>1</td>
-      <td>789</td>
-      <td>ASTOR AVENUE</td>
-      <td>10467.0</td>
-      <td>1021812.0</td>
-      <td>252577.0</td>
-      <td>40.859866</td>
-      <td>-73.864209</td>
-      <td>Bronx</td>
-      <td>2010-01-22 15:10:03</td>
-      <td>Active Rat Signs</td>
-      <td>2010-01-26 15:16:54</td>
-      <td>(40.8598660947898, -73.8642093926991)</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>INSPECTION_TYPE</th>
+<th>JOB_TICKET_OR_WORK_ORDER_ID</th>
+<th>JOB_ID</th>
+<th>JOB_PROGRESS</th>
+<th>BBL</th>
+<th>BORO_CODE</th>
+<th>BLOCK</th>
+<th>LOT</th>
+<th>HOUSE_NUMBER</th>
+<th>STREET_NAME</th>
+<th>ZIP_CODE</th>
+<th>X_COORD</th>
+<th>Y_COORD</th>
+<th>LATITUDE</th>
+<th>LONGITUDE</th>
+<th>BOROUGH</th>
+<th>INSPECTION_DATE</th>
+<th>RESULT</th>
+<th>APPROVED_DATE</th>
+<th>LOCATION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>COMPLIANCE</td>
+<td>20090</td>
+<td>PO14874</td>
+<td>2</td>
+<td>3001480046</td>
+<td>3</td>
+<td>148</td>
+<td>46</td>
+<td>81</td>
+<td>WILLOUGHBY STREET</td>
+<td>11201.0</td>
+<td>988201.0</td>
+<td>191458.0</td>
+<td>40.692184</td>
+<td>-73.985753</td>
+<td>Brooklyn</td>
+<td>2010-05-14 13:46:39</td>
+<td>Active Rat Signs</td>
+<td>2010-05-18 13:00:01</td>
+<td>(40.6921838341671, -73.9857525784075)</td>
+</tr>
+<tr>
+<th>1</th>
+<td>COMPLIANCE</td>
+<td>24538</td>
+<td>PO17193</td>
+<td>2</td>
+<td>4123940091</td>
+<td>4</td>
+<td>12394</td>
+<td>91</td>
+<td>172-04</td>
+<td>LINDEN BOULEVARD</td>
+<td>11434.0</td>
+<td>1045829.0</td>
+<td>191395.0</td>
+<td>40.691804</td>
+<td>-73.777942</td>
+<td>Queens</td>
+<td>2010-03-03 09:21:09</td>
+<td>Active Rat Signs</td>
+<td>2010-03-05 11:30:16</td>
+<td>(40.6918037759981, -73.7779418602477)</td>
+</tr>
+<tr>
+<th>2</th>
+<td>COMPLIANCE</td>
+<td>25025</td>
+<td>PO15009</td>
+<td>2</td>
+<td>2029470041</td>
+<td>2</td>
+<td>2947</td>
+<td>41</td>
+<td>1881</td>
+<td>BELMONT AVENUE</td>
+<td>10457.0</td>
+<td>1013847.0</td>
+<td>247021.0</td>
+<td>40.844647</td>
+<td>-73.893030</td>
+<td>Bronx</td>
+<td>2010-01-06 10:45:24</td>
+<td>Active Rat Signs</td>
+<td>2010-01-14 11:45:09</td>
+<td>(40.8446468740184, -73.89302971662)</td>
+</tr>
+<tr>
+<th>3</th>
+<td>COMPLIANCE</td>
+<td>25027</td>
+<td>PO15005</td>
+<td>2</td>
+<td>2032340065</td>
+<td>2</td>
+<td>3234</td>
+<td>65</td>
+<td>212</td>
+<td>WEST FORDHAM ROAD</td>
+<td>10468.0</td>
+<td>1009198.0</td>
+<td>253356.0</td>
+<td>40.862049</td>
+<td>-73.909810</td>
+<td>Bronx</td>
+<td>2010-01-06 15:15:55</td>
+<td>Active Rat Signs</td>
+<td>2010-01-14 11:44:46</td>
+<td>(40.8620488653607, -73.9098097882175)</td>
+</tr>
+<tr>
+<th>4</th>
+<td>COMPLIANCE</td>
+<td>25032</td>
+<td>PO15007</td>
+<td>2</td>
+<td>2043520001</td>
+<td>2</td>
+<td>4352</td>
+<td>1</td>
+<td>789</td>
+<td>ASTOR AVENUE</td>
+<td>10467.0</td>
+<td>1021812.0</td>
+<td>252577.0</td>
+<td>40.859866</td>
+<td>-73.864209</td>
+<td>Bronx</td>
+<td>2010-01-22 15:10:03</td>
+<td>Active Rat Signs</td>
+<td>2010-01-26 15:16:54</td>
+<td>(40.8598660947898, -73.8642093926991)</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's do some grouping to explore the data.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="prompt input_prompt">In [31]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rats</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;INSPECTION_TYPE&#39;</span><span class="p">)[</span><span class="s1">&#39;INSPECTION_TYPE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rats</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'INSPECTION_TYPE'</span><span class="p">)[</span><span class="s1">'INSPECTION_TYPE'</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[31]:</div>
-
-
-
-
 <div class="output_text output_subarea output_execute_result">
 <pre>INSPECTION_TYPE
 COMPLIANCE     51277
 INITIAL       100038
 Name: INSPECTION_TYPE, dtype: int64</pre>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="prompt input_prompt">In [32]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rats</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;BORO_CODE&#39;</span><span class="p">)[</span><span class="s1">&#39;BORO_CODE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rats</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'BORO_CODE'</span><span class="p">)[</span><span class="s1">'BORO_CODE'</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[32]:</div>
-
-
-
-
 <div class="output_text output_subarea output_execute_result">
 <pre>BORO_CODE
 1    46206
@@ -8074,36 +7323,24 @@ Name: INSPECTION_TYPE, dtype: int64</pre>
 5     1955
 Name: BORO_CODE, dtype: int64</pre>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="prompt input_prompt">In [34]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rats</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;STREET_NAME&#39;</span><span class="p">)[</span><span class="s1">&#39;STREET_NAME&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rats</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'STREET_NAME'</span><span class="p">)[</span><span class="s1">'STREET_NAME'</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[34]:</div>
-
-
-
-
 <div class="output_text output_subarea output_execute_result">
 <pre>STREET_NAME
                                      1
@@ -8128,47 +7365,34 @@ Name: BORO_CODE, dtype: int64</pre>
   12 STREET                          4
 Name: STREET_NAME, dtype: int64</pre>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This dataset clearly needs some cleaning. We can Pandas' <a href="https://pandas.pydata.org/pandas-docs/stable/text.html">text features</a> to strip the whitespace out of the data.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[39]:</div>
+<div class="prompt input_prompt">In [39]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># clean up street name</span>
 <span class="n">street_names_cleaned</span> <span class="o">=</span> <span class="n">rats</span><span class="o">.</span><span class="n">STREET_NAME</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
 <span class="n">street_names_cleaned</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">street_names_cleaned</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[39]:</div>
-
-
-
-
 <div class="output_text output_subarea output_execute_result">
 <pre>STREET_NAME
                           1
@@ -8193,37 +7417,25 @@ Name: STREET_NAME, dtype: int64</pre>
 100 STREET                3
 Name: STREET_NAME, dtype: int64</pre>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[40]:</div>
+<div class="prompt input_prompt">In [40]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">count</span> <span class="o">=</span> <span class="n">street_names_cleaned</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">street_names_cleaned</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
 <span class="n">count</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[40]:</div>
-
-
-
-
 <div class="output_text output_subarea output_execute_result">
 <pre>STREET_NAME
 GRAND CONCOURSE       2299
@@ -8248,44 +7460,32 @@ GREENE AVENUE          745
 CRESTON AVENUE         745
 Name: STREET_NAME, dtype: int64</pre>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>To get a better idea of the geography, let's plot the locations of the inspections. But first let's look at the statistics.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[42]:</div>
+<div class="prompt input_prompt">In [42]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rats</span><span class="p">[[</span><span class="s1">&#39;LATITUDE&#39;</span><span class="p">,</span> <span class="s1">&#39;LONGITUDE&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rats</span><span class="p">[[</span><span class="s1">'LATITUDE'</span><span class="p">,</span> <span class="s1">'LONGITUDE'</span><span class="p">]]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[42]:</div>
-
-
-
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
 <style>
@@ -8302,111 +7502,91 @@ Name: STREET_NAME, dtype: int64</pre>
     }
 </style>
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>LATITUDE</th>
-      <th>LONGITUDE</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>count</th>
-      <td>150930.000000</td>
-      <td>150930.000000</td>
-    </tr>
-    <tr>
-      <th>mean</th>
-      <td>40.739645</td>
-      <td>-73.890969</td>
-    </tr>
-    <tr>
-      <th>std</th>
-      <td>1.609669</td>
-      <td>1.991634</td>
-    </tr>
-    <tr>
-      <th>min</th>
-      <td>-85.443283</td>
-      <td>-155.778285</td>
-    </tr>
-    <tr>
-      <th>25%</th>
-      <td>40.704909</td>
-      <td>-73.956307</td>
-    </tr>
-    <tr>
-      <th>50%</th>
-      <td>40.798729</td>
-      <td>-73.927440</td>
-    </tr>
-    <tr>
-      <th>75%</th>
-      <td>40.844159</td>
-      <td>-73.901627</td>
-    </tr>
-    <tr>
-      <th>max</th>
-      <td>40.912863</td>
-      <td>56.311386</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>LATITUDE</th>
+<th>LONGITUDE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>count</th>
+<td>150930.000000</td>
+<td>150930.000000</td>
+</tr>
+<tr>
+<th>mean</th>
+<td>40.739645</td>
+<td>-73.890969</td>
+</tr>
+<tr>
+<th>std</th>
+<td>1.609669</td>
+<td>1.991634</td>
+</tr>
+<tr>
+<th>min</th>
+<td>-85.443283</td>
+<td>-155.778285</td>
+</tr>
+<tr>
+<th>25%</th>
+<td>40.704909</td>
+<td>-73.956307</td>
+</tr>
+<tr>
+<th>50%</th>
+<td>40.798729</td>
+<td>-73.927440</td>
+</tr>
+<tr>
+<th>75%</th>
+<td>40.844159</td>
+<td>-73.901627</td>
+</tr>
+<tr>
+<th>max</th>
+<td>40.912863</td>
+<td>56.311386</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>There are clearly some weird outliers in the location data. We need to strip these out before plotting.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In [24]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">valid_latlon</span> <span class="o">=</span> <span class="n">rats</span><span class="p">[(</span><span class="n">rats</span><span class="o">.</span><span class="n">LATITUDE</span> <span class="o">&gt;</span> <span class="mi">30</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">rats</span><span class="o">.</span><span class="n">LONGITUDE</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">70</span><span class="p">)]</span>
-<span class="n">valid_latlon</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">hexbin</span><span class="p">(</span><span class="s1">&#39;LONGITUDE&#39;</span><span class="p">,</span> <span class="s1">&#39;LATITUDE&#39;</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="s1">&#39;BORO_CODE&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Set1&#39;</span><span class="p">)</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">valid_latlon</span> <span class="o">=</span> <span class="n">rats</span><span class="p">[(</span><span class="n">rats</span><span class="o">.</span><span class="n">LATITUDE</span> <span class="o">></span> <span class="mi">30</span><span class="p">)</span> <span class="o">&</span> <span class="p">(</span><span class="n">rats</span><span class="o">.</span><span class="n">LONGITUDE</span> <span class="o"><</span> <span class="o">-</span><span class="mi">70</span><span class="p">)]</span>
+<span class="n">valid_latlon</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">hexbin</span><span class="p">(</span><span class="s1">'LONGITUDE'</span><span class="p">,</span> <span class="s1">'LATITUDE'</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="s1">'BORO_CODE'</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'Set1'</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[24]:</div>
-
-
-
-
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x118291358&gt;</pre>
+<pre><matplotlib.axes._subplots.axessubplot at 0x118291358></pre>
 </div>
-
 </div>
-
 <div class="output_area">
-
 <div class="prompt"></div>
-
-
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXcAAADxCAYAAAAwXvePAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXd8VMX2wL9zt6UXCIE0epMOIkWKgIKg2LvP3suzPvWJ
@@ -9029,52 +8209,33 @@ mFfnnFurjLLdNtq6JU5lmeSYSHcAm5Rp8YJiThXFvDNEgMcXnSds3bKYkntyTKY7gE3KtHhBMaeK
 Yt4Z2oFXvVUzjcCkc27VkgxkUVlmh9lMLW0nyLR4QTGnimJOATP7GngWOGhmEeB9IA/AOXca6ABe
 AG4C08Dr6z5TY+RERLKPyjIiIllIyV1EJAspuYuIZCEldxGRLKTkLiKShZTcRUSykJK7iEgW+g/i
 thNCqJ+CHAAAAABJRU5ErkJggg==
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="prompt input_prompt">In [34]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># https://github.com/pandas-dev/pandas/issues/10678</span>
-<span class="n">valid_latlon</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">hexbin</span><span class="p">(</span><span class="s1">&#39;LONGITUDE&#39;</span><span class="p">,</span> <span class="s1">&#39;LATITUDE&#39;</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">valid_latlon</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">hexbin</span><span class="p">(</span><span class="s1">'LONGITUDE'</span><span class="p">,</span> <span class="s1">'LATITUDE'</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[34]:</div>
-
-
-
-
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11fb96a58&gt;</pre>
+<pre><matplotlib.axes._subplots.axessubplot at 0x11fb96a58></pre>
 </div>
-
 </div>
-
 <div class="output_area">
-
 <div class="prompt"></div>
-
-
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYEAAAEKCAYAAAD0Luk/AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsvXvUJEd14Pm7kVlV36Pf3WrR6ha0QOIh87BxG7PGNhoY
@@ -9443,51 +8604,32 @@ zJ3ADYX0dGC8pOMLeUM3sv35wFitP5xgHCkMcT8kHUFyMtM3so0gqCSxOigom6E5GmmDqbanStoL
 eFuSgV+Bsba/bja2PUfSd4X0N5IuJDmRvYDVpK/4Kc22g/AoaYy/L7e/CLixUD5a0hKSc1kNXFNY
 GQRpTmBsIT3GPTqKMwg2logiGgRBUGNiOCgIgqDGhBMIgiCoMeEEgiAIakw4gSAIghoTTiAIgqDG
 hBMIgiCoMeEEgiAIakw4gSAIghrzD4+e8EdnECbJAAAAAElFTkSuQmCC
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="prompt input_prompt">In [36]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">valid_latlon</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">hexbin</span><span class="p">(</span><span class="s1">&#39;LONGITUDE&#39;</span><span class="p">,</span> <span class="s1">&#39;LATITUDE&#39;</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">)</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">valid_latlon</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">hexbin</span><span class="p">(</span><span class="s1">'LONGITUDE'</span><span class="p">,</span> <span class="s1">'LATITUDE'</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="s1">'log'</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'magma'</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[36]:</div>
-
-
-
-
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11dad3128&gt;</pre>
+<pre><matplotlib.axes._subplots.axessubplot at 0x11dad3128></pre>
 </div>
-
 </div>
-
 <div class="output_area">
-
 <div class="prompt"></div>
-
-
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXcAAAEKCAYAAADpfBXhAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsvXecZEd59/t96pzTaXpy2NmcV7vSIq2kVUKgiCQy9sXY
@@ -10470,52 +9612,33 @@ lByOS5mY4FgREWMmqtwj6oG/Av5SRNphYNLy4wTx7ov5c+BzBd+/DnxcRN5VkNZQ4f2fAT4qZ4LD
 HxORXyF4OSwk2Dezg2DSs1zuIxhD3xbefyPwhYLz14rIFoKXxgngdws8ZSAYc/9owff36iRtSRgR
 kSeKChkRERExBYmGZSIiIiKmIFHlHhERETEFiSr3iIiIiClIVLlHRERETEGiyj0iIiJiChJV7hER
 ERFTkKhyj4iIiJiCRJV7RERExBTk/wPGlJC/ardp9wAAAABJRU5ErkJggg==
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[70]:</div>
+<div class="prompt input_prompt">In [70]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">manhattan_rats</span> <span class="o">=</span> <span class="n">valid_latlon</span><span class="p">[</span><span class="n">valid_latlon</span><span class="o">.</span><span class="n">BORO_CODE</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">manhattan_rats</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">hexbin</span><span class="p">(</span><span class="s1">&#39;LONGITUDE&#39;</span><span class="p">,</span> <span class="s1">&#39;LATITUDE&#39;</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">)</span>
+<span class="n">manhattan_rats</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">hexbin</span><span class="p">(</span><span class="s1">'LONGITUDE'</span><span class="p">,</span> <span class="s1">'LATITUDE'</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="s1">'log'</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'magma'</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[70]:</div>
-
-
-
-
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1248aa358&gt;</pre>
+<pre><matplotlib.axes._subplots.axessubplot at 0x1248aa358></pre>
 </div>
-
 </div>
-
 <div class="output_area">
-
 <div class="prompt"></div>
-
-
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYQAAAEKCAYAAAASByJ7AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsvXd4JVeV7v1bu6pOVA4tqXOg2znStsH23GubNGNjAwbm
@@ -11510,42 +10633,30 @@ OxM8R0zMMSWOMoo5EciKyM6K/b9X1b+XcIWvZ0VEgRzwO6q6Z3RhVX1QRLoq9veKyG8RVihzCOf9
 7ybs+K2V2wn7BNZF518NfLni+OUi8hJhRbMf+M8VEUYQ9iH8TsX+Laq6bQLnj4mZdOLZTmNiYmJi
 gNhlFBMTExMTEVcIMTExMTFAXCHExMTExETEFUJMTExMDBBXCDExMTExEXGFEBMTExMDxBVCTExM
 TExEXCHExMTExADwfwC5EloRYZ+VVAAAAABJRU5ErkJggg==
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[52]:</div>
+<div class="prompt input_prompt">In [52]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">inspection_date</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">(</span><span class="n">rats</span><span class="o">.</span><span class="n">INSPECTION_DATE</span><span class="p">)</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">rats</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">inspection_date</span><span class="o">.</span><span class="n">weekday</span><span class="p">)[</span><span class="s1">&#39;JOB_ID&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;weekday&#39;</span><span class="p">);</span>
+<span class="n">rats</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">inspection_date</span><span class="o">.</span><span class="n">weekday</span><span class="p">)[</span><span class="s1">'JOB_ID'</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">'bar'</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">'weekday'</span><span class="p">);</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt"></div>
-
-
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYcAAAEGCAYAAACO8lkDAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAFQ5JREFUeJzt3X+w3XV95/HniwRcu7SCElk2YRtW09Zo1ygZoEvdQbAQ
@@ -11644,40 +10755,28 @@ u878OeAeBiHxOgb/hvly4K+SABwB3Ab8PPAqYHOrLwAeH1rn/wJuGnrg3snAF6bu3E1yI/Bzbd4S
 vsYgSP7l8Aqr6kMMDlH9IfAEgz2C24C/bPUp72YQIl9m8GydYRuAI/GQksbEx2dI81C7X+Lqqnrd
 tIOl/cBzDtI8k+Ry4K14rkFj5J6DJKnjOQdJUsdwkCR1DAdJUsdwkCR1DAdJUuf/ASO3W+5PJwi/
 AAAAAElFTkSuQmCC
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[51]:</div>
+<div class="prompt input_prompt">In [51]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">rats</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">inspection_date</span><span class="o">.</span><span class="n">hour</span><span class="p">)[</span><span class="s1">&#39;JOB_ID&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;hour&#39;</span><span class="p">);</span>
+<span class="n">rats</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">inspection_date</span><span class="o">.</span><span class="n">hour</span><span class="p">)[</span><span class="s1">'JOB_ID'</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">'bar'</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">'hour'</span><span class="p">);</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt"></div>
-
-
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYcAAAENCAYAAADkNanAAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAFjxJREFUeJzt3X+QXfV53/H3Y8k4EOwgQGAiCS9DlRBsxzJWBYmdmpgE
@@ -11781,53 +10880,34 @@ wHp+AVieme84ZCOVpsBwkCbmydb58g8BZ9L8o6C/KLV1NN9M2s+mzDxwKAYoHQyGgzQx329dfpnm
 f1B08xI/fo79xLh5/+dgDko62AwHaWpeAJ6PiF8q16+m+edI0HxL5lvK5csP87ikKfFMCWnqlgP/
 NSKOo/lnOdeW+u8Cd0TE1TT/SU6aMfz6DElSxd1KkqSK4SBJqhgOkqSK4SBJqhgOkqSK4SBJqhgO
 kqSK4SBJqvw/2gornpH4ZLcAAAAASUVORK5CYII=
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[53]:</div>
+<div class="prompt input_prompt">In [53]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">rats</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">inspection_date</span><span class="o">.</span><span class="n">month</span><span class="p">)[</span><span class="s1">&#39;JOB_ID&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;month&#39;</span><span class="p">)</span>
+<span class="n">rats</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">inspection_date</span><span class="o">.</span><span class="n">month</span><span class="p">)[</span><span class="s1">'JOB_ID'</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">'bar'</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">'month'</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[53]:</div>
-
-
-
-
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.text.Text at 0x10a8a70b8&gt;</pre>
+<pre><matplotlib.text.text at 0x10a8a70b8></pre>
 </div>
-
 </div>
-
 <div class="output_area">
-
 <div class="prompt"></div>
-
-
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYcAAAENCAYAAADkNanAAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAGLRJREFUeJzt3X20XXV95/H3x6RY8SkgV6oJGNSoBZdWjMjU1rGiENQx
@@ -11942,30 +11022,12 @@ K6u79vtmugc6/Rbdw1eoqi8DT2i3/gb4fFU9WFX3Avcw+6dYr62q6dbHjW270oIzHKTZDT4v4xcD
 87+g2+sedgho+weHBtd9iNn30ne2nbRbGQ7S6L4GvA7+5RDRvVX1kx20/yntqWjSns6/UqTR/Snw
 kXZTtAfoHkk5q6r6x3ZC+xbgC8Dn53+I0mi8fYYkqcfDSpKkHsNBktRjOEiSegwHSVKP4SBJ6jEc
 JEk9hoMkqcdwkCT1/H+eE8tBmUSZyAAAAABJRU5ErkJggg==
-">
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
+" />
 </div>
 </div>
 </div>
-
 </div>
- 
-
+</div>
 
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
@@ -12031,28 +11093,25 @@ JEk9hoMkqcdwkCT1/H+eE8tBmUSZyAAAAABJRU5ErkJggg==
   <a href="./"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
   <ul class="list-group " id="tags">
     <li class="list-group-item tag-1">
-      <a href="./tag/assignment.html">assignment</a>
+      <a href="./tag/unix.html">unix</a>
     </li>
     <li class="list-group-item tag-1">
       <a href="./tag/file-system.html">file system</a>
     </li>
     <li class="list-group-item tag-1">
-      <a href="./tag/bash.html">bash</a>
-    </li>
-    <li class="list-group-item tag-1">
-      <a href="./tag/python.html">python</a>
+      <a href="./tag/assignment.html">assignment</a>
     </li>
     <li class="list-group-item tag-1">
       <a href="./tag/shell.html">shell</a>
     </li>
     <li class="list-group-item tag-1">
-      <a href="./tag/unix.html">unix</a>
+      <a href="./tag/python.html">python</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/bash.html">bash</a>
     </li>
     <li class="list-group-item tag-2">
       <a href="./tag/programming.html">programming</a>
-    </li>
-    <li class="list-group-item tag-3">
-      <a href="./tag/pandas.html">pandas</a>
     </li>
     <li class="list-group-item tag-3">
       <a href="./tag/visualization.html">visualization</a>
@@ -12061,31 +11120,16 @@ JEk9hoMkqcdwkCT1/H+eE8tBmUSZyAAAAABJRU5ErkJggg==
       <a href="./tag/git.html">git</a>
     </li>
     <li class="list-group-item tag-3">
+      <a href="./tag/fortran.html">fortran</a>
+    </li>
+    <li class="list-group-item tag-3">
       <a href="./tag/matlab.html">MATLAB</a>
     </li>
     <li class="list-group-item tag-3">
-      <a href="./tag/fortran.html">fortran</a>
+      <a href="./tag/pandas.html">pandas</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/version-control.html">version control</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/vpn.html">vpn</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/ndarray.html">ndarray</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/geomapapp.html">GeoMapApp</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/arrays.html">arrays</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/source-code-editor.html">source code editor</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/github.html">github</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/numpy.html">numpy</a>
@@ -12094,7 +11138,25 @@ JEk9hoMkqcdwkCT1/H+eE8tBmUSZyAAAAABJRU5ErkJggg==
       <a href="./tag/gmt.html">gmt</a>
     </li>
     <li class="list-group-item tag-4">
+      <a href="./tag/arrays.html">arrays</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/github.html">github</a>
+    </li>
+    <li class="list-group-item tag-4">
       <a href="./tag/matplotlib.html">matplotlib</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/source-code-editor.html">source code editor</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/geomapapp.html">GeoMapApp</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/ndarray.html">ndarray</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/vpn.html">vpn</a>
     </li>
   </ul>
 </li>

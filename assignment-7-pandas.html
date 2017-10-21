@@ -13,13 +13,13 @@
 
         <meta name="author" content="Ryan Abernathey" />
         <meta name="keywords" content="assignment,python" />
-        <meta name="description" content="Assignment 7 - Pandas¶Due Oct 19. In this assignment we will use pandas to examine earthquake data. Start by importing pandas, numpy and matplotlib." />
+        <meta name="description" content="Assignment 7 - Pandas¶Due Oct 19. In this assignment we will use pandas to examine earthquake data. Start by importing pandas, numpy and matplotlib. I saved you some time by pre-downloading some data in .csv format from the USGS Earthquakes Database. It is located at: http://www.ldeo.columbia.edu/~rpa/usgs_earthquakes_2014.csv You don&#39;t even need to download it. You can open it directly with Pandas." />
 
         <meta property="og:site_name" content="Research Computing in Earth Sciences" />
         <meta property="og:type" content="article"/>
         <meta property="og:title" content="Assignment 7 - Pandas"/>
         <meta property="og:url" content="./assignment-7-pandas.html"/>
-        <meta property="og:description" content="Assignment 7 - Pandas¶Due Oct 19. In this assignment we will use pandas to examine earthquake data. Start by importing pandas, numpy and matplotlib."/>
+        <meta property="og:description" content="Assignment 7 - Pandas¶Due Oct 19. In this assignment we will use pandas to examine earthquake data. Start by importing pandas, numpy and matplotlib. I saved you some time by pre-downloading some data in .csv format from the USGS Earthquakes Database. It is located at: http://www.ldeo.columbia.edu/~rpa/usgs_earthquakes_2014.csv You don&#39;t even need to download it. You can open it directly with Pandas."/>
         <meta property="article:published_time" content="2017-10-13" />
             <meta property="article:section" content="assignments" />
             <meta property="article:tag" content="assignment" />
@@ -1090,25 +1090,11 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Assignment-7---Pandas">Assignment 7 - Pandas<a class="anchor-link" href="#Assignment-7---Pandas">&#182;</a></h1><p>Due Oct 19.</p>
+<h1 id="Assignment-7---Pandas">Assignment 7 - Pandas<a class="anchor-link" href="#Assignment-7---Pandas">¶</a></h1><p>Due Oct 19.</p>
 <p>In this assignment we will use pandas to examine earthquake data.</p>
 <p>Start by importing pandas, numpy and matplotlib.</p>
-
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
@@ -1117,7 +1103,6 @@ h6:hover .anchor-link {
 <p>I saved you some time by pre-downloading some data in .csv format from the <a href="https://earthquake.usgs.gov/earthquakes/search/">USGS Earthquakes Database</a>. It is located at:</p>
 <p><a href="http://www.ldeo.columbia.edu/~rpa/usgs_earthquakes_2014.csv">http://www.ldeo.columbia.edu/~rpa/usgs_earthquakes_2014.csv</a></p>
 <p>You don't even need to download it. You can open it directly with Pandas.</p>
-
 </div>
 </div>
 </div>
@@ -1125,154 +1110,59 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="1)-Use-Pandas'-read_csv-function-directly-on-this-url-to-open-it-as-a-DataFrame">1) Use Pandas' read_csv function directly on this url to open it as a DataFrame<a class="anchor-link" href="#1)-Use-Pandas'-read_csv-function-directly-on-this-url-to-open-it-as-a-DataFrame">&#182;</a></h3><p>(Don't use any special options). Display the first few rows and the DataFrame info.</p>
-
+<h3 id="1)-Use-Pandas'-read_csv-function-directly-on-this-url-to-open-it-as-a-DataFrame">1) Use Pandas' read_csv function directly on this url to open it as a DataFrame<a class="anchor-link" href="#1)-Use-Pandas'-read_csv-function-directly-on-this-url-to-open-it-as-a-DataFrame">¶</a></h3><p>(Don't use any special options). Display the first few rows and the DataFrame info.</p>
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>You should have seen that the dates were not automatically parsed into datetime types.</p>
-<h3 id="2)-Re-read-the-data-in-such-a-way-that-all-date-columns-are-identified-as-dates-and-the-earthquake-id-is-used-as-the-index">2) Re-read the data in such a way that all date columns are identified as dates and the earthquake id is used as the index<a class="anchor-link" href="#2)-Re-read-the-data-in-such-a-way-that-all-date-columns-are-identified-as-dates-and-the-earthquake-id-is-used-as-the-index">&#182;</a></h3><p>Verify that this worked using the <code>head</code> and <code>info</code> functions.</p>
-
+<h3 id="2)-Re-read-the-data-in-such-a-way-that-all-date-columns-are-identified-as-dates-and-the-earthquake-id-is-used-as-the-index">2) Re-read the data in such a way that all date columns are identified as dates and the earthquake id is used as the index<a class="anchor-link" href="#2)-Re-read-the-data-in-such-a-way-that-all-date-columns-are-identified-as-dates-and-the-earthquake-id-is-used-as-the-index">¶</a></h3><p>Verify that this worked using the <code>head</code> and <code>info</code> functions.</p>
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="3)-Use-describe-to-get-the-basic-statistics-of-all-the-columns">3) Use <code>describe</code> to get the basic statistics of all the columns<a class="anchor-link" href="#3)-Use-describe-to-get-the-basic-statistics-of-all-the-columns">&#182;</a></h3><p>Note the highest and lowest magnitude of earthquakes in the databse.</p>
-
+<h3 id="3)-Use-describe-to-get-the-basic-statistics-of-all-the-columns">3) Use <code>describe</code> to get the basic statistics of all the columns<a class="anchor-link" href="#3)-Use-describe-to-get-the-basic-statistics-of-all-the-columns">¶</a></h3><p>Note the highest and lowest magnitude of earthquakes in the databse.</p>
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="4)-Use-sort_values-to-get-the-top-20-earthquakes-by-magnitude">4) Use <code>sort_values</code> to get the top 20 earthquakes by magnitude<a class="anchor-link" href="#4)-Use-sort_values-to-get-the-top-20-earthquakes-by-magnitude">&#182;</a></h3>
+<h3 id="4)-Use-sort_values-to-get-the-top-20-earthquakes-by-magnitude">4) Use <code>sort_values</code> to get the top 20 earthquakes by magnitude<a class="anchor-link" href="#4)-Use-sort_values-to-get-the-top-20-earthquakes-by-magnitude">¶</a></h3>
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Examine the structure of the <code>place</code> column. The country information seems to be in there. How would you get it out?</p>
-<h3 id="5)-Extract-the-country-using-Pandas-text-data-functions">5) Extract the country using Pandas <a href="https://pandas.pydata.org/pandas-docs/stable/text.html">text data functions</a><a class="anchor-link" href="#5)-Extract-the-country-using-Pandas-text-data-functions">&#182;</a></h3><p>Add it as a new column to the dataframe. (Is it really just country? No, some rows have the name of a US state.)</p>
-
+<h3 id="5)-Extract-the-country-using-Pandas-text-data-functions">5) Extract the country using Pandas <a href="https://pandas.pydata.org/pandas-docs/stable/text.html">text data functions</a><a class="anchor-link" href="#5)-Extract-the-country-using-Pandas-text-data-functions">¶</a></h3><p>Add it as a new column to the dataframe. (Is it really just country? No, some rows have the name of a US state.)</p>
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="6)-Find-the-10-states-/-countries-with-the-highest-number-of-earthquakes">6) Find the 10 states / countries with the highest <em>number</em> of earthquakes<a class="anchor-link" href="#6)-Find-the-10-states-/-countries-with-the-highest-number-of-earthquakes">&#182;</a></h3>
+<h3 id="6)-Find-the-10-states-/-countries-with-the-highest-number-of-earthquakes">6) Find the 10 states / countries with the highest <em>number</em> of earthquakes<a class="anchor-link" href="#6)-Find-the-10-states-/-countries-with-the-highest-number-of-earthquakes">¶</a></h3>
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="7)-Find-the-top-10-states-/-countries-where-the-strongest-and-weakest-earthquakes-occured">7) Find the top 10 states / countries where the strongest and weakest earthquakes occured<a class="anchor-link" href="#7)-Find-the-top-10-states-/-countries-where-the-strongest-and-weakest-earthquakes-occured">&#182;</a></h3>
+<h3 id="7)-Find-the-top-10-states-/-countries-where-the-strongest-and-weakest-earthquakes-occured">7) Find the top 10 states / countries where the strongest and weakest earthquakes occured<a class="anchor-link" href="#7)-Find-the-top-10-states-/-countries-where-the-strongest-and-weakest-earthquakes-occured">¶</a></h3>
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
@@ -1281,7 +1171,6 @@ h6:hover .anchor-link {
 <p>It looks like US states are being treated differently from foreign countries. We would like to fix that.</p>
 <p>How can we tell if a name is a US state name? Python has a package for that: <a href="https://pypi.python.org/pypi/us!">https://pypi.python.org/pypi/us!</a></p>
 <p>This is a good time to try installing a new package using <code>pip</code>. Pip is the original python package manager that predates <code>conda</code>. Basically <code>conda</code> is more oriented towards data science while <code>pip</code> is more general purpose. There are lots more packages on <code>pip</code> than on <code>conda</code>. You can read a <a href="https://www.quora.com/What-is-the-comparison-among-conda-vs-pip-vs-anaconda">comparision</a> of these two utilities if you want to know more.</p>
-
 </div>
 </div>
 </div>
@@ -1289,202 +1178,79 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="8)-Install-the-us-package-using-pip,-either-directly-from-the-notebook-or-the-command-line">8) Install the <code>us</code> package using pip, either directly from the notebook or the command line<a class="anchor-link" href="#8)-Install-the-us-package-using-pip,-either-directly-from-the-notebook-or-the-command-line">&#182;</a></h3><p>The shell command is <code>pip install us</code>.</p>
-
+<h3 id="8)-Install-the-us-package-using-pip,-either-directly-from-the-notebook-or-the-command-line">8) Install the <code>us</code> package using pip, either directly from the notebook or the command line<a class="anchor-link" href="#8)-Install-the-us-package-using-pip,-either-directly-from-the-notebook-or-the-command-line">¶</a></h3><p>The shell command is <code>pip install us</code>.</p>
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="9)-Import-the-us-package-to-verify-your-installation-works">9) Import the <code>us</code> package to verify your installation works<a class="anchor-link" href="#9)-Import-the-us-package-to-verify-your-installation-works">&#182;</a></h3>
+<h3 id="9)-Import-the-us-package-to-verify-your-installation-works">9) Import the <code>us</code> package to verify your installation works<a class="anchor-link" href="#9)-Import-the-us-package-to-verify-your-installation-works">¶</a></h3>
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="10)-Read-the-us-documentation-to-figure-out-how-to-create-a-list-of-state-names-(all-upper-case)">10) Read the <a href="https://pypi.python.org/pypi/us"><code>us</code> documentation</a> to figure out how to create a list of state names (all upper case)<a class="anchor-link" href="#10)-Read-the-us-documentation-to-figure-out-how-to-create-a-list-of-state-names-(all-upper-case)">&#182;</a></h3>
+<h3 id="10)-Read-the-us-documentation-to-figure-out-how-to-create-a-list-of-state-names-(all-upper-case)">10) Read the <a href="https://pypi.python.org/pypi/us"><code>us</code> documentation</a> to figure out how to create a list of state names (all upper case)<a class="anchor-link" href="#10)-Read-the-us-documentation-to-figure-out-how-to-create-a-list-of-state-names-(all-upper-case)">¶</a></h3>
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="11)-Write-a-function-to-check-whether-a-string-is-a-US-state-name.">11) Write a function to check whether a string is a US state name.<a class="anchor-link" href="#11)-Write-a-function-to-check-whether-a-string-is-a-US-state-name.">&#182;</a></h3><p>This function should not be case sensitive. It should also strip any whitespace out of the test string.</p>
-
+<h3 id="11)-Write-a-function-to-check-whether-a-string-is-a-US-state-name.">11) Write a function to check whether a string is a US state name.<a class="anchor-link" href="#11)-Write-a-function-to-check-whether-a-string-is-a-US-state-name.">¶</a></h3><p>This function should not be case sensitive. It should also strip any whitespace out of the test string.</p>
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="12)-Use-Pandas'-apply-function-to-apply-this-to-each-row-of-the-country-name-series">12) Use Pandas' <a href="https://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.apply.html">apply</a> function to apply this to each row of the country name series<a class="anchor-link" href="#12)-Use-Pandas'-apply-function-to-apply-this-to-each-row-of-the-country-name-series">&#182;</a></h3><p>You should produce a new boolean series. (Hint: use <code>dropna()</code> to drop rows that have null values before calling apply.)</p>
-
+<h3 id="12)-Use-Pandas'-apply-function-to-apply-this-to-each-row-of-the-country-name-series">12) Use Pandas' <a href="https://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.apply.html">apply</a> function to apply this to each row of the country name series<a class="anchor-link" href="#12)-Use-Pandas'-apply-function-to-apply-this-to-each-row-of-the-country-name-series">¶</a></h3><p>You should produce a new boolean series. (Hint: use <code>dropna()</code> to drop rows that have null values before calling apply.)</p>
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="13)-reindex-this-boolean-series-to-match-the-dataframe's-index">13) reindex this boolean series to match the dataframe's index<a class="anchor-link" href="#13)-reindex-this-boolean-series-to-match-the-dataframe's-index">&#182;</a></h3><p>Fill the null values with <code>False</code> using <code>.fillna()</code>.</p>
-
+<h3 id="13)-reindex-this-boolean-series-to-match-the-dataframe's-index">13) reindex this boolean series to match the dataframe's index<a class="anchor-link" href="#13)-reindex-this-boolean-series-to-match-the-dataframe's-index">¶</a></h3><p>Fill the null values with <code>False</code> using <code>.fillna()</code>.</p>
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="14)-Now-re-assign-the-country-column-in-the-DataFrame-to-USA-if-the-row-is-a-state.">14) Now re-assign the country column in the DataFrame to <code>USA</code> if the row is a state.<a class="anchor-link" href="#14)-Now-re-assign-the-country-column-in-the-DataFrame-to-USA-if-the-row-is-a-state.">&#182;</a></h3><p>Also add the state name as a new column.</p>
-
+<h3 id="14)-Now-re-assign-the-country-column-in-the-DataFrame-to-USA-if-the-row-is-a-state.">14) Now re-assign the country column in the DataFrame to <code>USA</code> if the row is a state.<a class="anchor-link" href="#14)-Now-re-assign-the-country-column-in-the-DataFrame-to-USA-if-the-row-is-a-state.">¶</a></h3><p>Also add the state name as a new column.</p>
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="15)-Now-redo-the-country-count-and-minimum-magnitdue-using-the-corrected-data">15) Now redo the country count and minimum magnitdue using the corrected data<a class="anchor-link" href="#15)-Now-redo-the-country-count-and-minimum-magnitdue-using-the-corrected-data">&#182;</a></h3>
+<h3 id="15)-Now-redo-the-country-count-and-minimum-magnitdue-using-the-corrected-data">15) Now redo the country count and minimum magnitdue using the corrected data<a class="anchor-link" href="#15)-Now-redo-the-country-count-and-minimum-magnitdue-using-the-corrected-data">¶</a></h3>
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="16)-Create-a-filtered-dataset-that-only-has-earthquakes-of-magnitude-4-or-larger">16) Create a filtered dataset that only has earthquakes of magnitude 4 or larger<a class="anchor-link" href="#16)-Create-a-filtered-dataset-that-only-has-earthquakes-of-magnitude-4-or-larger">&#182;</a></h3>
+<h3 id="16)-Create-a-filtered-dataset-that-only-has-earthquakes-of-magnitude-4-or-larger">16) Create a filtered dataset that only has earthquakes of magnitude 4 or larger<a class="anchor-link" href="#16)-Create-a-filtered-dataset-that-only-has-earthquakes-of-magnitude-4-or-larger">¶</a></h3>
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="17)-Analyze-the-distribution-of-the-Earthquake-magnitudes-in-the-filtered-distribution">17) Analyze the distribution of the Earthquake magnitudes in the filtered distribution<a class="anchor-link" href="#17)-Analyze-the-distribution-of-the-Earthquake-magnitudes-in-the-filtered-distribution">&#182;</a></h3><p>Make a histogram of the Earthquake count versus magnitude. Make sure to use a Logarithmic scale. What sort of relationship do you see?</p>
-
+<h3 id="17)-Analyze-the-distribution-of-the-Earthquake-magnitudes-in-the-filtered-distribution">17) Analyze the distribution of the Earthquake magnitudes in the filtered distribution<a class="anchor-link" href="#17)-Analyze-the-distribution-of-the-Earthquake-magnitudes-in-the-filtered-distribution">¶</a></h3><p>Make a histogram of the Earthquake count versus magnitude. Make sure to use a Logarithmic scale. What sort of relationship do you see?</p>
 </div>
 </div>
 </div>
@@ -1495,7 +1261,6 @@ h6:hover .anchor-link {
 <p>fig, ax = plt.subplots()
 df_filt.hist('mag', bins=20, ax=ax)
 ax.set_yscale('log')</p>
-
 </div>
 </div>
 </div>
@@ -1503,47 +1268,18 @@ ax.set_yscale('log')</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="18)-Visualize-the-locations-of-earthquakes-by-making-a-scatterplot-of-their-latitude-and-longitude.">18) Visualize the locations of earthquakes by making a scatterplot of their latitude and longitude.<a class="anchor-link" href="#18)-Visualize-the-locations-of-earthquakes-by-making-a-scatterplot-of-their-latitude-and-longitude.">&#182;</a></h3><p>Use the filtered data. Color it by magnitude. Make it pretty</p>
-
+<h3 id="18)-Visualize-the-locations-of-earthquakes-by-making-a-scatterplot-of-their-latitude-and-longitude.">18) Visualize the locations of earthquakes by making a scatterplot of their latitude and longitude.<a class="anchor-link" href="#18)-Visualize-the-locations-of-earthquakes-by-making-a-scatterplot-of-their-latitude-and-longitude.">¶</a></h3><p>Use the filtered data. Color it by magnitude. Make it pretty</p>
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="19)-Do-the-same-for-depth">19) Do the same for depth<a class="anchor-link" href="#19)-Do-the-same-for-depth">&#182;</a></h3>
+<h3 id="19)-Do-the-same-for-depth">19) Do the same for depth<a class="anchor-link" href="#19)-Do-the-same-for-depth">¶</a></h3>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
- 
-
 
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
@@ -1609,28 +1345,25 @@ ax.set_yscale('log')</p>
   <a href="./"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
   <ul class="list-group " id="tags">
     <li class="list-group-item tag-1">
-      <a href="./tag/assignment.html">assignment</a>
+      <a href="./tag/unix.html">unix</a>
     </li>
     <li class="list-group-item tag-1">
       <a href="./tag/file-system.html">file system</a>
     </li>
     <li class="list-group-item tag-1">
-      <a href="./tag/bash.html">bash</a>
-    </li>
-    <li class="list-group-item tag-1">
-      <a href="./tag/python.html">python</a>
+      <a href="./tag/assignment.html">assignment</a>
     </li>
     <li class="list-group-item tag-1">
       <a href="./tag/shell.html">shell</a>
     </li>
     <li class="list-group-item tag-1">
-      <a href="./tag/unix.html">unix</a>
+      <a href="./tag/python.html">python</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/bash.html">bash</a>
     </li>
     <li class="list-group-item tag-2">
       <a href="./tag/programming.html">programming</a>
-    </li>
-    <li class="list-group-item tag-3">
-      <a href="./tag/pandas.html">pandas</a>
     </li>
     <li class="list-group-item tag-3">
       <a href="./tag/visualization.html">visualization</a>
@@ -1639,31 +1372,16 @@ ax.set_yscale('log')</p>
       <a href="./tag/git.html">git</a>
     </li>
     <li class="list-group-item tag-3">
+      <a href="./tag/fortran.html">fortran</a>
+    </li>
+    <li class="list-group-item tag-3">
       <a href="./tag/matlab.html">MATLAB</a>
     </li>
     <li class="list-group-item tag-3">
-      <a href="./tag/fortran.html">fortran</a>
+      <a href="./tag/pandas.html">pandas</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/version-control.html">version control</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/vpn.html">vpn</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/ndarray.html">ndarray</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/geomapapp.html">GeoMapApp</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/arrays.html">arrays</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/source-code-editor.html">source code editor</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/github.html">github</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/numpy.html">numpy</a>
@@ -1672,7 +1390,25 @@ ax.set_yscale('log')</p>
       <a href="./tag/gmt.html">gmt</a>
     </li>
     <li class="list-group-item tag-4">
+      <a href="./tag/arrays.html">arrays</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/github.html">github</a>
+    </li>
+    <li class="list-group-item tag-4">
       <a href="./tag/matplotlib.html">matplotlib</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/source-code-editor.html">source code editor</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/geomapapp.html">GeoMapApp</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/ndarray.html">ndarray</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/vpn.html">vpn</a>
     </li>
   </ul>
 </li>
