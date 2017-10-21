@@ -1,9 +1,9 @@
 [submodule "plugins/ipynb"]
 	path = plugins/ipynb
 	url = git://github.com/danielfrg/pelican-ipynb.git
-[submodule "pelican-plugins"]
-	path = pelican-plugins
-	url = https://github.com/getpelican/pelican-plugins
 [submodule "plugins/bootswatch_markdown_css"]
 	path = plugins/bootswatch_markdown_css
 	url = https://github.com/yuex/bootswatch_markdown_css
+[submodule "pelican-plugins"]
+	path = pelican-plugins
+	url = git://github.com/getpelican/pelican-plugins.git
