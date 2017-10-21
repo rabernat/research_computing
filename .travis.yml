@@ -13,6 +13,6 @@ env:
 # This is the script to build the docs on travis, then deploy
 script:
   - set -e
-  - pip install doctr pelican jupyter ipython nbconvert beautifulsoup4
-  - make html
+  - pip install doctr pelican jupyter ipython nbconvert beautifulsoup4 markdown
+  - make DEBUG=1 html
   - doctr deploy . --built-docs output/
