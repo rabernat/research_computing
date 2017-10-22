@@ -1,6 +1,7 @@
 ./Assignments/Assignment_3.ipynb-meta
 ./Assignments/Assignment_6.ipynb-meta
 ./Assignments/Assignment_7.ipynb-meta
+./Assignments/Assignment_8.ipynb-meta
 ./Assignments/class_names.pkl
 ./Assignments/numbers.pkl
 ./Okmok_s00.mat
@@ -12,6 +13,7 @@
 ./assignment-5-fortran.html
 ./assignment-6-numpy-and-matplotlib.html
 ./assignment-7-pandas.html
+./assignment-8-xarray.html
 ./assignment-submission-instructions.html
 ./assignment_4.m
 ./author/kerry-key.html
@@ -76,6 +78,7 @@
 ./tag/version-control.html
 ./tag/visualization.html
 ./tag/vpn.html
+./tag/xarray.html
 ./tags.html
 ./theme/css/bootstrap.amelia.min.css
 ./theme/css/bootstrap.cerulean.min.css
