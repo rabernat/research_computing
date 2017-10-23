@@ -24,7 +24,7 @@ Summary: Overview of course schedule and topics
 | Tuesday  | 17-Oct | RPA        | Intermediate Python II in-class activity         |        |
 | Thursday | 19-Oct | RPA        | Intermediate Python III: Xarray for Multidimensional data | |
 | Tuesday  | 24-Oct | RPA        | Intermediate Python III in-class activity         |       |
-| Thursday | 26-Oct | KK         | Map making with GeoMappApp                        |       |
+| Thursday | 26-Oct | KK         | Map making with GeoMappApp                        |    Lytle   |
 | Tuesday  | 31-Oct | KK         | Map making with GMT and Python                    |       |
 | Thursday | 2-Nov  | KK         | Map making in-class activity                      |       |
 | Tuesday  | 7-Nov  |            | _No Class / Election Day_                       |  |
