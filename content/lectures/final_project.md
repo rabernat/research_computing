@@ -22,20 +22,22 @@ The final project will be worth 40% of your class grade so you should expect to 
 
 2. Your project will need to **use at least two different main topics covered in this class and it must contain a visualization component**. For example, your project could extract data from GeoMapApp, analyze it using Pandas and then create a new image resulting from the data analysis. Another example is to analyze 3D array data with Xarray and then create a map plot or visualization using Python or GMT.
 
-3. ** Document and comment your code**.   Since this is your project and not an ordinary exercise, we may not know what you are trying to do. Documentation will allow us to better understand your intentions. Add comments to your codes to inform of us your intentions, if it is not easily discerned from the specific code commands.  If you use python, your project should take the form of a heavily annotated notebook. If your code analyzes data that were downloaded from the internet or given to you by someone, state where you obtained the data (name of organization or person) and the URL where the data can be downloaded if from the internet.  
+3. **Document and comment your code**.   Since this is your project and not an ordinary exercise, we may not know what you are trying to do. Documentation will allow us to better understand your intentions. Add comments to your codes to inform of us your intentions, if it is not easily discerned from the specific code commands.  If you use python, your project should take the form of a heavily annotated notebook. If your code analyzes data that were downloaded from the internet or given to you by someone, state where you obtained the data (name of organization or person) and the URL where the data can be downloaded if from the internet.  
 
 4. Since this is your final project, it should be a complicated code that is **at least as long as two or three homework assignments.** Have fun, pay attention to detail, and make it look nice. In addition to the above criteria your project will be graded based on:
-- [ ] Clear documentation / explanation of the project and coding approach.
-- [ ] Ability for instructors to reproduce your results.
-- [ ] Demonstration of mastery of two or more major themes from the course
-- [ ] Originality and creativity of the chosen data analysis
-- [ ] Aesthetic quality of the graphics
+
+  * [ ] Clear documentation / explanation of the project and coding approach.
+  * [ ] Ability for instructors to reproduce your results.
+  * [ ] Demonstration of mastery of two or more major themes from the course
+  * [ ] Originality and creativity of the chosen data analysis
+  * [ ] Aesthetic quality of the graphics
 
 5. **Present** your project to the class on Tuesday, December 5, or Thursday December 7. You will need to be clear about what you did and show an understanding of your project. You should not prepare a formal presentation (i.e., do NOT make a powerpoint). Just orally describe what you did for your project and give a quick overview of your code(s) or iPhython notebook and the results obtained. Plan for your presentation to take only 3 - 4 minutes. If your code is not yet complete when you present, that’s okay. Just show us what you have so far.
 
 6. **Turn in your competed code by Thursday, December 7**, by uploading it to GitHub in a folder called FinalProject (same as used for the project proposal). Late projects will not be accepted without prior approval. You must also turn in any data files required to run your codes, or provide a web link where they can be downloaded if they are larger than a few 100 MB. Also turn in PDF plots of all visualizations created for your project.
 
 **What is NOT acceptable:**
+
 * Translating an existing code from one language to another
 * Using tools that have no overlap with what we have done in class (e.g. R)
 * "Double counting" work done for a different course (it's okay to combine this project with your independent research, but not coursework from other courses)
