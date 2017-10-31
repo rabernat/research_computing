@@ -197,7 +197,7 @@ Here I've told it to use a 2-point thickness and to color the line green. We cou
 ~~~
 $ gmt psxy data -R0/6/0/6 -Jx1i -W2p,green -L -Glightblue  -P -Baf  > GMT_tut_7.ps
 ~~~
-Now let's plot symbols for each (x,y) position in data:
+Now let's plot symbols for each (x,y) position in data: 
 ~~~
 $ gmt psxy data -R0/6/0/6 -Jx1i  -Si0.2i  -Baf > GMT_tut_7b.ps
 ~~~
