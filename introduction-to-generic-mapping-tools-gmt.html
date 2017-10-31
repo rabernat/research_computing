@@ -300,76 +300,66 @@ data: <span class="nv">N</span> <span class="o">=</span> <span class="m">7</span
 </pre></div>
 
 
-<p>Now let's plot symbols for each (x,y) position in data:
- ~~~
-$ gmt psxy data -R0/6/0/6 -Jx1i  -Si0.2i  -Baf &gt; GMT_tut_7b.ps</p>
-<div class="highlight"><pre><span></span>Here the `-S` argument tells `psxy` to plot the data as symbols and the `i` in `-Si` tells it to use inverted triangles. See the help for `psxy` to learn about all the other symbol types that are possible. The `0.2i` part tells it to make the symbols 0.2 inches in size.
-
-Now let&#39;s plot both the line and the symbols. To do this, you first plot the line, then add the symbols as an overlay:
+<p>Now let's plot symbols for each (x,y) position in data:</p>
+<div class="highlight"><pre><span></span>$ gmt psxy data -R0/6/0/6 -Jx1i  -Si0.2i  -Baf &gt; GMT_tut_7b.ps
 </pre></div>
 
 
-<p>$ gmt psxy data -R0/6/0/6 -Jx1i -Baf -P -K -W2p,green &gt; GMT_tut_8.ps
-$ gmt psxy data -R -J -O -W -Si0.2i &gt;&gt; GMT_tut_8.ps</p>
-<div class="highlight"><pre><span></span>Note the `-K` argument in the first line, which tells GMT to keep the file open for further additions. Then in the second line we used the `-O` argument to tell GMT to add the triangles in overlay mode. We also used the Unix `&gt;&gt;` append operator, which appends the overlay to the plot file rather than overwriting the file.
-
-Now we will make a plot of earthquakes around Japan where the color of the symbol indicates depth and the size of the symbol indicates magnitude. See file `quakes.ngdc`:
+<p>Here the <code>-S</code> argument tells <code>psxy</code> to plot the data as symbols and the <code>i</code> in <code>-Si</code> tells it to use inverted triangles. See the help for <code>psxy</code> to learn about all the other symbol types that are possible. The <code>0.2i</code> part tells it to make the symbols 0.2 inches in size.</p>
+<p>Now let's plot both the line and the symbols. To do this, you first plot the line, then add the symbols as an overlay:</p>
+<div class="highlight"><pre><span></span>$ gmt psxy data -R0/6/0/6 -Jx1i -Baf -P -K -W2p,green &gt; GMT_tut_8.ps
+$ gmt psxy data -R -J -O -W -Si0.2i &gt;&gt; GMT_tut_8.ps
 </pre></div>
 
 
-<p>$ gmt makecpt -Cred,green,blue -T0,70,300,10000 &gt; quakes.cpt
+<p>Note the <code>-K</code> argument in the first line, which tells GMT to keep the file open for further additions. Then in the second line we used the <code>-O</code> argument to tell GMT to add the triangles in overlay mode. We also used the Unix <code>&gt;&gt;</code> append operator, which appends the overlay to the plot file rather than overwriting the file.</p>
+<p>Now we will make a plot of earthquakes around Japan where the color of the symbol indicates depth and the size of the symbol indicates magnitude. See file <code>quakes.ngdc</code>:</p>
+<div class="highlight"><pre><span></span>$ gmt makecpt -Cred,green,blue -T0,70,300,10000 &gt; quakes.cpt
 $ gmt pscoast -R130/150/35/50 -JM6i -B5 -P -Ggray -K &gt; GMT_tut_9.ps
-$ gmt psxy -R -J -O quakes.ngdc -Wfaint -i4,3,5,6s0.1 -h3 -Scc -Cquakes.cpt &gt;&gt; GMT_tut_9.ps</p>
-<div class="highlight"><pre><span></span>The first line above makes are color palette of red, green and blue for earthquakes with depths from 0 to 70, 70 to 300 and greater than 300 km depth. The second line creates a plot of northern Japan&#39;s outline.  The third line plots the earthquakes. `-h3` tells GMT to skip the first three header lines. `-i4,3,5,6s0.1` tells it to read columns 5,4,6,7 (note it uses 0 based indexing!) and to scale the values in the 7th column by 0.1. Since the 7th column is the earthquake magnitude, this converts it to a number that will be useful to use as the centimeter size of the symbols. `-Scc` tells it to plot the symbols as circles using centimeters as the size units.
-
-We don&#39;t have time to cover `pstext`, but it uses similar syntax. See the examples in the GMT tutorial and online cookbook for further info.
-
-
-
-**Gridded Surfaces**
-
-Here we will use GMT to create a shaded map plot of  gridded topography data.  We will use the file tutorial file `us.nc`, which contains a subset of high-resolution topography data from the global 30” DEM called SRTM30+ (SRTM stands for the  shuttle radar topography mission).
-
-Let&#39;s peek inside this file to see what it contains. Since this is a binary format, we can&#39;t open it in a text editor. Instead we use GMT&#39;s `grdinfo` command:
+$ gmt psxy -R -J -O quakes.ngdc -Wfaint -i4,3,5,6s0.1 -h3 -Scc -Cquakes.cpt &gt;&gt; GMT_tut_9.ps
 </pre></div>
 
 
-<p>$ gmt grdinfo us.nc
-us.nc: Title: Produced by grdreformat
-us.nc: Command: grdreformat -fg usgs_30c_dem.i2 us.nc=ns
-us.nc: Remark: /home/aa5/wessel/dem/usgs_30c_dem.i2
-us.nc: Pixel node registration used [Geographic grid]
-us.nc: Grid file format: ns = GMT netCDF format (16-bit integer), COARDS, CF-1.5
-us.nc: x_min: -108 x_max: -103 x_inc: 0.00833333333333 name: longitude [degrees_east] n_columns: 600
-us.nc: y_min: 35 y_max: 40 y_inc: 0.00833333333333 name: latitude [degrees_north] n_rows: 600
-us.nc: z_min: 1052 z_max: 4328 name: Topography [m]
-us.nc: scale_factor: 1 add_offset: 0
-us.nc: format: netCDF-4 chunk_size: 150,150 shuffle: on deflation_level: 9</p>
-<div class="highlight"><pre><span></span>Here you can see that the file goes from -108 to -103º longitude and 35 to 40º latitude, with z spanning from 1052 to 4328 m.
-
- GMT has many [built in color palettes (CPT&#39;s)](http://gmt.soest.hawaii.edu/doc/5.4.2/GMT_Docs.html#built-in-color-palette-tables-cpt) that you can use for your colormap on shaded plots. You can also download some really nice freely available ones (see http://soliton.vm.bytemark.co.uk/pub/cpt-city/). Here we will use GMT&#39;s rainbow color palette to create a colormap that spans the z range of the data in `us.nc` using the `makecpt` command:
+<p>The first line above makes are color palette of red, green and blue for earthquakes with depths from 0 to 70, 70 to 300 and greater than 300 km depth. The second line creates a plot of northern Japan's outline.  The third line plots the earthquakes. <code>-h3</code> tells GMT to skip the first three header lines. <code>-i4,3,5,6s0.1</code> tells it to read columns 5,4,6,7 (note it uses 0 based indexing!) and to scale the values in the 7th column by 0.1. Since the 7th column is the earthquake magnitude, this converts it to a number that will be useful to use as the centimeter size of the symbols. <code>-Scc</code> tells it to plot the symbols as circles using centimeters as the size units.</p>
+<p>We don't have time to cover <code>pstext</code>, but it uses similar syntax. See the examples in the GMT tutorial and online cookbook for further info.</p>
+<p><strong>Gridded Surfaces</strong></p>
+<p>Here we will use GMT to create a shaded map plot of  gridded topography data.  We will use the file tutorial file <code>us.nc</code>, which contains a subset of high-resolution topography data from the global 30” DEM called SRTM30+ (SRTM stands for the  shuttle radar topography mission).</p>
+<p>Let's peek inside this file to see what it contains. Since this is a binary format, we can't open it in a text editor. Instead we use GMT's <code>grdinfo</code> command:</p>
+<div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">gmt</span> <span class="n">grdinfo</span> <span class="n">us</span><span class="p">.</span><span class="n">nc</span>
+<span class="n">us</span><span class="p">.</span><span class="nl">nc</span><span class="p">:</span> <span class="nl">Title</span><span class="p">:</span> <span class="n">Produced</span> <span class="n">by</span> <span class="n">grdreformat</span>
+<span class="n">us</span><span class="p">.</span><span class="nl">nc</span><span class="p">:</span> <span class="nl">Command</span><span class="p">:</span> <span class="n">grdreformat</span> <span class="o">-</span><span class="n">fg</span> <span class="n">usgs_30c_dem</span><span class="p">.</span><span class="n">i2</span> <span class="n">us</span><span class="p">.</span><span class="n">nc</span><span class="o">=</span><span class="n">ns</span>
+<span class="n">us</span><span class="p">.</span><span class="nl">nc</span><span class="p">:</span> <span class="nl">Remark</span><span class="p">:</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">aa5</span><span class="o">/</span><span class="n">wessel</span><span class="o">/</span><span class="n">dem</span><span class="o">/</span><span class="n">usgs_30c_dem</span><span class="p">.</span><span class="n">i2</span>
+<span class="n">us</span><span class="p">.</span><span class="nl">nc</span><span class="p">:</span> <span class="n">Pixel</span> <span class="n">node</span> <span class="n">registration</span> <span class="n">used</span> <span class="p">[</span><span class="n">Geographic</span> <span class="n">grid</span><span class="p">]</span>
+<span class="n">us</span><span class="p">.</span><span class="nl">nc</span><span class="p">:</span> <span class="n">Grid</span> <span class="n">file</span> <span class="nl">format</span><span class="p">:</span> <span class="n">ns</span> <span class="o">=</span> <span class="n">GMT</span> <span class="n">netCDF</span> <span class="n">format</span> <span class="p">(</span><span class="mi">16</span><span class="o">-</span><span class="n">bit</span> <span class="n">integer</span><span class="p">),</span> <span class="n">COARDS</span><span class="p">,</span> <span class="n">CF</span><span class="o">-</span><span class="mf">1.5</span>
+<span class="n">us</span><span class="p">.</span><span class="nl">nc</span><span class="p">:</span> <span class="nl">x_min</span><span class="p">:</span> <span class="o">-</span><span class="mi">108</span> <span class="nl">x_max</span><span class="p">:</span> <span class="o">-</span><span class="mi">103</span> <span class="nl">x_inc</span><span class="p">:</span> <span class="mf">0.00833333333333</span> <span class="nl">name</span><span class="p">:</span> <span class="n">longitude</span> <span class="p">[</span><span class="n">degrees_east</span><span class="p">]</span> <span class="nl">n_columns</span><span class="p">:</span> <span class="mi">600</span>
+<span class="n">us</span><span class="p">.</span><span class="nl">nc</span><span class="p">:</span> <span class="nl">y_min</span><span class="p">:</span> <span class="mi">35</span> <span class="nl">y_max</span><span class="p">:</span> <span class="mi">40</span> <span class="nl">y_inc</span><span class="p">:</span> <span class="mf">0.00833333333333</span> <span class="nl">name</span><span class="p">:</span> <span class="n">latitude</span> <span class="p">[</span><span class="n">degrees_north</span><span class="p">]</span> <span class="nl">n_rows</span><span class="p">:</span> <span class="mi">600</span>
+<span class="n">us</span><span class="p">.</span><span class="nl">nc</span><span class="p">:</span> <span class="nl">z_min</span><span class="p">:</span> <span class="mi">1052</span> <span class="nl">z_max</span><span class="p">:</span> <span class="mi">4328</span> <span class="nl">name</span><span class="p">:</span> <span class="n">Topography</span> <span class="p">[</span><span class="n">m</span><span class="p">]</span>
+<span class="n">us</span><span class="p">.</span><span class="nl">nc</span><span class="p">:</span> <span class="nl">scale_factor</span><span class="p">:</span> <span class="mi">1</span> <span class="nl">add_offset</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">us</span><span class="p">.</span><span class="nl">nc</span><span class="p">:</span> <span class="nl">format</span><span class="p">:</span> <span class="n">netCDF</span><span class="o">-</span><span class="mi">4</span> <span class="nl">chunk_size</span><span class="p">:</span> <span class="mi">150</span><span class="p">,</span><span class="mi">150</span> <span class="nl">shuffle</span><span class="p">:</span> <span class="n">on</span> <span class="nl">deflation_level</span><span class="p">:</span> <span class="mi">9</span>
 </pre></div>
 
 
-<p>$ gmt makecpt -Crainbow -T1000/5000/500 -Z &gt; topo.cpt</p>
-<div class="highlight"><pre><span></span>This command mapped GMT&#39;s rainbow color palette to the elevations 1000 to 5000 (`-T` command) and made the color scale have continuous shading (`-Z`) rather than the default which is discrete shaded colors. The output was saved to file `topo.cpt`.
-
-Now let&#39;s make a shaded figure of this data.
+<p>Here you can see that the file goes from -108 to -103º longitude and 35 to 40º latitude, with z spanning from 1052 to 4328 m.</p>
+<p>GMT has many <a href="http://gmt.soest.hawaii.edu/doc/5.4.2/GMT_Docs.html#built-in-color-palette-tables-cpt">built in color palettes (CPT's)</a> that you can use for your colormap on shaded plots. You can also download some really nice freely available ones (see http://soliton.vm.bytemark.co.uk/pub/cpt-city/). Here we will use GMT's rainbow color palette to create a colormap that spans the z range of the data in <code>us.nc</code> using the <code>makecpt</code> command:</p>
+<div class="highlight"><pre><span></span>$ gmt makecpt -Crainbow -T1000/5000/500 -Z &gt; topo.cpt
 </pre></div>
 
 
-<p>$ gmt grdimage us.nc -JM6i -P -Ba -Ctopo.cpt -V &gt; GMT_tut_15.ps</p>
-<div class="highlight"><pre><span></span>Take a look at that figure. It looks okay, but there is no illumination to create shadows that help define the topography, so it looks quite flat.
-
-You can add illumination to your GMT map plots by first computing the gradient of the topography using the  `grdgradient` command. The gradients are then used to shade the topography:
+<p>This command mapped GMT's rainbow color palette to the elevations 1000 to 5000 (<code>-T</code> command) and made the color scale have continuous shading (<code>-Z</code>) rather than the default which is discrete shaded colors. The output was saved to file <code>topo.cpt</code>.</p>
+<p>Now let's make a shaded figure of this data.</p>
+<div class="highlight"><pre><span></span>$ gmt grdimage us.nc -JM6i -P -Ba -Ctopo.cpt -V &gt; GMT_tut_15.ps
 </pre></div>
 
 
-<p>$ gmt grdgradient us.nc -Ne0.8 -A100 -fg -Gus_i.nc
+<p>Take a look at that figure. It looks okay, but there is no illumination to create shadows that help define the topography, so it looks quite flat.</p>
+<p>You can add illumination to your GMT map plots by first computing the gradient of the topography using the  <code>grdgradient</code> command. The gradients are then used to shade the topography:</p>
+<div class="highlight"><pre><span></span>$ gmt grdgradient us.nc -Ne0.8 -A100 -fg -Gus_i.nc
 $ gmt grdimage us.nc -Ius_i.nc -JM6i -P -Ba -Ctopo.cpt -K &gt; GMT_tut_16.ps
 $ gmt psscale -DjTC+w5i/0.25i+h+o0/-1i -Rus.nc -J -Ctopo.cpt -I0.4 -By+lm -O &gt;&gt; GMT_tut_16.ps
-~~~
-Here we used grdgradient to output the gradients to file <code>us_i.nc</code> using the <code>-G</code> argument. We then included the gradient data in the <code>grdimage</code> command using thhe <code>-I</code> flag.  Also note the new use of the <code>-K</code> flag in the <code>grdimage</code> line. That flag tells GMT to keep the file open for further additions. We then used the <code>psscale</code> command to add a colorscale to the top of the figure. Note that  <code>psscale</code> was called with the <code>-O</code> option, which means overlay it on top of the previously plotted stuff. We also used <code>&gt;&gt;</code> for the redirection, which tells GMT to append the color scale to the previously plotted file. Getting the syntax write for these types of multilayered plots can be tricky, so study the examples on the GMT help carefully. See also  the help for <code>psscale</code> for more info.</p>
+</pre></div>
+
+
+<p>Here we used grdgradient to output the gradients to file <code>us_i.nc</code> using the <code>-G</code> argument. We then included the gradient data in the <code>grdimage</code> command using thhe <code>-I</code> flag.  Also note the new use of the <code>-K</code> flag in the <code>grdimage</code> line. That flag tells GMT to keep the file open for further additions. We then used the <code>psscale</code> command to add a colorscale to the top of the figure. Note that  <code>psscale</code> was called with the <code>-O</code> option, which means overlay it on top of the previously plotted stuff. We also used <code>&gt;&gt;</code> for the redirection, which tells GMT to append the color scale to the previously plotted file. Getting the syntax write for these types of multilayered plots can be tricky, so study the examples on the GMT help carefully. See also  the help for <code>psscale</code> for more info.</p>
 <p>We don't have time to cover this, but you could create contours for topography using the <code>grdcontour</code> command. There are lots more useful GMT commands but we are out of time, so go checkout the GMT cookbook examples for further knowledge.</p>
 <p><strong>Closing Comments</strong></p>
 <p>GMT is really powerful but the calling sequences can be highly cryptic. Check out the online examples and cookbook as useful starting places.</p>
@@ -408,22 +398,22 @@ Here we used grdgradient to output the gradients to file <code>us_i.nc</code> us
   <a href="./"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
   <ul class="list-group " id="tags">
     <li class="list-group-item tag-1">
-      <a href="./tag/bash.html">bash</a>
-    </li>
-    <li class="list-group-item tag-1">
       <a href="./tag/shell.html">shell</a>
     </li>
     <li class="list-group-item tag-1">
-      <a href="./tag/assignment.html">assignment</a>
+      <a href="./tag/bash.html">bash</a>
     </li>
     <li class="list-group-item tag-1">
       <a href="./tag/file-system.html">file system</a>
     </li>
     <li class="list-group-item tag-1">
-      <a href="./tag/python.html">python</a>
+      <a href="./tag/assignment.html">assignment</a>
     </li>
     <li class="list-group-item tag-1">
       <a href="./tag/unix.html">unix</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/python.html">python</a>
     </li>
     <li class="list-group-item tag-2">
       <a href="./tag/programming.html">programming</a>
@@ -432,16 +422,16 @@ Here we used grdgradient to output the gradients to file <code>us_i.nc</code> us
       <a href="./tag/pandas.html">pandas</a>
     </li>
     <li class="list-group-item tag-3">
-      <a href="./tag/fortran.html">fortran</a>
+      <a href="./tag/matlab.html">MATLAB</a>
     </li>
     <li class="list-group-item tag-3">
-      <a href="./tag/matlab.html">MATLAB</a>
+      <a href="./tag/gmt.html">GMT</a>
     </li>
     <li class="list-group-item tag-3">
       <a href="./tag/visualization.html">visualization</a>
     </li>
     <li class="list-group-item tag-3">
-      <a href="./tag/gmt.html">GMT</a>
+      <a href="./tag/fortran.html">fortran</a>
     </li>
     <li class="list-group-item tag-3">
       <a href="./tag/git.html">git</a>
@@ -450,16 +440,22 @@ Here we used grdgradient to output the gradients to file <code>us_i.nc</code> us
       <a href="./tag/vpn.html">vpn</a>
     </li>
     <li class="list-group-item tag-4">
+      <a href="./tag/github.html">github</a>
+    </li>
+    <li class="list-group-item tag-4">
       <a href="./tag/geomapapp.html">GeoMapApp</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/arrays.html">arrays</a>
+      <a href="./tag/matplotlib.html">matplotlib</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/xarray.html">xarray</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/version-control.html">version control</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/xarray.html">xarray</a>
+      <a href="./tag/ndarray.html">ndarray</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/source-code-editor.html">source code editor</a>
@@ -468,13 +464,7 @@ Here we used grdgradient to output the gradients to file <code>us_i.nc</code> us
       <a href="./tag/numpy.html">numpy</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/matplotlib.html">matplotlib</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/ndarray.html">ndarray</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/github.html">github</a>
+      <a href="./tag/arrays.html">arrays</a>
     </li>
   </ul>
 </li>
