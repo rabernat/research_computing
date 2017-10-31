@@ -20,9 +20,9 @@ Summary: Overview of course schedule and topics
 | Tuesday  | 3-Oct  | KK         | Intro to Fortran in class-activity  |                     |
 | Thursday | 5-Oct  | KK         | [Intermediate Python I: NumPy arrays and matplotlib]({filename}/lectures/python/numpy_and_matplotlib.ipynb) | Martinez, Miller, Huang    |
 | Tuesday  | 10-Oct | RPA        | Intermediate Python I in-class activity         |         |
-| Thursday | 12-Oct | RPA        | [Intermediate Python II: Pandas for Tabular Data]({filename}/lectures/python/pandas.ipynb)  |   Wang and Huang     |
+| Thursday | 12-Oct | RPA        | [Intermediate Python II: Pandas for Tabular Data]({filename}/lectures/python/pandas.ipynb)  |   Siyan Wang and Yu Huang     |
 | Tuesday  | 17-Oct | RPA        | Intermediate Python II in-class activity         |        |
-| Thursday | 19-Oct | RPA        | Intermediate Python III: Xarray for Multidimensional data | |
+| Thursday | 19-Oct | RPA        | Intermediate Python III: Xarray for Multidimensional data | Anne Bozak and Daniel Babin |
 | Tuesday  | 24-Oct | RPA        | Intermediate Python III in-class activity         |       |
 | Thursday | 26-Oct | KK         | Map making with GeoMappApp                        |       |
 | Tuesday  | 31-Oct | KK         | Map making with GMT and Python                    |       |
