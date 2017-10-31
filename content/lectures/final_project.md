@@ -26,11 +26,11 @@ The final project will be worth 40% of your class grade so you should expect to 
 
 4. Since this is your final project, it should be a complicated code that is **at least as long as two or three homework assignments.** Have fun, pay attention to detail, and make it look nice. In addition to the above criteria your project will be graded based on:
 
-  * [ ] Clear documentation / explanation of the project and coding approach.
-  * [ ] Ability for instructors to reproduce your results.
-  * [ ] Demonstration of mastery of two or more major themes from the course
-  * [ ] Originality and creativity of the chosen data analysis
-  * [ ] Aesthetic quality of the graphics
+  * [x ] Clear documentation / explanation of the project and coding approach.
+  * [x] Ability for instructors to reproduce your results.
+  * [x] Demonstration of mastery of two or more major themes from the course
+  * [x] Originality and creativity of the chosen data analysis
+  * [x] Aesthetic quality of the graphics
 
 5. **Present** your project to the class on Tuesday, December 5, or Thursday December 7. You will need to be clear about what you did and show an understanding of your project. You should not prepare a formal presentation (i.e., do NOT make a powerpoint). Just orally describe what you did for your project and give a quick overview of your code(s) or iPhython notebook and the results obtained. Plan for your presentation to take only 3 - 4 minutes. If your code is not yet complete when you present, that’s okay. Just show us what you have so far.
 
