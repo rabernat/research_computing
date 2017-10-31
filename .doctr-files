@@ -16,6 +16,7 @@
 ./assignment-8-xarray.html
 ./assignment-submission-instructions.html
 ./assignment_4.m
+./author/kerry-key-and-ryan-abernathey.html
 ./author/kerry-key.html
 ./author/ryan-abernathey-and-kerry-key.html
 ./author/ryan-abernathey-kerry-key.html
@@ -26,6 +27,7 @@
 ./category/lectures.html
 ./category/software.html
 ./filesystem.svg
+./final-project-instructions.html
 ./fortran.html
 ./geomapapp.html
 ./git.html
@@ -61,6 +63,7 @@
 ./tag/assignment.html
 ./tag/bash.html
 ./tag/file-system.html
+./tag/final.html
 ./tag/fortran.html
 ./tag/geomapapp.html
 ./tag/git.html
@@ -72,6 +75,7 @@
 ./tag/numpy.html
 ./tag/pandas.html
 ./tag/programming.html
+./tag/project.html
 ./tag/python.html
 ./tag/shell.html
 ./tag/source-code-editor.html
