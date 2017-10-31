@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Introduction to Generic Mapping Tools (GMT) - Research Computing in Earth Sciences</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="./introduction-to-generic-mapping-tools-gmt.html">
+
+        <meta name="author" content="Kerry Key" />
+        <meta name="keywords" content="GMT" />
+        <meta name="description" content="Intro to GMT" />
+
+        <meta property="og:site_name" content="Research Computing in Earth Sciences" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Introduction to Generic Mapping Tools (GMT)"/>
+        <meta property="og:url" content="./introduction-to-generic-mapping-tools-gmt.html"/>
+        <meta property="og:description" content="Intro to GMT"/>
+        <meta property="article:published_time" content="2017-10-31" />
+            <meta property="article:section" content="lectures" />
+            <meta property="article:tag" content="GMT" />
+            <meta property="article:author" content="Kerry Key" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="./theme/css/bootstrap.lumen.min.css" type="text/css"/>
+    <link href="./theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="./theme/css/pygments/default.css" rel="stylesheet">
+    <link rel="stylesheet" href="./theme/css/style.css" type="text/css"/>
+        <link href="./static/custom.css" rel="stylesheet">
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="./" class="navbar-brand">
+Research Computing in Earth Sciences            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                         <li><a href="./pages/schedule.html">
+                             Schedule
+                          </a></li>
+                         <li><a href="./pages/syllabus.html">
+                             Syllabus
+                          </a></li>
+                        <li >
+                            <a href="./category/assignments.html">Assignments</a>
+                        </li>
+                        <li class="active">
+                            <a href="./category/lectures.html">Lectures</a>
+                        </li>
+                        <li >
+                            <a href="./category/software.html">Software</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="./introduction-to-generic-mapping-tools-gmt.html"
+                       rel="bookmark"
+                       title="Permalink to Introduction to Generic Mapping Tools (GMT)">
+                        Introduction to Generic Mapping Tools (GMT)
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2017-10-31T00:00:00-05:00"> Tue 31 October 2017</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="./tag/gmt.html">GMT</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>This lecture is modified from a small subset of the material on the official GMT tutorial, which can be found here: <a href="http://gmt.soest.hawaii.edu/doc/5.4.2/GMT_Tutorial.html">GMT Tutorial</a>.</p>
+<p><strong>Intro</strong></p>
+<p>Today's lecture focuses on GMT, also known as the Generic Mapping Tools software.  GMT was invented by two LDEO graduate students in 1988, Paul Wessel and Walter H.F. Smith. GMT can do a wide range of functions, including reading and plotting data, but its most unique and powerful use today lies in its ability to create sophisticated map projections and visualizations.  Since plotting data is now quite simple to do with MATLAB and Python, we will instead  concentrate here on the versatile mapping functions available in GMT.</p>
+<p>GMT is a Unix based suite of software tools and we will interact with it through a command shell, just like how we interacted with the Unix commands earlier in this course.  </p>
+<p><strong>Setup</strong></p>
+<p>You should have obtained the Documentation folder when you downloaded GMT. It has the following contents</p>
+<ul>
+<li>copying</li>
+<li>examples</li>
+<li>html</li>
+<li>pdf</li>
+<li>supplements</li>
+<li>tutorial</li>
+</ul>
+<p>The <code>html</code> and <code>pdf</code> folders contain the GMT documentation. A PDF file with the complete GMT_Tutorial can be found in the <code>pdf</code> folder.   We will be working with items in the <code>tutorial</code> directory. I recommend you make a copy of that directory and work in the copy rather than the original.</p>
+<p>Open the GMT 5.4.2 app and it will launch a new terminal shell. Then cd to the Documentation folder and make the copy:</p>
+<div class="highlight"><pre><span></span>$ cp -R tutorial tutorial_copy
+$ <span class="nb">cd</span> tutorial_copy
+</pre></div>
+
+
+<p>Note that the -R tells <code>cp</code> to recursively copy the folder.</p>
+<p><strong>Workflow</strong></p>
+<p>The typical GMT workflow consists of inputing optional files to GMT, such as an ascii or binary table of data or a gridded data set (e.g., topography or other surfaces). GMT will then process the file, depending on your sequence of GMT commands, and then it will output one or more files. Typically you will have it output a postscript (.ps) or .pdf plot file, but you can also use GMT to re-grid or reformat data files, so sometimes it will just output the re-gridded or processed data files, depending on how you use it.</p>
+<p>We will use a few Unix common commands like file redirection, piping and wildcards when constructing our GMT scripts.</p>
+<p><strong>Help</strong></p>
+<p>The GMT online web documentation is a great resource for learning GMT commands. There you can find help pages for particular GMT commands. However, the help pages can be overwhelming since they tell you every possible option for each command. It is often helpful enough to just see a command in use in a script.  I highly recommend that you check out the <em>Gallery</em> and <em>Cookbook</em> sections in the online documentation since they contain tons of examples. Look through the images to find one that is similar to what you'd like to do, and then click in the link to see the associated GMT commands used to create the plot.</p>
+<p>You can also learn more about GMT commands from within the GMT shell. For example</p>
+<div class="highlight"><pre><span></span>$ gmt --help
+</pre></div>
+
+
+<p>lists all available GMT commands. Help for a given GMT module is listed with the commands</p>
+<div class="highlight"><pre><span></span>$ gmt &lt;module_name&gt; --help
+</pre></div>
+
+
+<p>where <code>&lt;module_name&gt;</code> should be replaced with the specific module's name.</p>
+<p><strong>Simple Plotting</strong></p>
+<p>The most essential part of making a map plot is the projection used to convert the positions, which are locations on the surface of a sphere, into a flat representation.  GMT supports a huge number of <a href="http://gmt.soest.hawaii.edu/doc/5.4.2/proj_codes_GMT.html">map projections</a>. We will look at a small number of them here.</p>
+<p>Typically, a GMT command has a calling sequence that looks like this:</p>
+<div class="highlight"><pre><span></span>$ gmt &lt;module_name&gt;  &lt;options&gt;  &gt;  outputFileName.ps
+</pre></div>
+
+
+<p>where <code>&lt;module_name&gt;</code> lists the specific GMT command to invoke, and <code>&lt;options&gt;</code> lists any required and optional arguments. While GMT is very powerful, it has an overwhelming plethora of options that can be quite daunting to new users. Again, learning by example is often easier than consulting the documentation, at least when you're just beginning.  For reference, here's a link to a nice place to look up some of the <a href="http://gmt.soest.hawaii.edu/doc/5.4.2/std_opts.html">standard options</a>.  </p>
+<p>The <code>&gt;  outputFileName.ps</code> part uses the Unix redirection symbol <code>&gt;</code> to tell GMT to output the results to the file named outputFileName.ps. Which is a poscript format file (an early vector graphics file that was a precursor to the PDF format).  </p>
+<p>To create a basic map plot, you use the <code>psbasemap</code> command, which is shorthand for "postscript base map". For example, run the command:</p>
+<div class="highlight"><pre><span></span>$ gmt psbasemap -R10/70/-30/30 -JX4i/3i -Ba -P &gt; GMT_tut_1.ps
+</pre></div>
+
+
+<p>You can view the results by opening the file by clicking on it, or by typing <code>open GMT_tut_1.ps</code> in the shell.</p>
+<p>Here we've used four common standard options: <code>-R,-J,-B,-P</code>.  </p>
+<p><strong><em>-R</em></strong>  specifies the region of interest to plot, with the syntax <code>-Rxmin/xmax/ymin/ymax</code>.  Typically <code>xmin</code> and <code>xmax</code> would specify the minimum and maximum longitudes and <code>ymin</code> and <code>ymax</code> would specify the minimum and maximum latitudes.</p>
+<p><strong><em>-J</em></strong> specifies the map projection to use and has syntax <code>-JXwidth[/height]</code>. Here <code>-JX</code> means to use a generic cartesian plot (i.e., a non-geographic projection). We've specified to make the plot 4 inches wide and 3 inches tall by stating <code>-JX4i/3i</code>.</p>
+<p><strong><em>-B</em></strong> specifies the annotations to use on the plot axes. Here we used <code>-Ba</code> where the <code>a</code> tells GMT to automatically determing the best annotations.
+Now try a more advanced version of the command, using</p>
+<div class="highlight"><pre><span></span>$ gmt psbasemap -R10/70/-30/30 -JX4i/3i -Ba -B+glightred+t<span class="s2">&quot;My first plot&quot;</span> -P &gt; GMT_tut_1.ps
+</pre></div>
+
+
+<p>Here the additional <code>-B</code> arguments tell GMT to fill the axes (<code>+g</code>) with a <code>lightred</code> color and to make the title (<code>+t</code>) be <code>"My first plot"</code>.  See the help for a detailed explanation and the onslaught of other possible options for <code>-B</code>.</p>
+<p><strong><em>-P</em></strong> specifies to make the plot with the page set to portrait mode, whereas by default it plots in landscape mode. We don't have time to cover this, but you can change any of the default behaviors of GMT using the <code>gmt.conf</code> file in your home directory. See the GMT help for the details.</p>
+<p><strong>Plotting Coastlines</strong></p>
+<p>Here we will use the <code>pscoast</code> command to make map plots that have coastlines, rivers, lakes and national boundaries.  This geographic information is included in GMT with the GSHHG database (Global Self-consistent, Hierarchical, High-resolution Geography Database).  </p>
+<p>Try running this command and viewing the output:</p>
+<div class="highlight"><pre><span></span>$ gmt pscoast -R-90/-70/0/20 -JM6i -P -Ba -Gchocolate &gt; GMT_tut_3.ps
+</pre></div>
+
+
+<p>Here <code>-JM6i</code> tells GMT to use a Mercator conformal projection to make a 6 inches wide plot.</p>
+<p><code>pscoast</code> has many options:</p>
+<table class="table table-striped table-hover">
+<thead>
+<tr>
+<th>Option</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-A</td>
+<td>Exclude small features or those of high hierarchical levels</td>
+</tr>
+<tr>
+<td>-D</td>
+<td>Select data resolution (full, high, intermediate, low, or crude)</td>
+</tr>
+<tr>
+<td>-G</td>
+<td>Set color of dry areas (default does not paint)</td>
+</tr>
+<tr>
+<td>-I</td>
+<td>Draw rivers (chose features from one or more hierarchical categories)</td>
+</tr>
+<tr>
+<td>-L</td>
+<td>Plot map scale (length scale can be km, miles, or nautical miles)</td>
+</tr>
+<tr>
+<td>-N</td>
+<td>Draw political borders (including US state borders)</td>
+</tr>
+<tr>
+<td>-S</td>
+<td>Set color for wet areas (default does not paint)</td>
+</tr>
+<tr>
+<td>-W</td>
+<td>Draw coastlines and set pen thickness</td>
+</tr>
+</tbody>
+</table>
+<p>One of -W, -G, -S must be selected.  For example, use <code>-Df</code> to get the full resolution shoreline boundary data (and note how much larger the output file size is).   Let's try turning on a bunch of the options:</p>
+<div class="highlight"><pre><span></span>$ gmt pscoast -R-90/-70/0/20 -JM6i -P -Ba -Wblack -Df -Ia/thin,blue -N1/2p,red -Slightblue -Gtan &gt; GMT_tut_3.ps
+</pre></div>
+
+
+<p><strong>Changing the GMT defaults</strong></p>
+<p>You can temporarily change the GMT defaults for you r current shell session by using the <code>gmtset</code> command.  Type <code>gmtdefaults</code> to see all the default settings for GMT. Suppose you want to plot the maps with a plain line for the frame rather than the white and black checkerboard that GMT uses by default. You can change that default by entering the command:</p>
+<div class="highlight"><pre><span></span>$ gmtset MAP_FRAME_TYPE plain
+</pre></div>
+
+
+<p><strong>Some Other Projections</strong></p>
+<p>Here are a few more projection examples. There are many more projection options than what we have space to show here, so consult the documentation for more info.</p>
+<p>Albers projection:</p>
+<div class="highlight"><pre><span></span>$ gmt pscoast -R-130/-70/24/52 -JB-100/35/33/45/6i -Ba -B+t<span class="s2">&quot;Conic Projection&quot;</span> -N1/thickest -N2/thinnest -A500 -Ggray -Wthinnest -P &gt; GMT_tut_4.ps
+</pre></div>
+
+
+<p>Polar stereographic projection:</p>
+<div class="highlight"><pre><span></span>$ gmt pscoast -R-180/180/-90/-60 -Js0/-90/3i/-60 -B30g10  -Wthinnest -Glightbrown -Slightblue -Di -P &gt; stereo.ps
+</pre></div>
+
+
+<p>Here are a few of the global projection options:</p>
+<p>Orthographic projection:</p>
+<div class="highlight"><pre><span></span>$ gmt pscoast -Rg -JG280/30/6i -Bag -Dc -A5000 -Gwhite -SDarkTurquoise -P &gt; GMT_tut_5.ps
+</pre></div>
+
+
+<p>Hammer projection:</p>
+<div class="highlight"><pre><span></span>$ gmt pscoast -Rg -JH0/6i -X0.25i -Y0.2i -K -Bg30 -Dc -Glightbrown -Slightblue -P &gt; test.ps
+</pre></div>
+
+
+<p>Eckert VI project:</p>
+<div class="highlight"><pre><span></span>$ gmt pscoast -Rg -JKs180/9i -Bag -Dc -A5000 -Glightbrown -Slightblue -Wthinnest &gt; GMT_tut_6.ps
+</pre></div>
+
+
+<p><strong>Lines and Symbols</strong></p>
+<p>Here we will learn how to use GMT to plot lines, symbols and text. The two main relevant commands are <code>psxy</code> for plotting lines and symbols and <code>pstext</code> for adding text labels to plots. These commands have tons and tons of options but we will only be covering their simple usage here.</p>
+<p>For the tutorial, we will first plot the data in file <code>data</code> in the tutorial folder. Take a peek at the data in here:</p>
+<div class="highlight"><pre><span></span>$ more data
+<span class="m">1</span>       <span class="m">1</span>
+<span class="m">2</span>       <span class="m">2</span>
+<span class="m">3</span>       <span class="m">2</span>
+<span class="m">2</span>       <span class="m">5</span>
+<span class="m">5</span>       <span class="m">2</span>
+<span class="m">4</span>       <span class="m">4</span>
+<span class="m">3</span>       <span class="m">2</span>.1
+</pre></div>
+
+
+<p>So this file has two columns of numbers that range from 1 to 5. We can also use the <code>info</code> command to see what GMT thinks of this file:</p>
+<div class="highlight"><pre><span></span>$ gmt info data
+data: <span class="nv">N</span> <span class="o">=</span> <span class="m">7</span> &lt;<span class="m">1</span>/5&gt;   &lt;<span class="m">1</span>/5&gt;
+</pre></div>
+
+
+<p>GMT sees that there are N=7 rows with values spanning from 1 to 5 in each column. Plot the data using <code>psxy</code>:</p>
+<div class="highlight"><pre><span></span>$ gmt psxy data -R0/6/0/6 -Jx1i -P -Baf  &gt; GMT_tut_7.ps
+</pre></div>
+
+
+<p>By default GMT plotted this as a line. We can change the appearance of the line using the <code>-W</code> arguments:</p>
+<div class="highlight"><pre><span></span>$ gmt psxy data -R0/6/0/6 -Jx1i -W2p,green -P -Baf  &gt; GMT_tut_7.ps
+</pre></div>
+
+
+<p>Here I've told it to use a 2-point thickness and to color the line green. We could also plot the line instead as a filled polygon using the <code>-G</code> argument with a fill color:</p>
+<div class="highlight"><pre><span></span>$ gmt psxy data -R0/6/0/6 -Jx1i -W2p,green -L -Glightblue  -P -Baf  &gt; GMT_tut_7.ps
+</pre></div>
+
+
+<p>Now let's plot symbols for each (x,y) position in data:
+ ~~~
+$ gmt psxy data -R0/6/0/6 -Jx1i  -Si0.2i  -Baf &gt; GMT_tut_7b.ps</p>
+<div class="highlight"><pre><span></span>Here the `-S` argument tells `psxy` to plot the data as symbols and the `i` in `-Si` tells it to use inverted triangles. See the help for `psxy` to learn about all the other symbol types that are possible. The `0.2i` part tells it to make the symbols 0.2 inches in size.
+
+Now let&#39;s plot both the line and the symbols. To do this, you first plot the line, then add the symbols as an overlay:
+</pre></div>
+
+
+<p>$ gmt psxy data -R0/6/0/6 -Jx1i -Baf -P -K -W2p,green &gt; GMT_tut_8.ps
+$ gmt psxy data -R -J -O -W -Si0.2i &gt;&gt; GMT_tut_8.ps</p>
+<div class="highlight"><pre><span></span>Note the `-K` argument in the first line, which tells GMT to keep the file open for further additions. Then in the second line we used the `-O` argument to tell GMT to add the triangles in overlay mode. We also used the Unix `&gt;&gt;` append operator, which appends the overlay to the plot file rather than overwriting the file.
+
+Now we will make a plot of earthquakes around Japan where the color of the symbol indicates depth and the size of the symbol indicates magnitude. See file `quakes.ngdc`:
+</pre></div>
+
+
+<p>$ gmt makecpt -Cred,green,blue -T0,70,300,10000 &gt; quakes.cpt
+$ gmt pscoast -R130/150/35/50 -JM6i -B5 -P -Ggray -K &gt; GMT_tut_9.ps
+$ gmt psxy -R -J -O quakes.ngdc -Wfaint -i4,3,5,6s0.1 -h3 -Scc -Cquakes.cpt &gt;&gt; GMT_tut_9.ps</p>
+<div class="highlight"><pre><span></span>The first line above makes are color palette of red, green and blue for earthquakes with depths from 0 to 70, 70 to 300 and greater than 300 km depth. The second line creates a plot of northern Japan&#39;s outline.  The third line plots the earthquakes. `-h3` tells GMT to skip the first three header lines. `-i4,3,5,6s0.1` tells it to read columns 5,4,6,7 (note it uses 0 based indexing!) and to scale the values in the 7th column by 0.1. Since the 7th column is the earthquake magnitude, this converts it to a number that will be useful to use as the centimeter size of the symbols. `-Scc` tells it to plot the symbols as circles using centimeters as the size units.
+
+We don&#39;t have time to cover `pstext`, but it uses similar syntax. See the examples in the GMT tutorial and online cookbook for further info.
+
+
+
+**Gridded Surfaces**
+
+Here we will use GMT to create a shaded map plot of  gridded topography data.  We will use the file tutorial file `us.nc`, which contains a subset of high-resolution topography data from the global 30” DEM called SRTM30+ (SRTM stands for the  shuttle radar topography mission).
+
+Let&#39;s peek inside this file to see what it contains. Since this is a binary format, we can&#39;t open it in a text editor. Instead we use GMT&#39;s `grdinfo` command:
+</pre></div>
+
+
+<p>$ gmt grdinfo us.nc
+us.nc: Title: Produced by grdreformat
+us.nc: Command: grdreformat -fg usgs_30c_dem.i2 us.nc=ns
+us.nc: Remark: /home/aa5/wessel/dem/usgs_30c_dem.i2
+us.nc: Pixel node registration used [Geographic grid]
+us.nc: Grid file format: ns = GMT netCDF format (16-bit integer), COARDS, CF-1.5
+us.nc: x_min: -108 x_max: -103 x_inc: 0.00833333333333 name: longitude [degrees_east] n_columns: 600
+us.nc: y_min: 35 y_max: 40 y_inc: 0.00833333333333 name: latitude [degrees_north] n_rows: 600
+us.nc: z_min: 1052 z_max: 4328 name: Topography [m]
+us.nc: scale_factor: 1 add_offset: 0
+us.nc: format: netCDF-4 chunk_size: 150,150 shuffle: on deflation_level: 9</p>
+<div class="highlight"><pre><span></span>Here you can see that the file goes from -108 to -103º longitude and 35 to 40º latitude, with z spanning from 1052 to 4328 m.
+
+ GMT has many [built in color palettes (CPT&#39;s)](http://gmt.soest.hawaii.edu/doc/5.4.2/GMT_Docs.html#built-in-color-palette-tables-cpt) that you can use for your colormap on shaded plots. You can also download some really nice freely available ones (see http://soliton.vm.bytemark.co.uk/pub/cpt-city/). Here we will use GMT&#39;s rainbow color palette to create a colormap that spans the z range of the data in `us.nc` using the `makecpt` command:
+</pre></div>
+
+
+<p>$ gmt makecpt -Crainbow -T1000/5000/500 -Z &gt; topo.cpt</p>
+<div class="highlight"><pre><span></span>This command mapped GMT&#39;s rainbow color palette to the elevations 1000 to 5000 (`-T` command) and made the color scale have continuous shading (`-Z`) rather than the default which is discrete shaded colors. The output was saved to file `topo.cpt`.
+
+Now let&#39;s make a shaded figure of this data.
+</pre></div>
+
+
+<p>$ gmt grdimage us.nc -JM6i -P -Ba -Ctopo.cpt -V &gt; GMT_tut_15.ps</p>
+<div class="highlight"><pre><span></span>Take a look at that figure. It looks okay, but there is no illumination to create shadows that help define the topography, so it looks quite flat.
+
+You can add illumination to your GMT map plots by first computing the gradient of the topography using the  `grdgradient` command. The gradients are then used to shade the topography:
+</pre></div>
+
+
+<p>$ gmt grdgradient us.nc -Ne0.8 -A100 -fg -Gus_i.nc
+$ gmt grdimage us.nc -Ius_i.nc -JM6i -P -Ba -Ctopo.cpt -K &gt; GMT_tut_16.ps
+$ gmt psscale -DjTC+w5i/0.25i+h+o0/-1i -Rus.nc -J -Ctopo.cpt -I0.4 -By+lm -O &gt;&gt; GMT_tut_16.ps
+~~~
+Here we used grdgradient to output the gradients to file <code>us_i.nc</code> using the <code>-G</code> argument. We then included the gradient data in the <code>grdimage</code> command using thhe <code>-I</code> flag.  Also note the new use of the <code>-K</code> flag in the <code>grdimage</code> line. That flag tells GMT to keep the file open for further additions. We then used the <code>psscale</code> command to add a colorscale to the top of the figure. Note that  <code>psscale</code> was called with the <code>-O</code> option, which means overlay it on top of the previously plotted stuff. We also used <code>&gt;&gt;</code> for the redirection, which tells GMT to append the color scale to the previously plotted file. Getting the syntax write for these types of multilayered plots can be tricky, so study the examples on the GMT help carefully. See also  the help for <code>psscale</code> for more info.</p>
+<p>We don't have time to cover this, but you could create contours for topography using the <code>grdcontour</code> command. There are lots more useful GMT commands but we are out of time, so go checkout the GMT cookbook examples for further knowledge.</p>
+<p><strong>Closing Comments</strong></p>
+<p>GMT is really powerful but the calling sequences can be highly cryptic. Check out the online examples and cookbook as useful starting places.</p>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<!-- Sidebar -->
+<section class="well well-sm">
+  <ul class="list-group list-group-flush">
+
+<!-- Sidebar/Recent Posts -->
+<li class="list-group-item">
+  <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
+  <ul class="list-group" id="recentposts">
+    <li class="list-group-item"><a href="./introduction-to-generic-mapping-tools-gmt.html">Introduction to Generic Mapping Tools (GMT)</a></li>
+    <li class="list-group-item"><a href="./assignment-8-xarray.html">Assignment 8 - Xarray</a></li>
+    <li class="list-group-item"><a href="./xarray.html">Intermediate Python III: Xarray for Multidimensional Data</a></li>
+    <li class="list-group-item"><a href="./assignment-7-pandas.html">Assignment 7 - Pandas</a></li>
+    <li class="list-group-item"><a href="./pandas.html">Intermediate Python II: Pandas for Tabular Data</a></li>
+    <li class="list-group-item"><a href="./assignment-6-numpy-and-matplotlib.html">Assignment 6 - Numpy and Matplotlib</a></li>
+    <li class="list-group-item"><a href="./numpy-arrays-and-matplotlib.html">Intermediate Python I: NumPy arrays and matplotlib</a></li>
+    <li class="list-group-item"><a href="./assignment-5-fortran.html">Assignment #5 -  Fortran</a></li>
+    <li class="list-group-item"><a href="./intro-to-fortran.html">Intro to Fortran</a></li>
+    <li class="list-group-item"><a href="./assignment-4-matlab.html">Assignment #4 -  MATLAB</a></li>
+  </ul>
+</li>
+<!-- End Sidebar/Recent Posts -->
+
+<!-- Sidebar/Tag Cloud -->
+<li class="list-group-item">
+  <a href="./"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+  <ul class="list-group " id="tags">
+    <li class="list-group-item tag-1">
+      <a href="./tag/file-system.html">file system</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/unix.html">unix</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/shell.html">shell</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/python.html">python</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/assignment.html">assignment</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/bash.html">bash</a>
+    </li>
+    <li class="list-group-item tag-2">
+      <a href="./tag/pandas.html">pandas</a>
+    </li>
+    <li class="list-group-item tag-2">
+      <a href="./tag/programming.html">programming</a>
+    </li>
+    <li class="list-group-item tag-3">
+      <a href="./tag/matlab.html">MATLAB</a>
+    </li>
+    <li class="list-group-item tag-3">
+      <a href="./tag/fortran.html">fortran</a>
+    </li>
+    <li class="list-group-item tag-3">
+      <a href="./tag/git.html">git</a>
+    </li>
+    <li class="list-group-item tag-3">
+      <a href="./tag/visualization.html">visualization</a>
+    </li>
+    <li class="list-group-item tag-3">
+      <a href="./tag/gmt.html">GMT</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/geomapapp.html">GeoMapApp</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/vpn.html">vpn</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/matplotlib.html">matplotlib</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/ndarray.html">ndarray</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/arrays.html">arrays</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/numpy.html">numpy</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/source-code-editor.html">source code editor</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/version-control.html">version control</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/xarray.html">xarray</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/github.html">github</a>
+    </li>
+  </ul>
+</li>
+<!-- End Sidebar/Tag Cloud -->
+  </ul>
+</section>
+<!-- End Sidebar -->            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2017 Ryan Abernathey and Kerry Key
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>                <p><small>  <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/deed.en"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a>
+    Content
+  licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/deed.en">Creative Commons Attribution-NonCommercial 4.0 International License</a>, except where indicated otherwise.
+</small></p>
+         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="./theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="./theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="./theme/js/respond.min.js"></script>
+
+    <script src="./theme/js/bodypadding.js"></script>
+
+
+</body>
+</html>
