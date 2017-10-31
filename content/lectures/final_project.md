@@ -12,7 +12,7 @@ Author: Kerry Key and Ryan Abernathey
 
 The final project is intended to be an independent project that uses the skills you have learned (and hopefully mastered) in this class, as well as things you have learned on your own, to create a complicated and interesting data analysis program that accomplishes one or more research-relevant tasks. Unlike the homework assignments where we supplied the data files and told you what to do, now it is your turn to identify a  data set relevant to your own research interests and to create a code that will analyze that data and present  results in graphical form.
 
-***Grading***
+**Grading**
 
 The final project will be worth 40% of your class grade so you should expect to put a good amount of time and effort into it.  
 
