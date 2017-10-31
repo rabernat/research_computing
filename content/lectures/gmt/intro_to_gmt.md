@@ -197,8 +197,8 @@ Here I've told it to use a 2-point thickness and to color the line green. We cou
 ~~~
 $ gmt psxy data -R0/6/0/6 -Jx1i -W2p,green -L -Glightblue  -P -Baf  > GMT_tut_7.ps
 ~~~
- Now let's plot symbols for each (x,y) position in data:
- ~~~
+Now let's plot symbols for each (x,y) position in data:
+~~~
 $ gmt psxy data -R0/6/0/6 -Jx1i  -Si0.2i  -Baf > GMT_tut_7b.ps
 ~~~
 Here the `-S` argument tells `psxy` to plot the data as symbols and the `i` in `-Si` tells it to use inverted triangles. See the help for `psxy` to learn about all the other symbol types that are possible. The `0.2i` part tells it to make the symbols 0.2 inches in size.
@@ -211,7 +211,6 @@ $ gmt psxy data -R -J -O -W -Si0.2i >> GMT_tut_8.ps
 Note the `-K` argument in the first line, which tells GMT to keep the file open for further additions. Then in the second line we used the `-O` argument to tell GMT to add the triangles in overlay mode. We also used the Unix `>>` append operator, which appends the overlay to the plot file rather than overwriting the file.
 
 Now we will make a plot of earthquakes around Japan where the color of the symbol indicates depth and the size of the symbol indicates magnitude. See file `quakes.ngdc`:
-
 ~~~
 $ gmt makecpt -Cred,green,blue -T0,70,300,10000 > quakes.cpt
 $ gmt pscoast -R130/150/35/50 -JM6i -B5 -P -Ggray -K > GMT_tut_9.ps
@@ -220,8 +219,6 @@ $ gmt psxy -R -J -O quakes.ngdc -Wfaint -i4,3,5,6s0.1 -h3 -Scc -Cquakes.cpt >> G
 The first line above makes are color palette of red, green and blue for earthquakes with depths from 0 to 70, 70 to 300 and greater than 300 km depth. The second line creates a plot of northern Japan's outline.  The third line plots the earthquakes. `-h3` tells GMT to skip the first three header lines. `-i4,3,5,6s0.1` tells it to read columns 5,4,6,7 (note it uses 0 based indexing!) and to scale the values in the 7th column by 0.1. Since the 7th column is the earthquake magnitude, this converts it to a number that will be useful to use as the centimeter size of the symbols. `-Scc` tells it to plot the symbols as circles using centimeters as the size units.
 
 We don't have time to cover `pstext`, but it uses similar syntax. See the examples in the GMT tutorial and online cookbook for further info.
-
-
 
 **Gridded Surfaces**
 
