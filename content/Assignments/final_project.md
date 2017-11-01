@@ -26,7 +26,7 @@ The final project will be worth 40% of your class grade so you should expect to 
 
 4. Since this is your final project, it should be a complicated code that is **at least as long as two or three homework assignments.** Have fun, pay attention to detail, and make it look nice. In addition to the above criteria your project will be graded based on:
 
-  * [x ] Clear documentation / explanation of the project and coding approach.
+  * [x] Clear documentation / explanation of the project and coding approach.
   * [x] Ability for instructors to reproduce your results.
   * [x] Demonstration of mastery of two or more major themes from the course
   * [x] Originality and creativity of the chosen data analysis
