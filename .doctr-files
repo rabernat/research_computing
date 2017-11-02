@@ -34,6 +34,7 @@
 ./github.html
 ./gmt.html
 ./index.html
+./intro-to-basemap.html
 ./intro-to-fortran.html
 ./intro-to-git.html
 ./intro-to-matlab.html
@@ -61,6 +62,7 @@
 ./static/delaunay.png
 ./tag/arrays.html
 ./tag/assignment.html
+./tag/basemap.html
 ./tag/bash.html
 ./tag/file-system.html
 ./tag/final.html
@@ -69,6 +71,7 @@
 ./tag/git.html
 ./tag/github.html
 ./tag/gmt.html
+./tag/mapping.html
 ./tag/matlab.html
 ./tag/matplotlib.html
 ./tag/ndarray.html
