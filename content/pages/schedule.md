@@ -22,11 +22,11 @@ Summary: Overview of course schedule and topics
 | Tuesday  | 10-Oct | RPA        | Intermediate Python I in-class activity         |         |
 | Thursday | 12-Oct | RPA        | [Intermediate Python II: Pandas for Tabular Data]({filename}/lectures/python/pandas.ipynb)  |   Siyan Wang and Yu Huang     |
 | Tuesday  | 17-Oct | RPA        | Intermediate Python II in-class activity         |        |
-| Thursday | 19-Oct | RPA        | Intermediate Python III: Xarray for Multidimensional data | Anne Bozak and Daniel Babin |
+| Thursday | 19-Oct | RPA        | [Intermediate Python III: Xarray for Multidimensional data]({filename}/lectures/python/xarray.ipynb) | Anne Bozak and Daniel Babin |
 | Tuesday  | 24-Oct | RPA        | Intermediate Python III in-class activity         |       |
 | Thursday | 26-Oct | KK         | Map making with GeoMappApp                        |       |
 | Tuesday  | 31-Oct | KK         | [Map making with GMT]({filename}/lectures/gmt/intro_to_gmt.md)                   |       |
-| Thursday | 2-Nov  | KK         | [Map making with Basemap in Python Data]({filename}/lectures/python/Basemap_Tutorial.ipynb)                      |       |
+| Thursday | 2-Nov  | KK         | [Map making with Basemap in Python]({filename}/lectures/python/Basemap_Tutorial.ipynb)                      |       |
 | Tuesday  | 7-Nov  |            | _No Class / Election Day_                       |  |
 | Thursday | 9-Nov  | RPA        | Interactive graphics and dashboards in Python    |        |
 | Tuesday  | 14-Nov | RPA        | Interactive graphics in-class activity           |        |
