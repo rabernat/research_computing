@@ -26,7 +26,7 @@ Summary: Overview of course schedule and topics
 | Tuesday  | 24-Oct | RPA        | Intermediate Python III in-class activity         |       |
 | Thursday | 26-Oct | KK         | Map making with GeoMappApp                        |       |
 | Tuesday  | 31-Oct | KK         | [Map making with GMT]({filename}/lectures/gmt/intro_to_gmt.md)                   |       |
-| Thursday | 2-Nov  | KK         | Map making in-class activity                      |       |
+| Thursday | 2-Nov  | KK         | [Map making with Basemap in Python Data]({filename}/lectures/python/Basemap_Tutorial.ipynb)                      |       |
 | Tuesday  | 7-Nov  |            | _No Class / Election Day_                       |  |
 | Thursday | 9-Nov  | RPA        | Interactive graphics and dashboards in Python    |        |
 | Tuesday  | 14-Nov | RPA        | Interactive graphics in-class activity           |        |
