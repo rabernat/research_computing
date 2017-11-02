@@ -29,6 +29,7 @@ Category: assignments
 2d. Create a GMT bash script that plots the shaded topography data and  shows the USArray station locations as small circles that are color coded by their start year.
 
 Here are some tips:
+
   - use `grdgradient` on the file `us.nc` to create a gradient file that will be used to shade the topography
   - use `grdimage` to plot the shaded topography
   - use `psscale` to add a color scale to the plot
