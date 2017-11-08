@@ -28,8 +28,8 @@ Summary: Overview of course schedule and topics
 | Tuesday  | 31-Oct | KK         | [Map making with GMT]({filename}/lectures/gmt/intro_to_gmt.md)                   |       |
 | Thursday | 2-Nov  | KK         | [Map making with Basemap in Python]({filename}/lectures/python/Basemap_Tutorial.ipynb)                      |       |
 | Tuesday  | 7-Nov  |            | _No Class / Election Day_                       |  |
-| Thursday | 9-Nov  | RPA        | Interactive graphics and dashboards in Python    |        |
-| Tuesday  | 14-Nov | RPA        | Interactive graphics in-class activity           |        |
+| Thursday | 9-Nov  | RPA        | Organization and Packaging of Python projects    |        |
+| Tuesday  | 14-Nov | RPA        | Organization and Packaging in-class activity           |        |
 | Thursday | 16-Nov | KK         | Parallel programming in Fortran with MPI         |        |
 | Tuesday  | 21-Nov | KK         | Parallel programming in Fortran in-class activity  |      |
 | Thursday | 23-Nov |            | _No Class / Thanksgiving_                     |     |
