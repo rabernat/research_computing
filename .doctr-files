@@ -51,6 +51,7 @@
 ./matlab.html
 ./nano-screenshot.png
 ./numpy-arrays-and-matplotlib.html
+./organization-and-packaging-of-python-projects.html
 ./pages/schedule.html
 ./pages/syllabus.html
 ./pandas.html
@@ -77,6 +78,7 @@
 ./tag/matplotlib.html
 ./tag/ndarray.html
 ./tag/numpy.html
+./tag/packaging.html
 ./tag/pandas.html
 ./tag/programming.html
 ./tag/project.html

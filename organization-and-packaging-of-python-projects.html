@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>Assignment 7 - Pandas - Research Computing in Earth Sciences</title>
+    <title>Organization and Packaging of Python Projects - Research Computing in Earth Sciences</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,22 +9,22 @@
 
 
 
-<link rel="canonical" href="./assignment-7-pandas.html">
+<link rel="canonical" href="./organization-and-packaging-of-python-projects.html">
 
         <meta name="author" content="Ryan Abernathey" />
-        <meta name="keywords" content="assignment,python,pandas" />
-        <meta name="description" content="Assignment 7 - Pandas¶Due Oct 19. In this assignment we will use pandas to examine earthquake data. Start by importing pandas, numpy and matplotlib. I saved you some time by pre-downloading some data in .csv format from the USGS Earthquakes Database. It is located at: http://www.ldeo.columbia.edu/~rpa/usgs_earthquakes_2014.csv You don&#39;t even need to download it. You can open it directly with Pandas." />
+        <meta name="keywords" content="python,programming,packaging" />
+        <meta name="description" content="Organization and Packaging of Python Projects¶A complex research project often relies and many different programs and software packages to accomplish the research goals. An important part of scientific computing is deciding how to organize and structure the code you use for research. A well-structured project can make you a more efficient and effective researcher. It is also a key component of scientific reproducibility" />
 
         <meta property="og:site_name" content="Research Computing in Earth Sciences" />
         <meta property="og:type" content="article"/>
-        <meta property="og:title" content="Assignment 7 - Pandas"/>
-        <meta property="og:url" content="./assignment-7-pandas.html"/>
-        <meta property="og:description" content="Assignment 7 - Pandas¶Due Oct 19. In this assignment we will use pandas to examine earthquake data. Start by importing pandas, numpy and matplotlib. I saved you some time by pre-downloading some data in .csv format from the USGS Earthquakes Database. It is located at: http://www.ldeo.columbia.edu/~rpa/usgs_earthquakes_2014.csv You don&#39;t even need to download it. You can open it directly with Pandas."/>
-        <meta property="article:published_time" content="2017-10-13" />
-            <meta property="article:section" content="assignments" />
-            <meta property="article:tag" content="assignment" />
+        <meta property="og:title" content="Organization and Packaging of Python Projects"/>
+        <meta property="og:url" content="./organization-and-packaging-of-python-projects.html"/>
+        <meta property="og:description" content="Organization and Packaging of Python Projects¶A complex research project often relies and many different programs and software packages to accomplish the research goals. An important part of scientific computing is deciding how to organize and structure the code you use for research. A well-structured project can make you a more efficient and effective researcher. It is also a key component of scientific reproducibility"/>
+        <meta property="article:published_time" content="2017-11-09" />
+            <meta property="article:section" content="lectures" />
             <meta property="article:tag" content="python" />
-            <meta property="article:tag" content="pandas" />
+            <meta property="article:tag" content="programming" />
+            <meta property="article:tag" content="packaging" />
             <meta property="article:author" content="Ryan Abernathey" />
 
 
@@ -63,10 +63,10 @@ Research Computing in Earth Sciences            </a>
                          <li><a href="./pages/syllabus.html">
                              Syllabus
                           </a></li>
-                        <li class="active">
+                        <li >
                             <a href="./category/assignments.html">Assignments</a>
                         </li>
-                        <li >
+                        <li class="active">
                             <a href="./category/lectures.html">Lectures</a>
                         </li>
                         <li >
@@ -88,10 +88,10 @@ Research Computing in Earth Sciences            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="./assignment-7-pandas.html"
+                    <a href="./organization-and-packaging-of-python-projects.html"
                        rel="bookmark"
-                       title="Permalink to Assignment 7 - Pandas">
-                        Assignment 7 - Pandas
+                       title="Permalink to Organization and Packaging of Python Projects">
+                        Organization and Packaging of Python Projects
                     </a>
                 </h1>
             </header>
@@ -101,7 +101,7 @@ Research Computing in Earth Sciences            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2017-10-13T00:00:00-05:00"> Fri 13 October 2017</time>
+        <i class="fa fa-calendar"></i><time datetime="2017-11-09T00:00:00-05:00"> Thu 09 November 2017</time>
     </span>
 
 
@@ -109,11 +109,11 @@ Research Computing in Earth Sciences            </a>
 
 
 <span class="label label-default">Tags</span>
-	<a href="./tag/assignment.html">assignment</a>
-        /
 	<a href="./tag/python.html">python</a>
         /
-	<a href="./tag/pandas.html">pandas</a>
+	<a href="./tag/programming.html">programming</a>
+        /
+	<a href="./tag/packaging.html">packaging</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
@@ -1093,9 +1093,20 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Assignment-7---Pandas">Assignment 7 - Pandas<a class="anchor-link" href="#Assignment-7---Pandas">¶</a></h1><p>Due Oct 19.</p>
-<p>In this assignment we will use pandas to examine earthquake data.</p>
-<p>Start by importing pandas, numpy and matplotlib.</p>
+<h1 id="Organization-and-Packaging-of-Python-Projects">Organization and Packaging of Python Projects<a class="anchor-link" href="#Organization-and-Packaging-of-Python-Projects">¶</a></h1><p>A complex research project often relies and many different programs and software packages to accomplish the research goals. 
+An important part of scientific computing is deciding how to organize and structure the code you use for research.
+A well-structured project can make you a more efficient and effective researcher.
+It is also a key component of <a href="http://lorenabarba.com/blog/barbagroup-reproducibility-syllabus/">scientific reproducibility</a>.</p>
+<p>Just putting all of your code into git repositories won't magically turn a mess of scripts into a beautiful, well-organized project.
+More deliberate effort is required.</p>
+<h2 id="Types-of-Projects">Types of Projects<a class="anchor-link" href="#Types-of-Projects">¶</a></h2><p>Not all projects are created equal.
+Based on my experience, I categorize three different types of "research code" scenarios commonly encountered in geosciences.</p>
+<ol>
+<li><strong>Exploratory analyses</strong>: When exploring a new idea, a single notebook or script is often all we need.</li>
+<li><strong>A Single Paper</strong>: The "paper" is a standard unit of scientific output. The code related to a single paper usually belongs together. </li>
+<li><strong>Reusable software elements</strong>: In the course of our research computing, we often identify specialized routines that we want to package for reuse in other projects, or by other scientists. This is where "scripts" become "software."</li>
+</ol>
+<p>This lecture outlines some suggested practices for each category.</p>
 </div>
 </div>
 </div>
@@ -1103,9 +1114,25 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>I saved you some time by pre-downloading some data in .csv format from the <a href="https://earthquake.usgs.gov/earthquakes/search/">USGS Earthquakes Database</a>. It is located at:</p>
-<p><a href="http://www.ldeo.columbia.edu/~rpa/usgs_earthquakes_2014.csv">http://www.ldeo.columbia.edu/~rpa/usgs_earthquakes_2014.csv</a></p>
-<p>You don't even need to download it. You can open it directly with Pandas.</p>
+<h2 id="Exploratory-Analysis">Exploratory Analysis<a class="anchor-link" href="#Exploratory-Analysis">¶</a></h2><p>When starting something new, we are often motivated to just start coding and get some results quick.
+This is fine!
+Jupyter notebooks are an ideal format for open-ended exploratory analysis, since they are totally self-contained: they encapsulate text, code, and figures.
+If we find someting cool or useful, it is important to preserve these exploratory notebooks.</p>
+<p>A dedicated github repository can be overkill for a single file.
+Instead, I recommend github's "<a href="https://help.github.com/articles/about-gists/">gist</a>" mechanism for saving and sharing such "one-off" notebooks and code snippets.
+Gists are like mini repos you can easily share and embed.
+(You can create one right now by going to <a href="https://gist.github.com/">https://gist.github.com/</a>.)</p>
+<p>You can upload any file (including an <code>.ipynb</code> notebook file) by dragging and dropping it into the gist website.
+You have the choice of making you gist public or secret. (There is no private option, but a secret gist can only be seen by others if you give them the URL.)</p>
+<p>There is also a fantastically easy way to create notebook gists directly from your notebook itself.
+This requires the jupyter <a href="https://github.com/minrk/ipython_extensions#gist">gist extension</a> by <a href="https://github.com/minrk">Min RK</a>. To install this extension, type the following from the command line:</p>
+<pre><code>jupyter nbextension install https://rawgithub.com/minrk/ipython_extensions/master/nbextensions/gist.js
+jupyter nbextension enable gist
+
+</code></pre>
+<p>When you restart your notebook, you will see a little arrow button in the notebook toolbar. Clicking on this button for the first time will prompt you to enter a <a href="https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/">Github personal access token</a>.
+Follow the link to go to <a href="https://github.com/settings/tokens">https://github.com/settings/tokens</a> and choose "Generate new token." The only "scope" your token needs to have is "Create gist." Once the token is generated, copy and paste it back into the notebook dialog. Your notebook will now automatically be posted as a gist, and a link to the <a href="http://nbviewer.jupyter.org/">nbviewer</a> view of it will appear in the toolbar. If you click the button again, the gist will update. Amazing!</p>
+<p>I have found this to be a great way to quickly save exploratory notebooks and share them with collaborators.</p>
 </div>
 </div>
 </div>
@@ -1113,7 +1140,47 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="1)-Use-Pandas'-read_csv-function-directly-on-this-url-to-open-it-as-a-DataFrame">1) Use Pandas' read_csv function directly on this url to open it as a DataFrame<a class="anchor-link" href="#1)-Use-Pandas'-read_csv-function-directly-on-this-url-to-open-it-as-a-DataFrame">¶</a></h3><p>(Don't use any special options). Display the first few rows and the DataFrame info.</p>
+<h2 id="A-Single-Paper">A Single Paper<a class="anchor-link" href="#A-Single-Paper">¶</a></h2><h3 id="Scientific-Reproducibility">Scientific Reproducibility<a class="anchor-link" href="#Scientific-Reproducibility">¶</a></h3><p>Reproducibility is a cornerstone of the scientific process.
+However, today one often reads that science is in the midst of a <a href="http://www.nature.com/news/1-500-scientists-lift-the-lid-on-reproducibility-1.19970">reproducibility crisis</a>.
+This crisis may be due to increasing complexity and cost of scientific analysis, together with mounting pressure to publish as much and as quickly as possible.</p>
+<p>Today almost all earth science relies on some form of computation, from simple statistical analysis and curve fitting to advanced numerical simulation.
+In principle, computational science should be highly reproducible.
+However, it also brings unique challenges.
+A great overview of the challenges and best practices is given in
+<em>Barba, Lorena A. (2017): Barba-group Reproducibility Syllabus. figshare. <a href="https://doi.org/10.6084/m9.figshare.4879928.v1">https://doi.org/10.6084/m9.figshare.4879928.v1</a>.</em>
+Many of the suggestions in this lecture are adopted or paraphrased from <em>Barba (2017)</em>.</p>
+<p>Keep in mind that the audience for a reproducibile project is not just other scientists...it's <em>you</em>, a year from now, or whenever you need to repeat and / or build on earlier work. Most scientists build on their Ph.D. work for a decade following graduation. Extra time spent on reproducibility now will make you more productive in the long run.</p>
+<p>We begin with an important observation.</p>
+<blockquote><p>An article about computational science … is not the scholarship itself, it’s merely scholarship advertisement. The actual scholarship is the complete software development environment and the complete set of instructions which generated the figures.</p>
+</blockquote>
+<p><em>Donoho, D. et al. (2009), Reproducible research in computational harmonic analysis, Comp. Sci. Eng. 11(1):8–18, doi: <a href="http://dx.doi.org/10.1109/MCSE.2009.15">10.1109/MCSE.2009.15</a></em></p>
+<p><a href="http://dx.doi.org/10.1371/journal.pcbi.1003285">Sandve et al. (2013)</a> give some specific recommmendations for computational reproducibility.</p>
+<ol>
+<li>For every result, keep track of how it was produced</li>
+<li>Avoid manual data-manipulation steps</li>
+<li>Archive the exact versions of all external programs used</li>
+<li>Version-control all custom scripts</li>
+<li>Record all intermediate results, when possible in standard formats</li>
+<li>For analyses that include randomness, note underlying random seeds</li>
+<li>Always store raw data behind plots</li>
+<li>Generate hierarchical analysis output, allowing layers of increasing detail to be inspected</li>
+<li>Connect textual statements to underlying results</li>
+<li>Provide public access to scripts, runs, and results</li>
+</ol>
+<p>These recommendations suggest a certain structure for a project.</p>
+<h3 id="Project-Layout">Project Layout<a class="anchor-link" href="#Project-Layout">¶</a></h3><p>A reproducible single-paper project directory structure might look something like this</p>
+<pre><code>README.md
+LICENSE
+environment.yml
+data/intermediate_results.csv
+notebooks/process_raw_data.ipynb
+notebooks/figure1.ipynb
+notebooks/figure2.ipynb
+notebooks/helper.py
+manuscript/manuscript.tex
+
+</code></pre>
+<p>A great example of such a paper is <a href="https://crocha700.github.io/">Cesar Rocha</a>'s Upper Ocean Seasonality project: <a href="https://github.com/crocha700/UpperOceanSeasonality">https://github.com/crocha700/UpperOceanSeasonality</a>.</p>
 </div>
 </div>
 </div>
@@ -1121,8 +1188,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>You should have seen that the dates were not automatically parsed into datetime types.</p>
-<h3 id="2)-Re-read-the-data-in-such-a-way-that-all-date-columns-are-identified-as-dates-and-the-earthquake-id-is-used-as-the-index">2) Re-read the data in such a way that all date columns are identified as dates and the earthquake id is used as the index<a class="anchor-link" href="#2)-Re-read-the-data-in-such-a-way-that-all-date-columns-are-identified-as-dates-and-the-earthquake-id-is-used-as-the-index">¶</a></h3><p>Verify that this worked using the <code>head</code> and <code>info</code> functions.</p>
+<h2 id="Reuseable-Software-Elements">Reuseable Software Elements<a class="anchor-link" href="#Reuseable-Software-Elements">¶</a></h2><p>Scientific software can perhaps be grouped into two categories: single-use "scripts" that are used in a very specific context to do a very specific thing (e.g.~to generate a specific figure for a paper), and reuseable components which encapsulate a more generic workflow. Once you find yourself repeating the same chunks of code in many different scripts or projects, it's time to start composing reusable software elements.</p>
 </div>
 </div>
 </div>
@@ -1130,7 +1196,103 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="3)-Use-describe-to-get-the-basic-statistics-of-all-the-columns">3) Use <code>describe</code> to get the basic statistics of all the columns<a class="anchor-link" href="#3)-Use-describe-to-get-the-basic-statistics-of-all-the-columns">¶</a></h3><p>Note the highest and lowest magnitude of earthquakes in the databse.</p>
+<h3 id="Modules">Modules<a class="anchor-link" href="#Modules">¶</a></h3><p>The basic element of reusability in python is the <a href="https://docs.python.org/3/tutorial/modules.html">module</a>.
+A module is a <code>.py</code> file which contains python objects which can be <em>imported</em> by other scripts or notebooks.
+Let's illustrate how modules work with a simple example.</p>
+<p>A common task in geoscience is to calculate the <a href="https://en.wikipedia.org/wiki/Great-circle_distance">great-circle distance</a> between two points on the globe.
+There are several <a href="https://pypi.python.org/pypi/geopy">pacakges</a> that could do this for you, but let's write our own as an example of a module.</p>
+<p>The formula for great circle distance is</p>
+<p><img alt="great circle distance formula" src="https://wikimedia.org/api/rest_v1/media/math/render/svg/75af53b063ee43aed3de186b1a98af5c150185b8" /></p>
+<p>(Note that this formula requires 64-bit precision for adequate accuracy.)</p>
+<p>Let's write a module to do this calculation. Open a file called <code>gcdistance.py</code> in a text editor. (The file should be in the same directory as the notebook you are working in now.) Populate it with the following code:</p>
+<div class="highlight"><pre><span></span><span class="sd">"""</span>
+<span class="sd">A python module for computing great circle distance</span>
+<span class="sd">"""</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="c1"># approximate radius of Earth</span>
+<span class="n">R</span> <span class="o">=</span> <span class="mf">6.371e6</span>
+
+<span class="k">def</span> <span class="nf">great_circle_distance</span><span class="p">(</span><span class="n">point1</span><span class="p">,</span> <span class="n">point2</span><span class="p">):</span>
+    <span class="sd">"""Calculate great-circle distance between two points.</span>
+
+<span class="sd">    PARAMETERS</span>
+<span class="sd">    ----------</span>
+<span class="sd">    point1 : tuple</span>
+<span class="sd">        A (lat, lon) pair of coordinates in degrees</span>
+<span class="sd">    point2 : tuple</span>
+<span class="sd">        A (lat, lon) pair of coordinates in degrees</span>
+
+<span class="sd">    RETURNS</span>
+<span class="sd">    -------</span>
+<span class="sd">    distance : float</span>
+<span class="sd">    """</span>
+
+    <span class="c1"># unpack coordinates</span>
+    <span class="n">lat1</span><span class="p">,</span> <span class="n">lon1</span> <span class="o">=</span> <span class="n">point1</span>
+    <span class="n">lat2</span><span class="p">,</span> <span class="n">lon2</span> <span class="o">=</span> <span class="n">point2</span>
+
+    <span class="c1"># unpack and convert everything to radians</span>
+    <span class="n">phi1</span><span class="p">,</span> <span class="n">lambda1</span><span class="p">,</span> <span class="n">phi2</span><span class="p">,</span> <span class="n">lambda2</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> 
+                                    <span class="p">(</span><span class="n">point1</span> <span class="o">+</span> <span class="n">point2</span><span class="p">)]</span>
+
+    <span class="c1"># apply formula</span>
+    <span class="c1"># https://en.wikipedia.org/wiki/Great-circle_distance</span>
+    <span class="k">return</span> <span class="n">R</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phi1</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phi2</span><span class="p">)</span> <span class="o">+</span> 
+        <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">phi1</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">phi2</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">lambda2</span> <span class="o">-</span> <span class="n">lambda1</span><span class="p">))</span>
+</pre></div>
+<p>The module begins with a <a href="https://www.python.org/dev/peps/pep-0257/">docstring</a> explaining what it does. Then it contains some data (just a constant <code>R</code>) and a single function.</p>
+<p>Now let's import our module</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [4]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">gcdistance</span>
+<span class="n">help</span><span class="p">(</span><span class="n">gcdistance</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Help on module gcdistance:
+
+NAME
+    gcdistance - A python module for computing great circle distance
+
+FUNCTIONS
+    great_circle_distance(point1, point2)
+        Calculate great-circle distance between two points.
+        
+        PARAMETERS
+        ----------
+        point1 : tuple
+            A (lat, lon) pair of coordinates in degrees
+        point2 : tuple
+            A (lat, lon) pair of coordinates in degrees
+            
+        RETURNS
+        -------
+        distance : float
+
+DATA
+    R = 6371000.0
+
+FILE
+    /Users/rpa/Teaching/research_computing/content/lectures/python/gcdistance.py
+
+
+</pre>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1138,7 +1300,28 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="4)-Use-sort_values-to-get-the-top-20-earthquakes-by-magnitude">4) Use <code>sort_values</code> to get the top 20 earthquakes by magnitude<a class="anchor-link" href="#4)-Use-sort_values-to-get-the-top-20-earthquakes-by-magnitude">¶</a></h3>
+<p>And let's try using it to make a calculation</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [2]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">gcdistance</span><span class="o">.</span><span class="n">great_circle_distance</span><span class="p">((</span><span class="mi">60</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[2]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>1460007.1890493981</pre>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1146,8 +1329,29 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Examine the structure of the <code>place</code> column. The country information seems to be in there. How would you get it out?</p>
-<h3 id="5)-Extract-the-country-using-Pandas-text-data-functions">5) Extract the country using Pandas <a href="https://pandas.pydata.org/pandas-docs/stable/text.html">text data functions</a><a class="anchor-link" href="#5)-Extract-the-country-using-Pandas-text-data-functions">¶</a></h3><p>Add it as a new column to the dataframe. (Is it really just country? No, some rows have the name of a US state.)</p>
+<p>We could just import the function we need</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [5]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">gcdistance</span> <span class="k">import</span> <span class="n">R</span><span class="p">,</span> <span class="n">great_circle_distance</span>
+<span class="n">R</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[5]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>6371000.0</pre>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1155,7 +1359,29 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="6)-Find-the-10-states-/-countries-with-the-highest-number-of-earthquakes">6) Find the 10 states / countries with the highest <em>number</em> of earthquakes<a class="anchor-link" href="#6)-Find-the-10-states-/-countries-with-the-highest-number-of-earthquakes">¶</a></h3>
+<p>If we change the module, we need to either restart our kernel or else reload the module. (Note that functions imported via <code>from module import func</code> cannot be reloaded.)</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [6]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">importlib</span> <span class="k">import</span> <span class="n">reload</span>
+<span class="n">reload</span><span class="p">(</span><span class="n">gcdistance</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[6]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre><module &#x27;gcdistance&#x27; from &#x27; users rpa teaching research_computing content lectures python gcdistance.py&#x27;></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1163,7 +1389,8 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="7)-Find-the-top-10-states-/-countries-where-the-strongest-and-weakest-earthquakes-occured">7) Find the top 10 states / countries where the strongest and weakest earthquakes occured<a class="anchor-link" href="#7)-Find-the-top-10-states-/-countries-where-the-strongest-and-weakest-earthquakes-occured">¶</a></h3>
+<p>Modules are a simple way to share code between different scripts or notebooks in the same project. <em>Module files must reside in the same directory as any script which imports them!</em> This is a big limitation; it means you can't share modules between different projects.</p>
+<p>Once you have a piece of code that is general-purpose enough to share between projects, you need to create a package.</p>
 </div>
 </div>
 </div>
@@ -1171,9 +1398,13 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>It looks like US states are being treated differently from foreign countries. We would like to fix that.</p>
-<p>How can we tell if a name is a US state name? Python has a package for that: <a href="https://pypi.python.org/pypi/us!">https://pypi.python.org/pypi/us!</a></p>
-<p>This is a good time to try installing a new package using <code>pip</code>. Pip is the original python package manager that predates <code>conda</code>. Basically <code>conda</code> is more oriented towards data science while <code>pip</code> is more general purpose. There are lots more packages on <code>pip</code> than on <code>conda</code>. You can read a <a href="https://www.quora.com/What-is-the-comparison-among-conda-vs-pip-vs-anaconda">comparision</a> of these two utilities if you want to know more.</p>
+<h3 id="Aside:-Python-Style">Aside: Python Style<a class="anchor-link" href="#Aside:-Python-Style">¶</a></h3><p>There are few absolute rules for python code style, but there is a detailed <a href="https://www.python.org/dev/peps/pep-0008/">recommended style guide</a>. Some especially relevant points are:</p>
+<ul>
+<li>Line length should not exceed 79 characters</li>
+<li>Module names should be <code>lowercase</code></li>
+<li>Function and variable names should be <code>lower_case_with_underscores</code></li>
+<li>Class names should be <code>CamelCase</code></li>
+</ul>
 </div>
 </div>
 </div>
@@ -1181,7 +1412,58 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="8)-Install-the-us-package-using-pip,-either-directly-from-the-notebook-or-the-command-line">8) Install the <code>us</code> package using pip, either directly from the notebook or the command line<a class="anchor-link" href="#8)-Install-the-us-package-using-pip,-either-directly-from-the-notebook-or-the-command-line">¶</a></h3><p>The shell command is <code>pip install us</code>.</p>
+<h3 id="Packages">Packages<a class="anchor-link" href="#Packages">¶</a></h3><p><a href="https://docs.python.org/3/tutorial/modules.html#packages">Packages</a> are python's way of encapsulating reusable code elements for sharing with others. Packaging is a huge and complicated topic. We will just scratch the surface.</p>
+<p>We have already interacted with many packages already. Browse some of their github repositories to explore the structure of a large python package:</p>
+<ul>
+<li>NumPy: <a href="https://github.com/numpy/numpy">https://github.com/numpy/numpy</a></li>
+<li>Pandas: <a href="https://github.com/pandas-dev/pandas">https://github.com/pandas-dev/pandas</a></li>
+<li>Xarray: <a href="https://github.com/pydata/xarray">https://github.com/pydata/xarray</a></li>
+</ul>
+<p>An example of a smaller, more understandable package is my xrft package:</p>
+<ul>
+<li>xrft: <a href="https://github.com/rabernat/xrft">https://github.com/rabernat/xrft</a></li>
+</ul>
+<p>These packages all have a common basic structure. Imagine we wanted to turn our great-circle distance module into a package. It would look like this.</p>
+<pre><code>README.txt
+LICENSE
+environment.yml
+requirements.txt
+setup.py
+gcdistance/__init__.py
+gcdistance/gcdistance.py
+gcdistancs/tests/test_gcdistance.py
+
+</code></pre>
+<p>The actual package is contained in the <code>gcdistance</code> subdirectory. The other files are auxilliary files which help others understand and install your package. Here is an overview of what they do</p>
+<table class="table table-striped table-hover">
+<thead><tr>
+<th>File Name</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>README.txt</code></td>
+<td>Explain what the package is for</td>
+</tr>
+<tr>
+<td><code>LICENSE</code></td>
+<td>Defines the legal terms under which other can use the package. <a href="https://opensource.org/licenses/category">Open source</a> is encouraged!</td>
+</tr>
+<tr>
+<td><code>environment.yml</code></td>
+<td>A conda environment which describes the package's dependencies (<a href="https://conda.io/docs/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file">more info</a>)</td>
+</tr>
+<tr>
+<td><code>requirements.txt</code></td>
+<td>A file which describes the package's dependences for pip. (<a href="https://pip.pypa.io/en/stable/user_guide/#requirements-files">more info</a>)</td>
+</tr>
+<tr>
+<td><code>setup.py</code></td>
+<td>A special python script which installs your package. (<a href="https://pythonhosted.org/an_example_pypi_project/setuptools.html">more info</a>)</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -1189,7 +1471,11 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="9)-Import-the-us-package-to-verify-your-installation-works">9) Import the <code>us</code> package to verify your installation works<a class="anchor-link" href="#9)-Import-the-us-package-to-verify-your-installation-works">¶</a></h3>
+<h3 id="The-actual-package">The actual package<a class="anchor-link" href="#The-actual-package">¶</a></h3><p>The directory <code>gcdistance</code> is the actual package. Any directory that contains an <code>__init__.py</code> file is recognized by python as a package. This file can be blank, bu it needs to be present. From the root directory, we can import a module from the package as follows</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gcdistance</span> <span class="kn">import</span> <span class="n">gcdistance</span>
+</pre></div>
+<p>Yes, this is a bit redundant. That's because the <code>gcdistance.py</code> module has the same name as the <code>gcdistance</code> package directory.</p>
+<p>However, this import will only work from the</p>
 </div>
 </div>
 </div>
@@ -1197,89 +1483,18 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="10)-Read-the-us-documentation-to-figure-out-how-to-create-a-list-of-state-names-(all-upper-case)">10) Read the <a href="https://pypi.python.org/pypi/us"><code>us</code> documentation</a> to figure out how to create a list of state names (all upper case)<a class="anchor-link" href="#10)-Read-the-us-documentation-to-figure-out-how-to-create-a-list-of-state-names-(all-upper-case)">¶</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="11)-Write-a-function-to-check-whether-a-string-is-a-US-state-name.">11) Write a function to check whether a string is a US state name.<a class="anchor-link" href="#11)-Write-a-function-to-check-whether-a-string-is-a-US-state-name.">¶</a></h3><p>This function should not be case sensitive. It should also strip any whitespace out of the test string.</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="12)-Use-Pandas'-apply-function-to-apply-this-to-each-row-of-the-country-name-series">12) Use Pandas' <a href="https://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.apply.html">apply</a> function to apply this to each row of the country name series<a class="anchor-link" href="#12)-Use-Pandas'-apply-function-to-apply-this-to-each-row-of-the-country-name-series">¶</a></h3><p>You should produce a new boolean series. (Hint: use <code>dropna()</code> to drop rows that have null values before calling apply.)</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="13)-reindex-this-boolean-series-to-match-the-dataframe's-index">13) reindex this boolean series to match the dataframe's index<a class="anchor-link" href="#13)-reindex-this-boolean-series-to-match-the-dataframe's-index">¶</a></h3><p>Fill the null values with <code>False</code> using <code>.fillna()</code>.</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="14)-Now-re-assign-the-country-column-in-the-DataFrame-to-USA-if-the-row-is-a-state.">14) Now re-assign the country column in the DataFrame to <code>USA</code> if the row is a state.<a class="anchor-link" href="#14)-Now-re-assign-the-country-column-in-the-DataFrame-to-USA-if-the-row-is-a-state.">¶</a></h3><p>Also add the state name as a new column.</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="15)-Now-redo-the-country-count-and-minimum-magnitdue-using-the-corrected-data">15) Now redo the country count and minimum magnitdue using the corrected data<a class="anchor-link" href="#15)-Now-redo-the-country-count-and-minimum-magnitdue-using-the-corrected-data">¶</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="16)-Create-a-filtered-dataset-that-only-has-earthquakes-of-magnitude-4-or-larger">16) Create a filtered dataset that only has earthquakes of magnitude 4 or larger<a class="anchor-link" href="#16)-Create-a-filtered-dataset-that-only-has-earthquakes-of-magnitude-4-or-larger">¶</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="17)-Analyze-the-distribution-of-the-Earthquake-magnitudes-in-the-filtered-distribution">17) Analyze the distribution of the Earthquake magnitudes in the filtered distribution<a class="anchor-link" href="#17)-Analyze-the-distribution-of-the-Earthquake-magnitudes-in-the-filtered-distribution">¶</a></h3><p>Make a histogram of the Earthquake count versus magnitude. Make sure to use a Logarithmic scale. What sort of relationship do you see?</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>fig, ax = plt.subplots()
-df_filt.hist('mag', bins=20, ax=ax)
-ax.set_yscale('log')</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="18)-Visualize-the-locations-of-earthquakes-by-making-a-scatterplot-of-their-latitude-and-longitude.">18) Visualize the locations of earthquakes by making a scatterplot of their latitude and longitude.<a class="anchor-link" href="#18)-Visualize-the-locations-of-earthquakes-by-making-a-scatterplot-of-their-latitude-and-longitude.">¶</a></h3><p>Use the filtered data. Color it by magnitude. Make it pretty</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="19)-Do-the-same-for-depth">19) Do the same for depth<a class="anchor-link" href="#19)-Do-the-same-for-depth">¶</a></h3>
+<p><code>setup.py</code> is the magic file that makes your package installable. Here is an extremely basic <code>setup.py</code></p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span>
+
+<span class="n">setup</span><span class="p">(</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">"gcdistance"</span><span class="p">,</span>
+    <span class="n">version</span> <span class="o">=</span> <span class="s2">"0.0.1"</span><span class="p">,</span>
+    <span class="n">author</span> <span class="o">=</span> <span class="s2">"Ryan Abernathey"</span><span class="p">,</span>
+    <span class="n">packages</span><span class="o">=</span><span class="p">[</span><span class="s1">'gcdistance'</span><span class="p">],</span>
+    <span class="n">install_requires</span><span class="o">=</span><span class="p">[</span><span class="s1">'numpy'</span><span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+<p>There is a dizzying range of <a href="https://setuptools.readthedocs.io/en/latest/setuptools.html">options</a> for <code>setup.py</code>. More fields are required if you want to <a href="https://pythonhosted.org/an_example_pypi_project/setuptools.html">upload your package</a> to pypi (so it is installable via <code>pip</code>).</p>
 </div>
 </div>
 </div>
