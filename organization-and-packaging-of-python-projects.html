@@ -1126,7 +1126,7 @@ Gists are like mini repos you can easily share and embed.
 You have the choice of making you gist public or secret. (There is no private option, but a secret gist can only be seen by others if you give them the URL.)</p>
 <p>There is also a fantastically easy way to create notebook gists directly from your notebook itself.
 This requires the jupyter <a href="https://github.com/minrk/ipython_extensions#gist">gist extension</a> by <a href="https://github.com/minrk">Min RK</a>. To install this extension, type the following from the command line:</p>
-<pre><code>jupyter nbextension install https://rawgithub.com/minrk/ipython_extensions/master/nbextensions/gist.js
+<pre><code>jupyter nbextension install https://rawgithub.com/minrk/ipython_extensions/master/nbextensions/gist.js --user
 jupyter nbextension enable gist
 
 </code></pre>
@@ -1253,7 +1253,7 @@ There are several <a href="https://pypi.python.org/pypi/geopy">pacakges</a> that
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">gcdistance</span>
-<span class="n">help</span><span class="p">(</span><span class="n">gcdistance</span><span class="p">)</span>
+<span class="n">help</span><span class="p">(</span><span class="n">gcdistance</span><span class="p">)</span> 
 </pre></div>
 </div>
 </div>
@@ -1365,11 +1365,11 @@ FILE
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [6]:</div>
+<div class="prompt input_prompt">In [8]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">importlib</span> <span class="k">import</span> <span class="n">reload</span>
-<span class="n">reload</span><span class="p">(</span><span class="n">gcdistance</span><span class="p">)</span>
+<span class="n">reload</span><span class="p">(</span><span class="n">gcdistance</span><span class="p">)</span> 
 </pre></div>
 </div>
 </div>
@@ -1377,7 +1377,7 @@ FILE
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[6]:</div>
+<div class="prompt output_prompt">Out[8]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre><module &#x27;gcdistance&#x27; from &#x27; users rpa teaching research_computing content lectures python gcdistance.py&#x27;></pre>
 </div>
@@ -1424,13 +1424,14 @@ FILE
 <li>xrft: <a href="https://github.com/rabernat/xrft">https://github.com/rabernat/xrft</a></li>
 </ul>
 <p>These packages all have a common basic structure. Imagine we wanted to turn our great-circle distance module into a package. It would look like this.</p>
-<pre><code>README.txt
+<pre><code>README.md
 LICENSE
 environment.yml
 requirements.txt
 setup.py
 gcdistance/__init__.py
 gcdistance/gcdistance.py
+gcdistance/__init__.py
 gcdistancs/tests/test_gcdistance.py
 
 </code></pre>
@@ -1475,7 +1476,7 @@ gcdistancs/tests/test_gcdistance.py
 <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gcdistance</span> <span class="kn">import</span> <span class="n">gcdistance</span>
 </pre></div>
 <p>Yes, this is a bit redundant. That's because the <code>gcdistance.py</code> module has the same name as the <code>gcdistance</code> package directory.</p>
-<p>However, this import will only work from the</p>
+<p>However, this import will only work from the parent directory. It is not globally accessible from your python environment.</p>
 </div>
 </div>
 </div>
@@ -1483,7 +1484,7 @@ gcdistancs/tests/test_gcdistance.py
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><code>setup.py</code> is the magic file that makes your package installable. Here is an extremely basic <code>setup.py</code></p>
+<p><code>setup.py</code> is the magic file that makes your package installable and accessible anywhere. Here is an extremely basic <code>setup.py</code></p>
 <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span>
 
 <span class="n">setup</span><span class="p">(</span>
@@ -1495,6 +1496,88 @@ gcdistancs/tests/test_gcdistance.py
 <span class="p">)</span>
 </pre></div>
 <p>There is a dizzying range of <a href="https://setuptools.readthedocs.io/en/latest/setuptools.html">options</a> for <code>setup.py</code>. More fields are required if you want to <a href="https://pythonhosted.org/an_example_pypi_project/setuptools.html">upload your package</a> to pypi (so it is installable via <code>pip</code>).</p>
+<p>To run the setup script, we call the following from the command line</p>
+<pre><code>python setup.py install
+
+</code></pre>
+<p>The package files are copied to our python library directory.
+If we plan to keep developing the package, we can install it in "developer mode" as</p>
+<pre><code>python setup.py develop
+
+</code></pre>
+<p>In this case, the files are symlinked rather than copied.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Testing">Testing<a class="anchor-link" href="#Testing">¶</a></h2><p>A software package requires <a href="https://en.wikipedia.org/wiki/Software_testing">tests</a> to ensure that it works properly. Matt Rocklin has a great <a href="http://matthewrocklin.com/blog/work/2016/02/08/tests">blog post</a> on why we should write tests for our code.</p>
+<p>Tests don't have to be complicated. They are simply a check to verify that your code does what it is supposed to do.</p>
+<p>To add tests to our project, we create create the file <code>gcdistance/tests/test_gcdistance.py</code>. (We also need an <code>__init__.py</code> file in the <code>tests</code> directory.) The example below shows an example of a test function for our package.</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pytest</span>
+
+<span class="kn">from</span> <span class="nn">gcdistance.gcdistance</span> <span class="kn">import</span> <span class="n">great_circle_distance</span>
+
+<span class="k">def</span> <span class="nf">test_great_circle_distance</span><span class="p">():</span>
+    <span class="c1"># some known results</span>
+    <span class="c1"># distance between two same points should be zero</span>
+    <span class="k">assert</span> <span class="n">great_circle_distance</span><span class="p">((</span><span class="mf">20.</span><span class="p">,</span> <span class="mf">30.</span><span class="p">),</span> <span class="p">(</span><span class="mf">20.</span><span class="p">,</span> <span class="mf">30.</span><span class="p">))</span> <span class="o">==</span> <span class="mi">0</span>
+
+    <span class="c1"># check distance between new york and london</span>
+    <span class="n">new_york</span> <span class="o">=</span> <span class="mf">40.7128</span><span class="p">,</span> <span class="o">-</span><span class="mf">74.0060</span>
+    <span class="n">london</span> <span class="o">=</span> <span class="mf">51.5074</span><span class="p">,</span> <span class="mf">0.1278</span>
+    <span class="n">dist_nyc_london</span> <span class="o">=</span> <span class="n">great_circle_distance</span><span class="p">(</span><span class="n">new_york</span><span class="p">,</span> <span class="n">london</span><span class="p">)</span>
+
+    <span class="c1"># very strict, doesn't actually work</span>
+    <span class="c1"># assert dist_nyc_london == 5.587e6</span>
+
+    <span class="c1"># an approximate version of the above</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">assert_allclose</span><span class="p">(</span><span class="n">dist_nyc_london</span><span class="p">,</span> <span class="mf">5.587e6</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">)</span>
+
+    <span class="c1"># now check that we can't pass the wrong number of arguments</span>
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">TypeError</span><span class="p">):</span>
+        <span class="n">great_circle_distance</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</pre></div>
+<p>We will use <a href="https://docs.pytest.org/en/latest/getting-started.html">pytest</a> to run our tests. If you don't have pytest installed in your active python environment, take a minute to run <code>pip install pytest</code> from the command line. Now run</p>
+<div class="highlight"><pre><span></span>py.test -v
+</pre></div>
+<p>from the root directory of your project. You should see a notification that the tests passed. Try playing around with the tests to cause something to fail.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Continuous-Integration-with-Travis-CI">Continuous Integration with Travis CI<a class="anchor-link" href="#Continuous-Integration-with-Travis-CI">¶</a></h3><p>You can configure automatic testing of your package by integrating github with <a href="https://travis-ci.org/">Travis-CI</a>. Travis-CI is a free "continuous integration" service: it automatically downloads your package and runs your tests in the cloud every time you commit to your repository. The travis <a href="https://docs.travis-ci.com/user/getting-started">getting started guide</a> gives a great overview of how to use the service.</p>
+<p>For us to use travis with our project, the steps are simple:</p>
+<ol>
+<li>Push the repo to github (repo must be public)</li>
+<li>Log in to <a href="https://travis-ci.org">https://travis-ci.org</a> and click the switch to enable your repo</li>
+<li><p>Add a <code>.travis.yml</code> file to your project with the following contents:</p>
+<pre><code> language: python
+ python:
+ - 3.6
+ script:
+ - pytest</code></pre>
+</li>
+<li>Add the file, commit, and push to github</li>
+<li>Go to <a href="https://travis-ci.org">https://travis-ci.org</a> and watch the magic happen!</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span>
+</pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -1566,19 +1649,19 @@ gcdistancs/tests/test_gcdistance.py
       <a href="./tag/assignment.html">assignment</a>
     </li>
     <li class="list-group-item tag-1">
-      <a href="./tag/shell.html">shell</a>
-    </li>
-    <li class="list-group-item tag-1">
       <a href="./tag/unix.html">unix</a>
-    </li>
-    <li class="list-group-item tag-1">
-      <a href="./tag/file-system.html">file system</a>
     </li>
     <li class="list-group-item tag-1">
       <a href="./tag/python.html">python</a>
     </li>
     <li class="list-group-item tag-1">
+      <a href="./tag/file-system.html">file system</a>
+    </li>
+    <li class="list-group-item tag-1">
       <a href="./tag/programming.html">programming</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/shell.html">shell</a>
     </li>
     <li class="list-group-item tag-1">
       <a href="./tag/bash.html">bash</a>
@@ -1587,64 +1670,64 @@ gcdistancs/tests/test_gcdistance.py
       <a href="./tag/pandas.html">pandas</a>
     </li>
     <li class="list-group-item tag-3">
+      <a href="./tag/matlab.html">MATLAB</a>
+    </li>
+    <li class="list-group-item tag-3">
       <a href="./tag/visualization.html">visualization</a>
     </li>
     <li class="list-group-item tag-3">
       <a href="./tag/fortran.html">fortran</a>
     </li>
     <li class="list-group-item tag-3">
-      <a href="./tag/gmt.html">GMT</a>
-    </li>
-    <li class="list-group-item tag-3">
-      <a href="./tag/matlab.html">MATLAB</a>
-    </li>
-    <li class="list-group-item tag-3">
       <a href="./tag/git.html">git</a>
     </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/geomapapp.html">GeoMapApp</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/basemap.html">basemap</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/version-control.html">version control</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/source-code-editor.html">source code editor</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/mapping.html">mapping</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/numpy.html">numpy</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/packaging.html">packaging</a>
+    <li class="list-group-item tag-3">
+      <a href="./tag/gmt.html">GMT</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/final.html">final</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/ndarray.html">ndarray</a>
+      <a href="./tag/packaging.html">packaging</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/matplotlib.html">matplotlib</a>
+      <a href="./tag/mapping.html">mapping</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/ndarray.html">ndarray</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/github.html">github</a>
     </li>
     <li class="list-group-item tag-4">
+      <a href="./tag/arrays.html">arrays</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/source-code-editor.html">source code editor</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/version-control.html">version control</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/matplotlib.html">matplotlib</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/geomapapp.html">GeoMapApp</a>
+    </li>
+    <li class="list-group-item tag-4">
       <a href="./tag/vpn.html">vpn</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/numpy.html">numpy</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/xarray.html">xarray</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/arrays.html">arrays</a>
+      <a href="./tag/project.html">project</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/project.html">project</a>
+      <a href="./tag/basemap.html">basemap</a>
     </li>
   </ul>
 </li>
