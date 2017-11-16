@@ -1,5 +1,5 @@
-Title: MPI for Python
-Summary:   Parallel Programming with MPI For Python
+Title: Parallel Programming with MPI For Python
+Summary:    MPI For Python
 Date: 11/16/2017
 Tags: mpi, python, parallel programming
 Category: lectures
