@@ -121,7 +121,13 @@ Research Computing in Earth Sciences            </a>
 <p>We will start the tutorial with a brief overview on parallel computing concepts:</p>
 <p><a href="https://www.dropbox.com/s/2yidkm4e94p0yyj/MPI%20Overview.pdf?dl=0">Overview of Parallel Computing</a></p>
 <h2>Installation of mpi4py</h2>
-<p>We will be using the MPI for Python package <strong>mpi4py</strong>. If you have a clean <em>geo_scipy</em> environment as described on Ryan's Python installation notes on this website, you should be able to install it without any issues using conda:</p>
+<p>We will be using the MPI for Python package <strong>mpi4py</strong>. If you have a clean <em>geo_scipy</em> environment as described on Ryan's Python installation notes on this website, you should be able to install it without any issues using conda. The first thing to do is to open a terminal shell and activate <em>geo_scipy</em>:</p>
+<div class="highlight"><pre><span></span>source activate geo_scipy
+</pre></div>
+
+
+<p>(or you can launch it from the Anaconda app)</p>
+<p>Then install <strong>mpi4py</strong>:</p>
 <div class="highlight"><pre><span></span>conda install mpi4py
 </pre></div>
 
@@ -138,12 +144,7 @@ Research Computing in Earth Sciences            </a>
 <p><a href="https://mpi4py.scipy.org/docs/apiref/mpi4py.MPI-module.html">https://mpi4py.scipy.org/docs/apiref/mpi4py.MPI-module.html</a></p>
 <p>In particular, the section for Class Comm lists all the methods you can use with a communicator object:</p>
 <p><a href="https://mpi4py.scipy.org/docs/apiref/mpi4py.MPI.Comm-class.html">https://mpi4py.scipy.org/docs/apiref/mpi4py.MPI.Comm-class.html</a></p>
-<p>#Running Python Scripps with MPI</p>
-<p>Assuming you have the <em>geo_scipy</em> environment setup on your machine, the first thing to do is to open a terminal shell and activate <em>geo_scipy</em>:</p>
-<div class="highlight"><pre><span></span>source activate geo_scipy
-</pre></div>
-
-
+<p>## Running Python Scripps with MPI</p>
 <p>Python programs that use MPI commands must be run using an MPI interpreter, which is provided with the command <code>mpirun</code>. On some systems this command is instead called <code>mpiexec</code> and mpi4py seems to include both.</p>
 <p>Make sure your environment is correct by checking that <code>mpirun</code> is in your anaconda directory for <em>geo_scipy</em> by using the <code>which</code> Unix comamnd:</p>
 <div class="highlight"><pre><span></span>$ which mpirun
@@ -367,25 +368,25 @@ Research Computing in Earth Sciences            </a>
   <a href="./"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
   <ul class="list-group " id="tags">
     <li class="list-group-item tag-1">
+      <a href="./tag/assignment.html">assignment</a>
+    </li>
+    <li class="list-group-item tag-1">
       <a href="./tag/bash.html">bash</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/unix.html">unix</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/programming.html">programming</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/file-system.html">file system</a>
     </li>
     <li class="list-group-item tag-1">
       <a href="./tag/shell.html">shell</a>
     </li>
     <li class="list-group-item tag-1">
       <a href="./tag/python.html">python</a>
-    </li>
-    <li class="list-group-item tag-1">
-      <a href="./tag/unix.html">unix</a>
-    </li>
-    <li class="list-group-item tag-1">
-      <a href="./tag/assignment.html">assignment</a>
-    </li>
-    <li class="list-group-item tag-1">
-      <a href="./tag/file-system.html">file system</a>
-    </li>
-    <li class="list-group-item tag-1">
-      <a href="./tag/programming.html">programming</a>
     </li>
     <li class="list-group-item tag-2">
       <a href="./tag/pandas.html">pandas</a>
@@ -397,16 +398,22 @@ Research Computing in Earth Sciences            </a>
       <a href="./tag/visualization.html">visualization</a>
     </li>
     <li class="list-group-item tag-3">
+      <a href="./tag/matlab.html">MATLAB</a>
+    </li>
+    <li class="list-group-item tag-3">
       <a href="./tag/fortran.html">fortran</a>
     </li>
     <li class="list-group-item tag-3">
       <a href="./tag/git.html">git</a>
     </li>
-    <li class="list-group-item tag-3">
-      <a href="./tag/matlab.html">MATLAB</a>
+    <li class="list-group-item tag-4">
+      <a href="./tag/parallel-programming.html">parallel programming</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/final.html">final</a>
+      <a href="./tag/version-control.html">version control</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/ndarray.html">ndarray</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/matplotlib.html">matplotlib</a>
@@ -415,46 +422,40 @@ Research Computing in Earth Sciences            </a>
       <a href="./tag/xarray.html">xarray</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/parallel-programming.html">parallel programming</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/arrays.html">arrays</a>
-    </li>
-    <li class="list-group-item tag-4">
       <a href="./tag/packaging.html">packaging</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/vpn.html">vpn</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/mpi.html">mpi</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/github.html">github</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/ndarray.html">ndarray</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/geomapapp.html">GeoMapApp</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/project.html">project</a>
+      <a href="./tag/vpn.html">vpn</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/version-control.html">version control</a>
+      <a href="./tag/project.html">project</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/basemap.html">basemap</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/numpy.html">numpy</a>
+      <a href="./tag/arrays.html">arrays</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/github.html">github</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/mapping.html">mapping</a>
     </li>
     <li class="list-group-item tag-4">
+      <a href="./tag/numpy.html">numpy</a>
+    </li>
+    <li class="list-group-item tag-4">
       <a href="./tag/source-code-editor.html">source code editor</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/mpi.html">mpi</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/final.html">final</a>
     </li>
   </ul>
 </li>
