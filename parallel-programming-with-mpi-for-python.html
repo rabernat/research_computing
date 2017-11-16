@@ -117,10 +117,11 @@ Research Computing in Earth Sciences            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>We will start the tutorial with a brief overview on parallel computing concepts:</p>
+                <p><strong>Parallel Computing Overview</strong></p>
+<p>We will start the tutorial with a brief overview on parallel computing concepts:</p>
 <p><a href="https://www.dropbox.com/s/2yidkm4e94p0yyj/MPI%20Overview.pdf?dl=0">Overview of Parallel Computing</a></p>
 <p><strong>Installation of mpi4py</strong></p>
-<p>We will be using the MPI for Python package <strong>mpi4py</strong>. If you have a clean <code>geo_scipy</code> environment as described on Ryan's Python installation notes on this website, you should be able to install it without any issues using conda:</p>
+<p>We will be using the MPI for Python package <strong>mpi4py</strong>. If you have a clean <em>geo_scipy</em> environment as described on Ryan's Python installation notes on this website, you should be able to install it without any issues using conda:</p>
 <div class="highlight"><pre><span></span>conda install mpi4py
 </pre></div>
 
@@ -137,6 +138,105 @@ Research Computing in Earth Sciences            </a>
 <p><a href="https://mpi4py.scipy.org/docs/apiref/mpi4py.MPI-module.html">https://mpi4py.scipy.org/docs/apiref/mpi4py.MPI-module.html</a></p>
 <p>In particular, the section for Class Comm lists all the methods you can use with a communicator object:</p>
 <p><a href="https://mpi4py.scipy.org/docs/apiref/mpi4py.MPI.Comm-class.html">https://mpi4py.scipy.org/docs/apiref/mpi4py.MPI.Comm-class.html</a></p>
+<p><strong>Running Python Scripps with MPI</strong></p>
+<p>Assuming you have the <em>geo_scipy</em> environment setup on your machine, the first thing to do is to open a terminal shell and activate <em>geo_scipy</em>:</p>
+<div class="highlight"><pre><span></span>source activate geo_scipy
+</pre></div>
+
+
+<p>Python programs that use MPI commands must be run using an MPI interpreter, which is provided with the command <code>mpirun</code>. On some systems this command is instead called <code>mpiexec</code> and mpi4py seems to include both.</p>
+<p>Make sure your environment is correct by checking that <code>mpirun</code> is in your anaconda directory for <em>geo_scipy</em> by using the <code>which</code> Unix comamnd:</p>
+<div class="highlight"><pre><span></span>$ which mpirun
+/anaconda/envs/geo_scipy/bin/mpirun
+</pre></div>
+
+
+<p>You can run a MPI Python script using the <code>mpirun</code> command as follows:</p>
+<div class="highlight"><pre><span></span>mpirun -n 4 python script.py
+</pre></div>
+
+
+<p>Here the <code>-n 4</code> tells MPI to use four processes, which is the number of cores I have on my laptop. Then we tell MPI to run the python script named <code>script.py</code>.</p>
+<p>If you are running this on a desktop computer, then you should adjust the <code>-n</code> argument to be the number of cores on your system or the maximum number of processes needed for your job, whichever is smaller. Or on a large cluster you would specify the number of cores that your program needs or the maximum number of cores available on the particular cluster.</p>
+<p><strong>Communicators and Ranks</strong></p>
+<p>Our first MPI for python example will simply import MPI from the mpi4py package, create a <em>communicator</em> and get the <em>rank</em> of each process:</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mpi4py</span> <span class="kn">import</span> <span class="n">MPI</span>
+
+<span class="n">comm</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">COMM_WORLD</span>
+<span class="n">rank</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Get_rank</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;My rank is &#39;</span><span class="p">,</span><span class="n">rank</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Save this to a file call <code>comm.py</code> and then run it:</p>
+<div class="highlight"><pre><span></span>mpirun -n 4 python comm.py
+</pre></div>
+
+
+<p>Here we used the default communicator named <code>MPI.COMM_WORLD</code>, which consists of all the processors. For many MPI codes, this is the main communicator that you will need. However, you can create custom communicators using subsets of the processors in <code>MPI.COMM_WORLD</code>. See the documentation for more info.</p>
+<p><strong>Point-to-Point Communication</strong></p>
+<p>Now we will look at how to pass data from one process to another. Here is a very simple example where we pass a dictionary from process 0 to process 1:</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mpi4py</span> <span class="kn">import</span> <span class="n">MPI</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+
+<span class="n">comm</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">COMM_WORLD</span>
+<span class="kp">rank</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Get_rank</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="kp">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mf">3.14</span><span class="p">}</span>
+    <span class="n">comm</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">elif</span> <span class="kp">rank</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="kp">source</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;On process 1, data is &#39;</span><span class="p">,</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Here we sent a dictionary, but you could also send an integer with a similar code:</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mpi4py</span> <span class="kn">import</span> <span class="n">MPI</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+
+<span class="n">comm</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">COMM_WORLD</span>
+<span class="kp">rank</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Get_rank</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="kp">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">idata</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">comm</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">idata</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">elif</span> <span class="kp">rank</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="n">idata</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="kp">source</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;On process 1, data is &#39;</span><span class="p">,</span><span class="n">idata</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Note how <code>comm.send</code> and <code>comm.recv</code> have lower case <code>s</code> and <code>r</code>.</p>
+<p>Now let's look at a more complex example where we send a numpy array:</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mpi4py</span> <span class="kn">import</span> <span class="n">MPI</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+
+<span class="n">comm</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">COMM_WORLD</span>
+<span class="kp">rank</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Get_rank</span><span class="p">()</span>
+
+<span class="c1"># passing MPI datatypes explicitly</span>
+<span class="k">if</span> <span class="kp">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+
+    <span class="n">numData</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># in a real code, this would be read from a data file</span>
+    <span class="n">comm</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">numData</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="kp">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">3.14</span><span class="p">,</span><span class="n">numData</span><span class="p">)</span>  
+    <span class="n">comm</span><span class="o">.</span><span class="n">Send</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="k">elif</span> <span class="kp">rank</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+
+    <span class="n">numData</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="kp">source</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Number of data to receive: &#39;</span><span class="p">,</span><span class="n">numData</span><span class="p">)</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="kp">empty</span><span class="p">(</span><span class="n">numData</span><span class="p">,</span> <span class="kp">dtype</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">)</span>  <span class="c1"># allocate space to receive the array</span>
+    <span class="n">numData</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Recv</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="kp">source</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;data received: &#39;</span><span class="p">,</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Note how <code>comm.Send</code> and <code>comm.Recv</code> used to send and recieve the numpy array have upper case <code>S</code> and <code>R</code>.</p>
             </div>
             <!-- /.entry-content -->
         </article>
@@ -172,34 +272,28 @@ Research Computing in Earth Sciences            </a>
   <a href="./"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
   <ul class="list-group " id="tags">
     <li class="list-group-item tag-1">
-      <a href="./tag/file-system.html">file system</a>
+      <a href="./tag/programming.html">programming</a>
     </li>
     <li class="list-group-item tag-1">
       <a href="./tag/shell.html">shell</a>
     </li>
     <li class="list-group-item tag-1">
-      <a href="./tag/bash.html">bash</a>
-    </li>
-    <li class="list-group-item tag-1">
-      <a href="./tag/programming.html">programming</a>
+      <a href="./tag/assignment.html">assignment</a>
     </li>
     <li class="list-group-item tag-1">
       <a href="./tag/unix.html">unix</a>
     </li>
     <li class="list-group-item tag-1">
-      <a href="./tag/assignment.html">assignment</a>
+      <a href="./tag/python.html">python</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/file-system.html">file system</a>
     </li>
     <li class="list-group-item tag-1">
       <a href="./tag/bash.html">bash</a>
     </li>
     <li class="list-group-item tag-2">
       <a href="./tag/pandas.html">pandas</a>
-    </li>
-    <li class="list-group-item tag-3">
-      <a href="./tag/visualization.html">visualization</a>
-    </li>
-    <li class="list-group-item tag-3">
-      <a href="./tag/git.html">git</a>
     </li>
     <li class="list-group-item tag-3">
       <a href="./tag/matlab.html">MATLAB</a>
@@ -210,17 +304,50 @@ Research Computing in Earth Sciences            </a>
     <li class="list-group-item tag-3">
       <a href="./tag/fortran.html">fortran</a>
     </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/packaging.html">packaging</a>
+    <li class="list-group-item tag-3">
+      <a href="./tag/git.html">git</a>
+    </li>
+    <li class="list-group-item tag-3">
+      <a href="./tag/visualization.html">visualization</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/parallel-programming.html">parallel programming</a>
     </li>
     <li class="list-group-item tag-4">
+      <a href="./tag/mapping.html">mapping</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/final.html">final</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/ndarray.html">ndarray</a>
+    </li>
+    <li class="list-group-item tag-4">
       <a href="./tag/github.html">github</a>
     </li>
     <li class="list-group-item tag-4">
+      <a href="./tag/numpy.html">numpy</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/version-control.html">version control</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/mpi.html">mpi</a>
+    </li>
+    <li class="list-group-item tag-4">
       <a href="./tag/xarray.html">xarray</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/arrays.html">arrays</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/source-code-editor.html">source code editor</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/basemap.html">basemap</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/matplotlib.html">matplotlib</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/geomapapp.html">GeoMapApp</a>
@@ -229,37 +356,10 @@ Research Computing in Earth Sciences            </a>
       <a href="./tag/project.html">project</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/source-code-editor.html">source code editor</a>
+      <a href="./tag/packaging.html">packaging</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/vpn.html">vpn</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/numpy.html">numpy</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/mpi.html">mpi</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/mapping.html">mapping</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/basemap.html">basemap</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/final.html">final</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/arrays.html">arrays</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/version-control.html">version control</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/ndarray.html">ndarray</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/matplotlib.html">matplotlib</a>
     </li>
   </ul>
 </li>
