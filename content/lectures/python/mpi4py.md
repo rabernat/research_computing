@@ -14,7 +14,13 @@ We will start the tutorial with a brief overview on parallel computing concepts:
 
 ## Installation of mpi4py
 
-We will be using the MPI for Python package **mpi4py**. If you have a clean *geo_scipy* environment as described on Ryan's Python installation notes on this website, you should be able to install it without any issues using conda:
+We will be using the MPI for Python package **mpi4py**. If you have a clean *geo_scipy* environment as described on Ryan's Python installation notes on this website, you should be able to install it without any issues using conda. The first thing to do is to open a terminal shell and activate *geo_scipy*:
+~~~
+source activate geo_scipy
+~~~
+(or you can launch it from the Anaconda app)
+
+Then install **mpi4py**:
 ~~~
 conda install mpi4py
 ~~~
@@ -44,12 +50,9 @@ However, it is still a work in progress and much of it assumes you are already  
  [https://mpi4py.scipy.org/docs/apiref/mpi4py.MPI.Comm-class.html](https://mpi4py.scipy.org/docs/apiref/mpi4py.MPI.Comm-class.html)
 
 
- #Running Python Scripps with MPI
+ ## Running Python Scripps with MPI
 
-Assuming you have the *geo_scipy* environment setup on your machine, the first thing to do is to open a terminal shell and activate *geo_scipy*:
-~~~
-source activate geo_scipy
-~~~
+
 
 Python programs that use MPI commands must be run using an MPI interpreter, which is provided with the command `mpirun`. On some systems this command is instead called `mpiexec` and mpi4py seems to include both.
 
