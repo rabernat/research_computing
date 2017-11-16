@@ -169,7 +169,7 @@ Research Computing in Earth Sciences            </a>
 
 
 <p>Save this to a file call <code>comm.py</code> and then run it:</p>
-<div class="highlight"><pre><span></span>mpirun -n 4 python comm.py
+<div class="highlight"><pre><span></span><span class="n">mpirun</span> <span class="o">-</span><span class="n">n</span> <span class="mi">4</span> <span class="n">python</span> <span class="n">comm</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 
 
@@ -180,13 +180,13 @@ Research Computing in Earth Sciences            </a>
 <span class="kn">import</span> <span class="nn">numpy</span>
 
 <span class="n">comm</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">COMM_WORLD</span>
-<span class="kp">rank</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Get_rank</span><span class="p">()</span>
+<span class="n">rank</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Get_rank</span><span class="p">()</span>
 
-<span class="k">if</span> <span class="kp">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
     <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mf">3.14</span><span class="p">}</span>
     <span class="n">comm</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="k">elif</span> <span class="kp">rank</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="kp">source</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="k">print</span><span class="p">(</span><span class="s1">&#39;On process 1, data is &#39;</span><span class="p">,</span><span class="n">data</span><span class="p">)</span>
 </pre></div>
 
@@ -196,13 +196,13 @@ Research Computing in Earth Sciences            </a>
 <span class="kn">import</span> <span class="nn">numpy</span>
 
 <span class="n">comm</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">COMM_WORLD</span>
-<span class="kp">rank</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Get_rank</span><span class="p">()</span>
+<span class="n">rank</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Get_rank</span><span class="p">()</span>
 
-<span class="k">if</span> <span class="kp">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
     <span class="n">idata</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">comm</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">idata</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="k">elif</span> <span class="kp">rank</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-    <span class="n">idata</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="kp">source</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="n">idata</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="k">print</span><span class="p">(</span><span class="s1">&#39;On process 1, data is &#39;</span><span class="p">,</span><span class="n">idata</span><span class="p">)</span>
 </pre></div>
 
@@ -210,27 +210,27 @@ Research Computing in Earth Sciences            </a>
 <p>Note how <code>comm.send</code> and <code>comm.recv</code> have lower case <code>s</code> and <code>r</code>.</p>
 <p>Now let's look at a more complex example where we send a numpy array:</p>
 <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mpi4py</span> <span class="kn">import</span> <span class="n">MPI</span>
-<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 
 <span class="n">comm</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">COMM_WORLD</span>
-<span class="kp">rank</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Get_rank</span><span class="p">()</span>
+<span class="n">rank</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Get_rank</span><span class="p">()</span>
 
-<span class="c1"># passing MPI datatypes explicitly</span>
-<span class="k">if</span> <span class="kp">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-
-    <span class="n">numData</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># in a real code, this would be read from a data file</span>
+<span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="c1"># in real code, this section might</span>
+    <span class="c1"># read in data parameters from a file</span>
+    <span class="n">numData</span> <span class="o">=</span> <span class="mi">10</span>  
     <span class="n">comm</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">numData</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-    <span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="kp">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">3.14</span><span class="p">,</span><span class="n">numData</span><span class="p">)</span>  
+    <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">3.14</span><span class="p">,</span><span class="n">numData</span><span class="p">)</span>  
     <span class="n">comm</span><span class="o">.</span><span class="n">Send</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="k">elif</span> <span class="kp">rank</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+<span class="k">elif</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
 
-    <span class="n">numData</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="kp">source</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">numData</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Number of data to receive: &#39;</span><span class="p">,</span><span class="n">numData</span><span class="p">)</span>
 
-    <span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="kp">empty</span><span class="p">(</span><span class="n">numData</span><span class="p">,</span> <span class="kp">dtype</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">)</span>  <span class="c1"># allocate space to receive the array</span>
-    <span class="n">numData</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Recv</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="kp">source</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">numData</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">)</span>  <span class="c1"># allocate space to receive the array</span>
+    <span class="n">comm</span><span class="o">.</span><span class="n">Recv</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
     <span class="k">print</span><span class="p">(</span><span class="s1">&#39;data received: &#39;</span><span class="p">,</span><span class="n">data</span><span class="p">)</span>
 </pre></div>
@@ -238,6 +238,8 @@ Research Computing in Earth Sciences            </a>
 
 <p>Note how <code>comm.Send</code> and <code>comm.Recv</code> used to send and receive the numpy array have upper case <code>S</code> and <code>R</code>.</p>
 <h2>Collective Communication</h2>
+<h3>Broadcasting:</h3>
+<p>Broadcasting takes a variable and sends an exact copy of it to all processes on a communicator. Here are some examples:</p>
 <p>Broadcasting a dictionary:</p>
 <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mpi4py</span> <span class="kn">import</span> <span class="n">MPI</span>
 
@@ -245,13 +247,90 @@ Research Computing in Earth Sciences            </a>
 <span class="n">rank</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Get_rank</span><span class="p">()</span>
 
 <span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;key1&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span> <span class="mi">3</span><span class="p">],</span>
-            <span class="s1">&#39;key&#39;</span> <span class="p">:</span> <span class="p">(</span> <span class="s1">&#39;abc&#39;</span><span class="p">,</span> <span class="s1">&#39;xyz&#39;</span><span class="p">)}</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;key1&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+            <span class="s1">&#39;key2&#39;</span> <span class="p">:</span> <span class="p">(</span> <span class="s1">&#39;abc&#39;</span><span class="p">,</span> <span class="s1">&#39;xyz&#39;</span><span class="p">)}</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="n">data</span> <span class="o">=</span> <span class="bp">None</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">bcast</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">root</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">rank</span><span class="p">,</span><span class="s1">&#39;: data: &#39;</span> <span class="p">,</span><span class="n">data</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">bcast</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">root</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Rank: &#39;</span><span class="p">,</span><span class="n">rank</span><span class="p">,</span><span class="s1">&#39;, data: &#39;</span> <span class="p">,</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+
+
+<p>You can broadcasting a numpy array using the <code>Bcast</code> method (again note the capital <code>B</code>). Here we will modify the point-to-point code from above to instead broadcast the array <code>data</code> to all processes in the communicator (rather than just from process 0 to 1):</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mpi4py</span> <span class="kn">import</span> <span class="n">MPI</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="n">comm</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">COMM_WORLD</span>
+<span class="n">rank</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Get_rank</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="c1"># create a data array on process 0</span>
+    <span class="c1"># in real code, this section might</span>
+    <span class="c1"># read in data parameters from a file</span>
+    <span class="n">numData</span> <span class="o">=</span> <span class="mi">10</span>  
+    <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">3.14</span><span class="p">,</span><span class="n">numData</span><span class="p">)</span>  
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">numData</span> <span class="o">=</span> <span class="bp">None</span>
+
+<span class="c1"># broadcast numData and allocate array on other ranks:</span>
+<span class="n">numData</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">bcast</span><span class="p">(</span><span class="n">numData</span><span class="p">,</span> <span class="n">root</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">rank</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>    
+    <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">numData</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">)</span>  
+
+<span class="n">comm</span><span class="o">.</span><span class="n">Bcast</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">root</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># broadcast the array from rank 0 to all others</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Rank: &#39;</span><span class="p">,</span><span class="n">rank</span><span class="p">,</span> <span class="s1">&#39;, data received: &#39;</span><span class="p">,</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+
+
+<h3>Scattering:</h3>
+<p>Scatter takes an array and distributes contiguous sections of it  across the ranks of a communicator. Here's an image from http://mpitutorial.com that illustrates the difference between a broadcast and scatter:
+<img alt="broadcast and scatter" src="http://mpitutorial.com/tutorials/mpi-scatter-gather-and-allgather/broadcastvsscatter.png" title="image from http://mpitutorial.com "></p>
+<p>Let's try some examples now.</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mpi4py</span> <span class="kn">import</span> <span class="n">MPI</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="n">comm</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">COMM_WORLD</span>
+<span class="n">size</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Get_size</span><span class="p">()</span> <span class="c1"># new: gives number of ranks in comm</span>
+<span class="n">rank</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Get_rank</span><span class="p">()</span>
+
+<span class="n">numDataPerRank</span> <span class="o">=</span> <span class="mi">10</span>  
+<span class="n">data</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">size</span><span class="o">*</span><span class="n">numDataPerRank</span><span class="p">,</span><span class="n">numDataPerRank</span><span class="o">*</span><span class="n">size</span><span class="p">)</span>
+    <span class="c1"># when size=4 (using -n 4), data = [1.0:40.0]</span>
+
+<span class="n">recvbuf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">numDataPerRank</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">)</span> <span class="c1"># allocate space for recvbuf</span>
+<span class="n">comm</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">recvbuf</span><span class="p">,</span> <span class="n">root</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Rank: &#39;</span><span class="p">,</span><span class="n">rank</span><span class="p">,</span> <span class="s1">&#39;, recvbuf received: &#39;</span><span class="p">,</span><span class="n">recvbuf</span><span class="p">)</span>
+</pre></div>
+
+
+<h2>Gathering:</h2>
+<p>The reverse of a <code>scatter</code> is a <code>gather</code>, which takes subsets of an array that are distributed across the ranks, and <em>gathers</em> them back into the full array. Here's an image from http://mpitutorial.com that illustrates this graphically:
+<img alt="broadcast and scatter" src="http://mpitutorial.com/tutorials/mpi-scatter-gather-and-allgather/gather.png" title="image from http://mpitutorial.com "></p>
+<p>For an example, here is a code that does the reverse of the scatter example above.</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mpi4py</span> <span class="kn">import</span> <span class="n">MPI</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="n">comm</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">COMM_WORLD</span>
+<span class="n">size</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Get_size</span><span class="p">()</span>
+<span class="n">rank</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Get_rank</span><span class="p">()</span>   
+
+<span class="n">numDataPerRank</span> <span class="o">=</span> <span class="mi">10</span>  
+<span class="n">sendbuf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">rank</span><span class="o">*</span><span class="n">numDataPerRank</span><span class="o">+</span><span class="mi">1</span><span class="p">,(</span><span class="n">rank</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">numDataPerRank</span><span class="p">,</span><span class="n">numDataPerRank</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Rank: &#39;</span><span class="p">,</span><span class="n">rank</span><span class="p">,</span> <span class="s1">&#39;, sendbuf: &#39;</span><span class="p">,</span><span class="n">sendbuf</span><span class="p">)</span>
+
+<span class="n">recvbuf</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">recvbuf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">numDataPerRank</span><span class="o">*</span><span class="n">size</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">)</span>  
+
+<span class="n">comm</span><span class="o">.</span><span class="n">Gather</span><span class="p">(</span><span class="n">sendbuf</span><span class="p">,</span> <span class="n">recvbuf</span><span class="p">,</span> <span class="n">root</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Rank: &#39;</span><span class="p">,</span><span class="n">rank</span><span class="p">,</span> <span class="s1">&#39;, recvbuf received: &#39;</span><span class="p">,</span><span class="n">recvbuf</span><span class="p">)</span>
 </pre></div>
             </div>
             <!-- /.entry-content -->
@@ -288,6 +367,9 @@ Research Computing in Earth Sciences            </a>
   <a href="./"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
   <ul class="list-group " id="tags">
     <li class="list-group-item tag-1">
+      <a href="./tag/bash.html">bash</a>
+    </li>
+    <li class="list-group-item tag-1">
       <a href="./tag/shell.html">shell</a>
     </li>
     <li class="list-group-item tag-1">
@@ -297,13 +379,10 @@ Research Computing in Earth Sciences            </a>
       <a href="./tag/unix.html">unix</a>
     </li>
     <li class="list-group-item tag-1">
-      <a href="./tag/bash.html">bash</a>
+      <a href="./tag/assignment.html">assignment</a>
     </li>
     <li class="list-group-item tag-1">
       <a href="./tag/file-system.html">file system</a>
-    </li>
-    <li class="list-group-item tag-1">
-      <a href="./tag/assignment.html">assignment</a>
     </li>
     <li class="list-group-item tag-1">
       <a href="./tag/programming.html">programming</a>
@@ -312,55 +391,31 @@ Research Computing in Earth Sciences            </a>
       <a href="./tag/pandas.html">pandas</a>
     </li>
     <li class="list-group-item tag-3">
-      <a href="./tag/fortran.html">fortran</a>
+      <a href="./tag/gmt.html">GMT</a>
     </li>
     <li class="list-group-item tag-3">
       <a href="./tag/visualization.html">visualization</a>
     </li>
     <li class="list-group-item tag-3">
-      <a href="./tag/git.html">git</a>
+      <a href="./tag/fortran.html">fortran</a>
     </li>
     <li class="list-group-item tag-3">
-      <a href="./tag/gmt.html">GMT</a>
+      <a href="./tag/git.html">git</a>
     </li>
     <li class="list-group-item tag-3">
       <a href="./tag/matlab.html">MATLAB</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/numpy.html">numpy</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/basemap.html">basemap</a>
+      <a href="./tag/final.html">final</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/matplotlib.html">matplotlib</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/project.html">project</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/ndarray.html">ndarray</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/final.html">final</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/version-control.html">version control</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/mapping.html">mapping</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/source-code-editor.html">source code editor</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/geomapapp.html">GeoMapApp</a>
+      <a href="./tag/xarray.html">xarray</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/parallel-programming.html">parallel programming</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/vpn.html">vpn</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/arrays.html">arrays</a>
@@ -369,13 +424,37 @@ Research Computing in Earth Sciences            </a>
       <a href="./tag/packaging.html">packaging</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/xarray.html">xarray</a>
+      <a href="./tag/vpn.html">vpn</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/mpi.html">mpi</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/github.html">github</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/ndarray.html">ndarray</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/geomapapp.html">GeoMapApp</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/project.html">project</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/version-control.html">version control</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/basemap.html">basemap</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/numpy.html">numpy</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/mapping.html">mapping</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/source-code-editor.html">source code editor</a>
     </li>
   </ul>
 </li>
