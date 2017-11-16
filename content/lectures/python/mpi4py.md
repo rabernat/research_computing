@@ -71,7 +71,7 @@ If you are running this on a desktop computer, then you should adjust the `-n` a
 ## Communicators and Ranks
 
 Our first MPI for python example will simply import MPI from the mpi4py package, create a *communicator* and get the *rank* of each process:
-~~~
+~~~python
 from mpi4py import MPI
 
 comm = MPI.COMM_WORLD
@@ -80,7 +80,7 @@ print('My rank is ',rank)
 ~~~
 
 Save this to a file call `comm.py` and then run it:
-~~~
+~~~python
 mpirun -n 4 python comm.py
 ~~~
 Here we used the default communicator named `MPI.COMM_WORLD`, which consists of all the processors. For many MPI codes, this is the main communicator that you will need. However, you can create custom communicators using subsets of the processors in `MPI.COMM_WORLD`. See the documentation for more info.
@@ -88,7 +88,7 @@ Here we used the default communicator named `MPI.COMM_WORLD`, which consists of 
 ## Point-to-Point Communication
 
 Now we will look at how to pass data from one process to another. Here is a very simple example where we pass a dictionary from process 0 to process 1:
-~~~
+~~~python
 from mpi4py import MPI
 import numpy
 
@@ -105,7 +105,7 @@ elif rank == 1:
 
 Here we sent a dictionary, but you could also send an integer with a similar code:
 
-~~~
+~~~python
 from mpi4py import MPI
 import numpy
 
@@ -123,20 +123,20 @@ Note how `comm.send` and `comm.recv` have lower case `s` and `r`.
 
 Now let's look at a more complex example where we send a numpy array:
 
-~~~
+~~~python
 from mpi4py import MPI
-import numpy
+import numpy as np
 
 comm = MPI.COMM_WORLD
 rank = comm.Get_rank()
 
-# passing MPI datatypes explicitly
 if rank == 0:
-
-    numData = 10  # in a real code, this would be read from a data file
+    # in real code, this section might
+    # read in data parameters from a file
+    numData = 10  
     comm.send(numData, dest=1)
 
-    data = numpy.linspace(0.0,3.14,numData)  
+    data = np.linspace(0.0,3.14,numData)  
     comm.Send(data, dest=1)
 
 elif rank == 1:
@@ -144,29 +144,113 @@ elif rank == 1:
     numData = comm.recv(source=0)
     print('Number of data to receive: ',numData)
 
-    data = numpy.empty(numData, dtype='d')  # allocate space to receive the array
-    numData = comm.Recv(data, source=0)
+    data = np.empty(numData, dtype='d')  # allocate space to receive the array
+    comm.Recv(data, source=0)
 
     print('data received: ',data)
 ~~~
 Note how `comm.Send` and `comm.Recv` used to send and receive the numpy array have upper case `S` and `R`.
 
-
 ## Collective Communication
 
+### Broadcasting:
+Broadcasting takes a variable and sends an exact copy of it to all processes on a communicator. Here are some examples:
+
 Broadcasting a dictionary:
-~~~
+~~~python
 from mpi4py import MPI
 
 comm = MPI.COMM_WORLD
 rank = comm.Get_rank()
 
 if rank == 0:
-    data = {'key1' : [1,2 3],
-            'key' : ( 'abc', 'xyz')}
+    data = {'key1' : [1,2, 3],
+            'key2' : ( 'abc', 'xyz')}
 else:
     data = None
-data = comm.bcast(data, root=0)
 
-print(rank,': data: ' ,data)
+data = comm.bcast(data, root=0)
+print('Rank: ',rank,', data: ' ,data)
+~~~
+
+You can broadcasting a numpy array using the `Bcast` method (again note the capital `B`). Here we will modify the point-to-point code from above to instead broadcast the array `data` to all processes in the communicator (rather than just from process 0 to 1):
+~~~python
+from mpi4py import MPI
+import numpy as np
+
+comm = MPI.COMM_WORLD
+rank = comm.Get_rank()
+
+if rank == 0:
+    # create a data array on process 0
+    # in real code, this section might
+    # read in data parameters from a file
+    numData = 10  
+    data = np.linspace(0.0,3.14,numData)  
+else:
+    numData = None
+
+# broadcast numData and allocate array on other ranks:
+numData = comm.bcast(numData, root=0)
+if rank != 0:    
+    data = np.empty(numData, dtype='d')  
+
+comm.Bcast(data, root=0) # broadcast the array from rank 0 to all others
+
+print('Rank: ',rank, ', data received: ',data)
+~~~
+
+### Scattering:
+Scatter takes an array and distributes contiguous sections of it  across the ranks of a communicator. Here's an image from http://mpitutorial.com that illustrates the difference between a broadcast and scatter:
+![broadcast and scatter](http://mpitutorial.com/tutorials/mpi-scatter-gather-and-allgather/broadcastvsscatter.png "image from http://mpitutorial.com ")
+
+Let's try some examples now.
+
+~~~python
+from mpi4py import MPI
+import numpy as np
+
+comm = MPI.COMM_WORLD
+size = comm.Get_size() # new: gives number of ranks in comm
+rank = comm.Get_rank()
+
+numDataPerRank = 10  
+data = None
+if rank == 0:
+    data = np.linspace(1,size*numDataPerRank,numDataPerRank*size)
+    # when size=4 (using -n 4), data = [1.0:40.0]
+
+recvbuf = np.empty(numDataPerRank, dtype='d') # allocate space for recvbuf
+comm.Scatter(data, recvbuf, root=0)
+
+print('Rank: ',rank, ', recvbuf received: ',recvbuf)
+~~~
+
+## Gathering:
+
+The reverse of a `scatter` is a `gather`, which takes subsets of an array that are distributed across the ranks, and *gathers* them back into the full array. Here's an image from http://mpitutorial.com that illustrates this graphically:
+![broadcast and scatter](http://mpitutorial.com/tutorials/mpi-scatter-gather-and-allgather/gather.png "image from http://mpitutorial.com ")
+
+For an example, here is a code that does the reverse of the scatter example above.
+
+~~~python
+from mpi4py import MPI
+import numpy as np
+
+comm = MPI.COMM_WORLD
+size = comm.Get_size()
+rank = comm.Get_rank()   
+
+numDataPerRank = 10  
+sendbuf = np.linspace(rank*numDataPerRank+1,(rank+1)*numDataPerRank,numDataPerRank)
+print('Rank: ',rank, ', sendbuf: ',sendbuf)
+
+recvbuf = None
+if rank == 0:
+    recvbuf = np.empty(numDataPerRank*size, dtype='d')  
+
+comm.Gather(sendbuf, recvbuf, root=0)
+
+if rank == 0:
+    print('Rank: ',rank, ', recvbuf received: ',recvbuf)
 ~~~
