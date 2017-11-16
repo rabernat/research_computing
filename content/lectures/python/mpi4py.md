@@ -5,14 +5,14 @@ Tags: mpi, python, parallel programming
 Category: lectures
 Author: Kerry Key
 
-**Parallel Computing Overview**
+## Parallel Computing Overview
 
 We will start the tutorial with a brief overview on parallel computing concepts:
 
  [Overview of Parallel Computing](https://www.dropbox.com/s/2yidkm4e94p0yyj/MPI%20Overview.pdf?dl=0)
 
 
-**Installation of mpi4py**
+## Installation of mpi4py
 
 We will be using the MPI for Python package **mpi4py**. If you have a clean *geo_scipy* environment as described on Ryan's Python installation notes on this website, you should be able to install it without any issues using conda:
 ~~~
@@ -20,11 +20,11 @@ conda install mpi4py
 ~~~
 
 
-**What is mpi4py?**
+## What is mpi4py?
 
 MPI for Python provides MPI bindings for the Python  language, allowing programmers to exploit multiple processor computing systems. mpi4py is  is constructed on top of the MPI-1/2 specifications and provides an object oriented interface which closely follows MPI-2 C++ bindings.
 
-**Documentation for mpi4py**
+## Documentation for mpi4py
 
 The documentation for mpi4py can be found here:
 [https://mpi4py.scipy.org/](https://mpi4py.scipy.org/)
@@ -44,7 +44,7 @@ However, it is still a work in progress and much of it assumes you are already  
  [https://mpi4py.scipy.org/docs/apiref/mpi4py.MPI.Comm-class.html](https://mpi4py.scipy.org/docs/apiref/mpi4py.MPI.Comm-class.html)
 
 
- **Running Python Scripps with MPI**
+ #Running Python Scripps with MPI
 
 Assuming you have the *geo_scipy* environment setup on your machine, the first thing to do is to open a terminal shell and activate *geo_scipy*:
 ~~~
@@ -68,7 +68,7 @@ Here the `-n 4` tells MPI to use four processes, which is the number of cores I 
 If you are running this on a desktop computer, then you should adjust the `-n` argument to be the number of cores on your system or the maximum number of processes needed for your job, whichever is smaller. Or on a large cluster you would specify the number of cores that your program needs or the maximum number of cores available on the particular cluster.
 
 
- **Communicators and Ranks**
+## Communicators and Ranks
 
 Our first MPI for python example will simply import MPI from the mpi4py package, create a *communicator* and get the *rank* of each process:
 ~~~
@@ -85,7 +85,7 @@ mpirun -n 4 python comm.py
 ~~~
 Here we used the default communicator named `MPI.COMM_WORLD`, which consists of all the processors. For many MPI codes, this is the main communicator that you will need. However, you can create custom communicators using subsets of the processors in `MPI.COMM_WORLD`. See the documentation for more info.
 
- **Point-to-Point Communication**
+## Point-to-Point Communication
 
 Now we will look at how to pass data from one process to another. Here is a very simple example where we pass a dictionary from process 0 to process 1:
 ~~~
@@ -149,4 +149,24 @@ elif rank == 1:
 
     print('data received: ',data)
 ~~~
-Note how `comm.Send` and `comm.Recv` used to send and recieve the numpy array have upper case `S` and `R`.
+Note how `comm.Send` and `comm.Recv` used to send and receive the numpy array have upper case `S` and `R`.
+
+
+## Collective Communication
+
+Broadcasting a dictionary:
+~~~
+from mpi4py import MPI
+
+comm = MPI.COMM_WORLD
+rank = comm.Get_rank()
+
+if rank == 0:
+    data = {'key1' : [1,2 3],
+            'key' : ( 'abc', 'xyz')}
+else:
+    data = None
+data = comm.bcast(data, root=0)
+
+print(rank,': data: ' ,data)
+~~~
