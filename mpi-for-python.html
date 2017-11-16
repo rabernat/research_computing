@@ -123,6 +123,20 @@ Research Computing in Earth Sciences            </a>
 <p>We will be using the MPI for Python package <strong>mpi4py</strong>. If you have a clean <code>geo_scipy</code> environment as described on Ryan's Python installation notes on this website, you should be able to install it without any issues using conda:</p>
 <div class="highlight"><pre><span></span>conda install mpi4py
 </pre></div>
+
+
+<p><strong>What is mpi4py?</strong></p>
+<p>MPI for Python provides MPI bindings for the Python  language, allowing programmers to exploit multiple processor computing systems. mpi4py is  is constructed on top of the MPI-1/2 specifications and provides an object oriented interface which closely follows MPI-2 C++ bindings.</p>
+<p><strong>Documentation for mpi4py</strong></p>
+<p>The documentation for mpi4py can be found here:
+<a href="https://mpi4py.scipy.org/">https://mpi4py.scipy.org/</a></p>
+<p>However, it is still a work in progress and much of it assumes you are already  familiar with the MPI standard. Therefore, you will  probably also need to  consult the MPI standard documentation:</p>
+<p><a href="http://mpi-forum.org/docs/">http://mpi-forum.org/docs/</a></p>
+<p>The MPI docs only cover the C and Fortran implementations, but the extension to Python syntax is straightforward and in most cases much simpler than the equivalent C or Fortran statements.</p>
+<p>Another useful place to look for help is the API reference for mpi4py:</p>
+<p><a href="https://mpi4py.scipy.org/docs/apiref/mpi4py.MPI-module.html">https://mpi4py.scipy.org/docs/apiref/mpi4py.MPI-module.html</a></p>
+<p>In particular, the section for Class Comm lists all the methods you can use with a communicator object:</p>
+<p><a href="https://mpi4py.scipy.org/docs/apiref/mpi4py.MPI.Comm-class.html">https://mpi4py.scipy.org/docs/apiref/mpi4py.MPI.Comm-class.html</a></p>
             </div>
             <!-- /.entry-content -->
         </article>
@@ -158,34 +172,31 @@ Research Computing in Earth Sciences            </a>
   <a href="./"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
   <ul class="list-group " id="tags">
     <li class="list-group-item tag-1">
-      <a href="./tag/shell.html">shell</a>
-    </li>
-    <li class="list-group-item tag-1">
-      <a href="./tag/programming.html">programming</a>
-    </li>
-    <li class="list-group-item tag-1">
-      <a href="./tag/bash.html">bash</a>
-    </li>
-    <li class="list-group-item tag-1">
       <a href="./tag/unix.html">unix</a>
-    </li>
-    <li class="list-group-item tag-1">
-      <a href="./tag/assignment.html">assignment</a>
     </li>
     <li class="list-group-item tag-1">
       <a href="./tag/file-system.html">file system</a>
     </li>
     <li class="list-group-item tag-1">
+      <a href="./tag/shell.html">shell</a>
+    </li>
+    <li class="list-group-item tag-1">
       <a href="./tag/python.html">python</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/assignment.html">assignment</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/bash.html">bash</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/programming.html">programming</a>
     </li>
     <li class="list-group-item tag-2">
       <a href="./tag/pandas.html">pandas</a>
     </li>
     <li class="list-group-item tag-3">
       <a href="./tag/fortran.html">fortran</a>
-    </li>
-    <li class="list-group-item tag-3">
-      <a href="./tag/visualization.html">visualization</a>
     </li>
     <li class="list-group-item tag-3">
       <a href="./tag/matlab.html">MATLAB</a>
@@ -196,14 +207,8 @@ Research Computing in Earth Sciences            </a>
     <li class="list-group-item tag-3">
       <a href="./tag/git.html">git</a>
     </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/mapping.html">mapping</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/final.html">final</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/vpn.html">vpn</a>
+    <li class="list-group-item tag-3">
+      <a href="./tag/visualization.html">visualization</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/ndarray.html">ndarray</a>
@@ -212,16 +217,22 @@ Research Computing in Earth Sciences            </a>
       <a href="./tag/geomapapp.html">GeoMapApp</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/numpy.html">numpy</a>
+      <a href="./tag/basemap.html">basemap</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/vpn.html">vpn</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/version-control.html">version control</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/project.html">project</a>
+      <a href="./tag/packaging.html">packaging</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/github.html">github</a>
+      <a href="./tag/xarray.html">xarray</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/mpi.html">mpi</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/parallel-programming.html">parallel programming</a>
@@ -230,22 +241,25 @@ Research Computing in Earth Sciences            </a>
       <a href="./tag/arrays.html">arrays</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/xarray.html">xarray</a>
+      <a href="./tag/github.html">github</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/packaging.html">packaging</a>
+      <a href="./tag/mapping.html">mapping</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/basemap.html">basemap</a>
+      <a href="./tag/source-code-editor.html">source code editor</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/matplotlib.html">matplotlib</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/mpi.html">mpi</a>
+      <a href="./tag/numpy.html">numpy</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/source-code-editor.html">source code editor</a>
+      <a href="./tag/final.html">final</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/project.html">project</a>
     </li>
   </ul>
 </li>
