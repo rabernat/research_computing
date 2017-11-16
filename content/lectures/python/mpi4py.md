@@ -7,7 +7,4 @@ Author: Kerry Key
 
 
 We will start the tutorial with a brief overview on parallel computing concepts:
- [Overview of Parallel Computing][MPI_Overview.pdf]
-
-
- 
+ [Overview of Parallel Computing]({filename}/lectures/python/MPI_Overview.pdf)
