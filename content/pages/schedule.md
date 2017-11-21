@@ -31,7 +31,7 @@ Summary: Overview of course schedule and topics
 | Thursday | 9-Nov  | RPA        | [Organization and Packaging of Python projects]({filename}/lectures/python/organization_and_packaging.ipynb)     |     Lytle, Zhang   |
 | Tuesday  | 14-Nov | RPA        | Organization and Packaging in-class activity           |        |
 | Thursday | 16-Nov | KK         | [Parallel programming in Python with MPI]({filename}/lectures/python/mpi4py.md)          |   Lesk, Raymond     |
-| Tuesday  | 21-Nov | KK         | Parallel programming in Python with MPI in-class activity  |      |
+| Tuesday  | 21-Nov | KK         | [Intro to Habanero]({filename}/lectures/habanero/intro_to_habanero.md)  and Parallel Python with MPI in-class activity  |      |
 | Thursday | 23-Nov |            | _No Class / Thanksgiving_                     |     |
 | Tuesday  | 28-Nov | RPA        | Parallel programming Python with Dask          |          |
 | Thursday | 30-Nov | RPA        | Parallel programming in Python in-class activity |        |
