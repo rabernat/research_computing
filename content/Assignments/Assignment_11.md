@@ -86,7 +86,7 @@ Remember to load the anaconda module after you ssh into Habanero:
 
 ~~~bash
 $ module load anaconda/3-4.4.0
-~~~~
+~~~
 
 Set N=100000000 (that's 100,000,000) in the alternating series code.
 
