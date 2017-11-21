@@ -220,6 +220,7 @@ To run an MPI code, we need a slightly different batch script:
 #SBATCH --job-name=HelloWorld    # The job name.
 #SBATCH -N 1                     # The number of nodes to use
                                  #(note there are 24 cores per node)
+#SBATCH --exclusive                                 
 #SBATCH --time=1:00              # The time the job will take to run.
 
 source activate geo_scipy
@@ -248,6 +249,7 @@ MPI does not prevent your from oversubscribing nodes, so its important that you 
 #SBATCH --job-name=HelloWorld    # The job name.
 #SBATCH -N 4                     # The number of nodes to use
                                  #(note there are 24 cores per node)
+#SBATCH --exclusive                                 
 #SBATCH --time=1:00              # The time the job will take to run.
 
 source activate geo_scipy
