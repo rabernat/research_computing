@@ -51,9 +51,11 @@ List all the modules that are available:
 ~~~
 
 Since the demo code we will be running is in Python, we need to load the ***anaconda*** module. Let's grab the latest version available and load it:
+
 ~~~bash
 [kwk2115@holmes ~]$ module load anaconda/3-4.4.0
-~~~~
+~~~
+
 Now if you run `module list` you will see anaconda in the list of loaded modules.
 
 If you always use certain modules on the cluster, you can simply add the `module load <module_name>` command to your `.bashrc` file in your home directory (your home directory on Habanero, not your laptop). This file is always read in right as you log in, so any commands there get executed when your shell starts up.
@@ -63,7 +65,6 @@ If you always use certain modules on the cluster, you can simply add the `module
 ### Setting up the geo_scipy environment
 
 For this tutorial we will run some simple `mpi4py` commands, so let's get a geo_scipy environment setup using the `environment.yml` file below. Make sure yours includes the MPI line at the bottom.
-
 
 ~~~yaml
 name: geo_scipy
