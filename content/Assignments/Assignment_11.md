@@ -12,25 +12,25 @@ Do the following:
 
 -  **Dust of your *alternating series* function from Assignment #3.** Your function should look something like this. Here we have added an explicit timer function using the `timeit`  module:
 
-    ~~~python
-    from timeit import default_timer as timer
+~~~python
+from timeit import default_timer as timer
 
-    def alternating_harmonic_series(N):
-        val = 0.
-        for n in range(1, N+1):
-            val += (-1)**(n+1) / n
-        return val
+def alternating_harmonic_series(N):
+    val = 0.
+    for n in range(1, N+1):
+        val += (-1)**(n+1) / n
+    return val
 
-    start = timer()
-    N     = 100000
-    value = alternating_harmonic_series(N)
-    stop  = timer()
+start = timer()
+N     = 100000
+value = alternating_harmonic_series(N)
+stop  = timer()
 
-    print(' Number of terms in series: ',N)
-    print(' Ending value of series: ',value)
-    print(' Elapsed time: ',stop-start)
+print(' Number of terms in series: ',N)
+print(' Ending value of series: ',value)
+print(' Elapsed time: ',stop-start)
 
-    ~~~
+~~~
 
     Test that this serial version of the code works on your laptop. The printed value of the alternating series should be around 0.69314.
 
@@ -39,20 +39,20 @@ You can start from the serial code above, and just add a few lines of code to ma
 
   - Your main code should get the MPI communicator size and rank of each processor using:
 
-    ~~~python
-    comm = MPI.COMM_WORLD
-    rank = comm.Get_rank()
-    size = comm.Get_size()
-    ~~~
+~~~python
+comm = MPI.COMM_WORLD
+rank = comm.Get_rank()
+size = comm.Get_size()
+~~~
 
     These should be placed after the alternating series function and before `start = timer()`.
 
   - Pass in the process `rank` and `size` of the communicator to your function:
 
-    ~~~python
-    def alternating_harmonic_series(N,rank,size):
-        < details of  function code>
-    ~~~
+~~~python
+def alternating_harmonic_series(N,rank,size):
+    < details of  function code>
+~~~
 
   - The function will be called by each parallel process (i.e., each rank). So you you need to modify  `range(1,N+1)`   to loop over a unique range for each parallel process. In other words, each parallel process will compute part of the sum, and then the results from each parallel process will be later added to give the total sum. See the next bullet point for how to do this.
 
@@ -63,54 +63,58 @@ You can start from the serial code above, and just add a few lines of code to ma
 
   - The parallel code should print out the same things as the serial code above. So modify the  code so that the timers and the print statements are only executed on the rank 0 process.  For example:
 
-      ~~~python
-      if rank == 0:
-        print(' Number of terms in series: ',N)
-        ...
-      ~~~~
+~~~python
+if rank == 0:
+  print(' Number of terms in series: ',N)
+  ...
+~~~~
 
   -  Make sure the value of the sum agrees with your serial code when you run the MPI version using one processor.  When running on more processors, there will be small differences due to rounding errors in the reduction operations.
 
   - If you call your parallel code `alternatingSeriesMPI.py`, you can run it using the command below (where I'm using the 4 cores on my laptop):
 
-    ~~~python
-    $ mpirun -n 4 python alternatingSeriesMPI.py
-    ~~~~
+~~~
+$ mpirun -n 4 python alternatingSeriesMPI.py
+~~~~
 
 - **Run the parallel alternating series code on Habanero.**
   - Remember to load the anaconda module after you ssh into Habanero:
 
-    ~~~python
-    $ module load anaconda/3-4.4.0
-    ~~~~    
+~~~
+$ module load anaconda/3-4.4.0
+~~~~    
 
   - Set N=100000000 (that's 100,000,000) in the alternating series code.
 
-  - Run it with the number of MPI processes varying from 1,2,3,6,12,24,48,96.  You can run it on 4 Habanero nodes and then specify the various number of processors to use using the `-n` argument with MPI. Here's what I used for the shell script:
+  - Run it with the number of MPI processes varying from 1,2,3,6,12,24,48,96.  You can run it on 4 Habanero nodes and then specify the various number of processors to use using the `-n` argument with MPI. Here's what I used for the shell script `alternatingSeries.sh`:
 
-    ~~~bash
-    !/bin/sh
-    #SBATCH --account=edu      
-    #SBATCH --job-name=AlternatingSeries    
-    #SBATCH -N 4
-    #SBATCH --exclusive
-    #SBATCH --time=5:00   
+~~~bash
+!/bin/sh
+#SBATCH --account=edu      
+#SBATCH --job-name=AlternatingSeries    
+#SBATCH -N 4
+#SBATCH --exclusive
+#SBATCH --time=5:00   
 
-    echo "starting alt.sh commands..."
+source activate geo_scipy
 
-    source activate geo_scipy
-
-    mpirun -n 1 python alternatingSeriesMPI.py
-    mpirun -n 2 python alternatingSeriesMPI.py
-    mpirun -n 3 python alternatingSeriesMPI.py
-    mpirun -n 6 python alternatingSeriesMPI.py
-    mpirun -n 12 python alternatingSeriesMPI.py
-    mpirun -n 24 python alternatingSeriesMPI.py
-    mpirun -n 48 python alternatingSeriesMPI.py
-    mpirun -n 96 python alternatingSeriesMPI.py
-    ~~~
+mpirun -n 1 python alternatingSeriesMPI.py
+mpirun -n 2 python alternatingSeriesMPI.py
+mpirun -n 3 python alternatingSeriesMPI.py
+mpirun -n 6 python alternatingSeriesMPI.py
+mpirun -n 12 python alternatingSeriesMPI.py
+mpirun -n 24 python alternatingSeriesMPI.py
+mpirun -n 48 python alternatingSeriesMPI.py
+mpirun -n 96 python alternatingSeriesMPI.py
+~~~
 
     Note that you need to use the `#SBATCH --exclusive` directive above so that you have exclusive access to the `-N 4` nodes. The  4 compute nodes each have 24 processing cores, so you can run up to 96 MPI processes without oversubscribing the system.
+
+  - Submit your script to the Slurm scheduler so that it runs on the cluster:
+
+~~~bash
+(geo_scipy) [kwk2115@holmes ~]$ sbatch alternatingSeries.sh
+~~~
 
   - Save a table of the timer results for each MPI run that has [number_of_pocesses, time]. I ran the above script several times and noticed up to about 50% variability in the run times when `-n 48` and `-n 96` which implies some network latency issues since these larger jobs require two and four nodes communicating over the network. This isn't required, but if you want a more robust scaling test, you should run the script several times and then take the fastest times for each of the `-n` values used.
 
