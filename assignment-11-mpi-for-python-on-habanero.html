@@ -13,13 +13,13 @@
 
         <meta name="author" content="Ryan Abernathey and Kerry Key" />
         <meta name="keywords" content="assignment" />
-        <meta name="description" content="Due: Tuesday, 28 November" />
+        <meta name="description" content="Due: Tuesday, 30 November" />
 
         <meta property="og:site_name" content="Research Computing in Earth Sciences" />
         <meta property="og:type" content="article"/>
         <meta property="og:title" content="Assignment #11 - MPI for Python on Habanero"/>
         <meta property="og:url" content="./assignment-11-mpi-for-python-on-habanero.html"/>
-        <meta property="og:description" content="Due: Tuesday, 28 November"/>
+        <meta property="og:description" content="Due: Tuesday, 30 November"/>
         <meta property="article:published_time" content="2017-11-21" />
             <meta property="article:section" content="assignments" />
             <meta property="article:tag" content="assignment" />
@@ -111,93 +111,123 @@ Research Computing in Earth Sciences            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p><strong>Due: Tuesday, 28 November</strong></p>
+                <p><strong>Due: Thursday, 30 November</strong></p>
 <p>This purpose of this homework assignment is to get you more familiar with  MPI programming concepts and to run some parallel scaling tests of a code on the Habanero cluster.</p>
 <p>Do the following:</p>
-<ol>
-<li><strong>Dust of your <em>alternating series</em> function from Assignment #3.</strong> Add an explicit timer to your function using the <code>timeit</code> library.  Here's an example of how to record the time for a function call using <code>timeit</code>:</li>
-</ol>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">timeit</span> <span class="kn">import</span> <span class="n">default_timer</span> <span class="k">as</span> <span class="n">timer</span>
-
-<span class="c1">#...</span>
-<span class="c1"># insert function definition here</span>
-<span class="c1">#...</span>
-
-<span class="n">start</span> <span class="o">=</span> <span class="n">timer</span><span class="p">()</span>
-
-<span class="c1">#...</span>
-<span class="c1"># insert call to function here</span>
-<span class="c1">#...</span>
-
-<span class="n">stop</span> <span class="o">=</span> <span class="n">timer</span><span class="p">()</span>
-
-<span class="k">print</span><span class="p">(</span><span class="s1">&#39; elapsed time: &#39;</span><span class="p">,</span><span class="n">stop</span><span class="o">-</span><span class="n">start</span><span class="p">)</span>
-</pre></div>
-
-
-<p>Test that this serial version of the code works on your laptop.</p>
-<ol>
+<ul>
 <li>
-<p><strong>Create a parallel version of the alternating series  code.</strong>
-Here are some tips:</p>
+<p><strong>Dust of your <em>alternating series</em> function from Assignment #3.</strong> Your function should look something like this. Here we have added an explicit timer function using the <code>timeit</code>  module:
+    ~~~python
+    from timeit import default_timer as timer</p>
+<p>def alternating_harmonic_series(N):
+    val = 0.
+    for n in range(1, N+1):
+        val += (-1)**(n+1) / n
+    return val</p>
+<p>start = timer()
+N     = 100000
+value = alternating_harmonic_series(N)
+stop  = timer()</p>
+<p>print(' Number of terms in series: ',N)
+print(' Ending value of series: ',value)
+print(' Elapsed time: ',stop-start)</p>
+<p>~~~</p>
+<p>Test that this serial version of the code works on your laptop. The printed value of the alternating series should be around 0.69314.</p>
+</li>
+<li>
+<p><strong>Create a parallel version of the alternating series code.</strong>
+You can start from the serial code above, and just add a few lines of code to make it run in parallel. Here are some tips:</p>
 </li>
 <li>
 <p>Your main code should get the MPI communicator size and rank of each processor using:</p>
-</li>
-</ol>
-<div class="highlight"><pre><span></span><span class="n">comm</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">COMM_WORLD</span>
-<span class="n">rank</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Get_rank</span><span class="p">()</span>
-<span class="n">size</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Get_size</span><span class="p">()</span>
-</pre></div>
-
-
-<ul>
-<li>Your should pass in the process rank and size of the communicator to your function:</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">alternating_harmonic_series</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">rank</span><span class="p">,</span><span class="n">size</span><span class="p">):</span>
-    <span class="o">&lt;</span> <span class="n">details</span> <span class="n">of</span>  <span class="n">function</span> <span class="n">code</span><span class="o">&gt;</span>
-</pre></div>
-
-
-<ul>
-<li>
-<p>You will parallelize the loop over <strong><em>n</em></strong> in the alternating series sum.  On each process, set the starting value of the sum integer to be  <code>rank</code>+1 and the stride of the loop (aka the increment value) to be the <code>size</code> of the communicator. For example, if we use 4 processors, this means   the rank 0 process will compute the sum over values <strong><em>n = 1, 5, 9, 13...</em></strong> while the rank 1 process will use  <strong><em>n = 2, 6, 10, 14...</em></strong>. You could should generalize this using the communicator <code>size</code>.</p>
+<p>~~~python
+comm = MPI.COMM_WORLD
+rank = comm.Get_rank()
+size = comm.Get_size()
+~~~</p>
+<p>These should be placed after the alternating series function and before <code>start = timer()</code>.</p>
 </li>
 <li>
-<p>Use <code>comm.Reduce()</code> to compute the sum of the partial values from each process and save that on the root process.  </p>
+<p>Pass in the process <code>rank</code> and <code>size</code> of the communicator to your function:
+    ~~~python
+    def alternating_harmonic_series(N,rank,size):
+        &lt; details of  function code&gt;
+    ~~~</p>
 </li>
 <li>
-<p>The root process should print out the value N (the total number of terms in the sum) and the value of the sum. Make sure the values agrees with your serial code when you run the MPI version using one processor.  When running on more processors, there will be small differences due to rounding errors in the reduction operations.</p>
+<p>The function will be called by each parallel process (i.e., each rank). So you you need to modify  <code>range(1,N+1)</code>   to loop over a unique range for each parallel process. In other words, each parallel process will compute part of the sum, and then the results from each parallel process will be later added to give the total sum. See the next bullet point for how to do this.</p>
 </li>
 <li>
-<p>Add a timer on the rank 0 process. You code should have</p>
+<p>On each process, set the starting value of the sum integer to be  <code>rank</code>+1 and the stride of the loop (aka the increment value) to be the <code>size</code> of the communicator. For example, if we use 4 processors, this means   the rank 0 process will compute the sum over values <strong><em>n = 1, 5, 9, 13...N</em></strong> while the rank 1 process will use  <strong><em>n = 2, 6, 10, 14...N</em></strong>. You  should generalize this using the communicator <code>size</code>.</p>
 </li>
-</ul>
-<div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="n">start</span> <span class="o">=</span> <span class="n">timer</span><span class="p">()</span>
-</pre></div>
-
-
-<p>and later on there should be a stop timer on the root process and a print statement that specifies the elapsed time as well as the <code>size</code> of the communicator.</p>
-<ol>
+<li>
+<p>You will use <code>comm.Reduce()</code> to add the partial sums (in <code>values</code>) from each process together on  the root (rank 0) process.  You will have to first convert <code>value</code> to an np.array since <code>comm.Reduce</code> will only work for np.arrays. For example use  <code>send_val = np.array(value,'d')</code>.   Then you will have a command that should be
+  <code>comm.Reduce(send_val,sum,op=MPI.SUM,root=0)</code> or similar, where the total sum is now in variable <code>sum</code>.</p>
+</li>
+<li>
+<p>The parallel code should print out the same things as the serial code above. So modify the  code so that the timers and the print statements are only executed on the rank 0 process.  For example:
+      ~~~python
+      if rank == 0:
+        print(' Number of terms in series: ',N)
+        ...
+      ~~~~</p>
+</li>
+<li>
+<p>Make sure the value of the sum agrees with your serial code when you run the MPI version using one processor.  When running on more processors, there will be small differences due to rounding errors in the reduction operations.</p>
+</li>
+<li>
+<p>If you call your parallel code <code>alternatingSeriesMPI.py</code>, you can run it using the command below (where I'm using the 4 cores on my laptop):
+    ~~~python
+    $ mpirun -n 4 python alternatingSeriesMPI.py
+    ~~~~</p>
+</li>
 <li>
 <p><strong>Run the parallel alternating series code on Habanero.</strong></p>
 </li>
 <li>
-<p>Run it for values of N=100,000,000 (that's 1 with 8 zeros afterward) for the number terms in the sum.</p>
-</li>
-<li>Run it with the number of MPI processes varying from 1,2,3,6,12,24,48,96. So you will run it on up to 4 Habanero nodes.</li>
-<li>Save a table of the timer results for each MPI run. So [number_of_pocesses, time].</li>
-<li>
-<p>Use matplotlib to make a plot of the parallel run time scaling. So time (y axis) versus number of processes (x axis).</p>
+<p>Remember to load the anaconda module after you ssh into Habanero:
+    ~~~python
+    $ module load anaconda/3-4.4.0
+    ~~~~    </p>
 </li>
 <li>
-<p><strong>Upload to github in folder Assignment 11</strong></p>
+<p>Set N=100000000 (that's 100,000,000) in the alternating series code.</p>
+</li>
+<li>
+<p>Run it with the number of MPI processes varying from 1,2,3,6,12,24,48,96.  You can run it on 4 Habanero nodes and then specify the various number of processors to use using the <code>-n</code> argument with MPI. Here's what I used for the shell script:
+    ~~~bash
+    !/bin/sh
+    #SBATCH --account=edu    <br>
+    #SBATCH --job-name=AlternatingSeries  <br>
+    #SBATCH -N 4
+    #SBATCH --exclusive
+    #SBATCH --time=5:00   </p>
+<p>echo "starting alt.sh commands..."</p>
+<p>source activate geo_scipy</p>
+<p>mpirun -n 1 python alternatingSeriesMPI.py
+mpirun -n 2 python alternatingSeriesMPI.py
+mpirun -n 3 python alternatingSeriesMPI.py
+mpirun -n 6 python alternatingSeriesMPI.py
+mpirun -n 12 python alternatingSeriesMPI.py
+mpirun -n 24 python alternatingSeriesMPI.py
+mpirun -n 48 python alternatingSeriesMPI.py
+mpirun -n 96 python alternatingSeriesMPI.py
+~~~</p>
+<p>Note that you need to use the <code>#SBATCH --exclusive</code> directive above so that you have exclusive access to the <code>-N 4</code> nodes. The  4 compute nodes each have 24 processing cores, so you can run up to 96 MPI processes without oversubscribing the system.</p>
+</li>
+<li>
+<p>Save a table of the timer results for each MPI run that has [number_of_pocesses, time]. I ran the above script several times and noticed up to about 50% variability in the run times when <code>-n 48</code> and <code>-n 96</code> which implies some network latency issues since these larger jobs require two and four nodes communicating over the network. This isn't required, but if you want a more robust scaling test, you should run the script several times and then take the fastest times for each of the <code>-n</code> values used.</p>
+</li>
+<li>
+<p>Use matplotlib to make a plot of the parallel run time scaling. So time on the y axis versus number of processes on the x axis. <strong>Use log scaling for both the x and y axes.</strong> Don't forget to label the axes.  </p>
+</li>
+<li>
+<p><strong>Upload to your github in a new folder called Assignment_11</strong></p>
 </li>
 <li>your python code</li>
 <li>the bash script you used on Habanero</li>
-<li>the time scaling plot. </li>
-</ol>
+<li>the time scaling plot.</li>
+</ul>
             </div>
             <!-- /.entry-content -->
         </article>
@@ -233,103 +263,103 @@ Here are some tips:</p>
   <a href="./"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
   <ul class="list-group " id="tags">
     <li class="list-group-item tag-1">
-      <a href="./tag/file-system.html">file system</a>
-    </li>
-    <li class="list-group-item tag-1">
-      <a href="./tag/programming.html">programming</a>
-    </li>
-    <li class="list-group-item tag-1">
       <a href="./tag/assignment.html">assignment</a>
-    </li>
-    <li class="list-group-item tag-1">
-      <a href="./tag/unix.html">unix</a>
-    </li>
-    <li class="list-group-item tag-1">
-      <a href="./tag/python.html">python</a>
     </li>
     <li class="list-group-item tag-1">
       <a href="./tag/shell.html">shell</a>
     </li>
     <li class="list-group-item tag-1">
+      <a href="./tag/python.html">python</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/programming.html">programming</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/file-system.html">file system</a>
+    </li>
+    <li class="list-group-item tag-1">
       <a href="./tag/bash.html">bash</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/unix.html">unix</a>
     </li>
     <li class="list-group-item tag-2">
       <a href="./tag/pandas.html">pandas</a>
     </li>
     <li class="list-group-item tag-3">
-      <a href="./tag/git.html">git</a>
-    </li>
-    <li class="list-group-item tag-3">
-      <a href="./tag/fortran.html">fortran</a>
-    </li>
-    <li class="list-group-item tag-3">
-      <a href="./tag/matlab.html">MATLAB</a>
+      <a href="./tag/gmt.html">GMT</a>
     </li>
     <li class="list-group-item tag-3">
       <a href="./tag/visualization.html">visualization</a>
     </li>
     <li class="list-group-item tag-3">
-      <a href="./tag/gmt.html">GMT</a>
+      <a href="./tag/matlab.html">MATLAB</a>
     </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/xarray.html">xarray</a>
+    <li class="list-group-item tag-3">
+      <a href="./tag/fortran.html">fortran</a>
     </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/mpi.html">mpi</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/arrays.html">arrays</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/basemap.html">basemap</a>
+    <li class="list-group-item tag-3">
+      <a href="./tag/git.html">git</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/final.html">final</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/numpy.html">numpy</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/github.html">github</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/version-control.html">version control</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/matplotlib.html">matplotlib</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/project.html">project</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/cluster.html">cluster</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/parallel-programming.html">parallel programming</a>
+      <a href="./tag/source-code-editor.html">source code editor</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/parallel-computing.html">parallel computing</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/habanero.html">habanero</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/packaging.html">packaging</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/geomapapp.html">GeoMapApp</a>
+      <a href="./tag/ndarray.html">ndarray</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/mapping.html">mapping</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/source-code-editor.html">source code editor</a>
+      <a href="./tag/parallel-programming.html">parallel programming</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/xarray.html">xarray</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/arrays.html">arrays</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/github.html">github</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/packaging.html">packaging</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/version-control.html">version control</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/basemap.html">basemap</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/cluster.html">cluster</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/project.html">project</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/numpy.html">numpy</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/geomapapp.html">GeoMapApp</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/matplotlib.html">matplotlib</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/habanero.html">habanero</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/mpi.html">mpi</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/vpn.html">vpn</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/ndarray.html">ndarray</a>
     </li>
   </ul>
 </li>
