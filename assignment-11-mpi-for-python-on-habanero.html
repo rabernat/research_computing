@@ -160,26 +160,24 @@ Research Computing in Earth Sciences            </a>
 <div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
   <span class="k">print</span><span class="p">(</span><span class="s1">&#39; Number of terms in series: &#39;</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
   <span class="o">&lt;</span><span class="n">rest</span> <span class="n">of</span> <span class="n">commands</span><span class="o">&gt;</span>
-<span class="o">~~~~</span>
-
-<span class="n">Make</span> <span class="n">sure</span> <span class="n">the</span> <span class="n">value</span> <span class="n">of</span> <span class="n">the</span> <span class="nb">sum</span> <span class="n">agrees</span> <span class="k">with</span> <span class="n">your</span> <span class="n">serial</span> <span class="n">code</span> <span class="n">when</span> <span class="n">you</span> <span class="n">run</span> <span class="n">the</span> <span class="n">MPI</span> <span class="n">version</span> <span class="n">using</span> <span class="n">one</span> <span class="n">processor</span><span class="o">.</span>  <span class="n">When</span> <span class="n">running</span> <span class="n">on</span> <span class="n">more</span> <span class="n">processors</span><span class="p">,</span> <span class="n">there</span> <span class="n">will</span> <span class="n">be</span> <span class="n">small</span> <span class="n">differences</span> <span class="n">due</span> <span class="n">to</span> <span class="n">rounding</span> <span class="n">errors</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">reduction</span> <span class="n">operations</span><span class="o">.</span>
-
-<span class="n">If</span> <span class="n">you</span> <span class="n">call</span> <span class="n">your</span> <span class="n">parallel</span> <span class="n">code</span> <span class="sb">`alternatingSeriesMPI.py`</span><span class="p">,</span> <span class="n">you</span> <span class="n">can</span> <span class="n">run</span> <span class="n">it</span> <span class="n">using</span> <span class="n">the</span> <span class="n">command</span> <span class="n">below</span> <span class="p">(</span><span class="n">where</span> <span class="n">I</span><span class="s1">&#39;m using the 4 cores on my laptop):</span>
 </pre></div>
 
 
-<p>$ mpirun -n 4 python alternatingSeriesMPI.py</p>
-<div class="highlight"><pre><span></span>### 3. Run the parallel alternating series code on Habanero.
+<p>Make sure the value of the sum agrees with your serial code when you run the MPI version using one processor.  When running on more processors, there will be small differences due to rounding errors in the reduction operations.</p>
+<p>If you call your parallel code <code>alternatingSeriesMPI.py</code>, you can run it using the command below (where I'm using the 4 cores on my laptop):</p>
+<div class="highlight"><pre><span></span>$ mpirun -n <span class="m">4</span> python alternatingSeriesMPI.py
+~~~~
 
-But first test that it works on your laptop! Make sure that `sum`  after the `comm.Reduce` command agrees with your serial code (at least the first several digits should agree).
+<span class="c1">### 3. Run the parallel alternating series code on Habanero.</span>
+
+But first <span class="nb">test</span> that it works on your laptop! Make sure that <span class="sb">`</span>sum<span class="sb">`</span>  after the <span class="sb">`</span>comm.Reduce<span class="sb">`</span> <span class="nb">command</span> agrees with your serial code <span class="o">(</span>at least the first several digits should agree<span class="o">)</span>.
 
 Remember to load the anaconda module after you ssh into Habanero:
-
-~~~
-$ module load anaconda/3-4.4.0
 </pre></div>
 
 
+<p>$ module load anaconda/3-4.4.0
+~~~~    </p>
 <p>Set N=100000000 (that's 100,000,000) in the alternating series code.</p>
 <p>Run it with the number of MPI processes varying from 1,2,3,6,12,24,48,96.  You can run it on 4 Habanero nodes and then specify the various number of processors to use using the <code>-n</code> argument with MPI. Here's what I used for the shell script <code>alternatingSeries.sh</code>:</p>
 <div class="highlight"><pre><span></span>!/bin/sh
@@ -251,22 +249,22 @@ mpirun -n <span class="m">96</span> python alternatingSeriesMPI.py
   <a href="./"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
   <ul class="list-group " id="tags">
     <li class="list-group-item tag-1">
+      <a href="./tag/bash.html">bash</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/python.html">python</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/file-system.html">file system</a>
+    </li>
+    <li class="list-group-item tag-1">
       <a href="./tag/shell.html">shell</a>
     </li>
     <li class="list-group-item tag-1">
       <a href="./tag/assignment.html">assignment</a>
     </li>
     <li class="list-group-item tag-1">
-      <a href="./tag/file-system.html">file system</a>
-    </li>
-    <li class="list-group-item tag-1">
       <a href="./tag/programming.html">programming</a>
-    </li>
-    <li class="list-group-item tag-1">
-      <a href="./tag/python.html">python</a>
-    </li>
-    <li class="list-group-item tag-1">
-      <a href="./tag/bash.html">bash</a>
     </li>
     <li class="list-group-item tag-1">
       <a href="./tag/unix.html">unix</a>
@@ -275,55 +273,34 @@ mpirun -n <span class="m">96</span> python alternatingSeriesMPI.py
       <a href="./tag/pandas.html">pandas</a>
     </li>
     <li class="list-group-item tag-3">
-      <a href="./tag/gmt.html">GMT</a>
-    </li>
-    <li class="list-group-item tag-3">
-      <a href="./tag/git.html">git</a>
+      <a href="./tag/visualization.html">visualization</a>
     </li>
     <li class="list-group-item tag-3">
       <a href="./tag/matlab.html">MATLAB</a>
     </li>
     <li class="list-group-item tag-3">
+      <a href="./tag/git.html">git</a>
+    </li>
+    <li class="list-group-item tag-3">
       <a href="./tag/fortran.html">fortran</a>
     </li>
     <li class="list-group-item tag-3">
-      <a href="./tag/visualization.html">visualization</a>
+      <a href="./tag/gmt.html">GMT</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/github.html">github</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/cluster.html">cluster</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/numpy.html">numpy</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/matplotlib.html">matplotlib</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/geomapapp.html">GeoMapApp</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/project.html">project</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/final.html">final</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/parallel-computing.html">parallel computing</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/arrays.html">arrays</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/version-control.html">version control</a>
+      <a href="./tag/mpi.html">mpi</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/source-code-editor.html">source code editor</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/mapping.html">mapping</a>
+      <a href="./tag/xarray.html">xarray</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/ndarray.html">ndarray</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/version-control.html">version control</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/packaging.html">packaging</a>
@@ -332,22 +309,43 @@ mpirun -n <span class="m">96</span> python alternatingSeriesMPI.py
       <a href="./tag/basemap.html">basemap</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/xarray.html">xarray</a>
+      <a href="./tag/final.html">final</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/parallel-programming.html">parallel programming</a>
+      <a href="./tag/parallel-computing.html">parallel computing</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/vpn.html">vpn</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/ndarray.html">ndarray</a>
+      <a href="./tag/matplotlib.html">matplotlib</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/habanero.html">habanero</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/mpi.html">mpi</a>
+      <a href="./tag/project.html">project</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/cluster.html">cluster</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/numpy.html">numpy</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/parallel-programming.html">parallel programming</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/arrays.html">arrays</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/github.html">github</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/geomapapp.html">GeoMapApp</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/vpn.html">vpn</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/mapping.html">mapping</a>
     </li>
   </ul>
 </li>
