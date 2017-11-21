@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Introduction to the Habanero HPC Cluster - Research Computing in Earth Sciences</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="./introduction-to-the-habanero-hpc-cluster.html">
+
+        <meta name="author" content="Kerry Key" />
+        <meta name="keywords" content="habanero,parallel computing,cluster" />
+        <meta name="description" content="Intro to Habanero" />
+
+        <meta property="og:site_name" content="Research Computing in Earth Sciences" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Introduction to the Habanero HPC Cluster"/>
+        <meta property="og:url" content="./introduction-to-the-habanero-hpc-cluster.html"/>
+        <meta property="og:description" content="Intro to Habanero"/>
+        <meta property="article:published_time" content="2017-11-21" />
+            <meta property="article:section" content="lectures" />
+            <meta property="article:tag" content="habanero" />
+            <meta property="article:tag" content="parallel computing" />
+            <meta property="article:tag" content="cluster" />
+            <meta property="article:author" content="Kerry Key" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="./theme/css/bootstrap.lumen.min.css" type="text/css"/>
+    <link href="./theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="./theme/css/pygments/default.css" rel="stylesheet">
+    <link rel="stylesheet" href="./theme/css/style.css" type="text/css"/>
+        <link href="./static/custom.css" rel="stylesheet">
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="./" class="navbar-brand">
+Research Computing in Earth Sciences            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                         <li><a href="./pages/schedule.html">
+                             Schedule
+                          </a></li>
+                         <li><a href="./pages/syllabus.html">
+                             Syllabus
+                          </a></li>
+                        <li >
+                            <a href="./category/assignments.html">Assignments</a>
+                        </li>
+                        <li class="active">
+                            <a href="./category/lectures.html">Lectures</a>
+                        </li>
+                        <li >
+                            <a href="./category/software.html">Software</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="./introduction-to-the-habanero-hpc-cluster.html"
+                       rel="bookmark"
+                       title="Permalink to Introduction to the Habanero HPC Cluster">
+                        Introduction to the Habanero HPC Cluster
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2017-11-21T00:00:00-05:00"> Tue 21 November 2017</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="./tag/habanero.html">habanero</a>
+        /
+	<a href="./tag/parallel-computing.html">parallel computing</a>
+        /
+	<a href="./tag/cluster.html">cluster</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <h2>Overview</h2>
+<p>This brief tutorial is intended to introduce you to parallel computing on HPC systems through a hands-on experience. You have been given a user account on Columbia's Habanero Cluster, and so now you will learn how to login to the system, setup your environment and start running jobs.</p>
+<p>We don't have time to cover much in this tutorial, so consult the Habanero documentation for further information:</p>
+<p><a href="https://confluence.columbia.edu/confluence/display/rcs/Habanero+HPC+Cluster+User+Documentation">Habanero HPC Cluster User Documentation</a></p>
+<h2>Tutorial:</h2>
+<h3>Login</h3>
+<p>Login to Habanero by using the <code>ssh</code> command in a unix shell:</p>
+<div class="highlight"><pre><span></span>ssh &lt;UNI&gt;@habanero.rcs.columbia.edu
+</pre></div>
+
+
+<p>where you replace <code>&lt;UNI&gt;</code> with your UNI.</p>
+<p>Check to see where your home directory is:</p>
+<div class="highlight"><pre><span></span><span class="o">[</span>kwk2115@holmes ~<span class="o">]</span>$ <span class="nb">pwd</span>
+/rigel/home/kwk2115
+</pre></div>
+
+
+<h3>Modules</h3>
+<p>Most clusters use a module environment where you have to load certain modules to gain access to various software libraries and compilers. A module system is used so that various incompatible libraries or old and new versions of a given library are kept in separate modules.  </p>
+<p>List the currently loaded modules:</p>
+<div class="highlight"><pre><span></span><span class="o">[</span>kwk2115@holmes ~<span class="o">]</span>$ module list
+
+Currently Loaded Modules:
+  <span class="m">1</span><span class="o">)</span> shared   <span class="m">2</span><span class="o">)</span> DefaultModules   <span class="m">3</span><span class="o">)</span> gcc/6.1.0   <span class="m">4</span><span class="o">)</span> slurm/16.05.8
+</pre></div>
+
+
+<p>List all the modules that are available:</p>
+<div class="highlight"><pre><span></span><span class="o">[</span>kwk2115@holmes ~<span class="o">]</span>$ module avail
+<span class="o">(</span>...<span class="o">)</span>
+</pre></div>
+
+
+<p>Since the demo code we will be running is in Python, we need to load the <strong><em>anaconda</em></strong> module. Let's grab the latest version available and load it:</p>
+<div class="highlight"><pre><span></span><span class="o">[</span>kwk2115@holmes ~<span class="o">]</span>$ module load anaconda/3-4.4.0
+~~~~
+Now <span class="k">if</span> you run <span class="sb">`</span>module list<span class="sb">`</span> you will see anaconda in the list of loaded modules.
+
+If you always use certain modules on the cluster, you can simply add the <span class="sb">`</span>module load &lt;module_name&gt;<span class="sb">`</span> <span class="nb">command</span> to your <span class="sb">`</span>.bashrc<span class="sb">`</span> file in your home directory <span class="o">(</span>your home directory on Habanero, not your laptop<span class="o">)</span>. This file is always <span class="nb">read</span> in right as you log in, so any commands there get executed when your shell starts up.
+
+
+
+<span class="c1">### Setting up the geo_scipy environment</span>
+
+For this tutorial we will run some simple <span class="sb">`</span>mpi4py<span class="sb">`</span> commands, so let<span class="err">&#39;</span>s get a geo_scipy environment setup using the <span class="sb">`</span>environment.yml<span class="sb">`</span> file below. Make sure yours includes the MPI line at the bottom.
+
+
+~~~yaml
+name: geo_scipy
+channels:
+    - conda-forge
+    - defaults
+dependencies:
+    - <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.6    <span class="c1"># Python version 3.6</span>
+    - bottleneck    <span class="c1"># C-optimized array functions for NumPy</span>
+    - cartopy       <span class="c1"># Geographic plotting toolkit</span>
+    - cython        <span class="c1"># Transpile Python-&gt;C</span>
+    - dask          <span class="c1"># Parallel processing library</span>
+    - future        <span class="c1"># Python 2/3 compatibility</span>
+    - h5py          <span class="c1"># Wrapper for HDF5</span>
+    - ipython       <span class="c1"># IPython interpreter and tools</span>
+    - jupyter       <span class="c1"># Jupyter federation architecture</span>
+    - matplotlib    <span class="c1"># 2D plotting library</span>
+    - netcdf4       <span class="c1"># Wrapper for netcdf4</span>
+    - notebook      <span class="c1"># Notebook interface</span>
+    - numpy         <span class="c1"># N-d array and numerics</span>
+    - pandas        <span class="c1"># Labeled array library</span>
+    - pyresample    <span class="c1"># Geographic resampling tools</span>
+    - scipy         <span class="c1"># Common math/stats/science functions</span>
+    - scikit-learn  <span class="c1"># Macine learning library</span>
+    - scikit-image  <span class="c1"># Image processing routines</span>
+    - statsmodels   <span class="c1"># Regression/modeling toolkit</span>
+    - seaborn       <span class="c1"># Statistical visualizations</span>
+    - six           <span class="c1"># Python 2/3 compatibility</span>
+    - tqdm          <span class="c1"># Nice progressbar for longer computations</span>
+    - xarray        <span class="c1"># N-d labeled array library</span>
+    - mpi4py        <span class="c1"># mpi for python library</span>
+</pre></div>
+
+
+<p>Save that text as environment.yml either in your home folder or a new folder (if so cd to that folder). I used the <code>nano</code> terminal text editor to create it directly in the shell.</p>
+<p>Then create this environment using <strong>conda</strong>:</p>
+<div class="highlight"><pre><span></span> conda env create -f environment.yml
+</pre></div>
+
+
+<p>This will take a few minutes.</p>
+<p>Finally, activate the environment:</p>
+<div class="highlight"><pre><span></span><span class="nb">source</span> activate geo_scipy
+</pre></div>
+
+
+<h3>Running a cluster job</h3>
+<p>When you run codes on the cluster, you must submit them to the cluster's queueing system. The queuing system manages all the requested jobs from all the users that are currently logged on as well as any jobs that were added to the queue at some earlier time but have yet to run.</p>
+<p><strong>Note: Do not run any of your codes on the login nodes without submitting them to the queue.  If you run codes on the login nodes straight from the terminal, it will make other users on Habanero angry since your code may bog down the login nodes and make the system inaccessible or unresponsive. Habanero is a shared resource; maintaining a happy user community  requires that you use this resource responsibly.</strong></p>
+<p>Okay, with that out of the way, it is okay for you to compile your codes and  upload and download files using the login nodes.</p>
+<p>Habanero using the <a href="https://slurm.schedmd.com/quickstart.html">Slurm Workload Manager</a> for its queueing system. There are many ways to submit a job using Slurm. One of the most common ways is to create a bash script that outlines what cluster resources you would like to use and then lists the commands you'd like to execute. Consider this example file called <code>HelloWorld.sh</code>:</p>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
+<span class="c1">#</span>
+<span class="c1"># Simple &quot;Hello World&quot; submit script for Slurm.</span>
+<span class="c1">#</span>
+<span class="c1"># Replace &lt;ACCOUNT&gt; with your account name before submitting.</span>
+<span class="c1">#</span>
+<span class="c1">#SBATCH --account=edu            # The account name for the job.</span>
+<span class="c1">#SBATCH --job-name=HelloWorld    # The job name.</span>
+<span class="c1">#SBATCH -c 1                     # The number of cpu cores to use.</span>
+<span class="c1">#SBATCH --time=1:00              # The time the job will take to run.</span>
+<span class="c1">#SBATCH --mem-per-cpu=1gb        # The memory the job will use per cpu core.</span>
+
+<span class="nb">echo</span> <span class="s2">&quot;Hello World&quot;</span>
+sleep <span class="m">10</span>
+date
+<span class="c1"># End of script</span>
+</pre></div>
+
+
+<p>We can submit this to the slurm with the  <code>sbatch</code> command:</p>
+<div class="highlight"><pre><span></span><span class="o">(</span>geo_scipy<span class="o">)</span> <span class="o">[</span>kwk2115@holmes ~<span class="o">]</span>$ sbatch HelloWorld.sh
+Submitted batch job <span class="m">3571213</span>
+</pre></div>
+
+
+<p>The <code>#SBATCH</code> directives in the shell script are commands that Slurm interprets. Here we listed the account to use (the edu account is our teaching account on Habanero), the job name (whatever you want to call it) and then a few parameters that specify what resources to use.</p>
+<p>Below that are three simple shell commands that the script then executes. These shell script commands (echo and date) write to standard output in the terminal.  Any standard output will be written to a file called <code>slurm-&lt;job #&gt;.out.</code></p>
+<p>My job ran right away and produced file <code>slurm-3571213.out</code>:</p>
+<div class="highlight"><pre><span></span><span class="o">(</span>geo_scipy<span class="o">)</span> <span class="o">[</span>kwk2115@holmes ~<span class="o">]</span>$ more slurm-3571213.out
+Hello World
+Tue Nov <span class="m">21</span> <span class="m">08</span>:22:01 EST <span class="m">2017</span>
+</pre></div>
+
+
+<p>Now let's try running a simple Python code. Create a file called <code>HelloWorld.py</code> that has the contents:</p>
+<div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="s1">&#39;Hello World&#39;</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;The value of c is: &#39;</span><span class="p">,</span><span class="n">c</span><span class="p">)</span>
+</pre></div>
+
+
+<p>We can run this code using the batch script:</p>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
+<span class="c1">#</span>
+<span class="c1"># Simple &quot;Hello World&quot; submit script for Slurm.</span>
+<span class="c1">#</span>
+<span class="c1"># Replace &lt;ACCOUNT&gt; with your account name before submitting.</span>
+<span class="c1">#</span>
+<span class="c1">#SBATCH --account=edu            # The account name for the job.</span>
+<span class="c1">#SBATCH --job-name=HelloWorld    # The job name.</span>
+<span class="c1">#SBATCH -c 1                     # The number of cpu cores to use.</span>
+<span class="c1">#SBATCH --time=1:00              # The time the job will take to run.</span>
+<span class="c1">#SBATCH --mem-per-cpu=1gb        # The memory the job will use per cpu core.</span>
+
+python HelloWorld.py
+
+<span class="c1"># End of script</span>
+</pre></div>
+
+
+<p>I saved that as script <code>HelloWorldPy.sh</code>.</p>
+<p>Submit the shell script to Slurm:</p>
+<div class="highlight"><pre><span></span><span class="o">(</span>geo_scipy<span class="o">)</span> <span class="o">[</span>kwk2115@holmes ~<span class="o">]</span>$ sbatch HelloWorldPy.sh
+</pre></div>
+
+
+<h3>Running an MPI for Python job:</h3>
+<p>For our demonstration of running a <code>mpi4py</code> code, we will use the following code that simply has each process print its rank to standard output:</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mpi4py</span> <span class="kn">import</span> <span class="n">MPI</span>
+
+<span class="n">comm</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">COMM_WORLD</span>
+<span class="n">rank</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Get_rank</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Hello World, my rank is &#39;</span><span class="p">,</span><span class="n">rank</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Save this as the file <code>HelloWorldMPI.py</code>.  </p>
+<p>To run an MPI code, we need a slightly different batch script:</p>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
+<span class="c1">#</span>
+<span class="c1"># Simple &quot;Hello World&quot; submit script for Slurm.</span>
+<span class="c1">#</span>
+<span class="c1"># Replace &lt;ACCOUNT&gt; with your account name before submitting.</span>
+<span class="c1">#</span>
+<span class="c1">#SBATCH --account=edu            # The account name for the job.</span>
+<span class="c1">#SBATCH --job-name=HelloWorld    # The job name.</span>
+<span class="c1">#SBATCH -N 1                     # The number of nodes to use</span>
+                                 <span class="c1">#(note there are 24 cores per node)</span>
+<span class="c1">#SBATCH --time=1:00              # The time the job will take to run.</span>
+
+<span class="nb">source</span> activate geo_scipy
+mpirun -n <span class="m">24</span> python HelloWorldMPI.py
+
+<span class="c1"># End of script</span>
+</pre></div>
+
+
+<p>Save this as <code>HelloWorldMPI.sh</code> and submit it to Slurm:</p>
+<div class="highlight"><pre><span></span><span class="o">(</span>geo_scipy<span class="o">)</span> <span class="o">[</span>kwk2115@holmes ~<span class="o">]</span>$ sbatch HelloWorldMPI.sh
+</pre></div>
+
+
+<p>When your job finishes, the <code>.job</code> file should have 24 lines of <code>Hello World, my rank is &lt;rank&gt;</code> where rank is the rank of each process. Notice that the statements are not in order. Although all the print statements execute at the same time, nothing in MPI requires them to be printed in  numerical order.</p>
+<p>In the example above, we used all 24 cores available on the single node we requested. You could use fewer cores by changing the value after the <code>-n</code> command on the <code>mpirun</code> line. Note that it is also possible to accidentally  <em>oversubscribe</em>  a node. For example, if we instead used <code>-n 48</code>, MPI would create 48 processes and these would be competing for CPU time on the 24 cores available.</p>
+<p>MPI does not prevent your from oversubscribing nodes, so its important that you make sure your job is sensible. The line <code>#SBATCH -N  &lt;number of nodes&gt;</code> specifies the number of nodes, and there are 24 cores per node on Habanero. So your <code>mpirun -n &lt;number of MPI processes&gt;</code> line should specify a value that is equal to or less than the <code>24 x &lt;number of nodes&gt;.</code> For example, if we wanted to run on 96 cores, we would use the following script:</p>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
+<span class="c1">#</span>
+<span class="c1"># Simple &quot;Hello World&quot; submit script for Slurm.</span>
+<span class="c1">#</span>
+<span class="c1"># Replace &lt;ACCOUNT&gt; with your account name before submitting.</span>
+<span class="c1">#</span>
+<span class="c1">#SBATCH --account=edu            # The account name for the job.</span>
+<span class="c1">#SBATCH --job-name=HelloWorld    # The job name.</span>
+<span class="c1">#SBATCH -N 4                     # The number of nodes to use</span>
+                                 <span class="c1">#(note there are 24 cores per node)</span>
+<span class="c1">#SBATCH --time=1:00              # The time the job will take to run.</span>
+
+<span class="nb">source</span> activate geo_scipy
+mpirun -n <span class="m">96</span> python HelloWorldMPI.py
+
+<span class="c1"># End of script</span>
+</pre></div>
+
+
+<h4>Time</h4>
+<p>The time argument tells Slurm that you job should use no more than the requested amount of time. In our examples above, we told it our job would only use 1 minute. Of course our simple command probably took less than a second to execute, but if we were instead running some complicated codes that required more than a minute, Slurm would kill our job at the minute mark. So for that case you will want to specify a longer run time. However note that the more nodes you request and the long run time you specify, the longer a wait your job may have in the Slurm queue (if there are lots of jobs in the queue).</p>
+<h3>Monitoring jobs submitted to the Slurm queue</h3>
+<p>See <a href="https://confluence.columbia.edu/confluence/display/rcs/Habanero+HPC+Cluster+User+Documentation">Habanero HPC Cluster User Documentation</a></p>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<!-- Sidebar -->
+<section class="well well-sm">
+  <ul class="list-group list-group-flush">
+
+<!-- Sidebar/Recent Posts -->
+<li class="list-group-item">
+  <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
+  <ul class="list-group" id="recentposts">
+    <li class="list-group-item"><a href="./introduction-to-the-habanero-hpc-cluster.html">Introduction to the Habanero HPC Cluster</a></li>
+    <li class="list-group-item"><a href="./parallel-programming-with-mpi-for-python.html">Parallel Programming with MPI For Python</a></li>
+    <li class="list-group-item"><a href="./assignment-10-packaging-python-code.html">Assignment #10 - Packaging Python Code</a></li>
+    <li class="list-group-item"><a href="./organization-and-packaging-of-python-projects.html">Organization and Packaging of Python Projects</a></li>
+    <li class="list-group-item"><a href="./assignment-9-map-making-and-geomapapp.html">Assignment #9 -  Map Making and GeoMapApp</a></li>
+    <li class="list-group-item"><a href="./intro-to-basemap.html">Map making in Python with Basemap</a></li>
+    <li class="list-group-item"><a href="./final-project-instructions.html">Final Project Instructions</a></li>
+    <li class="list-group-item"><a href="./introduction-to-generic-mapping-tools-gmt.html">Introduction to Generic Mapping Tools (GMT)</a></li>
+    <li class="list-group-item"><a href="./assignment-8-xarray.html">Assignment 8 - Xarray</a></li>
+    <li class="list-group-item"><a href="./xarray.html">Intermediate Python III: Xarray for Multidimensional Data</a></li>
+  </ul>
+</li>
+<!-- End Sidebar/Recent Posts -->
+
+<!-- Sidebar/Tag Cloud -->
+<li class="list-group-item">
+  <a href="./"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+  <ul class="list-group " id="tags">
+    <li class="list-group-item tag-1">
+      <a href="./tag/programming.html">programming</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/bash.html">bash</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/file-system.html">file system</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/shell.html">shell</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/python.html">python</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/assignment.html">assignment</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/unix.html">unix</a>
+    </li>
+    <li class="list-group-item tag-2">
+      <a href="./tag/pandas.html">pandas</a>
+    </li>
+    <li class="list-group-item tag-3">
+      <a href="./tag/visualization.html">visualization</a>
+    </li>
+    <li class="list-group-item tag-3">
+      <a href="./tag/git.html">git</a>
+    </li>
+    <li class="list-group-item tag-3">
+      <a href="./tag/gmt.html">GMT</a>
+    </li>
+    <li class="list-group-item tag-3">
+      <a href="./tag/fortran.html">fortran</a>
+    </li>
+    <li class="list-group-item tag-3">
+      <a href="./tag/matlab.html">MATLAB</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/basemap.html">basemap</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/version-control.html">version control</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/matplotlib.html">matplotlib</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/parallel-programming.html">parallel programming</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/mapping.html">mapping</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/source-code-editor.html">source code editor</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/parallel-computing.html">parallel computing</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/geomapapp.html">GeoMapApp</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/project.html">project</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/numpy.html">numpy</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/habanero.html">habanero</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/xarray.html">xarray</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/cluster.html">cluster</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/packaging.html">packaging</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/final.html">final</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/ndarray.html">ndarray</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/github.html">github</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/arrays.html">arrays</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/mpi.html">mpi</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/vpn.html">vpn</a>
+    </li>
+  </ul>
+</li>
+<!-- End Sidebar/Tag Cloud -->
+  </ul>
+</section>
+<!-- End Sidebar -->            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2017 Ryan Abernathey and Kerry Key
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>                <p><small>  <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/deed.en"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a>
+    Content
+  licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/deed.en">Creative Commons Attribution-NonCommercial 4.0 International License</a>, except where indicated otherwise.
+</small></p>
+         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="./theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="./theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="./theme/js/respond.min.js"></script>
+
+    <script src="./theme/js/bodypadding.js"></script>
+
+
+</body>
+</html>

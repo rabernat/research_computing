@@ -49,6 +49,7 @@
 ./intro-to-unix-part-6-shell-scripts.html
 ./intro-to-unix-part-7-finding-things.html
 ./introduction-to-generic-mapping-tools-gmt.html
+./introduction-to-the-habanero-hpc-cluster.html
 ./matlab.html
 ./nano-screenshot.png
 ./numpy-arrays-and-matplotlib.html
@@ -68,6 +69,7 @@
 ./tag/assignment.html
 ./tag/basemap.html
 ./tag/bash.html
+./tag/cluster.html
 ./tag/file-system.html
 ./tag/final.html
 ./tag/fortran.html
@@ -75,6 +77,7 @@
 ./tag/git.html
 ./tag/github.html
 ./tag/gmt.html
+./tag/habanero.html
 ./tag/mapping.html
 ./tag/matlab.html
 ./tag/matplotlib.html
@@ -83,6 +86,7 @@
 ./tag/numpy.html
 ./tag/packaging.html
 ./tag/pandas.html
+./tag/parallel-computing.html
 ./tag/parallel-programming.html
 ./tag/programming.html
 ./tag/project.html
