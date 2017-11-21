@@ -84,7 +84,7 @@ But first test that it works on your laptop! Make sure that `sum`  after the `co
 
 Remember to load the anaconda module after you ssh into Habanero:
 
-~~~
+~~~bash
 $ module load anaconda/3-4.4.0
 ~~~~    
 
