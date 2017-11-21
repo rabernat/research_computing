@@ -11,6 +11,7 @@ This purpose of this homework assignment is to get you more familiar with  MPI p
 Do the following:
 
 -  **Dust of your *alternating series* function from Assignment #3.** Your function should look something like this. Here we have added an explicit timer function using the `timeit`  module:
+
     ~~~python
     from timeit import default_timer as timer
 
@@ -47,6 +48,7 @@ You can start from the serial code above, and just add a few lines of code to ma
     These should be placed after the alternating series function and before `start = timer()`.
 
   - Pass in the process `rank` and `size` of the communicator to your function:
+
     ~~~python
     def alternating_harmonic_series(N,rank,size):
         < details of  function code>
@@ -60,26 +62,32 @@ You can start from the serial code above, and just add a few lines of code to ma
   `comm.Reduce(send_val,sum,op=MPI.SUM,root=0)` or similar, where the total sum is now in variable `sum`.
 
   - The parallel code should print out the same things as the serial code above. So modify the  code so that the timers and the print statements are only executed on the rank 0 process.  For example:
+
       ~~~python
       if rank == 0:
         print(' Number of terms in series: ',N)
         ...
       ~~~~
+
   -  Make sure the value of the sum agrees with your serial code when you run the MPI version using one processor.  When running on more processors, there will be small differences due to rounding errors in the reduction operations.
 
   - If you call your parallel code `alternatingSeriesMPI.py`, you can run it using the command below (where I'm using the 4 cores on my laptop):
+
     ~~~python
     $ mpirun -n 4 python alternatingSeriesMPI.py
     ~~~~
 
 - **Run the parallel alternating series code on Habanero.**
   - Remember to load the anaconda module after you ssh into Habanero:
+
     ~~~python
     $ module load anaconda/3-4.4.0
     ~~~~    
 
   - Set N=100000000 (that's 100,000,000) in the alternating series code.
+
   - Run it with the number of MPI processes varying from 1,2,3,6,12,24,48,96.  You can run it on 4 Habanero nodes and then specify the various number of processors to use using the `-n` argument with MPI. Here's what I used for the shell script:
+
     ~~~bash
     !/bin/sh
     #SBATCH --account=edu      
