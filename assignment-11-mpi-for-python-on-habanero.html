@@ -154,12 +154,12 @@ Research Computing in Earth Sciences            </a>
 
 <p>The function will be called by each parallel process (i.e., each rank). So you you need to modify  <code>range(1,N+1)</code>   to loop over a unique range for each parallel process. In other words, each parallel process will compute part of the sum, and then the results from each parallel process will be later added to give the total sum. See the next bullet point for how to do this.</p>
 <p>On each process, set the starting value of the sum integer to be  <code>rank</code>+1 and the stride of the loop (aka the increment value) to be the <code>size</code> of the communicator. For example, if we use 4 processors, this means   the rank 0 process will compute the sum over values <strong><em>n = 1, 5, 9, 13...N</em></strong> while the rank 1 process will use  <strong><em>n = 2, 6, 10, 14...N</em></strong>. You  should generalize this using the communicator <code>size</code>.</p>
-<p>You will use <code>comm.Reduce()</code> to add the partial sums (in <code>values</code>) from each process together on  the root (rank 0) process.  You will have to first convert <code>value</code> to an np.array since <code>comm.Reduce</code> will only work for np.arrays. For example use  <code>send_val = np.array(value,'d')</code>.   Then you will have a command that should be
+<p>You will use <code>comm.Reduce()</code> to add the partial sum results (in <code>value</code>) from each process together on  the root (rank 0) process.  You will have to first convert <code>value</code> to an np.array since <code>comm.Reduce</code> will only work for np.arrays. For example use  <code>send_val = np.array(value,'d')</code>.   Then you will have a command that should be
 <code>comm.Reduce(send_val,sum,op=MPI.SUM,root=0)</code> or similar, where the total sum is now in variable <code>sum</code>.</p>
 <p>The parallel code should print out the same things as the serial code above. So modify the  code so that the timers and the print statements are only executed on the rank 0 process.  For example:</p>
 <div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
   <span class="k">print</span><span class="p">(</span><span class="s1">&#39; Number of terms in series: &#39;</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
-  <span class="o">...</span>
+  <span class="o">&lt;</span><span class="n">rest</span> <span class="n">of</span> <span class="n">commands</span><span class="o">&gt;</span>
 <span class="o">~~~~</span>
 
 <span class="n">Make</span> <span class="n">sure</span> <span class="n">the</span> <span class="n">value</span> <span class="n">of</span> <span class="n">the</span> <span class="nb">sum</span> <span class="n">agrees</span> <span class="k">with</span> <span class="n">your</span> <span class="n">serial</span> <span class="n">code</span> <span class="n">when</span> <span class="n">you</span> <span class="n">run</span> <span class="n">the</span> <span class="n">MPI</span> <span class="n">version</span> <span class="n">using</span> <span class="n">one</span> <span class="n">processor</span><span class="o">.</span>  <span class="n">When</span> <span class="n">running</span> <span class="n">on</span> <span class="n">more</span> <span class="n">processors</span><span class="p">,</span> <span class="n">there</span> <span class="n">will</span> <span class="n">be</span> <span class="n">small</span> <span class="n">differences</span> <span class="n">due</span> <span class="n">to</span> <span class="n">rounding</span> <span class="n">errors</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">reduction</span> <span class="n">operations</span><span class="o">.</span>
@@ -170,6 +170,8 @@ Research Computing in Earth Sciences            </a>
 
 <p>$ mpirun -n 4 python alternatingSeriesMPI.py</p>
 <div class="highlight"><pre><span></span>### 3. Run the parallel alternating series code on Habanero.
+
+But first test that it works on your laptop! Make sure that `sum`  after the `comm.Reduce` command agrees with your serial code (at least the first several digits should agree).
 
 Remember to load the anaconda module after you ssh into Habanero:
 
@@ -208,7 +210,7 @@ mpirun -n <span class="m">96</span> python alternatingSeriesMPI.py
 
 <p>Save a table of the timer results for each MPI run that has [number_of_pocesses, time]. I ran the above script several times and noticed up to about 50% variability in the run times when <code>-n 48</code> and <code>-n 96</code> which implies some network latency issues since these larger jobs require two and four nodes communicating over the network. This isn't required, but if you want a more robust scaling test, you should run the script several times and then take the fastest times for each of the <code>-n</code> values used.</p>
 <p>Use matplotlib to make a plot of the parallel run time scaling. So time on the y axis versus number of processes on the x axis. <strong>Use log scaling for both the x and y axes.</strong> Don't forget to label the axes.  </p>
-<h3>4. Upload to your github in a new folder called Assignment_11** with</h3>
+<h3>4. Upload to your github in a new folder called Assignment_11 with</h3>
 <ul>
 <li>your python code</li>
 <li>the bash script you used on Habanero</li>
@@ -252,100 +254,100 @@ mpirun -n <span class="m">96</span> python alternatingSeriesMPI.py
       <a href="./tag/shell.html">shell</a>
     </li>
     <li class="list-group-item tag-1">
-      <a href="./tag/unix.html">unix</a>
-    </li>
-    <li class="list-group-item tag-1">
-      <a href="./tag/python.html">python</a>
-    </li>
-    <li class="list-group-item tag-1">
-      <a href="./tag/programming.html">programming</a>
-    </li>
-    <li class="list-group-item tag-1">
-      <a href="./tag/bash.html">bash</a>
+      <a href="./tag/assignment.html">assignment</a>
     </li>
     <li class="list-group-item tag-1">
       <a href="./tag/file-system.html">file system</a>
     </li>
     <li class="list-group-item tag-1">
-      <a href="./tag/assignment.html">assignment</a>
+      <a href="./tag/programming.html">programming</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/python.html">python</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/bash.html">bash</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/unix.html">unix</a>
     </li>
     <li class="list-group-item tag-2">
       <a href="./tag/pandas.html">pandas</a>
     </li>
     <li class="list-group-item tag-3">
-      <a href="./tag/fortran.html">fortran</a>
+      <a href="./tag/gmt.html">GMT</a>
     </li>
     <li class="list-group-item tag-3">
       <a href="./tag/git.html">git</a>
     </li>
     <li class="list-group-item tag-3">
-      <a href="./tag/gmt.html">GMT</a>
+      <a href="./tag/matlab.html">MATLAB</a>
     </li>
     <li class="list-group-item tag-3">
-      <a href="./tag/matlab.html">MATLAB</a>
+      <a href="./tag/fortran.html">fortran</a>
     </li>
     <li class="list-group-item tag-3">
       <a href="./tag/visualization.html">visualization</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/parallel-programming.html">parallel programming</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/geomapapp.html">GeoMapApp</a>
+      <a href="./tag/github.html">github</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/cluster.html">cluster</a>
     </li>
     <li class="list-group-item tag-4">
+      <a href="./tag/numpy.html">numpy</a>
+    </li>
+    <li class="list-group-item tag-4">
       <a href="./tag/matplotlib.html">matplotlib</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/packaging.html">packaging</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/mpi.html">mpi</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/basemap.html">basemap</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/habanero.html">habanero</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/parallel-computing.html">parallel computing</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/vpn.html">vpn</a>
+      <a href="./tag/geomapapp.html">GeoMapApp</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/project.html">project</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/github.html">github</a>
+      <a href="./tag/final.html">final</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/xarray.html">xarray</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/source-code-editor.html">source code editor</a>
+      <a href="./tag/parallel-computing.html">parallel computing</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/arrays.html">arrays</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/ndarray.html">ndarray</a>
-    </li>
-    <li class="list-group-item tag-4">
       <a href="./tag/version-control.html">version control</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/final.html">final</a>
+      <a href="./tag/source-code-editor.html">source code editor</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/mapping.html">mapping</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/numpy.html">numpy</a>
+      <a href="./tag/packaging.html">packaging</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/basemap.html">basemap</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/xarray.html">xarray</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/parallel-programming.html">parallel programming</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/vpn.html">vpn</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/ndarray.html">ndarray</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/habanero.html">habanero</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/mpi.html">mpi</a>
     </li>
   </ul>
 </li>
