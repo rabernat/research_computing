@@ -74,9 +74,9 @@ Make sure the value of the sum agrees with your serial code when you run the MPI
 
 If you call your parallel code `alternatingSeriesMPI.py`, you can run it using the command below (where I'm using the 4 cores on my laptop):
 
-~~~
+~~~bash
 $ mpirun -n 4 python alternatingSeriesMPI.py
-~~~~
+~~~
 
 ### 3. Run the parallel alternating series code on Habanero.
 
