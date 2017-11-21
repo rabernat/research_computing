@@ -153,48 +153,42 @@ Currently Loaded Modules:
 
 <p>Since the demo code we will be running is in Python, we need to load the <strong><em>anaconda</em></strong> module. Let's grab the latest version available and load it:</p>
 <div class="highlight"><pre><span></span><span class="o">[</span>kwk2115@holmes ~<span class="o">]</span>$ module load anaconda/3-4.4.0
-~~~~
-Now <span class="k">if</span> you run <span class="sb">`</span>module list<span class="sb">`</span> you will see anaconda in the list of loaded modules.
-
-If you always use certain modules on the cluster, you can simply add the <span class="sb">`</span>module load &lt;module_name&gt;<span class="sb">`</span> <span class="nb">command</span> to your <span class="sb">`</span>.bashrc<span class="sb">`</span> file in your home directory <span class="o">(</span>your home directory on Habanero, not your laptop<span class="o">)</span>. This file is always <span class="nb">read</span> in right as you log in, so any commands there get executed when your shell starts up.
+</pre></div>
 
 
-
-<span class="c1">### Setting up the geo_scipy environment</span>
-
-For this tutorial we will run some simple <span class="sb">`</span>mpi4py<span class="sb">`</span> commands, so let<span class="err">&#39;</span>s get a geo_scipy environment setup using the <span class="sb">`</span>environment.yml<span class="sb">`</span> file below. Make sure yours includes the MPI line at the bottom.
-
-
-~~~yaml
-name: geo_scipy
-channels:
-    - conda-forge
-    - defaults
-dependencies:
-    - <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.6    <span class="c1"># Python version 3.6</span>
-    - bottleneck    <span class="c1"># C-optimized array functions for NumPy</span>
-    - cartopy       <span class="c1"># Geographic plotting toolkit</span>
-    - cython        <span class="c1"># Transpile Python-&gt;C</span>
-    - dask          <span class="c1"># Parallel processing library</span>
-    - future        <span class="c1"># Python 2/3 compatibility</span>
-    - h5py          <span class="c1"># Wrapper for HDF5</span>
-    - ipython       <span class="c1"># IPython interpreter and tools</span>
-    - jupyter       <span class="c1"># Jupyter federation architecture</span>
-    - matplotlib    <span class="c1"># 2D plotting library</span>
-    - netcdf4       <span class="c1"># Wrapper for netcdf4</span>
-    - notebook      <span class="c1"># Notebook interface</span>
-    - numpy         <span class="c1"># N-d array and numerics</span>
-    - pandas        <span class="c1"># Labeled array library</span>
-    - pyresample    <span class="c1"># Geographic resampling tools</span>
-    - scipy         <span class="c1"># Common math/stats/science functions</span>
-    - scikit-learn  <span class="c1"># Macine learning library</span>
-    - scikit-image  <span class="c1"># Image processing routines</span>
-    - statsmodels   <span class="c1"># Regression/modeling toolkit</span>
-    - seaborn       <span class="c1"># Statistical visualizations</span>
-    - six           <span class="c1"># Python 2/3 compatibility</span>
-    - tqdm          <span class="c1"># Nice progressbar for longer computations</span>
-    - xarray        <span class="c1"># N-d labeled array library</span>
-    - mpi4py        <span class="c1"># mpi for python library</span>
+<p>Now if you run <code>module list</code> you will see anaconda in the list of loaded modules.</p>
+<p>If you always use certain modules on the cluster, you can simply add the <code>module load &lt;module_name&gt;</code> command to your <code>.bashrc</code> file in your home directory (your home directory on Habanero, not your laptop). This file is always read in right as you log in, so any commands there get executed when your shell starts up.</p>
+<h3>Setting up the geo_scipy environment</h3>
+<p>For this tutorial we will run some simple <code>mpi4py</code> commands, so let's get a geo_scipy environment setup using the <code>environment.yml</code> file below. Make sure yours includes the MPI line at the bottom.</p>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">geo_scipy</span>
+<span class="l l-Scalar l-Scalar-Plain">channels</span><span class="p p-Indicator">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">conda-forge</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">defaults</span>
+<span class="l l-Scalar l-Scalar-Plain">dependencies</span><span class="p p-Indicator">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">python=3.6</span>    <span class="c1"># Python version 3.6</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">bottleneck</span>    <span class="c1"># C-optimized array functions for NumPy</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">cartopy</span>       <span class="c1"># Geographic plotting toolkit</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">cython</span>        <span class="c1"># Transpile Python-&gt;C</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">dask</span>          <span class="c1"># Parallel processing library</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">future</span>        <span class="c1"># Python 2/3 compatibility</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">h5py</span>          <span class="c1"># Wrapper for HDF5</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ipython</span>       <span class="c1"># IPython interpreter and tools</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">jupyter</span>       <span class="c1"># Jupyter federation architecture</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">matplotlib</span>    <span class="c1"># 2D plotting library</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">netcdf4</span>       <span class="c1"># Wrapper for netcdf4</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">notebook</span>      <span class="c1"># Notebook interface</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">numpy</span>         <span class="c1"># N-d array and numerics</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">pandas</span>        <span class="c1"># Labeled array library</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">pyresample</span>    <span class="c1"># Geographic resampling tools</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">scipy</span>         <span class="c1"># Common math/stats/science functions</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">scikit-learn</span>  <span class="c1"># Macine learning library</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">scikit-image</span>  <span class="c1"># Image processing routines</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">statsmodels</span>   <span class="c1"># Regression/modeling toolkit</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">seaborn</span>       <span class="c1"># Statistical visualizations</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">six</span>           <span class="c1"># Python 2/3 compatibility</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">tqdm</span>          <span class="c1"># Nice progressbar for longer computations</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">xarray</span>        <span class="c1"># N-d labeled array library</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">mpi4py</span>        <span class="c1"># mpi for python library</span>
 </pre></div>
 
 
@@ -383,22 +377,22 @@ mpirun -n <span class="m">96</span> python HelloWorldMPI.py
       <a href="./tag/programming.html">programming</a>
     </li>
     <li class="list-group-item tag-1">
-      <a href="./tag/bash.html">bash</a>
-    </li>
-    <li class="list-group-item tag-1">
-      <a href="./tag/file-system.html">file system</a>
-    </li>
-    <li class="list-group-item tag-1">
       <a href="./tag/shell.html">shell</a>
-    </li>
-    <li class="list-group-item tag-1">
-      <a href="./tag/python.html">python</a>
     </li>
     <li class="list-group-item tag-1">
       <a href="./tag/assignment.html">assignment</a>
     </li>
     <li class="list-group-item tag-1">
       <a href="./tag/unix.html">unix</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/file-system.html">file system</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/bash.html">bash</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/python.html">python</a>
     </li>
     <li class="list-group-item tag-2">
       <a href="./tag/pandas.html">pandas</a>
@@ -410,73 +404,73 @@ mpirun -n <span class="m">96</span> python HelloWorldMPI.py
       <a href="./tag/git.html">git</a>
     </li>
     <li class="list-group-item tag-3">
-      <a href="./tag/gmt.html">GMT</a>
+      <a href="./tag/fortran.html">fortran</a>
     </li>
     <li class="list-group-item tag-3">
-      <a href="./tag/fortran.html">fortran</a>
+      <a href="./tag/gmt.html">GMT</a>
     </li>
     <li class="list-group-item tag-3">
       <a href="./tag/matlab.html">MATLAB</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/basemap.html">basemap</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/version-control.html">version control</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/matplotlib.html">matplotlib</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/parallel-programming.html">parallel programming</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/mapping.html">mapping</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/source-code-editor.html">source code editor</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/parallel-computing.html">parallel computing</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/geomapapp.html">GeoMapApp</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/project.html">project</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/numpy.html">numpy</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/habanero.html">habanero</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/xarray.html">xarray</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/cluster.html">cluster</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/packaging.html">packaging</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/final.html">final</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/ndarray.html">ndarray</a>
+      <a href="./tag/arrays.html">arrays</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/github.html">github</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/arrays.html">arrays</a>
+      <a href="./tag/xarray.html">xarray</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/version-control.html">version control</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/habanero.html">habanero</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/numpy.html">numpy</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/mapping.html">mapping</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/ndarray.html">ndarray</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/mpi.html">mpi</a>
     </li>
     <li class="list-group-item tag-4">
+      <a href="./tag/packaging.html">packaging</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/geomapapp.html">GeoMapApp</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/matplotlib.html">matplotlib</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/final.html">final</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/source-code-editor.html">source code editor</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/cluster.html">cluster</a>
+    </li>
+    <li class="list-group-item tag-4">
       <a href="./tag/vpn.html">vpn</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/project.html">project</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/basemap.html">basemap</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/parallel-computing.html">parallel computing</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/parallel-programming.html">parallel programming</a>
     </li>
   </ul>
 </li>
