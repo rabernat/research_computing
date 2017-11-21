@@ -68,7 +68,7 @@ The parallel code should print out the same things as the serial code above. So 
 if rank == 0:
   print(' Number of terms in series: ',N)
   <rest of commands>
-~~~~
+~~~
 
 Make sure the value of the sum agrees with your serial code when you run the MPI version using one processor.  When running on more processors, there will be small differences due to rounding errors in the reduction operations.
 
