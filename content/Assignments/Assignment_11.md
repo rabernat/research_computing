@@ -59,7 +59,7 @@ The function will be called by each parallel process (i.e., each rank). So you y
 
 On each process, set the starting value of the sum integer to be  `rank`+1 and the stride of the loop (aka the increment value) to be the `size` of the communicator. For example, if we use 4 processors, this means   the rank 0 process will compute the sum over values ***n = 1, 5, 9, 13...N*** while the rank 1 process will use  ***n = 2, 6, 10, 14...N***. You  should generalize this using the communicator `size`.
 
-You will use `comm.Reduce()` to add the partial sums (in `values`) from each process together on  the root (rank 0) process.  You will have to first convert `value` to an np.array since `comm.Reduce` will only work for np.arrays. For example use  `send_val = np.array(value,'d')`.   Then you will have a command that should be
+You will use `comm.Reduce()` to add the partial sum results (in `value`) from each process together on  the root (rank 0) process.  You will have to first convert `value` to an np.array since `comm.Reduce` will only work for np.arrays. For example use  `send_val = np.array(value,'d')`.   Then you will have a command that should be
 `comm.Reduce(send_val,sum,op=MPI.SUM,root=0)` or similar, where the total sum is now in variable `sum`.
 
 The parallel code should print out the same things as the serial code above. So modify the  code so that the timers and the print statements are only executed on the rank 0 process.  For example:
@@ -67,7 +67,7 @@ The parallel code should print out the same things as the serial code above. So 
 ~~~python
 if rank == 0:
   print(' Number of terms in series: ',N)
-  ...
+  <rest of commands>
 ~~~~
 
 Make sure the value of the sum agrees with your serial code when you run the MPI version using one processor.  When running on more processors, there will be small differences due to rounding errors in the reduction operations.
@@ -79,6 +79,8 @@ $ mpirun -n 4 python alternatingSeriesMPI.py
 ~~~~
 
 ### 3. Run the parallel alternating series code on Habanero.
+
+But first test that it works on your laptop! Make sure that `sum`  after the `comm.Reduce` command agrees with your serial code (at least the first several digits should agree).
 
 Remember to load the anaconda module after you ssh into Habanero:
 
@@ -123,7 +125,7 @@ Save a table of the timer results for each MPI run that has [number_of_pocesses,
 Use matplotlib to make a plot of the parallel run time scaling. So time on the y axis versus number of processes on the x axis. **Use log scaling for both the x and y axes.** Don't forget to label the axes.  
 
 
-### 4. Upload to your github in a new folder called Assignment_11** with
-  - your python code
-  - the bash script you used on Habanero
-  - the time scaling plot.
+### 4. Upload to your github in a new folder called Assignment_11 with
+- your python code
+- the bash script you used on Habanero
+- the time scaling plot.
