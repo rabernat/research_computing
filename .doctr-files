@@ -29,6 +29,7 @@
 ./category/assignments.html
 ./category/lectures.html
 ./category/software.html
+./dask-for-parallel-computing-and-big-data.html
 ./filesystem.svg
 ./final-project-instructions.html
 ./fortran.html
@@ -71,6 +72,7 @@
 ./tag/basemap.html
 ./tag/bash.html
 ./tag/cluster.html
+./tag/dask.html
 ./tag/file-system.html
 ./tag/final.html
 ./tag/fortran.html

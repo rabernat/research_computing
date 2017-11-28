@@ -78,6 +78,22 @@ Research Computing in Earth Sciences            </a>
     <div class="row">
         <div class="col-sm-9">
             <article>
+                <h2><a href="../dask-for-parallel-computing-and-big-data.html">Dask for Parallel Computing and Big Data</a></h2>
+                <div class="summary">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Dask-for-Parallel-Computing-in-Python">Dask for Parallel Computing in Python<a class="anchor-link" href="#Dask-for-Parallel-Computing-in-Python">¶</a></h1><p>In past lectures, we learned how to use numpy, pandas, and xarray to analyze various types of geoscience data.
+In this lecture, we address an incresingly common problem: what happens if the data we wish to analyze is "big data"</p>
+<h3 id='Aside:-What-is-"Big-Data"?'>Aside: What is "Big Data"?<a class="anchor-link" href='#Aside:-What-is-"Big-Data"?'>¶</a></h3><p>There is a lot of hype around the buzzword "big data" today.
+Some people may associate "big data" with specific sortware platforms (e.g. "Hadoop", "spark"), while, for others, "big data" means specific machine learning techniques.
+But I think <a href="https://en.wikipedia.org/wiki/Big_data">wikipedia's definition</a>
+                    <a class="btn btn-default btn-xs" href="../dask-for-parallel-computing-and-big-data.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="../assignment-8-xarray.html">Assignment 8 - Xarray</a></h2>
                 <div class="summary">
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
@@ -106,6 +122,7 @@ Research Computing in Earth Sciences            </a>
 <li class="list-group-item">
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
   <ul class="list-group" id="recentposts">
+    <li class="list-group-item"><a href="../dask-for-parallel-computing-and-big-data.html">Dask for Parallel Computing and Big Data</a></li>
     <li class="list-group-item"><a href="../assignment-8-xarray.html">Assignment 8 - Xarray</a></li>
   </ul>
 </li>
@@ -116,31 +133,37 @@ Research Computing in Earth Sciences            </a>
   <a href="../"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
   <ul class="list-group " id="tags">
     <li class="list-group-item tag-1">
-      <a href="../tag/shell.html">shell</a>
-    </li>
-    <li class="list-group-item tag-1">
-      <a href="../tag/file-system.html">file system</a>
-    </li>
-    <li class="list-group-item tag-1">
-      <a href="../tag/assignment.html">assignment</a>
-    </li>
-    <li class="list-group-item tag-1">
       <a href="../tag/programming.html">programming</a>
-    </li>
-    <li class="list-group-item tag-1">
-      <a href="../tag/bash.html">bash</a>
     </li>
     <li class="list-group-item tag-1">
       <a href="../tag/unix.html">unix</a>
     </li>
     <li class="list-group-item tag-1">
+      <a href="../tag/shell.html">shell</a>
+    </li>
+    <li class="list-group-item tag-1">
       <a href="../tag/python.html">python</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="../tag/file-system.html">file system</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="../tag/bash.html">bash</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="../tag/assignment.html">assignment</a>
     </li>
     <li class="list-group-item tag-2">
       <a href="../tag/pandas.html">pandas</a>
     </li>
     <li class="list-group-item tag-3">
-      <a href="../tag/git.html">git</a>
+      <a href="../tag/matlab.html">MATLAB</a>
+    </li>
+    <li class="list-group-item tag-3">
+      <a href="../tag/visualization.html">visualization</a>
+    </li>
+    <li class="list-group-item tag-3">
+      <a href="../tag/xarray.html">xarray</a>
     </li>
     <li class="list-group-item tag-3">
       <a href="../tag/fortran.html">fortran</a>
@@ -149,70 +172,67 @@ Research Computing in Earth Sciences            </a>
       <a href="../tag/gmt.html">GMT</a>
     </li>
     <li class="list-group-item tag-3">
-      <a href="../tag/visualization.html">visualization</a>
-    </li>
-    <li class="list-group-item tag-3">
-      <a href="../tag/matlab.html">MATLAB</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="../tag/numpy.html">numpy</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="../tag/parallel-programming.html">parallel programming</a>
+      <a href="../tag/git.html">git</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="../tag/project.html">project</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="../tag/version-control.html">version control</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="../tag/xarray.html">xarray</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="../tag/mapping.html">mapping</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="../tag/mpi.html">mpi</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="../tag/basemap.html">basemap</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="../tag/cluster.html">cluster</a>
+      <a href="../tag/habanero.html">habanero</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="../tag/matplotlib.html">matplotlib</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="../tag/geomapapp.html">GeoMapApp</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="../tag/ndarray.html">ndarray</a>
+      <a href="../tag/dask.html">dask</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="../tag/source-code-editor.html">source code editor</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="../tag/habanero.html">habanero</a>
+      <a href="../tag/packaging.html">packaging</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="../tag/mapping.html">mapping</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="../tag/ndarray.html">ndarray</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="../tag/final.html">final</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="../tag/packaging.html">packaging</a>
+      <a href="../tag/github.html">github</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="../tag/parallel-computing.html">parallel computing</a>
+      <a href="../tag/version-control.html">version control</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="../tag/arrays.html">arrays</a>
+      <a href="../tag/geomapapp.html">GeoMapApp</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="../tag/cluster.html">cluster</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="../tag/numpy.html">numpy</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="../tag/vpn.html">vpn</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="../tag/github.html">github</a>
+      <a href="../tag/parallel-computing.html">parallel computing</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="../tag/basemap.html">basemap</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="../tag/mpi.html">mpi</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="../tag/parallel-programming.html">parallel programming</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="../tag/arrays.html">arrays</a>
     </li>
   </ul>
 </li>

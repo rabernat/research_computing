@@ -1431,7 +1431,7 @@ requirements.txt
 setup.py
 gcdistance/__init__.py
 gcdistance/gcdistance.py
-gcdistance/__init__.py
+gcdistance/tests/__init__.py
 gcdistancs/tests/test_gcdistance.py
 
 </code></pre>
@@ -1572,10 +1572,32 @@ If we plan to keep developing the package, we can install it in "developer mode"
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
+<div class="prompt input_prompt">In [3]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">round</span><span class="p">(</span><span class="mf">1.12345678</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mf">1.1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[3]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [5]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="mf">1.1</span> <span class="o"><</span> <span class="mf">1.12</span>
+<span class="k">assert</span> <span class="mf">1.1</span> <span class="o">></span> <span class="mf">1.0</span>
 </pre></div>
 </div>
 </div>
@@ -1627,6 +1649,7 @@ If we plan to keep developing the package, we can install it in "developer mode"
 <li class="list-group-item">
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
   <ul class="list-group" id="recentposts">
+    <li class="list-group-item"><a href="./dask-for-parallel-computing-and-big-data.html">Dask for Parallel Computing and Big Data</a></li>
     <li class="list-group-item"><a href="./assignment-11-mpi-for-python-on-habanero.html">Assignment #11 - MPI for Python on Habanero</a></li>
     <li class="list-group-item"><a href="./introduction-to-the-habanero-hpc-cluster.html">Introduction to the Habanero HPC Cluster</a></li>
     <li class="list-group-item"><a href="./parallel-programming-with-mpi-for-python.html">Parallel Programming with MPI For Python</a></li>
@@ -1636,7 +1659,6 @@ If we plan to keep developing the package, we can install it in "developer mode"
     <li class="list-group-item"><a href="./intro-to-basemap.html">Map making in Python with Basemap</a></li>
     <li class="list-group-item"><a href="./final-project-instructions.html">Final Project Instructions</a></li>
     <li class="list-group-item"><a href="./introduction-to-generic-mapping-tools-gmt.html">Introduction to Generic Mapping Tools (GMT)</a></li>
-    <li class="list-group-item"><a href="./assignment-8-xarray.html">Assignment 8 - Xarray</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Recent Posts -->
@@ -1646,31 +1668,37 @@ If we plan to keep developing the package, we can install it in "developer mode"
   <a href="./"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
   <ul class="list-group " id="tags">
     <li class="list-group-item tag-1">
-      <a href="./tag/shell.html">shell</a>
-    </li>
-    <li class="list-group-item tag-1">
-      <a href="./tag/file-system.html">file system</a>
-    </li>
-    <li class="list-group-item tag-1">
-      <a href="./tag/assignment.html">assignment</a>
-    </li>
-    <li class="list-group-item tag-1">
       <a href="./tag/programming.html">programming</a>
-    </li>
-    <li class="list-group-item tag-1">
-      <a href="./tag/bash.html">bash</a>
     </li>
     <li class="list-group-item tag-1">
       <a href="./tag/unix.html">unix</a>
     </li>
     <li class="list-group-item tag-1">
+      <a href="./tag/shell.html">shell</a>
+    </li>
+    <li class="list-group-item tag-1">
       <a href="./tag/python.html">python</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/file-system.html">file system</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/bash.html">bash</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="./tag/assignment.html">assignment</a>
     </li>
     <li class="list-group-item tag-2">
       <a href="./tag/pandas.html">pandas</a>
     </li>
     <li class="list-group-item tag-3">
-      <a href="./tag/git.html">git</a>
+      <a href="./tag/matlab.html">MATLAB</a>
+    </li>
+    <li class="list-group-item tag-3">
+      <a href="./tag/visualization.html">visualization</a>
+    </li>
+    <li class="list-group-item tag-3">
+      <a href="./tag/xarray.html">xarray</a>
     </li>
     <li class="list-group-item tag-3">
       <a href="./tag/fortran.html">fortran</a>
@@ -1679,70 +1707,67 @@ If we plan to keep developing the package, we can install it in "developer mode"
       <a href="./tag/gmt.html">GMT</a>
     </li>
     <li class="list-group-item tag-3">
-      <a href="./tag/visualization.html">visualization</a>
-    </li>
-    <li class="list-group-item tag-3">
-      <a href="./tag/matlab.html">MATLAB</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/numpy.html">numpy</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/parallel-programming.html">parallel programming</a>
+      <a href="./tag/git.html">git</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/project.html">project</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/version-control.html">version control</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/xarray.html">xarray</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/mapping.html">mapping</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/mpi.html">mpi</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/basemap.html">basemap</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/cluster.html">cluster</a>
+      <a href="./tag/habanero.html">habanero</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/matplotlib.html">matplotlib</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/geomapapp.html">GeoMapApp</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="./tag/ndarray.html">ndarray</a>
+      <a href="./tag/dask.html">dask</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/source-code-editor.html">source code editor</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/habanero.html">habanero</a>
+      <a href="./tag/packaging.html">packaging</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/mapping.html">mapping</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/ndarray.html">ndarray</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/final.html">final</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/packaging.html">packaging</a>
+      <a href="./tag/github.html">github</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/parallel-computing.html">parallel computing</a>
+      <a href="./tag/version-control.html">version control</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/arrays.html">arrays</a>
+      <a href="./tag/geomapapp.html">GeoMapApp</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/cluster.html">cluster</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/numpy.html">numpy</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="./tag/vpn.html">vpn</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="./tag/github.html">github</a>
+      <a href="./tag/parallel-computing.html">parallel computing</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/basemap.html">basemap</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/mpi.html">mpi</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/parallel-programming.html">parallel programming</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="./tag/arrays.html">arrays</a>
     </li>
   </ul>
 </li>
