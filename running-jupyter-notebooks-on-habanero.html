@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>Assignment #5 - Fortran - Research Computing in Earth Sciences</title>
+    <title>Running Jupyter Notebooks on Habanero - Research Computing in Earth Sciences</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,21 +9,23 @@
 
 
 
-<link rel="canonical" href="./assignment-5-fortran.html">
+<link rel="canonical" href="./running-jupyter-notebooks-on-habanero.html">
 
-        <meta name="author" content="Ryan Abernathey and Kerry Key" />
-        <meta name="keywords" content="assignment" />
-        <meta name="description" content="Due: Thursday, 5 October" />
+        <meta name="author" content="Ryan Abernathey" />
+        <meta name="keywords" content="habanero,parallel computing,cluster" />
+        <meta name="description" content="Here we will learn how to launch a jupyter notebook on Habanero and connect to it via an ssh tunnel. It would be possible to automate all of this, but it is instructive to go through the steps manually. Login Login to Habanero by using the ssh command in a …" />
 
         <meta property="og:site_name" content="Research Computing in Earth Sciences" />
         <meta property="og:type" content="article"/>
-        <meta property="og:title" content="Assignment #5 - Fortran"/>
-        <meta property="og:url" content="./assignment-5-fortran.html"/>
-        <meta property="og:description" content="Due: Thursday, 5 October"/>
-        <meta property="article:published_time" content="2017-09-28" />
-            <meta property="article:section" content="assignments" />
-            <meta property="article:tag" content="assignment" />
-            <meta property="article:author" content="Ryan Abernathey and Kerry Key" />
+        <meta property="og:title" content="Running Jupyter Notebooks on Habanero"/>
+        <meta property="og:url" content="./running-jupyter-notebooks-on-habanero.html"/>
+        <meta property="og:description" content="Here we will learn how to launch a jupyter notebook on Habanero and connect to it via an ssh tunnel. It would be possible to automate all of this, but it is instructive to go through the steps manually. Login Login to Habanero by using the ssh command in a …"/>
+        <meta property="article:published_time" content="2017-11-30" />
+            <meta property="article:section" content="lectures" />
+            <meta property="article:tag" content="habanero" />
+            <meta property="article:tag" content="parallel computing" />
+            <meta property="article:tag" content="cluster" />
+            <meta property="article:author" content="Ryan Abernathey" />
 
 
     <!-- Bootstrap -->
@@ -61,10 +63,10 @@ Research Computing in Earth Sciences            </a>
                          <li><a href="./pages/syllabus.html">
                              Syllabus
                           </a></li>
-                        <li class="active">
+                        <li >
                             <a href="./category/assignments.html">Assignments</a>
                         </li>
-                        <li >
+                        <li class="active">
                             <a href="./category/lectures.html">Lectures</a>
                         </li>
                         <li >
@@ -86,10 +88,10 @@ Research Computing in Earth Sciences            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="./assignment-5-fortran.html"
+                    <a href="./running-jupyter-notebooks-on-habanero.html"
                        rel="bookmark"
-                       title="Permalink to Assignment #5 - Fortran">
-                        Assignment #5 -  Fortran
+                       title="Permalink to Running Jupyter Notebooks on Habanero">
+                        Running Jupyter Notebooks on Habanero
                     </a>
                 </h1>
             </header>
@@ -99,7 +101,7 @@ Research Computing in Earth Sciences            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2017-09-28T00:00:00-05:00"> Thu 28 September 2017</time>
+        <i class="fa fa-calendar"></i><time datetime="2017-11-30T00:00:00-05:00"> Thu 30 November 2017</time>
     </span>
 
 
@@ -107,39 +109,169 @@ Research Computing in Earth Sciences            </a>
 
 
 <span class="label label-default">Tags</span>
-	<a href="./tag/assignment.html">assignment</a>
+	<a href="./tag/habanero.html">habanero</a>
+        /
+	<a href="./tag/parallel-computing.html">parallel computing</a>
+        /
+	<a href="./tag/cluster.html">cluster</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p><strong>Due: Thursday, 5 October</strong></p>
-<p><strong>Matrix Multiplication</strong>. In this example you will use Fortran to create two square matrices <code>A</code> and <code>B</code> with dimensions <code>n</code> x <code>n</code>. You will then use <a href="https://en.wikipedia.org/wiki/Matrix_multiplication">matrix multiplication</a> to compute their product with the results being stored in matrix <code>C</code>. Thus, you will be computing the matrix equation <code>C = AB</code>. Note that matrix multiplication is different from element by element array multiplication. See the <a href="https://en.wikipedia.org/wiki/Matrix_multiplication">wikipedia page</a> if you are unsure what matrix multiplication is.</p>
-<p><strong>Part 1 - Analyze the problem</strong></p>
-<p>For this part, list your answers in a plain text file called <code>answers_part1.txt</code> and submit that file to github in a new  folder named <code>assignment_5</code>.</p>
-<p>1a) How many <em>megabytes</em> of RAM will be required to store matrices <code>A</code>,<code>B</code> and <code>C</code> in the computer's memory for a given matrix size <code>n</code>? State the formula.</p>
-<p>1b) Element <code>C(i,j)</code> is equal to the sum of <code>A(i,k)*B(k,j)</code> over all values of index <code>k</code> from 1 to <code>n</code>.  How many multiplication operations does it take to compute the single element <code>C(i,j)</code>? How many addition operations does it  take to compute the single element <code>C(i,j)</code>?   </p>
-<p>1c) Write down the code snippet for computing element <code>C(i,j)</code> using a <code>do</code> loop.  Assume i and j are given fixed values so you don't need to loop over i or j here.</p>
-<p>1d) State the code for computing element <code>C(i,j)</code> where you use the intrinsic function <code>sum</code> instead of a <code>do</code> loop.</p>
-<p>1e) Now state the code snippet for computing every element in matrix <code>C</code> using your answer from 1c) or 1d) as a starting point. You don't need to write down the entire Fortran program. Just state the part that performs the matrix product  <code>C = AB</code>.  </p>
-<p>1f) How many total operations does it take to compute the matrix product  <code>C = AB</code>? State your answer as a single formula in terms of <code>n</code>.</p>
-<p>1g) Simplify your result from 1f) by stating it using <a href="https://en.wikipedia.org/wiki/Big_O_notation">big-O</a> notation. In big-O notation you just state the dominant term and ignore any constants. Write your answer as  O(<code>X</code>), where <code>X</code> is the dominant term.</p>
-<p>1h) Big-O notation is used to classify the performance of an algorithm as a function of the size of the input <code>n</code>. Assume your matrix product algorithm will take time <code>t0</code> to run on your computer when <code>n=1</code>.  How long should it them take for <code>n=10,n=100,n=1000</code>?</p>
-<p>1i ) If all elements of  <code>A</code> and <code>B</code> to have the value 1, what value should any element of <code>C</code> be?</p>
-<p><strong>Part 2 - Write the code</strong></p>
-<p>2) Now that you have all the pieces, write a Fortran program named <code>MatrixMultiply.f90</code> that computes <code>C=AB</code> for the <code>n x n</code> matrices <code>A,B,C</code>.  Your program should
-  - Have a <code>write</code> and <code>read</code> statement pair that asks you to input the matrix size <code>n</code>
-  - use an <code>allocate</code> statement to allocate matrices <code>A,B,C</code>
-  - assign all elements of matrices <code>A</code> and <code>B</code> to have the value 1.
-  - use the answer from exercise 1e) to carry out the matrix multiplication
-  - use calls to <code>cpu_time()</code> before and after the do loops to assign the time it takes to compute <code>C=AB</code>. Save this time to a variable called <code>time</code>
-  - write out the values of <code>n</code> and <code>time</code> to the shell in a user friendly form.
-  - save the first ten rows and first five columns of <code>C</code> to a file called <code>C.txt</code></p>
-<p><strong>Part 3 - Analyze the results</strong></p>
-<p>3a) Create a text file named <code>MatrixMultiplyTimers.txt</code> that lists the timing results for <code>n=10, n=100, n=1000</code> with columns for the values <code>n</code> and <code>time</code>.  </p>
-<p>3b) Load <code>MatrixMultiplyTimers.txt</code> into MATLAB and plot <code>time</code> versus <code>n</code> on a log-log plot. Save the MATLAB figure to a file called  <code>MatrixMultiplyTimers.pdf</code>.</p>
-<p>3c) Based on these results and the big-O scaling, how long do you think it would
-take for <code>n=10000</code> and <code>n=100,000</code>. How much RAM would you need on your computer for these two cases?</p>
-<p><strong>Part 4 - Turn it in</strong></p>
-<p>Put all the files created for this assignment into a folder called assignment_5 and upload that folder to your github repository.  </p>
+                <p>Here we will learn how to launch a jupyter notebook on Habanero and connect to it via an ssh tunnel.
+It would be possible to automate all of this, but it is instructive to go through the steps manually.</p>
+<h3>Login</h3>
+<p>Login to Habanero by using the <code>ssh</code> command in a unix shell:</p>
+<div class="highlight"><pre><span></span>ssh &lt;UNI&gt;@habanero.rcs.columbia.edu
+</pre></div>
+
+
+<p>where you replace <code>&lt;UNI&gt;</code> with your UNI.</p>
+<p>Check to see where your home directory is:</p>
+<div class="highlight"><pre><span></span><span class="o">[</span>kwk2115@holmes ~<span class="o">]</span>$ <span class="nb">pwd</span>
+/rigel/home/kwk2115
+</pre></div>
+
+
+<h3>Load Environment</h3>
+<p>In the <a href="./introduction-to-the-habanero-hpc-cluster.html">Intro to Habanero</a>,
+you configured an environment called <code>geo_scipy</code>. You should activate it again.</p>
+<div class="highlight"><pre><span></span>$ module load anaconda
+$ <span class="nb">source</span> activate geo_scipy
+</pre></div>
+
+
+<h3>Configure notebook security</h3>
+<p>Jupyter notebook servers can include a password for security.
+This step is especially important in a shared environment, to ensure that
+other users can't access your notebook.
+To create a password, first we generate the Jupyter config file</p>
+<div class="highlight"><pre><span></span>jupyter notebook --generate-config
+</pre></div>
+
+
+<p>This created a file in <code>~/.jupyter/jupyter_notebook_config.py</code>.  If you open
+that file and search for "password", you'll see a line like the following:</p>
+<div class="highlight"><pre><span></span>#c.NotebookApp.password = u&#39;&#39;
+</pre></div>
+
+
+<p>The instructions in the comments of the config file tell you to generate a
+hashed password by entering the following commands:</p>
+<div class="highlight"><pre><span></span>$ ipython
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">from</span> <span class="nn">notebook.auth</span> <span class="kn">import</span> <span class="n">passwd</span><span class="p">;</span> <span class="n">passwd</span><span class="p">()</span>
+<span class="n">Enter</span> <span class="n">password</span><span class="p">:</span>
+</pre></div>
+
+
+<p>You can enter a password of your choice, and it will return to you a hashed
+password that encodes the same information, but is safe to include in a
+publicly accessible config file.  I entered "password" (do not do this) and go
+the following output:</p>
+<div class="highlight"><pre><span></span><span class="n">Out</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="s1">&#39;sha1:69a76df803b9:99ca27341563cd85ba4e78684128e1f4ad2d8d0d&#39;</span>
+</pre></div>
+
+
+<p>Copy that string into the clipboard, then open your <code>jupyter_notebook_config.py</code>
+config file in a text editor (vim, nano, or emacs). Find the password line and
+paste the hashed password.</p>
+<div class="highlight"><pre><span></span>c.NotebookApp.password = u&#39;sha1:69a76df803b9:99ca27341563cd85ba4e78684128e1f4ad2d8d0d&#39;
+</pre></div>
+
+
+<p>Security is now configured for your notebook.</p>
+<h3>Launch a notebook on a compute node</h3>
+<p>You should not use the login nodes for any data analysis tasks. The jupyter
+notebook needs to be launched on a compute node. We need to create a jobscript
+that will allow us to launch a notebook. Open a text editor (vim, nano, emacs)
+on a new filed called <code>launch-notebook.sh</code> and type in the following lines</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="c1">#SBATCH --account=edu</span>
+<span class="c1">#SBATCH --reserverpation=edu_15</span>
+<span class="c1">#SBATCH -J notebook</span>
+<span class="c1">#SBATCH --time=6:00:00</span>
+
+
+<span class="c1"># Setup Environment</span>
+module load anaconda
+<span class="nb">source</span> activate geo_scipy
+
+<span class="nb">export</span> <span class="nv">XDG_RUNTIME_DIR</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+
+jupyter notebook --no-browser --ip <span class="s2">&quot;*&quot;</span> <span class="se">\</span>
+  --notebook-dir <span class="nv">$HOME</span>
+</pre></div>
+</td></tr></table>
+
+<p>Once this file has been created, use it to launch a batch job</p>
+<div class="highlight"><pre><span></span>$ sbatch launch-notebook.sh
+</pre></div>
+
+
+<p>Check on the status of your job</p>
+<div class="highlight"><pre><span></span>$ squeue -u <span class="nv">$USER</span>
+</pre></div>
+
+
+<p>If you job has launched, you will see something like this</p>
+<div class="highlight"><pre><span></span>JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+3759794      edu1 notebook   ra2697  R      34:12      1 node163
+</pre></div>
+
+
+<h3>Connect to your notebook</h3>
+<p>Our notebook is now running on the compute node. The only problem is, we can't
+connect to it! Compute nodes are hidden behind a firewall and can't accept
+incomming connections. We need to use an ssh tunnel. An ssh tunnel allows us
+to connect to a remote port via an ssh connection, as illustrated in this
+diagram</p>
+<p><img alt="SSH tunnel" src="https://webdevolutions.blob.core.windows.net/blog/2016/11/SSH-Tunnel-access-protected-server-diagram21.png"></p>
+<p>First we need to find out the hostname where the notebook is running. We get
+this from the <code>squeue</code> command, under the nodelist column. The hostname is
+<code>node163</code>. Then we need to know the remote port where the job is running.
+By default this is <code>8888</code>, but, if there are other notebook servers on the same
+node, it may be different. To check for sure, we can look in the log file
+from our batch job. In this case it is a file called <code>slurm-3759794.out</code>. We
+type</p>
+<div class="highlight"><pre><span></span>$ grep Notebook slurm-&lt;JOBID&gt;.out
+</pre></div>
+
+
+<p>(replace <JOBID> with your actual job ID.)</p>
+<p>This gives</p>
+<div class="highlight"><pre><span></span>[I 09:17:30.525 NotebookApp] Serving notebooks from local directory: /rigel/home/ra2697
+[I 09:17:30.525 NotebookApp] 0 active kernels
+[I 09:17:30.525 NotebookApp] The Jupyter Notebook is running at:
+[I 09:17:30.526 NotebookApp] http://[all ip addresses on your system]:8888/
+[I 09:17:30.526 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+</pre></div>
+
+
+<p>The second to last line shows that port 8888 is correct.</p>
+<p>Now, <em>from our local machine</em>, we create a new ssh connection with tunnels</p>
+<div class="highlight"><pre><span></span>$ ssh -L <span class="m">9999</span>:node163:8888 &lt;UNI&gt;@habanero.rcs.columbia.edu
+</pre></div>
+
+
+<p>We can open the notebook connection at <a href="http://localhost:9999">http://localhost:9999</a>.</p>
             </div>
             <!-- /.entry-content -->
         </article>
